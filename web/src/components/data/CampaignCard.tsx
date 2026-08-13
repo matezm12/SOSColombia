@@ -6,7 +6,7 @@ import {
   CROWDFUNDING_PLATFORM_LABEL,
   VERIFICATION_LABEL,
 } from "@/lib/labels";
-import { formatNumber, formatDate } from "@/lib/format";
+import { formatCurrency, formatNumber, formatDate } from "@/lib/format";
 
 export function CampaignCard({ campaign }: { campaign: CrowdfundingCampaign }) {
   return (
@@ -23,12 +23,18 @@ export function CampaignCard({ campaign }: { campaign: CrowdfundingCampaign }) {
         <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">
           {campaign.raised !== null && (
             <>
-              Recaudado: <strong>{formatNumber(campaign.raised)}</strong>
+              Recaudado: <strong>{formatCurrency(campaign.raised, campaign.currency)}</strong>
             </>
           )}
-          {campaign.goal !== null && <> de meta {formatNumber(campaign.goal)}</>}
+          {campaign.goal !== null && (
+            <> de meta {formatCurrency(campaign.goal, campaign.currency)}</>
+          )}
           {campaign.donorCount !== null && <> · {formatNumber(campaign.donorCount)} donantes</>}
         </p>
+      )}
+
+      {campaign.notes && (
+        <p className="mt-2 text-xs text-amber-700 dark:text-amber-500">{campaign.notes}</p>
       )}
 
       <p className="mt-2 text-sm">
