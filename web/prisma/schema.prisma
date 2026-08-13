@@ -51,6 +51,7 @@ model Municipio {
 
   tollRecords      TollRecord[]
   aidPoints        AidPoint[]
+  pendingAidPoints PendingAidPoint[]
   socialPosts      SocialPost[]
 
   @@index([departmentId])
@@ -138,6 +139,45 @@ enum AidPointStatus {
   FULL
   CLOSED
   UNCONFIRMED
+}
+
+// ── Moderation queue ─────────────────────────────────────────────────────
+// Staging table for tier-3 updates (wiki/10-app-architecture.md's data-update-mechanism
+// design): community submissions and automation-sweep candidates land here first, never
+// straight into AidPoint — keeps the sourced/reviewed discipline intact post-launch.
+
+model PendingAidPoint {
+  id                 String            @id @default(cuid())
+  municipio          Municipio         @relation(fields: [municipioId], references: [id])
+  municipioId        String
+  kind               AidPointKind
+  name               String
+  address            String?
+  phone              String?
+  needsText          String?
+  accessRestriction  String?
+  sourceUrl          String?           // link backing the claim (social post, news article, official page)
+  submitterNote      String?           // free-text context from whoever submitted this
+  submitterContact   String?           // optional email/phone for follow-up questions — never shown publicly
+  origin             SubmissionOrigin  @default(COMMUNITY)
+  status             SubmissionStatus  @default(PENDING)
+  reviewNote         String?
+  createdAt          DateTime          @default(now())
+  reviewedAt         DateTime?
+  promotedAidPointId String?           // set once approved and copied into AidPoint
+
+  @@index([status])
+}
+
+enum SubmissionOrigin {
+  COMMUNITY
+  AUTOMATION_SWEEP
+}
+
+enum SubmissionStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }
 
 // ── Government reports ──────────────────────────────────────────────────
