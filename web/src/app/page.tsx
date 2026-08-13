@@ -71,6 +71,13 @@ export default async function Home() {
             </li>
           ))}
         </ul>
+
+        <Link
+          href="/metodologia"
+          className="mt-10 inline-block text-sm text-zinc-500 underline hover:text-zinc-800 dark:hover:text-zinc-200"
+        >
+          Metodología y discrepancias entre fuentes →
+        </Link>
       </main>
     </div>
   );
