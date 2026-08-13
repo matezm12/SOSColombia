@@ -1,0 +1,253 @@
+// SOSColombia — data model
+// Mirrors wiki/10-app-architecture.md. Keep the two in sync when either changes.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ── Event ────────────────────────────────────────────────────────────────
+
+model Event {
+  id             String   @id @default(cuid())
+  name           String
+  magnitudeSgc   Float?
+  magnitudeUsgs  Float?
+  depthSgcKm     Float?
+  depthUsgsKm    Float?
+  epicenterLatSgc  Float?
+  epicenterLngSgc  Float?
+  epicenterLatUsgs Float?
+  epicenterLngUsgs Float?
+  occurredAt     DateTime
+  createdAt      DateTime @default(now())
+}
+
+// ── Geography ────────────────────────────────────────────────────────────
+
+model Department {
+  id            String       @id @default(cuid())
+  name          String
+  divipolaCode  String       @unique
+  municipios    Municipio[]
+  tollRecords   TollRecord[]
+}
+
+model Municipio {
+  id               String      @id @default(cuid())
+  department       Department  @relation(fields: [departmentId], references: [id])
+  departmentId     String
+  name             String
+  divipolaCode     String      @unique
+  populationDane   Int?
+  populationAsOf   DateTime?
+  severityLabel    SeverityLabel?
+  redAlert         Boolean     @default(false)
+  lat              Float?
+  lng              Float?
+
+  tollRecords      TollRecord[]
+  aidPoints        AidPoint[]
+  socialPosts      SocialPost[]
+
+  @@index([departmentId])
+}
+
+enum SeverityLabel {
+  CRITICA
+  ALTA
+  MODERADA
+  LEVE
+}
+
+// ── Toll data — append-only, never overwritten ──────────────────────────
+
+model TollRecord {
+  id           String      @id @default(cuid())
+  municipio    Municipio?  @relation(fields: [municipioId], references: [id])
+  municipioId  String?     // null = national or department-level rollup
+  department   Department? @relation(fields: [departmentId], references: [id])
+  departmentId String?
+  metric       TollMetric
+  value        Float
+  unit         String?     // e.g. "personas", "familias", "viviendas" — null if the metric name is self-explanatory
+  source       Source      @relation(fields: [sourceId], references: [id])
+  sourceId     String
+  tier         Int         // 1 (best) .. 6 (worst) — see wiki/README.md source tier list
+  asOf         DateTime    // date the figure claims to represent
+  retrievedAt  DateTime    @default(now()) // when we captured it — distinct from asOf
+  notes        String?
+
+  @@index([municipioId, metric])
+  @@index([departmentId, metric])
+}
+
+enum TollMetric {
+  DEATHS_REPORTED_OFFICIAL
+  DEATHS_CONFIRMED_FORENSIC
+  INJURED
+  MISSING_OFFICIAL
+  MISSING_CROWDSOURCED
+  DAMNIFICADOS_PERSONAS
+  DAMNIFICADOS_FAMILIAS
+  VIVIENDAS_DESTRUIDAS
+  VIVIENDAS_AVERIADAS
+  EDIFICIOS_COLAPSADOS
+  CENTROS_EDUCATIVOS_AFECTADOS
+  CENTROS_COMUNITARIOS_AFECTADOS
+  CENTROS_SALUD_AFECTADOS
+}
+
+// ── Aid points ───────────────────────────────────────────────────────────
+
+model AidPoint {
+  id                 String       @id @default(cuid())
+  municipio          Municipio    @relation(fields: [municipioId], references: [id])
+  municipioId        String
+  kind               AidPointKind
+  name               String
+  address            String?      // many confirmed sources are venue-name-only, no street address
+  lat                Float?
+  lng                Float?
+  phone              String?
+  needsText          String?      // freeform, e.g. "colchonetas, agua"
+  status             AidPointStatus @default(UNCONFIRMED)
+  accessRestriction  String?      // e.g. "pre-assessed families only"
+  source             Source       @relation(fields: [sourceId], references: [id])
+  sourceId           String
+  permalink          String?
+  lastVerifiedAt     DateTime
+
+  @@index([municipioId, kind])
+}
+
+enum AidPointKind {
+  ALBERGUE
+  ACOPIO
+  HEALTH
+  VET
+  BLOOD_DONATION
+  MONETARY_DONATION
+}
+
+enum AidPointStatus {
+  ACTIVE
+  FULL
+  CLOSED
+  UNCONFIRMED
+}
+
+// ── Government reports ──────────────────────────────────────────────────
+
+model GovReport {
+  id          String   @id @default(cuid())
+  org         String
+  docType     String
+  title       String
+  date        DateTime
+  url         String?  // several exist only as reported content, no PDF located
+  keyFigures  Json?
+  summary     String
+  sourceTier  Int
+}
+
+// ── Sources ──────────────────────────────────────────────────────────────
+
+model Source {
+  id            String       @id @default(cuid())
+  url           String
+  org           String
+  tier          Int
+  status        SourceStatus @default(LIVE)
+  lastFetchedAt DateTime?
+  notes         String?
+
+  tollRecords   TollRecord[]
+  aidPoints     AidPoint[]
+}
+
+enum SourceStatus {
+  LIVE
+  BLOCKED
+  DEAD
+  NEEDS_RECHECK
+}
+
+// ── Contradictions — first-class, not hidden ────────────────────────────
+
+model Contradiction {
+  id             String              @id @default(cuid())
+  topic          String
+  status         ContradictionStatus @default(OPEN)
+  valueA         String
+  sourceA        String
+  valueB         String
+  sourceB        String
+  resolutionText String?
+  loggedAt       DateTime            @default(now())
+  resolvedAt     DateTime?
+}
+
+enum ContradictionStatus {
+  OPEN
+  RESOLVED
+}
+
+// ── Crowdfunding ─────────────────────────────────────────────────────────
+
+model CrowdfundingCampaign {
+  id                 String              @id @default(cuid())
+  platform           CrowdfundingPlatform
+  title              String
+  orgOrPerson        String
+  url                String
+  goal               Float?
+  raised             Float?
+  donorCount         Int?
+  verificationStatus VerificationStatus  @default(UNCONFIRMED)
+  lastCheckedAt      DateTime
+}
+
+enum CrowdfundingPlatform {
+  GOFUNDME
+  VAKI
+  OTHER
+}
+
+enum VerificationStatus {
+  VERIFIED
+  PLAUSIBLE
+  UNCONFIRMED
+  FLAGGED_SCAM
+}
+
+// ── Social posts (embeds) ───────────────────────────────────────────────
+
+model SocialPost {
+  id          String       @id @default(cuid())
+  platform    SocialPlatform
+  permalink   String       @unique
+  authorHandle String?
+  oembedHtml  String?      // cached
+  municipio   Municipio?   @relation(fields: [municipioId], references: [id])
+  municipioId String?
+  category    SocialPostCategory
+  capturedAt  DateTime     @default(now())
+}
+
+enum SocialPlatform {
+  X
+  INSTAGRAM
+  FACEBOOK
+  TIKTOK
+}
+
+enum SocialPostCategory {
+  AID_POINT
+  NEED
+  HUMAN_INTEREST
+  OFFICIAL
+}

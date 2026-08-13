@@ -1,0 +1,149 @@
+# Progress Log — SOSColombia
+
+Per-session log: what happened, what's next. Read this first when resuming after a gap.
+
+---
+
+## 2026-08-13 — Session 1: Scaffolding
+- Built full folder structure: `wiki/`, `raw/`, planning files (this file, task_plan.md, findings.md)
+- Defined source tier list, append-only numbers rule, wiki+lean-ctx dual-layer approach
+- No actual earthquake research done yet — event not even confirmed
+
+## 2026-08-13 — Session 2: First research pass (Phase 0-3 partial)
+- Confirmed event: M7.4, 2026-08-10, epicenter San José del Palmar (Chocó), depth ~103 km
+- Populated `wiki/01-event-facts.md`, `03-death-toll.md`, `04-damnificados.md`, `05-gov-reports.md`
+- Created 6 city files under `wiki/02-cities/`: Pereira, Cali, Quibdó, Manizales, Armenia, San José del Palmar
+- Created 5 aid-point files under `wiki/07-aid-points/`: Bogotá (hub), Cali, Pereira, Manizales, Armenia — mostly donor collection points, not distribution/shelter data
+- Logged 7 contradictions in `08-contradictions.md` (biggest: missing-persons count 287 vs 4,210)
+- Expanded glossary with USAR, Fondo Milagro, Cruz Roja, Banco de Alimentos, SCARE, etc.
+- All research this session via WebSearch + WebFetch on news aggregators (tier 5-6) — **no tier-1 (SGC) or direct tier-2 (UNGRD site) source fetched yet**, everything is secondhand
+
+### Next session should start with
+1. Direct fetch sgc.gov.co and ungrd.gov.co — replace tier-6 seismic/casualty figures with tier-1/2 primary source
+2. Resolve missing-persons contradiction (287 vs 4,210) — check UNGRD source directly
+3. Dig for San José del Palmar (epicenter town) specific data — currently almost nothing
+4. Find real distribution-point/shelter data for affected people (current aid data is donor-facing, wrong shape for the "help centers" feature goal)
+5. Pull DANE population baselines for the 6 cities already started
+6. Add Popayán as full city file
+
+## 2026-08-13 — Session 3: Phase 2 research plan (multi-agent workflow)
+- User asked for a deeper research plan covering: Pereira social media (X/IG/FB/TikTok, official + crowd-reported aid points including vet health), crowdfunding/GoFundMe campaigns (e.g. "Camila Franco" — could NOT confirm this campaign exists for this earthquake, closest match is an unrelated 2020 fundraiser), open-source APIs/projects, and toll data — then clarified this must cover ALL affected cities (Cali, Manizales, Armenia, Quibdó, San José del Palmar), not just Pereira
+- Ran a 7-agent Workflow (ultracode): 6 parallel domain-scoping agents (Pereira hyperlocal/social, crowdfunding, primary toll sources, open-source tools, animal/vet aid, country/city reference data) + 1 synthesis pass, each doing light real scouting (actual searches/fetches) to make the plan concrete
+- Result written to `wiki/research-plan-phase2.md` — full 6-domain plan with sources, search queries, challenges, checklists, priority order
+- Key discoveries surfaced (leads only, NOT yet verified/committed to core wiki files): 6 named Pereira shelters, 7 Pereira collection centers, HOT OSM's active 2026 Colombia earthquake mapping project, mapadelterremoto.com (a third-party aggregator tracking 2,082 points incl. 31 in Pereira — closest existing analog to this project), datos.gov.co's Socrata API with an ideal DIVIPOLA-keyed schema (not yet confirmed populated for this event), INMLCF's comunicado-oficial URL pattern (blocked by a TLS cert error via WebFetch), ReliefWeb/HDX APIs (both 403'd, likely a WAF wall not a real block), several real GoFundMe/Vaki campaigns, and Pereira-specific vet-aid leads (Ukumarí, Hospital de Maraya — closed, Fixit hotline)
+- Universal blocker identified: no logged-in access to X/Instagram/Facebook/TikTok/WhatsApp/Telegram — WebSearch only surfaces already-indexed posts, never live feeds/hashtags/closed groups. Recommendation: claude-in-chrome browser automation is the single highest-leverage next tool to stand up, unblocks multiple domains at once (INMLCF TLS error, ReliefWeb/HDX 403s, social media access)
+- Did NOT execute any of Phase 2 yet — this session was planning/scoping only, per the user's request
+
+### Next session should start with
+Follow `wiki/research-plan-phase2.md` → "Immediate next actions" checklist. Top items: stand up claude-in-chrome browser automation; verify Pereira's 6 shelters' current status; direct-fetch sish.sgc.gov.co for the primary seismic record; pull DANE population figures directly (not via aggregator); once Pereira's hyperlocal pass is solid, replicate for Cali/Manizales/Armenia/Quibdó.
+
+## 2026-08-13 — Session 4: Phase 2 execution pass
+- User said go: execute Phase 2, gave the real Camila Franco GoFundMe link (gofund.me/740d646f4), asked to dig deeper on APIs/sources, and confirmed deferring all social-media/browser-automation work ("the universal wall") to later
+- Directly resolved the GoFundMe link myself: real campaign, "Relief Supplies for Colombia Earthquake" by Camila Franco, Pereira-focused, $1,600 goal / $1,262 raised / 19 donors — written into new `wiki/11-crowdfunding-campaigns.md`
+- Launched 6 parallel Agent calls (not a Workflow — no ultracode opt-in this turn) covering: primary toll sources, open-source tools/APIs, Pereira+other-cities hyperlocal aid verification, crowdfunding remainder, country/city reference data, animal/vet aid — all WebSearch/WebFetch only, no browser automation
+- **Major results committed to wiki:**
+  - Missing-persons contradiction (287 vs 4,210) RESOLVED — two different metrics (official institutional vs "Colombia Te Busca" crowdsourced self-reports), not an error
+  - USGS confirmed as a clean, directly-fetchable primary seismic source (event us6000tjl2); SGC's own bulletins reached directly too — corrected the "strongest earthquake ever" claim to SGC's actual ranking (3rd-largest in Colombian history)
+  - Two real corrections caught and fixed: La Tarde (Pereira newspaper) has been defunct since 2016 — El Diario is the actual successor; Ukumarí's "emergency pet point" role could not be substantiated and was downgraded to unconfirmed
+  - datos.gov.co's promising-looking Socrata dataset confirmed DEAD (no records since Dec 2022) — dropped as a source
+  - mapadelterremoto.com confirmed live and directly answered the "donor points vs distribution points" question: it explicitly separates albergues (shelters) from centros de acopio (donation collection), confirming acopio ≠ distribution across the whole project
+  - Real DANE population figures pulled directly (not via aggregator) for all 6 cities — corrected 4 of 5 previously-aggregator-sourced figures and resolved a San José del Palmar "population decrease" that turned out to be an aggregator error
+  - 3 more GoFundMe campaigns got live goal/raised/donor figures; Vaki campaigns confirmed real but blocked by client-side rendering
+  - Pereira's aid-points file got a major upgrade (shelter statuses, 7 CEDE addresses, corrected vet section); Cali/Manizales/Armenia/Quibdó got a first pass, much thinner than Pereira — Armenia has zero confirmed shelters, Quibdó's addresses are all medium-confidence
+  - New wiki files created: `11-crowdfunding-campaigns.md`, `13-opensource-tools.md`, `13a-mapadelterremoto-watch.md`, `14-context-reference.md`, `07-aid-points/quibdo.md`
+- **Confirmed dead ends requiring browser automation (deferred, not retried further)**: medicinalegal.gov.co (TLS cert error), reliefweb.int + data.humdata.org (403 on every endpoint, confirmed WAF not URL-specific), repositorio.gestiondelriesgo.gov.co (network-level ECONNREFUSED), catalogosismico.sgc.gov.co (JS-rendered), Vaki campaign figures (JS-rendered), GoFundMe relief hub full listing (JS-rendered)
+
+### Next session should start with
+Deepen Cali/Manizales/Armenia/Quibdó aid-point directories toward Pereira's level of detail (Armenia especially — zero confirmed shelters). Chase San José del Palmar (epicenter town, still almost no dedicated coverage) and Popayán (not yet a full city file). When ready to tackle the deferred browser-automation work, it unblocks a lot at once: INMLCF, ReliefWeb, HDX, UNGRD repositorio, catalogosismico.sgc.gov.co, Vaki figures, GoFundMe hub, and all social-media hashtag/timeline work.
+
+## 2026-08-13 — Session 5: deepened the 4 thin cities + 2 gaps
+- User asked "what's next" — presented 4 options, user picked deepening the other cities (Cali/Manizales/Armenia/Quibdó plus San José del Palmar and Popayán)
+- Launched 5 parallel Agent calls: Armenia, Quibdó, San José del Palmar, Popayán, Cali+Manizales — all WebSearch/WebFetch only
+- The Popayán agent took the initiative to write its own findings directly into `wiki/02-cities/popayan.md` (new), `wiki/07-aid-points/popayan.md` (new), and updated `00-INDEX.md`/`14-context-reference.md`/`06-sources.md` itself — confirmed via system reminders these were kept as-is, not reverted
+- Manually committed the other 4 agents' findings:
+  - **Armenia**: confirmed a real, notable pattern — zero deaths AND zero shelters activated, both independently verified as genuine absences, not data gaps. Heavy structural damage (2,000+ structures, 30 demolition orders) with no fatalities. Caught and corrected a likely misattribution: "Fundación Kenovy" (flagged in Phase 2 as an Armenia-based damaged animal shelter) is actually Bogotá-based; found a real municipal animal-welfare contact instead (310 447 4441).
+  - **Quibdó**: first confirmed shelter found (Coliseo de Boxeo de Quibdó), all 3 previously-medium-confidence collection-point addresses cross-verified against 2nd/3rd independent sources, a 4th collection point discovered, El Caraño airport confirmed reopened, and the long-standing "9 vs 14 deaths" contradiction resolved as city-vs-department scope, not a real conflict.
+  - **San José del Palmar**: built out a full profile for the first time — confirmed zero deaths at the literal epicenter, but the town was cut off by land (15-24+ landslides) and incommunicado ~30 hours, with the mayor stating as of Aug 11 it had received no national/departmental resources at all. Also surfaced that the town suffered ELN attacks days before the earthquake.
+  - **Cali/Manizales**: Cali got upgraded to an authoritative municipal-government figure (cali.gov.co's own updated page: 96 deaths/1,224 injured/111 missing, Aug 12 8pm) — the single most authoritative single-city figure found in the whole project. Manizales got 6 named victims and identified the shelter from the earlier Juan Diego Alvira lead (Coliseo Mayor Jorge Arango Uribe, 240 people housed).
+- Notable cross-city pattern surfaced: the cities closest to the epicenter (San José del Palmar, Quibdó) plus Armenia (red-alert but not epicenter-close) all show markedly lower death tolls than Cali/Pereira — consistent across independent sources, now flagged in wiki/00-INDEX.md and wiki/03-death-toll.md as a real pattern worth highlighting in the app, not noise.
+- Updated 08-contradictions.md and 03-death-toll.md's national by-city rollup with all the above
+
+### Next session should start with
+Remaining sub-gaps are now small and specific rather than whole-city blanks: SIC de Aranjuez's address (Manizales), a second Quibdó shelter (planned but unnamed), Cali's per-building addresses within its shelter complex, Popayán's and Quibdó's DANE population figures. The bigger remaining lever is still the deferred browser-automation work (INMLCF, ReliefWeb, HDX, UNGRD repositorio, Vaki, GoFundMe hub, all social media) — everything WebSearch/WebFetch could reasonably get has now been gotten for the 7 city profiles.
+
+## 2026-08-14 — Session 6: social media (X/Instagram/Facebook/TikTok) live pass
+- User said to tackle the deferred "universal wall" next, confirmed X/Instagram/Facebook/TikTok already logged in via Chrome, asked to skip WhatsApp/Telegram for now, and asked how the work would be split (agent-per-platform or otherwise)
+- Decided to drive the browser automation directly in the main loop rather than spawning parallel subagents — reasoned that concurrent agents clicking around the same live, logged-in browser session would collide and risk tripping anti-bot detection; went platform by platform instead (X → Instagram → Facebook → TikTok)
+- Mid-session, user asked for embeds/links so posts can be shown as previews on the eventual site — answered: all 4 platforms support public embedding (TikTok and X have fully open oEmbed endpoints; Instagram/Facebook need a one-time free app registration for bulk use but single-post embeds work without one) — added this to wiki/15-social-media-methodology.md and went back to capture permalink URLs for the highest-value posts found (had been describing content without always grabbing the exact post link)
+- Also mid-session, user asked to specifically look for individual/small accounts sharing real info (not just orgs), and for community/city-wide fund collection efforts (explicitly not personal-recovery donation asks) — both incorporated into the remaining search passes
+- **Major finds, all committed to wiki:**
+  - Official Alcaldía de Pereira Facebook post gives the definitive 6-shelter list, resolving the last "Plaza de Ferias unconfirmed" gap
+  - All 7 Pereira CAFE collection-point addresses resolved and cross-verified twice (independently found via both X and Instagram)
+  - A national 5-city blood-donation network flyer (Bogotá/Cali/Manizales/Pereira/Quibdó) with precise addresses and phone numbers
+  - Pereira: an official call for 200 volunteer engineers/architects, an official monetary donation account (with the city's own fraud-verification caveat baked into the flyer), and a "Punto Principal de Acopio" at Expofuturo Pereira with a detailed urgent-needs list
+  - "Colombia Un Solo Corazón" — a national campaign (Canal 6 TV channel + a dance collective called Tigresas) fully detailed for the first time: ~15 collection points nationally (2 new ones added to Quibdó and Cali/Yumbo), plus 3 monetary donation orgs with published NITs (a stronger trust signal than most crowdfunding found so far)
+  - Cali: an urgent, addressable need at a nursing home (Fundación Héroes de Vida y Amor, roof/bathroom collapsed on disabled elderly residents) and a crowd-organized free-lodging network (motels/apartahotels, contact + named venues)
+  - Manizales: a rental-subsidy registration mechanism (register with the Fire Department) and a second blood-bank address that conflicts with the one already on file (flagged, not resolved)
+  - Individual/small accounts identified as an ongoing watchlist (not one-off facts): a pet-focused dedicated Pereira TikTok account, a daily-coverage account, and a couple of individuals actively organizing/reporting on the ground
+  - Real-time individual gap examples surfaced (an elderly-residents evacuation report emergency lines weren't answering, missing-person flyers) — useful for the eventual app to understand the class of problem it should help solve, even though the specific instances are time-sensitive/unverifiable after the fact
+- Corrected the earlier Phase 2 scoping-pass finding that Facebook was "the weakest platform" — that was true logged-out; logged-in Facebook search turned out to be the single best source this pass
+- New wiki file: `wiki/15-social-media-methodology.md` — documents the approach, per-platform notes, the reusable search pattern, and the embed/permalink answer
+
+### Next session should start with
+Replicate this same social-media pass for Armenia, San José del Palmar, and Popayán (only Pereira/Cali/Manizales/Quibdó got it this session). Also worth a quick follow-up: re-locate and capture the permalink for the Expofuturo collection-point post (found but link not grabbed), and resolve the Manizales blood-bank address discrepancy. WhatsApp/Telegram remain the only fully-deferred piece of "the universal wall" — would need actual group invites to be useful, not just a login.
+
+## 2026-08-14 — Session 7: social media pass for the remaining 3 cities
+- User said "go" — continued from where Session 6 left off, covering Armenia, San José del Palmar, and Popayán (the 3 cities that didn't get a social-media pass yet)
+- Same approach as Session 6: 4 tabs (X, Instagram, Facebook, TikTok), driven directly, not via subagents
+- **Armenia — major update, not just an addition:**
+  - Confirmed the Alcaldía de Armenia's official X account has been dormant since Feb 2025 (predates the earthquake entirely) — a concrete technical explanation for why no official shelter/aid posts had been found there in earlier passes
+  - Instagram is their actually-active channel, but its one earthquake-era post was about a traffic/vehicle-impound policy, which drew sharp public criticism in the comments — captured directly ("the mayor is more worried about traffic and speeding tickets")
+  - Found a crowd-reported shelter, "Coliseo del Sur" (TikTok), that updates the earlier "zero shelters" finding — flagged as not yet officially confirmed, one source only
+  - A resident's own public post explained the pattern this project had already independently noticed: Armenia's zero-death outcome likely explains why it got less media/government attention than the higher-death-toll cities — powerful qualitative corroboration of a finding we'd only inferred from official data before
+  - An individual urgent-need example (a woman whose collapsed house left her family "sleeping under plastic tarps") posted by a community radio station
+- **San José del Palmar**: found a verified journalist (321K followers, "Chocoana," physically reported from the epicenter) actively curating and vetting donation channels for Chocó — exactly the kind of individual doing the verification work the project's own crowdfunding rubric calls for. Logged her 3 vetted donation channels, cross-referenced into Quibdó's file too since they're Chocó-wide, not town-specific
+- **Popayán**: found 6 more collection-point addresses via a community campaign ("Popayán, haz lo tuyo") that mapadelterremoto.com's own page had completely missed (it listed zero acopio points for Popayán) — a concrete demonstration that this third-party source can't be fully trusted for completeness, not just accuracy
+- Updated wiki/07-aid-points/{armenia,quibdo,popayan}.md, wiki/02-cities/{armenia,san-jose-del-palmar}.md, wiki/00-INDEX.md
+
+### Next session should start with
+All 7 cities now have a social-media pass done. Remaining threads: confirm Armenia's Coliseo del Sur shelter against an official source, resolve small address discrepancies (Manizales blood bank), and locate Decreto 1171's full text. WhatsApp/Telegram remain the only deferred piece of the original "universal wall" ask.
+
+## 2026-08-14 — Session 8: retried every blocked source via browser automation
+- User asked "what's next," was given 4 options (retry blocked sources / close small loops / start webapp data model / WhatsApp-Telegram), picked retrying blocked sources
+- Went through the full "confirmed blocked" list from wiki/06-sources.md one by one via the same browser automation already proven to work for social media: medicinalegal.gov.co (INMLCF), reliefweb.int, data.humdata.org (HDX), repositorio.gestiondelriesgo.gov.co (UNGRD), catalogosismico.sgc.gov.co (SGC), gofundme.com relief hub, vaki.co campaign pages
+- **Result: 4 of 7 were pure tool limitations, not real blocks** — all four loaded perfectly via a real logged-in browser:
+  - **INMLCF**: full primary-source win. Captured all 6 "Comunicado Oficial" bulletins (dates, received/identified/delivered counts) plus the complete 164-name victim list from Comunicado 05, broken down by city. Pereira has 83 identified victims — the single largest city-level count found anywhere in this project, more than double Cali's 39. Also surfaced a genuinely new contradiction: Popayán has 1 named victim in this list, directly conflicting with the earlier "zero deaths in Cauca" finding.
+  - **ReliefWeb**: found and captured OCHA's "Flash Update 004" directly — the single best multi-sector primary document for this event. Updated national toll (241 dead, 3,771 injured, 49,214 affected, 30,324 familias, 54,900 viviendas), plus a genuinely new fact: the UN's Central Emergency Response Fund (CERF) allocated USD 5 million.
+  - **HDX**: found a dataset nobody knew existed — Microsoft's AI for Good Lab ran automated building-damage detection (satellite imagery, two independent footprint sources) specifically for Cali and Pereira, fully downloadable (GeoJSON/GeoTIFF/Geopackage).
+  - **GoFundMe's relief hub**: turned out to be fully enumerable via browser (was assumed JS-blocked) — 17 pages of individually Trust & Safety-verified campaigns exist. Captured all 12 on page 1, several Pereira-specific, plus a structural fraud-risk fact (GoFundMe can't send funds directly to Colombia, so every campaign routes through an individual intermediary).
+- **The other 3 were confirmed genuinely blocked/empty, not tool artifacts** — worth knowing the difference:
+  - UNGRD's document repository: real network-level error (the port isn't publicly serving), confirmed via direct browser navigation, not a WebFetch quirk
+  - SGC's reviewed seismic catalog: loads and works fine as an app, but the Aug 2026 event returns zero records at any filter setting — this is a manually-reviewed catalog with a QA lag, not blocked, just not yet updated
+  - Vaki's "Yo Tengo Fe por el Pacífico" campaign: confirmed to genuinely have zero donations (shows "be the first Vaker"), not a JS-rendering failure as originally assumed
+- Committed everything into wiki/03-death-toll.md, 04-damnificados.md, 05-gov-reports.md, 06-sources.md, 08-contradictions.md, 11-crowdfunding-campaigns.md, 13-opensource-tools.md, 02-cities/popayan.md, 00-INDEX.md
+
+### Next session should start with
+Reconcile the two new contradictions (Popayán's 1 INMLCF-listed death vs "zero deaths" finding; the 24,324-vs-30,324 familias discrepancy between UNGRD and OCHA same-day figures). Page through the remaining 16 pages of GoFundMe's relief hub. Check HDX periodically for Microsoft AI building-damage data covering the other 3 red-alert cities. UNGRD's own portal now loads fine via browser but internal navigation didn't surface a document archive — worth one more patient attempt rather than treating it as blocked.
+
+## 2026-08-14 — Session 9: Pass 1-3 closing sequence — STAGE 1 DONE
+- User asked for a disciplined bounded process instead of continuous rabbit-holing: new/mid-pass leads get ONE line in `wiki/16-deferred-queue.md` (new file), not chased immediately. Established a two-stage launch (stage 1 = research-complete dataset, stage 2 = MVP webapp) with stage 1 closing via exactly 3 bounded passes. Codified in `task_plan.md` → "Governing process."
+- User also asked how the eventual platform would keep this data updated post-launch — answered with a tiered strategy (APIs for primary sources, semi-automated bulletin checks, browser-automation/crowdsourced updates for social+aid-point data, all built on the existing timestamp-everything schema) — to be written into `wiki/10-app-architecture.md` when stage 2 starts.
+- **Pass 1 (contradiction closure):** Popayán death toll resolved — 1 confirmed death (Carlos Ernesto Rennella Campo, deep-verified as a real Popayán taxi-cooperative member across 7+ independent outlets, not a processing-location artifact). Familias-damnificadas contradiction resolved as expected report-to-report volatility, not an error — found a third data point (25,872) sitting between the two contested Aug 12 figures. Surfaced a new open item: an "Armenia-Calarcá" INMLCF victim with an ambiguous city attribution, deliberately left open.
+- **Pass 2 (small city-level gaps):** Popayán DANE population confirmed directly (349,671, DIVIPOLA 19001) via the same curl+openpyxl technique used earlier. Decreto 1171's substantive content confirmed (signed night of Aug 11, declares national-character disaster). Risaralda's urgencia-manifiesta powers confirmed (Contraloría oversight, 6-month duration) though the decree number itself stayed unfound after 2 passes — moved to the queue rather than burning a 3rd attempt. Armenia's Coliseo del Sur shelter upgraded from single-source crowd report to officially confirmed (3 independent sources). Manizales' official cifras page found directly (6 fallecidos, 2,000+ damnificados, 550+ revisiones estructurales, curfew). Pereira's Expofuturo permalink chase came up short on the exact flyer, but corroborated Expofuturo's real activity independently.
+- **Pass 3 (open-source/tooling closure):** HDX re-checked directly — confirmed (not just assumed) that no Manizales/Armenia/Quibdó building-damage dataset exists; only Cali/Pereira do, out of all 11 Colombia-earthquake datasets on the platform. mapadelterremoto.com re-verified via raw browser fetch (replacing the earlier WebFetch-summarized, admittedly-unreliable counts) for all 5 red-alert cities: Cali 266, Manizales 247, Pereira 136, Armenia 60 (notably the only one rated "alta" not "crítica"), Quibdó 54. This same raw fetch incidentally gave a far better Expofuturo confirmation (official national campaign, announced by the first lady) than the permalink Pass 2 was chasing, plus 3 more small Pereira finds (a 7th site, 2 more acopio points) and reopened the Ukumarí vet-point question with stronger contradicting evidence (queued, not resolved).
+- **STAGE 1 (research-complete dataset) declared DONE.** All 3 closing passes complete, no more open-ended research passes planned before stage 2 starts.
+
+### Next session should start with
+Begin stage 2: flesh out `wiki/10-app-architecture.md` (data model, the update-mechanism strategy already answered above, stack/hosting decisions). The deferred queue (`wiki/16-deferred-queue.md`) holds ~13 small loose threads (WhatsApp/Telegram, GoFundMe hub remaining pages, a few addresses, the Ukumarí re-check, the UNOSAT dataset) — triage it opportunistically during stage 2, not as a blocking prerequisite.
+
+## 2026-08-14 — Session 10: stage 2 kickoff — architecture doc + Next.js/Prisma scaffold
+- User confirmed the stack recommendation (Next.js + Postgres/Supabase + MapLibre + Vercel) and said to keep going
+- Wrote `wiki/10-app-architecture.md`: full data model (Event/Department/Municipio/TollRecord/AidPoint/GovReport/Source/Contradiction/CrowdfundingCampaign/SocialPost), the tiered data-update-mechanism design (answers the "how does this stay current" question from earlier), and the stack recommendation with a moderation-queue pattern for the fast-moving tier-3 (social/hyperlocal) data
+- Scaffolded `web/`: Next.js 16 (App Router, TypeScript, Tailwind), Prisma 7 with `schema.prisma` mirroring the architecture doc exactly. **Prisma 7 turned out to have a breaking change from what I expected**: connection URLs no longer live in `schema.prisma`, they move to a new `prisma.config.ts` + a required driver adapter (`@prisma/adapter-pg`) passed to the `PrismaClient` constructor — caught via `prisma validate`'s own error message, not assumed; `AGENTS.md` (auto-generated by `next dev`) had already flagged that this Next.js version carries breaking changes from training-data expectations, so I read the actual doc/type files under `node_modules` before writing code rather than guessing APIs from memory
+- Wrote `web/prisma/seed.ts` — a representative (not exhaustive) load of stage-1's wiki data: the event, 6 departments, all 7 municipios with DANE population/DIVIPOLA, national + per-city toll records (with sources/tiers preserved), a first batch of confirmed aid points across all 7 cities, 5 gov reports, 4 contradictions, 3 crowdfunding campaigns. Every row traces back to a specific wiki file, documented in the script's header
+- Built the read-only v1's first two pages: home (event summary + city list) and `/ciudad/[divipola]` (toll data + aid points, DIVIPOLA-keyed per the architecture doc's geo-key principle) — both query via Prisma, both typecheck and lint clean
+- **Verification done without a live database**: `prisma validate`, `prisma generate`, `tsc --noEmit` (schema + seed + pages all typecheck against the real generated Prisma client types), `eslint` (caught and fixed one unescaped-quote error). Docker was available but its daemon wasn't running, and starting it felt like more friction than value for a one-off schema smoke-test — deferred rather than chased
+- **Genuine blocker, not glossed over**: no live `DATABASE_URL` exists yet. Getting one means creating a Postgres instance (e.g. a free Supabase project) — account/project creation is outside what I do on the user's behalf per the standing safety rules, so this needs the user's 2-minute action before `prisma migrate dev` + `prisma db seed` + `npm run dev` can actually be run and the pages verified against real data
+
+### Next session should start with
+Get a `DATABASE_URL` (user creates a Supabase project or points at any Postgres instance, shares the connection string) → run `npx prisma migrate dev --name init` → `npx prisma db seed` → `npm run dev` → visually confirm both pages render real seeded data. Then continue down `wiki/10-app-architecture.md`'s remaining "Next steps": aid-point moderation queue, contradictions/methodology page, map view, tier-1/2 scheduled jobs.
