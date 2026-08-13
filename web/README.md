@@ -20,6 +20,17 @@ Next.js 16 (App Router) · Prisma 7 (`@prisma/adapter-pg`) · Postgres · Tailwi
 - `src/lib/prisma.ts` — shared Prisma client (driver-adapter pattern, required in Prisma 7)
 - `src/app/page.tsx` — home page (event summary + city list)
 - `src/app/ciudad/[divipola]/page.tsx` — per-city page (toll data + aid points), keyed by DIVIPOLA code, not city-name string
+- `src/proxy.ts` — HTTP Basic Auth gate in front of `/admin/*` (see below)
+
+## Admin access (`/admin/*`)
+There is no real user-auth system yet, so `/admin/*` (currently just the submission-moderation
+queue at `/admin/moderacion`) is protected by a simple HTTP Basic Auth gate in `src/proxy.ts`
+(Next.js 16 renamed the `middleware.ts` convention to `proxy.ts` — same functionality). Set
+`ADMIN_PASSWORD` in `.env` before deploying publicly; `ADMIN_USERNAME` is optional and defaults to
+`admin`. Visiting any `/admin` route in a browser will trigger the standard username/password
+prompt. **If `ADMIN_PASSWORD` is not set, `/admin/*` denies all access** rather than falling back
+to being open — there's no way to accidentally expose the moderation queue by forgetting to
+configure it.
 
 ## Status (2026-08-14)
 Schema designed and validated, seed script written and typechecked against the generated Prisma client. **Not yet run against a live database** — needs a real `DATABASE_URL` (Supabase project or local Postgres), which requires creating an account/instance that wasn't done as part of this session. Once that exists: run steps 4-6 above, and confirm the two pages render real data before building out more UI (aid-point moderation queue, contradictions/methodology page, map view — see `../wiki/10-app-architecture.md` → "Next steps").

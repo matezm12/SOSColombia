@@ -72,12 +72,20 @@ export default async function Home() {
           ))}
         </ul>
 
-        <Link
-          href="/metodologia"
-          className="mt-10 inline-block text-sm text-zinc-500 underline hover:text-zinc-800 dark:hover:text-zinc-200"
-        >
-          Metodología y discrepancias entre fuentes →
-        </Link>
+        <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2">
+          <Link
+            href="/mapa"
+            className="inline-block text-sm text-zinc-500 underline hover:text-zinc-800 dark:hover:text-zinc-200"
+          >
+            Mapa →
+          </Link>
+          <Link
+            href="/metodologia"
+            className="inline-block text-sm text-zinc-500 underline hover:text-zinc-800 dark:hover:text-zinc-200"
+          >
+            Metodología y discrepancias entre fuentes →
+          </Link>
+        </div>
       </main>
     </div>
   );

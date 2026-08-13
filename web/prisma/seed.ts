@@ -88,13 +88,13 @@ async function main() {
   }
 
   const municipioDefs = [
-    { key: 'pereira', name: 'Pereira', divipolaCode: '66001', dept: 'risaralda', population: 482851, severity: 'CRITICA', redAlert: true },
-    { key: 'cali', name: 'Cali', divipolaCode: '76001', dept: 'valle', population: 2284775, severity: 'CRITICA', redAlert: true },
-    { key: 'manizales', name: 'Manizales', divipolaCode: '17001', dept: 'caldas', population: 461278, severity: 'CRITICA', redAlert: true },
-    { key: 'armenia', name: 'Armenia', divipolaCode: '63001', dept: 'quindio', population: 311959, severity: 'ALTA', redAlert: true },
-    { key: 'quibdo', name: 'Quibdó', divipolaCode: '27001', dept: 'choco', population: 148945, severity: 'CRITICA', redAlert: true },
-    { key: 'sjp', name: 'San José del Palmar', divipolaCode: '27660', dept: 'choco', population: 5907, severity: 'ALTA', redAlert: false },
-    { key: 'popayan', name: 'Popayán', divipolaCode: '19001', dept: 'cauca', population: 349671, severity: 'MODERADA', redAlert: false },
+    { key: 'pereira', name: 'Pereira', divipolaCode: '66001', dept: 'risaralda', population: 482851, severity: 'CRITICA', redAlert: true, lat: 4.8087, lng: -75.6906 },
+    { key: 'cali', name: 'Cali', divipolaCode: '76001', dept: 'valle', population: 2284775, severity: 'CRITICA', redAlert: true, lat: 3.4516, lng: -76.5320 },
+    { key: 'manizales', name: 'Manizales', divipolaCode: '17001', dept: 'caldas', population: 461278, severity: 'CRITICA', redAlert: true, lat: 5.0703, lng: -75.5138 },
+    { key: 'armenia', name: 'Armenia', divipolaCode: '63001', dept: 'quindio', population: 311959, severity: 'ALTA', redAlert: true, lat: 4.5339, lng: -75.6811 },
+    { key: 'quibdo', name: 'Quibdó', divipolaCode: '27001', dept: 'choco', population: 148945, severity: 'CRITICA', redAlert: true, lat: 5.6947, lng: -76.6584 },
+    { key: 'sjp', name: 'San José del Palmar', divipolaCode: '27660', dept: 'choco', population: 5907, severity: 'ALTA', redAlert: false, lat: 4.9757, lng: -76.2325 },
+    { key: 'popayan', name: 'Popayán', divipolaCode: '19001', dept: 'cauca', population: 349671, severity: 'MODERADA', redAlert: false, lat: 2.4448, lng: -76.6147 },
   ] as const
   const municipios: Record<string, string> = {}
   for (const m of municipioDefs) {
@@ -107,6 +107,8 @@ async function main() {
         populationAsOf: new Date('2026-01-01'),
         severityLabel: m.severity,
         redAlert: m.redAlert,
+        lat: m.lat,
+        lng: m.lng,
       },
     })
     municipios[m.key] = row.id
