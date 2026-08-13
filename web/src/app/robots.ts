@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       // no reason to invite discovery of the URL either.
       disallow: "/admin/",
     },
-    sitemap: "https://sos-colombia-matezm12s-projects.vercel.app/sitemap.xml",
+    sitemap: "https://www.soscolombia.xyz/sitemap.xml",
   };
 }

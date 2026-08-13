@@ -14,10 +14,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// The stable production alias, which auto-updates on every push to main —
-// NOT the per-deployment hash URL (e.g. ...-ri329kr9p-...), which freezes at
-// whatever commit was live when that specific preview was built.
-const SITE_URL = "https://sos-colombia-matezm12s-projects.vercel.app";
+// Custom domain (www is canonical — the apex soscolombia.xyz redirects to
+// it, per Vercel's domain settings). NOT the *.vercel.app URL: the
+// per-deployment hash variant freezes at whatever commit was live when that
+// preview was built, and even the stable *-projects.vercel.app alias is
+// just a fallback now that a real domain is attached.
+const SITE_URL = "https://www.soscolombia.xyz";
 const SITE_TITLE = "SOSColombia — Terremoto 2026";
 const SITE_DESCRIPTION =
   "Datos verificados sobre el terremoto de Colombia del 10 de agosto de 2026: cifras oficiales, puntos de ayuda y cómo donar, por ciudad.";
