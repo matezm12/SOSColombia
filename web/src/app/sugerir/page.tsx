@@ -1,6 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import { submitAidPoint } from "./actions";
 
+// The municipio list should reflect the current database, not a build-time snapshot.
+export const dynamic = "force-dynamic";
+
 const KIND_OPTIONS = [
   { value: "ALBERGUE", label: "Albergue (dónde se quedan las familias)" },
   { value: "ACOPIO", label: "Centro de acopio (dónde donar cosas)" },

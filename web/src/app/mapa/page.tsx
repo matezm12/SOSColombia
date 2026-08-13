@@ -2,6 +2,9 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import MapaClient, { type MunicipioMarker } from "./MapaClient";
 
+// Coordinates can be backfilled/updated between deploys — never freeze at build time.
+export const dynamic = "force-dynamic";
+
 export default async function MapaPage() {
   const municipios = await prisma.municipio.findMany({
     where: { lat: { not: null }, lng: { not: null } },

@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
+// Contradictions get resolved/added over time — never freeze at build time.
+export const dynamic = "force-dynamic";
+
 export default async function MetodologiaPage() {
   const contradictions = await prisma.contradiction.findMany({
     orderBy: [{ status: "asc" }, { loggedAt: "desc" }],

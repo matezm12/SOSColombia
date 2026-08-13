@@ -2,6 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 
+// Toll figures and aid points update constantly — never freeze at build time.
+// (Already rendered dynamically by default due to the [divipola] segment with no
+// generateStaticParams, but stated explicitly rather than relying on that implicit
+// behavior.)
+export const dynamic = "force-dynamic";
+
 const METRIC_LABEL: Record<string, string> = {
   DEATHS_REPORTED_OFFICIAL: "Fallecidos (reporte oficial)",
   DEATHS_CONFIRMED_FORENSIC: "Fallecidos (confirmados, Medicina Legal)",

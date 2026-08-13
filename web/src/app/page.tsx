@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
+// This data changes constantly (new toll records, new aid points) — never let
+// Next.js freeze it as static HTML at build time.
+export const dynamic = "force-dynamic";
+
 const SEVERITY_LABEL: Record<string, string> = {
   CRITICA: "Crítica",
   ALTA: "Alta",

@@ -1,6 +1,10 @@
 import { prisma } from "@/lib/prisma";
 import { approveSubmission, rejectSubmission } from "./actions";
 
+// Must always show the live pending queue, never a build-time snapshot — a
+// moderator approving/rejecting a stale, cached list would be actively harmful.
+export const dynamic = "force-dynamic";
+
 export default async function ModeracionPage() {
   const [pending, reviewed] = await Promise.all([
     prisma.pendingAidPoint.findMany({
