@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { submitAidPoint } from "./actions";
+import { PageShell } from "@/components/layout/PageShell";
 
 // The municipio list should reflect the current database, not a build-time snapshot.
 export const dynamic = "force-dynamic";
@@ -19,17 +20,11 @@ export default async function SugerirPage() {
   });
 
   return (
-    <div className="flex flex-1 flex-col bg-zinc-50 dark:bg-black">
-      <main className="mx-auto w-full max-w-xl flex-1 px-6 py-16">
-        <h1 className="text-3xl font-semibold tracking-tight text-black dark:text-zinc-50">
-          Sugerir un punto de ayuda
-        </h1>
-        <p className="mt-3 text-zinc-600 dark:text-zinc-400">
-          ¿Conoces un albergue, centro de acopio, o punto de ayuda que no está
-          en el sitio? Cuéntanos. Cada sugerencia se revisa antes de
-          publicarse — no aparece automáticamente.
-        </p>
-
+    <PageShell
+      width="narrow"
+      title="Sugerir un punto de ayuda"
+      lede="¿Conoces un albergue, centro de acopio, o punto de ayuda que no está en el sitio? Cuéntanos. Cada sugerencia se revisa antes de publicarse — no aparece automáticamente."
+    >
         <form action={submitAidPoint} className="mt-8 space-y-5">
           <Field label="Ciudad *">
             <select
@@ -126,8 +121,7 @@ export default async function SugerirPage() {
             Enviar sugerencia
           </button>
         </form>
-      </main>
-    </div>
+    </PageShell>
   );
 }
 

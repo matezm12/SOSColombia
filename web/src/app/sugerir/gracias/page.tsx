@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { PageShell } from "@/components/layout/PageShell";
 
 export default function GraciasPage() {
   return (
-    <div className="flex flex-1 flex-col bg-zinc-50 dark:bg-black">
-      <main className="mx-auto w-full max-w-xl flex-1 px-6 py-16 text-center">
+    <PageShell width="narrow">
+      <div className="text-center">
         <h1 className="text-3xl font-semibold tracking-tight text-black dark:text-zinc-50">
           ¡Gracias!
         </h1>
@@ -17,7 +18,7 @@ export default function GraciasPage() {
         >
           Volver al inicio
         </Link>
-      </main>
-    </div>
+      </div>
+    </PageShell>
   );
 }

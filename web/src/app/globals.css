@@ -3,6 +3,39 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Severity (Municipio.severityLabel) */
+  --color-severity-critica: #dc2626;
+  --color-severity-alta: #ea580c;
+  --color-severity-moderada: #ca8a04;
+  --color-severity-leve: #65a30d;
+
+  /* Source tier (TollRecord/AidPoint/GovReport/Source .tier, 1=best..6=worst) */
+  --color-tier-1: #047857;
+  --color-tier-2: #0d9488;
+  --color-tier-3: #4f46e5;
+  --color-tier-4: #7c3aed;
+  --color-tier-5: #b45309;
+  --color-tier-6: #b91c1c;
+
+  /* AidPointStatus */
+  --color-status-active: #16a34a;
+  --color-status-full: #d97706;
+  --color-status-closed: #71717a;
+  --color-status-unconfirmed: #a1a1aa;
+
+  /* CrowdfundingCampaign.verificationStatus */
+  --color-verify-verified: #16a34a;
+  --color-verify-plausible: #0d9488;
+  --color-verify-unconfirmed: #a1a1aa;
+  --color-verify-flagged: #dc2626;
+
+  /* Contradiction.status */
+  --color-contradiction-open: #d97706;
+  --color-contradiction-resolved: #16a34a;
+
+  /* Brand */
+  --color-brand: #dc2626;
 }
 
 @theme inline {
@@ -10,17 +43,71 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-severity-critica: var(--color-severity-critica);
+  --color-severity-alta: var(--color-severity-alta);
+  --color-severity-moderada: var(--color-severity-moderada);
+  --color-severity-leve: var(--color-severity-leve);
+
+  --color-tier-1: var(--color-tier-1);
+  --color-tier-2: var(--color-tier-2);
+  --color-tier-3: var(--color-tier-3);
+  --color-tier-4: var(--color-tier-4);
+  --color-tier-5: var(--color-tier-5);
+  --color-tier-6: var(--color-tier-6);
+
+  --color-status-active: var(--color-status-active);
+  --color-status-full: var(--color-status-full);
+  --color-status-closed: var(--color-status-closed);
+  --color-status-unconfirmed: var(--color-status-unconfirmed);
+
+  --color-verify-verified: var(--color-verify-verified);
+  --color-verify-plausible: var(--color-verify-plausible);
+  --color-verify-unconfirmed: var(--color-verify-unconfirmed);
+  --color-verify-flagged: var(--color-verify-flagged);
+
+  --color-contradiction-open: var(--color-contradiction-open);
+  --color-contradiction-resolved: var(--color-contradiction-resolved);
+
+  --color-brand: var(--color-brand);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
+    /* Slightly brighter/desaturated so status colors stay legible on near-black */
+    --color-severity-critica: #ef4444;
+    --color-severity-alta: #f97316;
+    --color-severity-moderada: #eab308;
+    --color-severity-leve: #84cc16;
+
+    --color-tier-1: #10b981;
+    --color-tier-2: #2dd4bf;
+    --color-tier-3: #818cf8;
+    --color-tier-4: #a78bfa;
+    --color-tier-5: #f59e0b;
+    --color-tier-6: #f87171;
+
+    --color-status-active: #22c55e;
+    --color-status-full: #f59e0b;
+    --color-status-closed: #a1a1aa;
+    --color-status-unconfirmed: #71717a;
+
+    --color-verify-verified: #22c55e;
+    --color-verify-plausible: #2dd4bf;
+    --color-verify-unconfirmed: #71717a;
+    --color-verify-flagged: #f87171;
+
+    --color-contradiction-open: #f59e0b;
+    --color-contradiction-resolved: #22c55e;
+
+    --color-brand: #f87171;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

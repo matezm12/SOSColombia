@@ -1,15 +1,30 @@
-import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import MapaClient, { type MunicipioMarker } from "./MapaClient";
+import { PageShell } from "@/components/layout/PageShell";
+import { EmptyState } from "@/components/ui/EmptyState";
+import MapaClient, {
+  type MunicipioMarker,
+  type EpicenterPoint,
+} from "@/components/map/MapaClient";
 
 // Coordinates can be backfilled/updated between deploys — never freeze at build time.
 export const dynamic = "force-dynamic";
 
 export default async function MapaPage() {
-  const municipios = await prisma.municipio.findMany({
-    where: { lat: { not: null }, lng: { not: null } },
-    orderBy: { populationDane: "desc" },
-  });
+  const [municipios, event] = await Promise.all([
+    prisma.municipio.findMany({
+      where: { lat: { not: null }, lng: { not: null } },
+      orderBy: { populationDane: "desc" },
+      include: {
+        _count: { select: { aidPoints: true } },
+        tollRecords: {
+          where: { metric: "DEATHS_REPORTED_OFFICIAL" },
+          orderBy: { asOf: "desc" },
+          take: 1,
+        },
+      },
+    }),
+    prisma.event.findFirst({ orderBy: { createdAt: "asc" } }),
+  ]);
 
   // Prisma can't be called from a Client Component, so the fetch happens here and only
   // the plain data each marker needs gets passed down.
@@ -19,36 +34,36 @@ export default async function MapaPage() {
     lat: m.lat as number,
     lng: m.lng as number,
     severityLabel: m.severityLabel,
+    populationDane: m.populationDane,
+    aidPointCount: m._count.aidPoints,
+    deathValue: m.tollRecords[0]?.value,
   }));
 
+  const epicenter: EpicenterPoint | null = event
+    ? {
+        latSgc: event.epicenterLatSgc,
+        lngSgc: event.epicenterLngSgc,
+        latUsgs: event.epicenterLatUsgs,
+        lngUsgs: event.epicenterLngUsgs,
+      }
+    : null;
+
   return (
-    <div className="flex flex-1 flex-col bg-zinc-50 dark:bg-black">
-      <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-16">
-        <Link
-          href="/"
-          className="text-sm text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
-        >
-          ← Todas las ciudades
-        </Link>
+    <PageShell
+      width="wide"
+      backHref="/"
+      title="Mapa"
+      lede="Ubicación de las ciudades con datos verificados y el epicentro del sismo (SGC y USGS difieren ligeramente, se muestran ambos). Toca un marcador para ver detalles."
+    >
+      <div className="mt-6">
+        <MapaClient municipios={markers} epicenter={epicenter} />
+      </div>
 
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-black dark:text-zinc-50">
-          Mapa
-        </h1>
-        <p className="mt-1 max-w-2xl text-zinc-600 dark:text-zinc-400">
-          Ubicación de las ciudades con datos verificados. Toca un marcador
-          para ver el nombre de la ciudad y entrar a su página.
-        </p>
-
+      {markers.length === 0 && (
         <div className="mt-6">
-          <MapaClient municipios={markers} />
+          <EmptyState>Sin coordenadas cargadas todavía.</EmptyState>
         </div>
-
-        {markers.length === 0 && (
-          <p className="mt-6 text-sm text-zinc-500">
-            Sin coordenadas cargadas todavía.
-          </p>
-        )}
-      </main>
-    </div>
+      )}
+    </PageShell>
   );
 }
