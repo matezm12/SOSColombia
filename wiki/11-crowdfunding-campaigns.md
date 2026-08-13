@@ -65,7 +65,7 @@ User asked specifically to verify a list of named orgs (UNICEF Colombia, Cruz Ro
 
 ### Could not verify — do not list
 
-**"Rescatistas LATAM"** — no trace found of a real organization, website, or verified social account under this name, connected to this earthquake or otherwise. Given the name pattern (generic + "LATAM") is exactly the shape of a plausible-sounding but fabricated identity, **do not list this as a verified or plausible responder**. Flagged as unconfirmed/unverifiable, not as a confirmed scam — simply no evidence either way. Worth a follow-up check under slight name variants (with fresh WebSearch budget or logged-in browser access) before fully closing, but do not surface it to end users until then.
+**"Rescatistas LATAM"** — **CLOSED as confirmed-nonexistent (2026-08-14, follow-up pass)**. Two independent passes now, the second specifically checking name variants (RescatistasLatam, Rescate LATAM, Rescatistas Latinoamérica, and the #RescatistasLatam/#RescatistasLATAM hashtags) — zero results under any form, including explicit "no results found" from DuckDuckGo on exact-phrase searches. **Do not list this as a verified, plausible, or even unconfirmed-but-possible responder — treat as not existing.** No longer queued for re-check.
 
 ### Additional national/international orgs confirmed active (not previously catalogued)
 
@@ -92,14 +92,14 @@ A real pattern emerged: **local Cámaras de Comercio (chambers of commerce) are 
 | Pereira | none found beyond existing Alcaldía/CAFE network | — | — | — |
 | Quibdó | none found — genuine gap, not a search failure (lots of grassroots/influencer posts, no institutional chamber-of-commerce or university platform surfaced) | — | — | — |
 
-**Likely explains the pattern: Confecámaras** (the national confederation of chambers of commerce) is running a coordinated national donation channel — https://donahoy.abaco.org.co/colombia2026 — routed through ABACO (already known in this registry). The per-city Cámara de Comercio activity above is plausibly a local activation of this same national campaign, not independent efforts, though this connection wasn't explicitly confirmed in any single source — treat as a strong inference, not a confirmed fact.
+**CONFIRMED (2026-08-14, follow-up pass): Confecámaras** (the national confederation of chambers of commerce) directly states on its own site (confecamaras.org.co) that it's "articulados con ABACO para canalizar alimentos no perecederos e implementos de primera necesidad," explicitly naming the same donation link — https://donahoy.abaco.org.co/colombia2026 — and separately confirms (via a dated press article, "ocho cámaras de comercio modifican temporalmente su atención presencial tras el sismo") that Cali, Manizales, and Armenia's chambers are among 8 nationally affected/coordinating. **The national-level Confecámaras↔ABACO link is now confirmed from a primary source.** The per-city detail is still one level removed: no single source found stating "Cámara de Comercio de Cali/Manizales/Armenia is explicitly running Confecámaras' campaign" on that specific chamber's own page (Cali's own site, ccc.org.co, had no earthquake content when checked directly) — so treat the specific local chambers as *named in the same national coordination effort*, not as *confirmed identical campaigns*, until a chamber's own page says so directly.
 
 **Bonus find, not one of the 7 core cities**: Cámara de Comercio Buenaventura + Diócesis de Buenaventura jointly activated an acopio point for Buenaventura (Valle del Cauca) — Buenaventura already shows the 2nd-highest mapadelterremoto.com point count (91) among non-core cities, worth a dedicated profile if the project expands beyond the current 7-city set.
 
 **New Armenia acopio address found**: Calle 14 Norte #11-02, La Castellana, Armenia — accepting colchonetas, comida no perecedera, cobijas, linternas, kits de aseo (Instagram @ncquindio) — not yet in wiki/07-aid-points/armenia.md's food/acopio table (currently empty), add there.
 
 ## Institutional channels (not crowdfunding, but comparison/trust reference points)
-- Bancolombia earthquake donation account (Fundación Bancolombia) — bank-run channel, **now superseded by the specific account number found in Pass 4 above (#24542391932)**
+- **Fundación Bancolombia — CONFIRMED (2026-08-14, follow-up pass) via their own official LinkedIn post**: "Desde la Fundación Bancolombia nos activamos como un canal de apoyo... En la cuenta de ahorros **24542391932** de la Fundación Bancolombia," corroborated further by BluRadio and La República (major business daily). The same post names a **second account for Cáritas Colombiana: 82900024657**, plus a **Wompi donation link** (exact URL not captured this pass). Both accounts and the Wompi link are now tier-1-confirmed (official first-party channel), up from the earlier tier-2 (secondary-outlet-only) sourcing.
 
 ## "Colombia, Un Solo Corazón" — full detail found (2026-08-14, Facebook logged-in pass)
 
