@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { TollCard } from "@/components/data/TollCard";
 import { AidPointCard } from "@/components/data/AidPointCard";
+import { CampaignCard } from "@/components/data/CampaignCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { AID_KIND_LABEL } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
@@ -29,6 +30,9 @@ export default async function CiudadPage(
       aidPoints: {
         include: { source: true },
         orderBy: { kind: "asc" },
+      },
+      campaigns: {
+        include: { municipios: { select: { name: true, divipolaCode: true } } },
       },
     },
   });
@@ -87,6 +91,20 @@ export default async function CiudadPage(
         ))}
         {municipio.aidPoints.length === 0 && (
           <EmptyState>Sin puntos de ayuda confirmados todavía para esta ciudad.</EmptyState>
+        )}
+      </div>
+
+      <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
+        Campañas de recaudación
+      </h2>
+      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {municipio.campaigns.map((campaign) => (
+          <CampaignCard key={campaign.id} campaign={campaign} />
+        ))}
+        {municipio.campaigns.length === 0 && (
+          <EmptyState>
+            Ninguna campaña de recaudación específica para esta ciudad todavía.
+          </EmptyState>
         )}
       </div>
     </PageShell>
