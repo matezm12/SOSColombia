@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Tailwind v4 defaults `dark:` to a media query. Redefine it to be driven by
+   a `.dark` class on <html> instead, so the theme toggle (src/components/
+   ui/ThemeToggle.tsx) can override the OS preference — every existing
+   `dark:` utility across the app keeps working unchanged, only what
+   triggers it changes. The class itself is set by an inline script in
+   layout.tsx (checks localStorage, falls back to prefers-color-scheme) and
+   by the toggle component. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light palette (default). */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -72,39 +82,39 @@
   --color-brand: var(--color-brand);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Dark palette — applies whenever <html> has class="dark" (set by the init
+   script or the toggle), regardless of OS preference. */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 
-    /* Slightly brighter/desaturated so status colors stay legible on near-black */
-    --color-severity-critica: #ef4444;
-    --color-severity-alta: #f97316;
-    --color-severity-moderada: #eab308;
-    --color-severity-leve: #84cc16;
+  /* Slightly brighter/desaturated so status colors stay legible on near-black */
+  --color-severity-critica: #ef4444;
+  --color-severity-alta: #f97316;
+  --color-severity-moderada: #eab308;
+  --color-severity-leve: #84cc16;
 
-    --color-tier-1: #10b981;
-    --color-tier-2: #2dd4bf;
-    --color-tier-3: #818cf8;
-    --color-tier-4: #a78bfa;
-    --color-tier-5: #f59e0b;
-    --color-tier-6: #f87171;
+  --color-tier-1: #10b981;
+  --color-tier-2: #2dd4bf;
+  --color-tier-3: #818cf8;
+  --color-tier-4: #a78bfa;
+  --color-tier-5: #f59e0b;
+  --color-tier-6: #f87171;
 
-    --color-status-active: #22c55e;
-    --color-status-full: #f59e0b;
-    --color-status-closed: #a1a1aa;
-    --color-status-unconfirmed: #71717a;
+  --color-status-active: #22c55e;
+  --color-status-full: #f59e0b;
+  --color-status-closed: #a1a1aa;
+  --color-status-unconfirmed: #71717a;
 
-    --color-verify-verified: #22c55e;
-    --color-verify-plausible: #2dd4bf;
-    --color-verify-unconfirmed: #71717a;
-    --color-verify-flagged: #f87171;
+  --color-verify-verified: #22c55e;
+  --color-verify-plausible: #2dd4bf;
+  --color-verify-unconfirmed: #71717a;
+  --color-verify-flagged: #f87171;
 
-    --color-contradiction-open: #f59e0b;
-    --color-contradiction-resolved: #22c55e;
+  --color-contradiction-open: #f59e0b;
+  --color-contradiction-resolved: #22c55e;
 
-    --color-brand: #f87171;
-  }
+  --color-brand: #f87171;
 }
 
 body {

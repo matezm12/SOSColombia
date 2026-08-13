@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 
-const SITE_URL = "https://sos-colombia-ri329kr9p-matezm12s-projects.vercel.app";
+const SITE_URL = "https://sos-colombia-matezm12s-projects.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const municipios = await prisma.municipio.findMany({

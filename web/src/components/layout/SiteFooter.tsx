@@ -20,7 +20,7 @@ export function SiteFooter() {
             <Link
               key={link.href}
               href={link.href}
-              className="hover:text-zinc-800 dark:hover:text-zinc-200"
+              className="underline decoration-zinc-300 underline-offset-4 hover:text-zinc-800 hover:decoration-zinc-500 dark:decoration-zinc-700 dark:hover:text-zinc-200 dark:hover:decoration-zinc-400"
             >
               {link.label}
             </Link>
