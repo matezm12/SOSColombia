@@ -246,8 +246,10 @@ model CrowdfundingCampaign {
   url                String
   goal               Float?
   raised             Float?
+  currency           String?             // registry genuinely mixes USD/CHF/GBP — null goal/raised without this is misleading
   donorCount         Int?
   verificationStatus VerificationStatus  @default(UNCONFIRMED)
+  notes              String?             // e.g. the Galería Aborigen organizer/foundation-mismatch caveat
   lastCheckedAt      DateTime
 }
 

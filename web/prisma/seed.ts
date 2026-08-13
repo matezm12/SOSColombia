@@ -47,6 +47,23 @@ async function main() {
     { key: 'camara_comercio_manizales', url: '', org: 'Cámara de Comercio de Manizales por Caldas (Instagram @ccmanizales)', tier: 3 },
     { key: 'ncquindio_ig', url: '', org: 'Instagram @ncquindio', tier: 4 },
     { key: 'usgs_api', url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us6000tjl2.geojson', org: 'USGS', tier: 1 },
+    // Pass 4 data-completeness additions (2026-08-14)
+    { key: 'perfil_colombia_te_busca', url: 'https://www.perfil.com/noticias/internacional/a-dos-dias-del-terremoto-en-colombia-se-cuentan-240-muertos-y-hay-mas-de-4000-desaparecidos.phtml', org: 'Perfil.com (citing "Colombia Te Busca")', tier: 5 },
+    { key: 'instagram_blood_flyer', url: 'https://www.instagram.com/p/Db8reTIOk6e/', org: '"Colombia Nos Necesita — Dona Sangre" (Instagram flyer)', tier: 4 },
+    { key: 'mapadelterremoto_p090', url: 'https://www.mapadelterremoto.com/municipio/pereira', org: 'mapadelterremoto.com (P-090)', tier: 2 },
+    { key: 'uniquindio_brigade', url: '', org: 'Universidad del Quindío (brigada interna)', tier: 4 },
+    { key: 'armenia_gov_co', url: 'https://www.armenia.gov.co', org: 'Alcaldía de Armenia', tier: 1 },
+    { key: 'cali_vet_press', url: '', org: 'Vanguardia / El Tiempo', tier: 3 },
+    { key: 'manizales_vet_press', url: '', org: 'El Tiempo (Phase 2 scoping)', tier: 4 },
+    { key: 'ukumari_downgrade', url: 'https://ukumari.org', org: 'Ukumarí (own site) / mapadelterremoto.com P-271', tier: 4 },
+    { key: 'world_vision', url: 'https://donate.worldvision.org/give/disaster-relief', org: 'World Vision', tier: 1 },
+    { key: 'care_org', url: 'https://www.care.org/media-and-press/colombia-earthquake-communities-cope-with-loss-damage-and-uncertainty', org: 'CARE', tier: 1 },
+    { key: 'save_the_children', url: 'https://www.savethechildren.net/what-we-do/emergencies/colombia-earthquake', org: 'Save the Children', tier: 2 },
+    { key: 'fundacion_exito', url: 'https://www.fundacionexito.org', org: 'Fundación Éxito', tier: 2 },
+    { key: 'fundacion_bancolombia', url: 'https://www.linkedin.com/posts/fundacion-bancolombia_desde-la-fundaci%C3%B3n-bancolombia-nos-activamos-activity-7480016574050082816-NLsY', org: 'Fundación Bancolombia (LinkedIn oficial)', tier: 1 },
+    { key: 'confecamaras_abaco', url: 'https://donahoy.abaco.org.co/colombia2026', org: 'Confecámaras / ABACO', tier: 1 },
+    { key: 'gofundme_dahiana_parra', url: 'https://gofundme.com/f/colombia-earthquake-help-families-rebuild', org: 'GoFundMe', tier: 2 },
+    { key: 'gofundme_vanessa_martinez', url: 'https://gofundme.com/f/colombia-needs-your-help-after-the-earthquake', org: 'GoFundMe', tier: 2 },
   ]
   const sources: Record<string, string> = {}
   for (const s of sourceDefs) {
@@ -80,6 +97,7 @@ async function main() {
     { key: 'quindio', name: 'Quindío', divipolaCode: '63' },
     { key: 'choco', name: 'Chocó', divipolaCode: '27' },
     { key: 'cauca', name: 'Cauca', divipolaCode: '19' },
+    { key: 'antioquia', name: 'Antioquia', divipolaCode: '05' },
   ]
   const depts: Record<string, string> = {}
   for (const d of deptDefs) {
@@ -123,7 +141,8 @@ async function main() {
       { metric: 'DEATHS_CONFIRMED_FORENSIC', value: 230, unit: 'cuerpos recibidos', sourceId: sources.inmlcf_comunicado_06, tier: 1, asOf: new Date('2026-08-12T00:00:00-05:00'), notes: 'INMLCF Comunicado 06 — bodies received' },
       { metric: 'DEATHS_CONFIRMED_FORENSIC', value: 205, unit: 'cuerpos identificados', sourceId: sources.inmlcf_comunicado_06, tier: 1, asOf: new Date('2026-08-12T00:00:00-05:00'), notes: 'INMLCF Comunicado 06 — bodies identified (12 minors)' },
       { metric: 'INJURED', value: 3771, sourceId: sources.ocha_flash_004, tier: 1, asOf: new Date('2026-08-12T18:30:00-05:00') },
-      { metric: 'MISSING_OFFICIAL', value: 287, sourceId: sources.ungrd_balance_0812, tier: 2, asOf: new Date('2026-08-12T07:30:00-05:00'), notes: 'Institutional count — distinct from crowdsourced ~4,145-4,210 on "Colombia Te Busca" (not yet seeded, see wiki/03-death-toll.md)' },
+      { metric: 'MISSING_OFFICIAL', value: 287, sourceId: sources.ungrd_balance_0812, tier: 2, asOf: new Date('2026-08-12T07:30:00-05:00'), notes: 'Institutional count — distinct from crowdsourced ~4,145-4,210 on "Colombia Te Busca," see next row' },
+      { metric: 'MISSING_CROWDSOURCED', value: 4210, sourceId: sources.perfil_colombia_te_busca, tier: 5, asOf: new Date('2026-08-12T00:00:00-05:00'), notes: '"Colombia Te Busca" civic platform — self-reported, includes duplicates/later-resolved entries. A different population than the official count, never merge the two (see wiki/08-contradictions.md).' },
       { metric: 'DAMNIFICADOS_PERSONAS', value: 49214, sourceId: sources.ocha_flash_004, tier: 1, asOf: new Date('2026-08-12T18:30:00-05:00') },
       { metric: 'DAMNIFICADOS_FAMILIAS', value: 24324, sourceId: sources.ungrd_balance_0812, tier: 2, asOf: new Date('2026-08-12T07:30:00-05:00'), notes: 'Same-day contradiction vs OCHA 30,324 — resolved as expected volatility, see wiki/08-contradictions.md' },
       { metric: 'DAMNIFICADOS_FAMILIAS', value: 30324, sourceId: sources.ocha_flash_004, tier: 1, asOf: new Date('2026-08-12T18:30:00-05:00') },
@@ -149,7 +168,22 @@ async function main() {
       { municipioId: municipios.quibdo, metric: 'DEATHS_REPORTED_OFFICIAL', value: 9, sourceId: sources.el_tiempo_quibdo, tier: 2, asOf: new Date('2026-08-11T00:00:00-05:00'), notes: 'City-specific — department (Chocó) total is 13-14, see wiki/08-contradictions.md (resolved as scope difference)' },
       { municipioId: municipios.sjp, metric: 'DEATHS_REPORTED_OFFICIAL', value: 0, sourceId: sources.mayor_sjp_press, tier: 3, asOf: new Date('2026-08-11T00:00:00-05:00'), notes: 'Confirmed zero despite being the literal epicenter — mayor quoted directly across ~10 outlets' },
       { municipioId: municipios.popayan, metric: 'DEATHS_REPORTED_OFFICIAL', value: 1, sourceId: sources.inmlcf_comunicado_06, tier: 1, asOf: new Date('2026-08-12T00:00:00-05:00'), notes: 'Carlos Ernesto Rennella Campo, 45 — resolved contradiction, see wiki/08-contradictions.md' },
-      { municipioId: municipios.popayan, metric: 'DAMNIFICADOS_PERSONAS', value: 0, sourceId: sources.cauca_gov_co, tier: 2, asOf: new Date('2026-08-13T00:00:00-05:00'), notes: 'Not consolidated as of Aug 13 — genuine gap, value 0 is a placeholder meaning "no figure published," not a real zero. Flag in UI rather than seeding a misleading number long-term.' },
+      // Popayán damnificados intentionally NOT seeded: the only figure on file is a
+      // placeholder meaning "not yet consolidated," not a real zero — seeding it would
+      // render as a confident 0 in the UI. Represented as a genuine gap (EmptyState),
+      // not a number. See wiki/02-cities/popayan.md.
+    ],
+  })
+
+  // ── Toll records — department-level rollups ──────────────────────────
+  // UNGRD 2026-08-12 07:30 balance (wiki/03-death-toll.md "By department").
+  await prisma.tollRecord.createMany({
+    data: [
+      { departmentId: depts.valle, metric: 'DEATHS_REPORTED_OFFICIAL', value: 125, sourceId: sources.ungrd_balance_0812, tier: 2, asOf: new Date('2026-08-12T07:30:00-05:00') },
+      { departmentId: depts.risaralda, metric: 'DEATHS_REPORTED_OFFICIAL', value: 94, sourceId: sources.ungrd_balance_0812, tier: 2, asOf: new Date('2026-08-12T07:30:00-05:00') },
+      { departmentId: depts.choco, metric: 'DEATHS_REPORTED_OFFICIAL', value: 14, sourceId: sources.ungrd_balance_0812, tier: 2, asOf: new Date('2026-08-12T07:30:00-05:00') },
+      { departmentId: depts.caldas, metric: 'DEATHS_REPORTED_OFFICIAL', value: 6, sourceId: sources.ungrd_balance_0812, tier: 2, asOf: new Date('2026-08-12T07:30:00-05:00') },
+      { departmentId: depts.antioquia, metric: 'DEATHS_REPORTED_OFFICIAL', value: 1, sourceId: sources.ungrd_balance_0812, tier: 2, asOf: new Date('2026-08-12T07:30:00-05:00') },
     ],
   })
 
@@ -218,6 +252,110 @@ async function main() {
         needsText: a.needs,
         status: 'ACTIVE',
         sourceId: sources[a.src],
+        lastVerifiedAt: new Date('2026-08-14'),
+      },
+    })
+  }
+
+  // ── Pereira CAFE network — remaining 6 of 7 addresses (Pass 4) ────────
+  const cafeDefs = [
+    { name: 'CAFE Perla del Otún', address: 'Diagonal a la iglesia de los 2.500 Lotes' },
+    { name: 'CAFE El Remanso', address: 'Av. Principal, barrio El Remanso, al lado del Centro de Salud' },
+    { name: 'CAFE Kennedy', address: 'Parque principal de Kennedy' },
+    { name: 'CAFE Ormaza', address: 'Calle 3 bis #5-38, Av. del Río' },
+    { name: 'CAFE San Nicolás', address: 'Cra. 14 bis #28-38, antigua Estación de Policía' },
+    { name: 'CAFE Comuna del Café', address: 'Cra. 3, Calle 59A, Sector Parque Industrial' },
+  ] as const
+  for (const c of cafeDefs) {
+    await prisma.aidPoint.create({
+      data: {
+        municipioId: municipios.pereira,
+        kind: 'ACOPIO',
+        name: c.name,
+        address: c.address,
+        status: 'ACTIVE',
+        sourceId: sources.alcaldia_pereira_fb,
+        lastVerifiedAt: new Date('2026-08-14'),
+      },
+    })
+  }
+
+  // ── Blood donation points (Pass 4) ────────────────────────────────────
+  const bloodDefs = [
+    { m: 'pereira', name: 'Banco de Sangre, Hospital Universitario San Jorge', address: 'Cra. 4 #26-88, Pereira', phone: '606 316 00 24', needs: 'O+ y O- (mayor urgencia)' },
+    { m: 'cali', name: 'Fundación Valle del Lili (Principal)', address: 'Av. Simón Bolívar, Cra 98 #18-49', phone: '602 518 4200', needs: 'O+ y O-' },
+    { m: 'cali', name: 'Hemocentro Cruz Roja Valle', address: 'Cll 38 Bis #5-15, Barrio San Fernando', phone: '602 518 4200', needs: 'O+ y O-' },
+    { m: 'manizales', name: 'Hemocentro del Café', address: 'Carrera 21 #70-06', phone: null, needs: 'O+ y O-' },
+    { m: 'manizales', name: 'Banco de Sangre Hemocentro Cruz Roja Caldas', address: 'Cra. 23 #51-73', phone: '606 880 1620', needs: 'O+ y O- · lun-vie 7am-4pm ext. 0501' },
+  ] as const
+  for (const b of bloodDefs) {
+    await prisma.aidPoint.create({
+      data: {
+        municipioId: municipios[b.m],
+        kind: 'BLOOD_DONATION',
+        name: b.name,
+        address: b.address,
+        phone: b.phone ?? undefined,
+        needsText: b.needs,
+        status: 'ACTIVE',
+        sourceId: sources.instagram_blood_flyer,
+        lastVerifiedAt: new Date('2026-08-14'),
+      },
+    })
+  }
+  // The two Manizales addresses above genuinely conflict (main office vs.
+  // blood-bank-specific location, per wiki/07-aid-points/manizales.md) — logged
+  // as a contradiction rather than silently picking one, both kept live.
+  await prisma.contradiction.create({
+    data: {
+      topic: 'Hemocentro del Café vs. Cruz Roja Caldas address (Manizales)',
+      status: 'OPEN',
+      valueA: 'Carrera 21 #70-06', sourceA: 'El Tiempo (Phase 1)',
+      valueB: 'Cra. 23 #51-73', sourceB: 'Instagram flyer, 2026-08-14',
+      resolutionText: 'Both may be real (main office vs. blood-bank-specific location) or one is stale — not assumed either way. Both addresses kept live rather than picking one.',
+      loggedAt: new Date('2026-08-14'),
+    },
+  })
+
+  // ── Health points (Pass 4) ────────────────────────────────────────────
+  const healthDefs = [
+    { m: 'pereira', name: 'Antiguo Colegio La Enseñanza', needs: 'Punto de apoyo sanitario: recibió 95 pacientes trasladados desde Clínica Comfamiliar', src: 'mapadelterremoto_p090' },
+    { m: 'cali', name: 'Carpa de primeros auxilios — Secretaría de Salud', address: 'Unidad Deportiva Panamericana', needs: null, src: 'cali_gov_co' },
+    { m: 'armenia', name: 'Brigada interna Universidad del Quindío', needs: 'Atendió 15 casos no graves', src: 'uniquindio_brigade' },
+    { m: 'manizales', name: 'Red Farmacéutica (vía Secretaría de Salud Pública)', needs: '9,200 unidades de medicamentos y 5,500 pañales para adultos donados a albergues', src: 'la_patria_manizales' },
+  ] as const
+  for (const h of healthDefs) {
+    await prisma.aidPoint.create({
+      data: {
+        municipioId: municipios[h.m],
+        kind: 'HEALTH',
+        name: h.name,
+        address: 'address' in h ? h.address : undefined,
+        needsText: h.needs ?? undefined,
+        status: 'ACTIVE',
+        sourceId: sources[h.src],
+        lastVerifiedAt: new Date('2026-08-14'),
+      },
+    })
+  }
+
+  // ── Veterinary / animal-welfare points (Pass 4) ──────────────────────
+  const vetDefs = [
+    { m: 'armenia', name: 'Bienestar Animal (programa municipal)', phone: '310 447 4441', needs: 'Coordina reportes de mascotas perdidas (216+); Unidad Móvil de Bienestar Animal en Parque Sucre', status: 'ACTIVE', src: 'armenia_gov_co' },
+    { m: 'cali', name: 'Centro de Bienestar Animal de Cali', needs: 'Brigadas técnicas y médicas hacia zonas afectadas', status: 'ACTIVE', src: 'cali_vet_press' },
+    { m: 'manizales', name: 'Fundación Ángeles de la Calle', needs: 'Instalaciones dañadas, solicita apoyo para reconstruir', status: 'UNCONFIRMED', src: 'manizales_vet_press' },
+    { m: 'pereira', name: 'Bioparque Ukumarí', needs: 'Rol de punto veterinario de emergencia no confirmado de forma independiente — ver wiki/08-contradictions.md', status: 'UNCONFIRMED', src: 'ukumari_downgrade' },
+  ] as const
+  for (const v of vetDefs) {
+    await prisma.aidPoint.create({
+      data: {
+        municipioId: municipios[v.m],
+        kind: 'VET',
+        name: v.name,
+        phone: 'phone' in v ? v.phone : undefined,
+        needsText: v.needs,
+        status: v.status as never,
+        sourceId: sources[v.src],
         lastVerifiedAt: new Date('2026-08-14'),
       },
     })
@@ -311,7 +449,16 @@ async function main() {
       { platform: 'OTHER', title: 'Emergencia Colombia Terremoto', orgOrPerson: 'Cruz Roja Colombiana', url: 'https://ayuda.cruzrojacolombiana.org/emergencia-colombia-terremoto', goal: null, raised: null, donorCount: null, verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
       { platform: 'OTHER', title: 'Colombia en emergencia', orgOrPerson: 'The House Project (Familia Montaner)', url: 'https://thehouse-project.org/products/colombia-needs-us', goal: null, raised: null, donorCount: null, verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
       { platform: 'OTHER', title: 'Emergency Appeal: Earthquake Victims in Colombia', orgOrPerson: 'Children Change Colombia', url: 'https://childrenchangecolombia.org/emergency-appeal-urgent-assistance-for-earthquake-victims-in-colombia/', goal: null, raised: null, donorCount: null, verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
-      { platform: 'GOFUNDME', title: 'Ayudas para las comunidades indígenas del Chocó', orgOrPerson: 'Galería Aborigen (organizer: Camila Barrera, Austin TX)', url: 'https://gofund.me/2c28f41bd', goal: 230000, raised: 170903, donorCount: 3962, verificationStatus: 'PLAUSIBLE', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'GOFUNDME', title: 'Ayudas para las comunidades indígenas del Chocó', orgOrPerson: 'Galería Aborigen (organizer: Camila Barrera, Austin TX)', url: 'https://gofund.me/2c28f41bd', goal: 230000, raised: 170903, donorCount: 3962, currency: 'USD', verificationStatus: 'PLAUSIBLE', notes: 'GoFundMe organizer is a US-based individual, not obviously the same legal entity as the Bogotá-based foundation — no NIT found, PayPal option is a personal Gmail address. Not flagged as fraud (real address/history, no fraud reports) but a genuine trust gap vs. the tier-1 orgs above.', lastCheckedAt: new Date('2026-08-14') },
+      // Pass 4 additions (2026-08-14)
+      { platform: 'OTHER', title: 'Disaster Relief Fund', orgOrPerson: 'World Vision', url: 'https://donate.worldvision.org/give/disaster-relief', goal: null, raised: null, donorCount: null, currency: 'USD', verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'OTHER', title: 'Colombia Earthquake Response', orgOrPerson: 'CARE', url: 'https://www.care.org/media-and-press/colombia-earthquake-communities-cope-with-loss-damage-and-uncertainty', goal: null, raised: null, donorCount: null, currency: 'USD', verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'OTHER', title: 'Colombia Earthquake Emergency Fund', orgOrPerson: 'Save the Children', url: 'https://www.savethechildren.net/what-we-do/emergencies/colombia-earthquake', goal: null, raised: null, donorCount: null, currency: 'USD', verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'OTHER', title: 'Ayuda alimentaria — "Goticas"', orgOrPerson: 'Fundación Éxito', url: 'https://www.fundacionexito.org', goal: null, raised: null, donorCount: null, currency: 'COP', verificationStatus: 'VERIFIED', notes: 'Also runs an in-store donation-box channel ("Goticas") at Éxito stores, not just online.', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'OTHER', title: 'Canal de apoyo — cuenta de ahorros 24542391932', orgOrPerson: 'Fundación Bancolombia', url: 'https://www.linkedin.com/posts/fundacion-bancolombia_desde-la-fundaci%C3%B3n-bancolombia-nos-activamos-activity-7480016574050082816-NLsY', goal: null, raised: null, donorCount: null, currency: 'COP', verificationStatus: 'VERIFIED', notes: 'Confirmed via their own official LinkedIn post. Same post names a second account for Cáritas Colombiana (82900024657) and a Wompi link, not separately seeded.', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'OTHER', title: 'Campaña nacional de donación', orgOrPerson: 'Confecámaras / ABACO', url: 'https://donahoy.abaco.org.co/colombia2026', goal: null, raised: null, donorCount: null, currency: 'COP', verificationStatus: 'VERIFIED', notes: 'National chamber-of-commerce confederation, confirmed via confecamaras.org.co\'s own site. Likely the umbrella behind the Cali/Manizales/Armenia local Cámara de Comercio donation channels (see wiki/11-crowdfunding-campaigns.md), though per-chamber attribution is inferred, not independently confirmed.', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'GOFUNDME', title: 'Colombia Earthquake: Help Families Rebuild', orgOrPerson: 'Dahiana Parra', url: 'https://gofundme.com/f/colombia-earthquake-help-families-rebuild', goal: 22000, raised: 2000, donorCount: 15, currency: 'CHF', verificationStatus: 'PLAUSIBLE', lastCheckedAt: new Date('2026-08-13') },
+      { platform: 'GOFUNDME', title: 'Colombia Needs Your Help After the Earthquake', orgOrPerson: 'Vanessa Martinez', url: 'https://gofundme.com/f/colombia-needs-your-help-after-the-earthquake', goal: 2400, raised: 575, donorCount: 16, currency: 'GBP', verificationStatus: 'PLAUSIBLE', lastCheckedAt: new Date('2026-08-13') },
     ],
   })
 
