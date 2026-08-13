@@ -22,6 +22,9 @@ El País (elpais.com.co) — active, dedicated shelters article fetched directly
 | Banco de Alimentos de Cali | Calle 24 #6-103 | food | El Tiempo (Phase 1) | 2026-08-13 |
 | "Colombia Un Solo Corazón" collection point — NEW | Carrera 30 #10-90, Arroyo Hondo, Yumbo (Cali metro) | national campaign, tel 316 791 2163 | Facebook, Canal 6 fanpage (see wiki/11-crowdfunding-campaigns.md) | 2026-08-14 |
 
+## Monetary donation channel — NEW (Pass 4, 2026-08-14)
+**Cámara de Comercio de Cali (CCC)**: QR-code campaign + **Bre-B llave 890399001**. Confirmed via Pulzo (news) and CCC's own Facebook/Instagram/X (@camaracali). See wiki/11-crowdfunding-campaigns.md for the national context (likely a local activation of the Confecámaras/ABACO national campaign).
+
 ## Blood donation — NEW
 Source: Instagram, "Colombia Nos Necesita — Dona Sangre, Salva Vidas" flyer, updated 2026-08-12 (same flyer as Pereira/Manizales/Quibdó — see wiki/07-aid-points/pereira.md).
 

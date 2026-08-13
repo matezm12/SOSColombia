@@ -24,6 +24,12 @@
 - Risaralda calamidad-pública decree NUMBER — substantive powers confirmed (Pass 2), but the number itself unfound after 2 passes; low priority
 - "Tres días de duelo nacional" — exact start/end dates not captured (Pass 2)
 - Coliseo del Sur (Armenia) exact street address — venue+neighborhood only
+- "Rescatistas LATAM" — re-check under name variants (RescatistasLatam, Rescate LATAM, country-chapter names) with fresh WebSearch budget or logged-in browser before fully closing as unconfirmed
+- Galería Aborigen — verify whether the GoFundMe organizer (Austin, TX-based "Cami Col") is actually affiliated with the Bogotá foundation before promoting to a top-tier recommendation
+- Fundación Bancolombia account #24542391932 — verify directly against Fundación Bancolombia's own channel (found via 2 secondary outlets only)
+- Confecámaras/ABACO (donahoy.abaco.org.co/colombia2026) — confirm whether it's actually the umbrella behind the Cali/Manizales/Armenia Cámara de Comercio local activations, or just a coincidental parallel national campaign
+- Save the Children's Spanish donation page and the CEC/Cáritas Colombiana national bulletin — both thinner-sourced, spot-check before publishing
+- Plan International's Colombia earthquake appeal — found only the org's own listing, not independently corroborated
 - Ukumarí emergency-vet-point role — mapadelterremoto.com's P-271 (Pass 3, "Confirmado, 7 fuentes") is stronger evidence than what led to the earlier downgrade in wiki/08-contradictions.md; worth a re-check, not urgent
 - HDX/UNOSAT "M 7.4 South of San José del Palmar" satellite geospatial dataset (found during Pass 3 HDX search, not opened) — could be a useful map layer
 

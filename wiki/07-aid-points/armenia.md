@@ -45,6 +45,10 @@ TikTok, Tatiana Londoño (~6h before this pass): describes Quimbaya as "uno de l
 | Name | Address | Org | Source | Last verified |
 |---|---|---|---|---|
 | Banco de Alimentos Monseñor Roberto López Londoño | not specified | Banco de Alimentos | El Tiempo (Phase 1) | 2026-08-13 |
+| Community collection point | Calle 14 Norte #11-02, La Castellana, Armenia | Community-organized (not government) | Instagram @ncquindio, 2026-08-14 (Pass 4) | 2026-08-14 |
+
+## Business/institutional donation channel — NEW (Pass 4, 2026-08-14)
+**Cámara de Comercio de Armenia y del Quindío** confirmed actively helping affected businesses (site visits, damage documentation, free legal orientation) — see El Quindiano, elquindiano.com. A donation-collection channel specifically was NOT confirmed this pass (only business-support activity verified directly); plausibly connected to the national Confecámaras/ABACO campaign (donahoy.abaco.org.co/colombia2026) that other cities' chambers are using — see wiki/11-crowdfunding-campaigns.md for full detail. Treat as plausible, not confirmed, until a direct donation link is found.
 
 ## Health brigades
 One concrete lead: **Universidad del Quindío's internal emergency brigade** treated 15 non-serious cases. No named public/mobile health-brigade site with an address found beyond this.

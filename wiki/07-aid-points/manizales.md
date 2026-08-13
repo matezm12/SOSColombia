@@ -2,6 +2,9 @@
 
 Last major update: 2026-08-14 — live social-media pass (X/Instagram, logged-in browser automation) added the rental-subsidy registration process and a blood-bank address (with a discrepancy flagged, not resolved).
 
+## Monetary donation channel — NEW (Pass 4, 2026-08-14)
+**Cámara de Comercio de Manizales por Caldas** (@ccmanizales, Instagram): donation drive framed around social/economic/infrastructure reconstruction, confirmed Aug 11 2026. Exact payment mechanism (account/QR/Bre-B) not captured this pass. See wiki/11-crowdfunding-campaigns.md for the likely national Confecámaras/ABACO connection.
+
 ## Rental subsidy — NEW mechanism found
 Source: X, Vértice Noticias (local outlet, verified-looking account), 2026-08-11. As of that date, 300 buildings had been inspected; the mayor warned the damage-assessment process could take weeks. **Displaced residents (evacuees) are asked to register with the Fire Department (Bomberos) to access a rental subsidy (subsidio de arriendo).** No specific station address given in this post — likely the same Palogrande fire station referenced elsewhere in this file; worth confirming directly.
 

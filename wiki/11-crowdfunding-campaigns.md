@@ -42,8 +42,64 @@ gofundme.com/c/act/colombia-earthquake-relief has **17 pages** of individually T
 
 **7 partner NGOs on the hub (full descriptions captured):** Airlink (deploying nonprofit partners), All Hands & Hearts (deployed to Pereira specifically — search-and-rescue support, PPE, tools), Americares, Direct Relief (medicines/supplies), Food For The Poor, Global Empowerment Mission (partnered with **"Solidaridad de Colombia"** and **"Motorrad Angels"** — two Colombian ground partners not previously known to this project), Oxfam.
 
+## Additional relief organizations — Pass 4 (2026-08-14, user-directed research)
+
+User asked specifically to verify a list of named orgs (UNICEF Colombia, Cruz Roja, "The House Project," "Children Change," "SOS Chocó," "Galería Aborigen Foundation," "Rescatistas LATAM") plus sweep for other national/international orgs and city-specific local platforms. Researched via 6 parallel agents (WebSearch/WebFetch) + direct browser search for the 2 that hit the exhausted WebSearch budget. Applying this project's existing verification rubric (green: NIT, press coverage, transparent fund-use, platform-hub inclusion; red: anonymous profile, WhatsApp-only, urgency tactics, no other activity) throughout.
+
+### Verified, legitimate — safe to list as primary recommendations
+
+| Org | Verdict | Donation link | Focus | Verification signals | Tier |
+|---|---|---|---|---|---|
+| **UNICEF Colombia** | Verified | unicef.org.co/terremoto-colombia (online giving, Nequi/PSE/card) | Chocó + Buenaventura named priority (796 schools, 84 health centers affected per their own count); national WASH distribution (25,000 people) | NIT 800176994-3, dated Aug 11 campaign, corroborated across UN News + UNICEF USA/France/Aotearoa mirrors | 1 (though unicef.org itself 403's automated fetch — reconstructed via cached snippets, not a first-hand fetch) |
+| **Cruz Roja Colombiana** | Verified, directly fetched | ayuda.cruzrojacolombiana.org/emergencia-colombia-terremoto | National, with named deployment to San José del Palmar, Manizales, Dosquebradas, Armenia, Valle del Cauca, Tolima | NIT 899999025-3, Davivienda acct 0560455069996490 (Daviplata also accepted), donaciones@cruzrojacolombiana.org | 1 |
+| **The House Project** | Verified | thehouse-project.org/products/colombia-needs-us | National ("Colombia en emergencia" campaign); acopio address found in Manizales (Juan Mejía Tejada, via crowd-shared list, not yet independently confirmed) | Ricardo Montaner family foundation — real, established multi-country charity (India/Jordan/Venezuela/Colombia/Dominican Republic), published track record: 60,000 meals served, 175 refugees supported, 3 homes built, 55 scholarships funded | 2 |
+| **Children Change Colombia (CCC)** | Verified | childrenchangecolombia.org/emergency-appeal-urgent-assistance-for-earthquake-victims-in-colombia/ | Chocó specifically — active there since 2020, pre-existing local presence before this earthquake | UK-registered charity, 35 years operating in Colombia, £20M raised historically for 103 projects, 89,481 children supported historically, **also listed on GlobalGiving** (an independently-vetting donation platform) — strongest verification tier found for any org in this registry | 1 |
+
+### Name is a slogan, not an org — route through the underlying orgs instead
+
+**"SOS Chocó"** is NOT a standalone organization. It's a generic hashtag/slogan used independently by at least 5 different unrelated actors: Manos Visibles (an established Colombian NGO, donation page at web.afrus.org/donamigosvisibleschoco), Fundación Plan (plan.org.co/quiero-ayudar/sos-choco), broadcaster FECOER, indigenous-rights group CIVP/Verdad Pacífico, and local news site El Correo. **Do not treat "SOS Chocó" as a single donation destination** — if someone shares a "SOS Chocó" donation link, verify which underlying org it actually routes to before trusting it; the name itself is unowned and could be co-opted by a scam.
+
+### Real org, but flag a verification caveat before listing as a top recommendation
+
+**Galería Aborigen** (Fundación Galería Aborigen) — real, pre-existing indigenous-art gallery/foundation (Instagram @galeriaaborigen, 14.3K followers, physical address Cra. 6A #116-17, Usaquén, Bogotá, "280 resguardos indígenas" mission predating the quake). Actively collecting since Aug 10-12 specifically for **indigenous communities/resguardos in Chocó** — this is a genuine gap-filler, since this project's existing research already found real indigenous-community damage near the epicenter (the Copé resguardo near San José del Palmar). GoFundMe: gofund.me/2c28f41bd ("Ayudas para las comunidades indígenas del Chocó," $170,903 raised of $230,000 goal, 3,962 donors, explicitly names the M7.4 quake and San José del Palmar). **Caveat**: the GoFundMe organizer is listed as "Cami Col / Camila Barrera," Austin, TX — not obviously the same legal entity as the Bogotá-based foundation controlling funds raised in its name. PayPal option is a personal Gmail address (heritageancestral@gmail.com), not an institutional domain. No NIT found. Not flagged as a scam (real physical address/history, no fraud reports, zero urgency-pressure language) but the organizer/foundation mismatch is a real gap — note this caveat if surfacing it in the app rather than presenting it at the same trust tier as UNICEF/Cruz Roja/CCC.
+
+### Could not verify — do not list
+
+**"Rescatistas LATAM"** — no trace found of a real organization, website, or verified social account under this name, connected to this earthquake or otherwise. Given the name pattern (generic + "LATAM") is exactly the shape of a plausible-sounding but fabricated identity, **do not list this as a verified or plausible responder**. Flagged as unconfirmed/unverifiable, not as a confirmed scam — simply no evidence either way. Worth a follow-up check under slight name variants (with fresh WebSearch budget or logged-in browser access) before fully closing, but do not surface it to end users until then.
+
+### Additional national/international orgs confirmed active (not previously catalogued)
+
+| Org | Confirmed activity | Donation link | Tier |
+|---|---|---|---|
+| World Vision | National director statement, Aug 11 2026, activated disaster response | donate.worldvision.org/give/disaster-relief | 1 |
+| CARE | Water, cash/voucher food, safe spaces, psychosocial support in Pereira, Quibdó, Cali, Manizales, Valle del Cauca | linked from care.org press release | 1 |
+| Save the Children | Dedicated 2026 Colombia-earthquake emergency fund (multiple country-site mirrors) | savethechildren.net/what-we-do/emergencies/colombia-earthquake (Spanish donation page 403'd on fetch — verify manually before publishing) | 1-2 |
+| Fundación Éxito | Food-aid targeting 3,500 families in San José del Palmar, Cali, Pereira, Manizales; in-store "Goticas" collection boxes at Éxito stores | fundacionexito.org | 1-2 (corroborated by 3 outlets: Caracol, Semana, we-news.com) |
+| Fundación Bancolombia | Dedicated savings account opened for this event | **Account #24542391932** — supersedes the earlier vague "Bancolombia donation account" note below; verify against Fundación Bancolombia's own channel before publishing | 2 |
+| Cáritas Colombiana / CEC | National bulletin tracking hospitalized victims for family reunification | cec.org.co/tags/caritas-colombiana | 2 (thinner sourcing, worth a direct-site follow-up) |
+
+Could not confirm for this specific event (checked, found only generic/stale org pages): Comparte por una Vida, Catholic Relief Services, Mercy Corps, Plan International (found a Colombia earthquake appeal page but couldn't independently corroborate beyond the org's own listing — worth one more check), Fundación Smurfit, Fundación Solidaridad por Colombia.
+
+### City-specific local platforms (chambers of commerce, radio, universities)
+
+A real pattern emerged: **local Cámaras de Comercio (chambers of commerce) are activating their own donation channels independently of government/Alcaldía channels**, in at least 3 of the 5 red-alert cities:
+
+| City | Platform | Details | Source | Tier |
+|---|---|---|---|---|
+| Cali | Cámara de Comercio de Cali (CCC) | QR-code campaign + **Bre-B llave 890399001** | Pulzo, corroborated via Facebook/Instagram/X @camaracali | 2 |
+| Manizales | Cámara de Comercio de Manizales por Caldas | Donation drive framed as social/economic/infrastructure reconstruction | Instagram @ccmanizales, Aug 11 | 3 |
+| Armenia | Cámara de Comercio de Armenia y del Quindío | Confirmed active helping affected businesses (visits, legal orientation) — **donation-channel specifics not fully confirmed this pass**, only business-support activity verified directly | El Quindiano, Facebook | 3 (plausible, not confirmed for donations specifically) |
+| Pereira | none found beyond existing Alcaldía/CAFE network | — | — | — |
+| Quibdó | none found — genuine gap, not a search failure (lots of grassroots/influencer posts, no institutional chamber-of-commerce or university platform surfaced) | — | — | — |
+
+**Likely explains the pattern: Confecámaras** (the national confederation of chambers of commerce) is running a coordinated national donation channel — https://donahoy.abaco.org.co/colombia2026 — routed through ABACO (already known in this registry). The per-city Cámara de Comercio activity above is plausibly a local activation of this same national campaign, not independent efforts, though this connection wasn't explicitly confirmed in any single source — treat as a strong inference, not a confirmed fact.
+
+**Bonus find, not one of the 7 core cities**: Cámara de Comercio Buenaventura + Diócesis de Buenaventura jointly activated an acopio point for Buenaventura (Valle del Cauca) — Buenaventura already shows the 2nd-highest mapadelterremoto.com point count (91) among non-core cities, worth a dedicated profile if the project expands beyond the current 7-city set.
+
+**New Armenia acopio address found**: Calle 14 Norte #11-02, La Castellana, Armenia — accepting colchonetas, comida no perecedera, cobijas, linternas, kits de aseo (Instagram @ncquindio) — not yet in wiki/07-aid-points/armenia.md's food/acopio table (currently empty), add there.
+
 ## Institutional channels (not crowdfunding, but comparison/trust reference points)
-- Bancolombia earthquake donation account (Fundación Bancolombia) — bank-run channel
+- Bancolombia earthquake donation account (Fundación Bancolombia) — bank-run channel, **now superseded by the specific account number found in Pass 4 above (#24542391932)**
 
 ## "Colombia, Un Solo Corazón" — full detail found (2026-08-14, Facebook logged-in pass)
 

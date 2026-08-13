@@ -38,6 +38,14 @@ async function main() {
     { key: 'gofundme_rescate_colombia', url: 'https://gofundme.com/f/rescate-x-colombia-movilizamos-ayuda-a-la-zona-del-sismo', org: 'GoFundMe', tier: 2 },
     { key: 'vaki_fe_pacifico', url: 'https://vaki.co/vaki/yo-tengo-fe-por-el-pacifico', org: 'Vaki', tier: 2 },
     { key: 'sgc_bulletins', url: 'https://www2.sgc.gov.co', org: 'Servicio Geológico Colombiano', tier: 1 },
+    { key: 'unicef_co', url: 'https://unicef.org.co/terremoto-colombia', org: 'UNICEF Colombia', tier: 1 },
+    { key: 'cruz_roja_co', url: 'https://ayuda.cruzrojacolombiana.org/emergencia-colombia-terremoto', org: 'Cruz Roja Colombiana', tier: 1 },
+    { key: 'house_project', url: 'https://thehouse-project.org/products/colombia-needs-us', org: 'The House Project', tier: 2 },
+    { key: 'children_change', url: 'https://childrenchangecolombia.org/emergency-appeal-urgent-assistance-for-earthquake-victims-in-colombia/', org: 'Children Change Colombia', tier: 1 },
+    { key: 'galeria_aborigen', url: 'https://gofund.me/2c28f41bd', org: 'Galería Aborigen (GoFundMe)', tier: 3 },
+    { key: 'camara_comercio_cali', url: '', org: 'Cámara de Comercio de Cali (via Pulzo)', tier: 2 },
+    { key: 'camara_comercio_manizales', url: '', org: 'Cámara de Comercio de Manizales por Caldas (Instagram @ccmanizales)', tier: 3 },
+    { key: 'ncquindio_ig', url: '', org: 'Instagram @ncquindio', tier: 4 },
     { key: 'usgs_api', url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us6000tjl2.geojson', org: 'USGS', tier: 1 },
   ]
   const sources: Record<string, string> = {}
@@ -178,6 +186,7 @@ async function main() {
     { m: 'quibdo', name: 'Gobernación del Chocó', address: 'Calle 31, Edificio La Confianza', src: 'gob_choco_acopio', notes: 'Donation account: Banco de Bogotá 578818429, NIT 891.680.010-3' },
     { m: 'quibdo', name: 'Centro Logístico Humanitario del Chocó', address: 'Antigua bodega Postobón, km 4 vía Quibdó–Yuto', src: 'gob_choco_acopio' },
     { m: 'popayan', name: 'Casa de la Moneda', address: 'Carrera 7 Calle 4 Esquina, Popayán, Cauca (CP 190001)', src: 'cauca_gov_co', notes: 'Regional collection hub for broader Cauca relief, not solely Popayán-facing' },
+    { m: 'armenia', name: 'Community collection point', address: 'Calle 14 Norte #11-02, La Castellana, Armenia', src: 'ncquindio_ig', notes: 'Community-organized, not government — Pass 4 2026-08-14. Accepts colchonetas, comida no perecedera, cobijas, linternas, kits de aseo' },
   ] as const
   for (const a of acopioDefs) {
     await prisma.aidPoint.create({
@@ -186,6 +195,25 @@ async function main() {
         kind: 'ACOPIO',
         name: a.name,
         address: 'address' in a ? a.address : undefined,
+        status: 'ACTIVE',
+        sourceId: sources[a.src],
+        lastVerifiedAt: new Date('2026-08-14'),
+      },
+    })
+  }
+
+  // ── Monetary donation channels (Pass 4, 2026-08-14) ──────────────────
+  const monetaryDefs = [
+    { m: 'cali', name: 'Cámara de Comercio de Cali — donación', needs: 'Bre-B llave 890399001 o código QR de la campaña', src: 'camara_comercio_cali' },
+    { m: 'manizales', name: 'Cámara de Comercio de Manizales por Caldas — donación', needs: 'Donación para reconstrucción social/económica/infraestructura; mecanismo de pago exacto no capturado', src: 'camara_comercio_manizales' },
+  ] as const
+  for (const a of monetaryDefs) {
+    await prisma.aidPoint.create({
+      data: {
+        municipioId: municipios[a.m],
+        kind: 'MONETARY_DONATION',
+        name: a.name,
+        needsText: a.needs,
         status: 'ACTIVE',
         sourceId: sources[a.src],
         lastVerifiedAt: new Date('2026-08-14'),
@@ -277,6 +305,11 @@ async function main() {
       { platform: 'GOFUNDME', title: 'Relief Supplies for Colombia Earthquake', orgOrPerson: 'Camila Franco', url: 'https://gofund.me/740d646f4', goal: 1600, raised: 1262, donorCount: 19, verificationStatus: 'PLAUSIBLE', lastCheckedAt: new Date('2026-08-13') },
       { platform: 'GOFUNDME', title: 'Rescate x Colombia', orgOrPerson: 'Laura U', url: 'https://gofundme.com/f/rescate-x-colombia-movilizamos-ayuda-a-la-zona-del-sismo', goal: 28000, raised: 20591, donorCount: 206, verificationStatus: 'PLAUSIBLE', lastCheckedAt: new Date('2026-08-13') },
       { platform: 'VAKI', title: 'Yo Tengo Fe por el Pacífico', orgOrPerson: 'Willy García', url: 'https://vaki.co/vaki/yo-tengo-fe-por-el-pacifico', goal: null, raised: 0, donorCount: 0, verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'OTHER', title: 'Emergencia Colombia Sismo', orgOrPerson: 'UNICEF Colombia', url: 'https://unicef.org.co/terremoto-colombia', goal: null, raised: null, donorCount: null, verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'OTHER', title: 'Emergencia Colombia Terremoto', orgOrPerson: 'Cruz Roja Colombiana', url: 'https://ayuda.cruzrojacolombiana.org/emergencia-colombia-terremoto', goal: null, raised: null, donorCount: null, verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'OTHER', title: 'Colombia en emergencia', orgOrPerson: 'The House Project (Familia Montaner)', url: 'https://thehouse-project.org/products/colombia-needs-us', goal: null, raised: null, donorCount: null, verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'OTHER', title: 'Emergency Appeal: Earthquake Victims in Colombia', orgOrPerson: 'Children Change Colombia', url: 'https://childrenchangecolombia.org/emergency-appeal-urgent-assistance-for-earthquake-victims-in-colombia/', goal: null, raised: null, donorCount: null, verificationStatus: 'VERIFIED', lastCheckedAt: new Date('2026-08-14') },
+      { platform: 'GOFUNDME', title: 'Ayudas para las comunidades indígenas del Chocó', orgOrPerson: 'Galería Aborigen (organizer: Camila Barrera, Austin TX)', url: 'https://gofund.me/2c28f41bd', goal: 230000, raised: 170903, donorCount: 3962, verificationStatus: 'PLAUSIBLE', lastCheckedAt: new Date('2026-08-14') },
     ],
   })
 
