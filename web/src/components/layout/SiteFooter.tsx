@@ -10,12 +10,12 @@ const FOOTER_LINKS = [
 export function SiteFooter() {
   return (
     <footer className="border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black">
-      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-8 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
-        <p>
+      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10 text-sm text-zinc-500 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
+        <p className="max-w-sm">
           Proyecto independiente de datos verificados sobre el terremoto de
           Colombia del 10 de agosto de 2026.
         </p>
-        <nav className="flex flex-wrap gap-x-4 gap-y-1">
+        <nav className="flex flex-wrap gap-x-6 gap-y-2 sm:justify-end">
           {FOOTER_LINKS.map((link) => (
             <Link
               key={link.href}
