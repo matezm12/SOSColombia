@@ -53,6 +53,7 @@ model Municipio {
   aidPoints        AidPoint[]
   pendingAidPoints PendingAidPoint[]
   socialPosts      SocialPost[]
+  campaigns        CrowdfundingCampaign[]
 
   @@index([departmentId])
 }
@@ -249,8 +250,11 @@ model CrowdfundingCampaign {
   currency           String?             // registry genuinely mixes USD/CHF/GBP — null goal/raised without this is misleading
   donorCount         Int?
   verificationStatus VerificationStatus  @default(UNCONFIRMED)
+  international      Boolean             @default(false) // donatable by someone outside Colombia (foreign card/PayPal) — false for COP-only bank-transfer/in-store channels
+  recurring          Boolean             @default(false) // org/platform confirmed to support monthly/subscription giving, not just one-time
   notes              String?             // e.g. the Galería Aborigen organizer/foundation-mismatch caveat
   lastCheckedAt      DateTime
+  municipios         Municipio[]         // optional stated city focus — never exactly one FK, since real campaigns are genuinely multi-city
 }
 
 enum CrowdfundingPlatform {

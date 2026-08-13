@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
@@ -9,7 +10,10 @@ export const dynamic = "force-dynamic";
 
 export default async function DonarPage() {
   const [campaigns, monetaryPoints] = await Promise.all([
-    prisma.crowdfundingCampaign.findMany({ orderBy: { verificationStatus: "asc" } }),
+    prisma.crowdfundingCampaign.findMany({
+      orderBy: { verificationStatus: "asc" },
+      include: { municipios: { select: { name: true, divipolaCode: true } } },
+    }),
     prisma.aidPoint.findMany({
       where: { kind: "MONETARY_DONATION" },
       include: { source: true, municipio: true },
@@ -38,6 +42,18 @@ export default async function DonarPage() {
           <li>&ldquo;Rescatistas LATAM&rdquo; fue investigado y no se encontró evidencia de que exista como organización real. No dones a través de canales con ese nombre.</li>
           <li>Desconfía de: enlaces compartidos solo por WhatsApp/SMS sin otro rastro, perfiles nuevos y anónimos, presión de urgencia, y &ldquo;listas exclusivas de víctimas&rdquo;.</li>
         </ul>
+      </Card>
+
+      <Card className="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm text-zinc-700 dark:text-zinc-300">
+          ¿Donas desde fuera de Colombia? Los canales locales de esta página requieren cuenta bancaria colombiana para algunos casos.
+        </p>
+        <Link
+          href="/donar/internacional"
+          className="shrink-0 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+        >
+          Ver donaciones internacionales →
+        </Link>
       </Card>
 
       <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">

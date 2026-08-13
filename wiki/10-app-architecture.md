@@ -56,9 +56,11 @@ Contradiction
   resolution_text (nullable), logged_at, resolved_at
 
 CrowdfundingCampaign
-  id, platform (gofundme|vaki|other), title, org_or_person, url, goal, raised,
+  id, platform (gofundme|vaki|other), title, org_or_person, url, goal, raised, currency,
   donor_count, verification_status (verified|plausible|unconfirmed|flagged_scam),
-  last_checked_at
+  international (donatable by someone outside Colombia — foreign card/PayPal, no
+    Colombian bank account needed), recurring (org/platform confirmed to support
+    monthly/subscription giving), notes, last_checked_at
 
 SocialPost   -- for the embed/preview feature confirmed feasible this session
   id, platform (x|instagram|facebook|tiktok), permalink, author_handle,

@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { href: "/mapa", label: "Mapa" },
   { href: "/ayuda", label: "Ayuda" },
   { href: "/donar", label: "Donar" },
+  { href: "/donar/internacional", label: "Internacional" },
   { href: "/informes", label: "Informes" },
   { href: "/fuentes", label: "Fuentes" },
   { href: "/metodologia", label: "Metodología" },

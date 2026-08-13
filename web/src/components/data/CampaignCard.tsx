@@ -1,4 +1,5 @@
-import type { CrowdfundingCampaign } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
+import Link from "next/link";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { ExternalLink } from "../ui/ExternalLink";
@@ -9,16 +10,43 @@ import {
 } from "@/lib/labels";
 import { formatCurrency, formatNumber, formatDate } from "@/lib/format";
 
-export function CampaignCard({ campaign }: { campaign: CrowdfundingCampaign }) {
+type CampaignWithMunicipios = Prisma.CrowdfundingCampaignGetPayload<{
+  include: { municipios: { select: { name: true; divipolaCode: true } } };
+}>;
+
+export function CampaignCard({ campaign }: { campaign: CampaignWithMunicipios }) {
   return (
     <Card>
       <div className="flex items-center justify-between gap-2">
         <span className="font-medium text-black dark:text-zinc-50">{campaign.title}</span>
-        <Badge variant="verification" value={campaign.verificationStatus}>
-          {VERIFICATION_LABEL[campaign.verificationStatus] ?? campaign.verificationStatus}
-        </Badge>
+        <div className="flex shrink-0 items-center gap-1.5">
+          {campaign.international && (
+            <Badge variant="neutral">Internacional</Badge>
+          )}
+          {campaign.recurring && <Badge variant="neutral">Mensual</Badge>}
+          <Badge variant="verification" value={campaign.verificationStatus}>
+            {VERIFICATION_LABEL[campaign.verificationStatus] ?? campaign.verificationStatus}
+          </Badge>
+        </div>
       </div>
       <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{campaign.orgOrPerson}</p>
+
+      {campaign.municipios.length > 0 && (
+        <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">
+          Enfoque:{" "}
+          {campaign.municipios.map((m, i) => (
+            <span key={m.divipolaCode}>
+              {i > 0 && ", "}
+              <Link
+                href={`/ciudad/${m.divipolaCode}`}
+                className="underline decoration-zinc-300 underline-offset-2 hover:text-zinc-800 hover:decoration-zinc-500 dark:decoration-zinc-700 dark:hover:text-zinc-300"
+              >
+                {m.name}
+              </Link>
+            </span>
+          ))}
+        </p>
+      )}
 
       {campaign.notes && (
         <p className="mt-2 text-xs text-amber-700 dark:text-amber-500">{campaign.notes}</p>
