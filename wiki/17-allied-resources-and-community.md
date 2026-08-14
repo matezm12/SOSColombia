@@ -573,12 +573,60 @@ record — noted directly in its `submitterNote` for the moderator to check befo
 approving, rather than silently risking a duplicate.
 
 ### Next steps (pass 7)
-1. Review all pending items — `/admin/comunidad` has 30 pending, `/admin/moderacion`
-   has 23 pending aid points, across all 7 passes combined.
+1. ~~Review all pending items~~ — superseded by pass 8 below.
 2. Acopio Colombia's search has a substring-matching quirk worth knowing about:
    searching "Cali" also matched "California Tattoo" in Bogotá. Always check the
    actual city field on each result, not just that a search returned it.
-3. Sr Buñuelo Manizales and the CAFE-network addresses suggest there may be more
-   value in searching Acopio Colombia/Cuidar a Colombia per-neighborhood or
-   per-network-name (e.g. "CAFE", "Comfamiliar") rather than just per-city — not
-   attempted yet.
+
+## Pass 8 (2026-08-14) — GitHub search retry, direct TikTok, a caution
+
+Two angles: a fresh GitHub repository search (same technique as passes 1/3 — new
+repos appear daily) for new allied *sites*, per the standing ask to keep adding
+"similar initiatives to our own"; and a direct TikTok search (previously only
+sampled by an agent in pass 3, never browsed directly).
+
+### 1 new allied resource — with an attribution caveat worth reading
+
+**Terremoto Colombia 2026 — Impacto en Edificaciones**
+(andresabarca-atlas.github.io/terremoto-colombia-2026) — a damage/economic-loss
+dashboard using BID (Inter-American Development Bank)/GEM 2023 exposure-model
+methodology. Flagging this one carefully rather than treating it like the other
+finds: **the site displays a "USO INTERNO" badge and text describing itself as a
+BID internal tool, but it's hosted on a personal GitHub Pages account, not an
+institutional one — official BID affiliation is unconfirmed.** The site's own
+disclaimer already says the figures don't substitute official assessments, which
+helps, but the "internal BID tool" framing on a public page is exactly the kind
+of ambiguity this project's sourcing discipline exists to catch. Seeded at tier 5
+(lowest tier used so far) with the caveat spelled out directly in its `notes`
+field — not treated as institutionally-verified the way the ABACO-network finds
+have been.
+
+### Checked, not added
+
+- **Julian-Rincon/ayuda-terremoto-colombia** (GitHub) — a genuinely
+  well-architected project (Pereira MVP backend, a national Ushahidi-based
+  coordination layer, HXL export for the humanitarian community, USGS
+  auto-activation), explicitly designed to not handle payments/donations. Not
+  added: no live deployment found, and its own README says parts of the
+  national layer run in sandbox mode, not real integrations yet. Worth
+  re-checking later if it ships a public URL.
+- Direct TikTok search surfaced mostly viral earthquake-documentation clips
+  (not aid-point announcements) and at least one video from an account with
+  overt political-campaign branding (`#pactohistorico`, tagging a specific
+  politician) requesting donations for Cúcuta — skipped for the same
+  political-entanglement reason the Miami collection-point page was skipped in
+  pass 5, not because the underlying need is fake.
+- Other GitHub search results this pass were repos already known from earlier
+  passes (jdramirezzu, JorgeGalindo, darkpel4, sauricar — the last two already
+  checked and rejected as not-live in pass 3, not re-verified this pass).
+
+### Next steps (pass 8)
+1. Review all pending items — `/admin/comunidad` has 30 pending, `/admin/moderacion`
+   has 23 pending aid points, `/recursos` has 9 allied sites, across all 8 passes.
+2. Sr Buñuelo Manizales and the CAFE-network addresses (pass 7) suggest there may
+   be more value in searching Acopio Colombia/Cuidar a Colombia per-neighborhood
+   or per-network-name (e.g. "CAFE", "Comfamiliar") rather than just per-city —
+   not attempted yet.
+3. TikTok search works fine unauthenticated (no login wall hit) — future passes
+   don't need to assume it requires the user's logged-in session the way
+   Facebook did.
