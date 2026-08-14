@@ -889,3 +889,67 @@ account had zero institutional signal, it was rejected outright.
    (Cali, Manizales, Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas, San
    José del Palmar) — Pereira was chosen first as the calibration run for this
    new workflow shape, not because it's the only city getting this treatment.
+
+## Pass 14 — Facebook retry lands, plus a bonus second sweep (2026-08-14)
+
+Resuming the pass-13 `Workflow` run (same run ID, cached agents replay
+instantly) succeeded this time — `facebook-pereira` completed clean. The
+resume also re-ran the TikTok and crowdfunding agents with fresh searches
+(same assignment, different queries/results than their pass-13 runs), which
+is a pleasant side effect rather than a bug: it surfaced real, additional
+finds pass 13 didn't have. Everything below is net-new on top of pass 13, not
+a replacement for it.
+
+**Best single find of this pass:** the official `@concejopereira` (Pereira
+City Council) TikTok account posted an itemized list of every city-enabled
+shelter/attention point with exact addresses. It confirmed the whole
+CAFE/Comfamiliar network already in the dataset (Consota, Perla del Otún,
+Remanso, Kennedy, Ormaza, San Nicolás, Comuna del Café — all matched exactly,
+nothing duplicated) **and** surfaced four ALBERGUE (shelter) locations not
+previously tracked for Pereira at all: **Ecoparque El Vergel** (Boston/
+Poblado), **Parque del Oso** (Calle 80 No. 34-19), **Estadio Mora Mora**
+(Carrera 11 Bis x Calle 9 Este), and **Plaza de Ferias** (Cerritos sector).
+All four seeded at high confidence — official municipal source, exact
+addresses.
+
+### New aid points (9)
+- **Clínica Veterinaria Visión de las Américas** (VET) — Carrera 13 No.
+  9-67. Posted from the clinic's own Facebook page, real business name and
+  address. High confidence.
+- **Caseta Comunal de Gamma** (ACOPIO) — serves the Corales sector /
+  Conjunto Villa del Coral. Individual post, no phone, medium confidence.
+- **4 ALBERGUE points** from the official Concejo de Pereira list (above).
+- **3 new GoFundMe campaigns**: "Stand With Pereira After the Earthquake"
+  (Jovanny Hincapie Betancur — high confidence, $4,386/$8,000, 46 named
+  donors, verifiable Pereira-native backstory), "Hope for Pereira" (Andres
+  Rios — medium confidence, ~99 donors but generic narrative with no named
+  beneficiaries), and a GoFundMe for the Iglesia El Renuevo community
+  (Daniela Rodas Sanchez — medium confidence, individual overseas collector
+  but 14 real damage photos and a named local church community).
+
+### New community embeds (6)
+Facebook versions of the blood-donation call and the Hotel Dibeni
+missing-person case (Juan Felipe Giraldo — this Facebook version adds new
+detail: he'd traveled to Pereira for his own wedding, planned for that
+weekend), plus embeds for the vet clinic, the Caseta Comunal de Gamma acopio
+post, the Iglesia El Renuevo GoFundMe, and the official Concejo de Pereira
+shelter-list TikTok itself.
+
+### Checked, deliberately not seeded (again)
+- **Vaki "Ayudemos a la familia Millán"** — the Facebook sweep found this
+  campaign attached to a named poster (Tatiana Millán Constain) and nearly
+  seeded it at medium confidence, but the pass-13 crowdfunding agent had
+  already vetted the same underlying Vaki page more thoroughly and rejected
+  it outright (zero donations, no organizer identity displayed anywhere on
+  the campaign page itself). Kept the stricter rejection — a sympathetic
+  Facebook share doesn't fix an anonymous, zero-traction crowdfunding page.
+- **David Londono's GoFundMe** reappeared in this sweep too (44 donors, the
+  highest count of any campaign found for Pereira across both passes) — still
+  excluded, same reason as pass 13: its two named beneficiaries are in
+  Dosquebradas and Marsella, not Pereira proper.
+
+### Next steps (pass 14)
+Pereira's deep pass is now genuinely exhausted across X, Instagram, TikTok,
+Facebook, and crowdfunding — move to the next city in the per-city rotation
+(Cali, Manizales, Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas, San
+José del Palmar).
