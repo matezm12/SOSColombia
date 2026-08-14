@@ -4,6 +4,8 @@
     "lede": "Publicaciones de Instagram, X, Facebook y TikTok sobre lugares y necesidades que aún no están en nuestro directorio — revisadas antes de publicarse aquí.",
     "prompt": "¿Viste una publicación sobre un punto de ayuda o una necesidad puntual que no está en el sitio?",
     "cta": "Compartir una publicación →",
-    "empty": "Ninguna publicación todavía."
+    "empty": "Ninguna publicación todavía.",
+    "filterAll": "Todas las ciudades",
+    "emptyFiltered": "Ninguna publicación para esta ciudad todavía."
   }
 }

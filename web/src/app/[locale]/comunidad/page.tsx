@@ -3,7 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
-import { CommunityPostCard } from "@/components/data/CommunityPostCard";
+import { CommunityFeed } from "@/components/data/CommunityFeed";
 import { EmptyState } from "@/components/ui/EmptyState";
 
 export const dynamic = "force-dynamic";
@@ -35,12 +35,17 @@ export default async function ComunidadPage() {
         </Link>
       </Card>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {posts.map((p) => (
-          <CommunityPostCard key={p.id} post={p} />
-        ))}
-        {posts.length === 0 && <EmptyState>{t("empty")}</EmptyState>}
-      </div>
+      {posts.length === 0 ? (
+        <div className="mt-8">
+          <EmptyState>{t("empty")}</EmptyState>
+        </div>
+      ) : (
+        <CommunityFeed
+          posts={posts}
+          allLabel={t("filterAll")}
+          emptyFilteredLabel={t("emptyFiltered")}
+        />
+      )}
     </PageShell>
   );
 }
