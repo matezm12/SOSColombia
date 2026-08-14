@@ -60,7 +60,7 @@ export default async function DonarPage() {
         </Link>
       </Card>
 
-      <SectionHeading>{t("sections.verified")}</SectionHeading>
+      <SectionHeading first>{t("sections.verified")}</SectionHeading>
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
         {verified.map((c) => (
           <CampaignCard key={c.id} campaign={c} />

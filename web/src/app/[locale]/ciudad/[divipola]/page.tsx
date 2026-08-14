@@ -112,7 +112,7 @@ export default async function CiudadPage(
             })}
         </p>
 
-        <SectionHeading>{t("cifras")}</SectionHeading>
+        <SectionHeading first>{t("cifras")}</SectionHeading>
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {[...latestByMetric.values()].map((record) => (
             <TollCard key={record.id} record={record} />

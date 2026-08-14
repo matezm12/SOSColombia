@@ -34,7 +34,7 @@ export default async function ModeracionPage() {
         la navegación pública a propósito.
       </p>
 
-      <SectionHeading>Pendientes ({pending.length})</SectionHeading>
+      <SectionHeading first>Pendientes ({pending.length})</SectionHeading>
       <div className="mt-4 space-y-4">
         {pending.map((p) => (
           <Card key={p.id}>

@@ -36,7 +36,7 @@ export default async function BoletinesPage() {
         completa el formulario, y aprueba para crear el TollRecord real.
       </p>
 
-      <SectionHeading>Pendientes ({pending.length})</SectionHeading>
+      <SectionHeading first>Pendientes ({pending.length})</SectionHeading>
       <div className="mt-4 space-y-4">
         {pending.map((p) => (
           <Card key={p.id}>

@@ -26,7 +26,7 @@ export default async function MetodologiaPage() {
 
       {open.length > 0 && (
         <>
-          <SectionHeading>{t("discrepanciasAbiertas")}</SectionHeading>
+          <SectionHeading first>{t("discrepanciasAbiertas")}</SectionHeading>
           <div className="mt-4 space-y-4">
             {open.map((c) => (
               <ContradictionCard key={c.id} contradiction={c} />
@@ -37,7 +37,7 @@ export default async function MetodologiaPage() {
 
       {resolved.length > 0 && (
         <>
-          <SectionHeading>{t("discrepanciasResueltas")}</SectionHeading>
+          <SectionHeading first={open.length === 0}>{t("discrepanciasResueltas")}</SectionHeading>
           <div className="mt-4 space-y-4">
             {resolved.map((c) => (
               <ContradictionCard key={c.id} contradiction={c} />
