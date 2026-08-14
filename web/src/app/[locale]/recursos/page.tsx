@@ -20,6 +20,7 @@ export default async function RecursosPage() {
   const t = await getTranslations("recursos");
   const resources = await prisma.alliedResource.findMany({
     where: { status: { not: "DEAD" } },
+    include: { municipio: { select: { name: true, divipolaCode: true } } },
     orderBy: [{ tier: "asc" }, { name: "asc" }],
   });
 

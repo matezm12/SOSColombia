@@ -6,6 +6,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { TollCard } from "@/components/data/TollCard";
 import { AidPointCard } from "@/components/data/AidPointCard";
 import { CampaignCard } from "@/components/data/CampaignCard";
+import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
@@ -38,6 +39,10 @@ export default async function CiudadPage(
       },
       campaigns: {
         include: { municipios: { select: { name: true, divipolaCode: true } } },
+      },
+      resources: {
+        where: { status: { not: "DEAD" } },
+        orderBy: [{ tier: "asc" }, { name: "asc" }],
       },
     },
   });
@@ -151,6 +156,24 @@ export default async function CiudadPage(
               {t.rich("sinCampanas", {
                 link: (chunks) => (
                   <Link href="/donar" className="underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
+            </EmptyState>
+          )}
+        </div>
+
+        <SectionHeading>{t("proyectosLocales")}</SectionHeading>
+        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {municipio.resources.map((resource) => (
+            <AlliedResourceCard key={resource.id} resource={resource} />
+          ))}
+          {municipio.resources.length === 0 && (
+            <EmptyState>
+              {t.rich("sinProyectosLocales", {
+                link: (chunks) => (
+                  <Link href="/recursos" className="underline">
                     {chunks}
                   </Link>
                 ),

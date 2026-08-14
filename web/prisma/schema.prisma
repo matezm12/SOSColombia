@@ -57,6 +57,7 @@ model Municipio {
   socialPosts        SocialPost[]
   pendingSocialPosts PendingSocialPost[]
   campaigns          CrowdfundingCampaign[]
+  resources          AlliedResource[]
 
   @@index([departmentId])
 }
@@ -377,6 +378,11 @@ model AlliedResource {
   notes                 String?
   addedAt               DateTime                @default(now())
   lastCheckedAt         DateTime?
+  featured              Boolean                 @default(false) // hand-curated: surfaced on the homepage highlight strip
+  municipio             Municipio?              @relation(fields: [municipioId], references: [id])
+  municipioId           String?                 // only set when the project is explicitly branded/founded around ONE city — not a coverage-area rollup
+
+  @@index([municipioId])
 }
 
 enum AlliedResourceCategory {

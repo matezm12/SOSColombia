@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CityCard } from "@/components/data/CityCard";
+import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
 import { bestDeathMetric } from "@/lib/queries";
 import { routing } from "@/i18n/routing";
 
@@ -19,7 +20,7 @@ const SITE_URL = "https://www.soscolombia.xyz";
 export default async function Home(props: PageProps<"/[locale]">) {
   const { locale } = await props.params;
   const t = await getTranslations("home");
-  const [event, municipios] = await Promise.all([
+  const [event, municipios, featuredResources] = await Promise.all([
     prisma.event.findFirst({ orderBy: { createdAt: "asc" } }),
     prisma.municipio.findMany({
       include: {
@@ -30,7 +31,19 @@ export default async function Home(props: PageProps<"/[locale]">) {
       },
       orderBy: { populationDane: "desc" },
     }),
+    prisma.alliedResource.findMany({
+      where: { featured: true, status: { not: "DEAD" } },
+      include: { municipio: { select: { name: true, divipolaCode: true } } },
+      orderBy: [{ tier: "asc" }, { name: "asc" }],
+    }),
   ]);
+
+  // City-specific projects first (the point of this section — small, local
+  // efforts like Ayudas Pereira/Cali Ayuda), then broader national ones, capped
+  // at 4 so the strip stays a highlight, not a second /recursos.
+  const homepageResources = [...featuredResources]
+    .sort((a, b) => Number(b.municipioId != null) - Number(a.municipioId != null))
+    .slice(0, 4);
 
   const canonicalUrl = `${SITE_URL}${locale === routing.defaultLocale ? "" : `/${locale}`}`;
 
@@ -143,6 +156,25 @@ export default async function Home(props: PageProps<"/[locale]">) {
             ),
           })}
         </p>
+
+        {homepageResources.length > 0 && (
+          <>
+            <SectionHeading>{t("proyectosDestacados")}</SectionHeading>
+            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
+              {t("proyectosDestacadosLede")}
+            </p>
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {homepageResources.map((r) => (
+                <AlliedResourceCard key={r.id} resource={r} />
+              ))}
+            </div>
+            <p className="mt-3 text-sm">
+              <Link href="/recursos" className="underline">
+                {t("verTodosLosRecursos")}
+              </Link>
+            </p>
+          </>
+        )}
       </PageShell>
     </>
   );

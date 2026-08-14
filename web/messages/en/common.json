@@ -29,7 +29,10 @@
     "fallecidosReportados": "reported deaths",
     "ctaAyuda": "See all aid points →",
     "ctaDonar": "How to donate →",
-    "ciudadNoListada": "Don't see your city on the list? Check <link>all aid points nationwide</link>."
+    "ciudadNoListada": "Don't see your city on the list? Check <link>all aid points nationwide</link>.",
+    "proyectosDestacados": "Featured projects",
+    "proyectosDestacadosLede": "Independent, mostly small/one-person tools built by other people to help — some focused on a single city, others nationwide.",
+    "verTodosLosRecursos": "See all independent projects and tools →"
   },
   "footer": {
     "descripcion": "Independent project tracking verified data on Colombia's August 10, 2026 earthquake.",

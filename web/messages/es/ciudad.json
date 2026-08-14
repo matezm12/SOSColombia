@@ -8,6 +8,8 @@
     "puntosDeAyuda": "Puntos de ayuda",
     "sinPuntosDeAyuda": "Sin puntos de ayuda confirmados todavía para esta ciudad.",
     "campanasDeRecaudacion": "Campañas de recaudación",
-    "sinCampanas": "Ninguna campaña de recaudación específica para esta ciudad todavía — mira las <link>campañas generales</link>."
+    "sinCampanas": "Ninguna campaña de recaudación específica para esta ciudad todavía — mira las <link>campañas generales</link>.",
+    "proyectosLocales": "Proyectos y herramientas locales",
+    "sinProyectosLocales": "Ningún proyecto independiente enfocado específicamente en esta ciudad todavía — mira <link>todos los proyectos y herramientas</link>."
   }
 }
