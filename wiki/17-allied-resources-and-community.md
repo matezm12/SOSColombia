@@ -621,8 +621,7 @@ have been.
   checked and rejected as not-live in pass 3, not re-verified this pass).
 
 ### Next steps (pass 8)
-1. Review all pending items — `/admin/comunidad` has 30 pending, `/admin/moderacion`
-   has 23 pending aid points, `/recursos` has 9 allied sites, across all 8 passes.
+1. ~~Review all pending items~~ — superseded by pass 9 below.
 2. Sr Buñuelo Manizales and the CAFE-network addresses (pass 7) suggest there may
    be more value in searching Acopio Colombia/Cuidar a Colombia per-neighborhood
    or per-network-name (e.g. "CAFE", "Comfamiliar") rather than just per-city —
@@ -630,3 +629,45 @@ have been.
 3. TikTok search works fine unauthenticated (no login wall hit) — future passes
    don't need to assume it requires the user's logged-in session the way
    Facebook did.
+
+## Pass 9 (2026-08-14) — Popayán, the most-neglected tracked city
+
+Sanity check partway through this pass: **11 more `PendingAidPoint` rows got
+approved since the last check** (43 live `AidPoint` rows now, up from the 32
+baseline after the first review round) — the moderation queue is actively being
+worked, not just accumulating.
+
+Every prior pass concentrated on the 5 red-alert cities plus Buenaventura —
+Popayán (tracked since the original stage-1 research, `MODERADA` severity, not
+red-alert) had gotten essentially zero attention. Checked it against the same
+two already-trusted sources (Cuidar a Colombia's raw data, Acopio Colombia).
+
+### 2 new Popayán aid points, one cross-confirmed
+
+- **S.C.A.R.E. — Sede Popayán** (Carrera 9 #18N-231, oficina 205, Edificio
+  Terrazas del Norte) — Sociedad Colombiana de Anestesiología y Reanimación,
+  campaign "Juntos somos Colombia," `fuente_oficial` in Cuidar a Colombia's
+  dataset. **Independently found again by Acopio Colombia at the exact same
+  address** under the name "ACSC Popayán" — two allied sites converging on the
+  identical location is about as strong a confirmation as this project gets
+  without direct verification.
+- **Polideportivo de La Paz** — verified on Acopio Colombia, alimentos/aseo e
+  higiene/medicamentos, Thursdays 3-8pm.
+
+**San José del Palmar checked again — still zero.** No acopio entries, no
+`zonas` entry above baseline severity in Cuidar a Colombia's data. Consistent
+with the original stage-1 finding in `wiki/00-INDEX.md` ("no formal aid-point
+infrastructure" at the literal epicenter) — reconfirmed, not new information,
+but worth explicitly re-checking rather than assuming it's stayed true for
+5+ days.
+
+### Next steps (pass 9)
+1. Review all pending items — `/admin/comunidad` has 30 pending, `/admin/moderacion`
+   now has 25 pending aid points (43 already approved), `/recursos` has 8 allied
+   sites, across all 9 passes.
+2. Research this session has covered: X, Instagram, Facebook, TikTok direct
+   search; Cuidar a Colombia and Acopio Colombia raw-data mining per-city for
+   all 9 tracked municipios; GitHub repo search for new allied sites (3 rounds).
+   Genuine remaining gaps: grassroots housing offers (confirmed dead end, not
+   worth re-trying without a different data source entirely), and the
+   CAFE-network/per-neighborhood search angle noted in pass 8, not yet tried.
