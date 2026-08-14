@@ -164,7 +164,11 @@ export default function MapaClient({
     <div className="relative w-full">
       <div
         ref={mapContainer}
-        className="h-[70vh] w-full overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800"
+        // The basemap is deliberately light-only (see comment above). The
+        // dark:shadow/ring here doesn't recolor it — it just reads the white
+        // rectangle as an intentional "island" component against a near-black
+        // page instead of a leftover light-mode fragment.
+        className="h-[70vh] w-full overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 dark:shadow-lg dark:ring-1 dark:ring-white/10"
       />
 
       <div className="absolute left-4 top-4 z-10 rounded-lg border border-zinc-200 bg-white/95 p-3 text-xs shadow-sm dark:border-zinc-800 dark:bg-zinc-950/95">

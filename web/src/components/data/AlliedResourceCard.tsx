@@ -13,7 +13,7 @@ export function AlliedResourceCard({ resource }: { resource: AlliedResource }) {
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={resource.ogImageUrl}
-          alt=""
+          alt={resource.name}
           className="aspect-[1200/630] w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
           loading="lazy"
         />
