@@ -530,13 +530,55 @@ future pass doesn't have to rediscover them from scratch, and can prioritize
 strengthening evidence for these specifically rather than searching blind.
 
 ### Next steps (pass 6)
-1. Review all pending items — `/admin/comunidad` has 30 pending, `/admin/moderacion`
-   has 13 pending aid points, across all 6 passes combined.
+1. ~~Review all pending items~~ — superseded by pass 7 below.
 2. If any of the "not added" candidate towns above gets a second, independent,
    official-leaning source, that's the trigger to add it as a tracked municipio —
    don't add on single-source self-reported data alone (this is exactly the
    standard Buenaventura had to clear).
-3. Cuidar a Colombia's and Acopio Colombia's raw data/API access (rather than
-   sampled posts) turned out to be far more productive than fresh web/social
-   search for this kind of cross-referencing — worth using as the first move in
-   any future pass, not a fallback.
+
+## Pass 7 (2026-08-14) — same cross-check, applied to our EXISTING cities
+
+Pass 6 mined Cuidar a Colombia's/Acopio Colombia's raw data for cities we *didn't*
+track yet (found Buenaventura). This pass applied the same technique the other
+direction: searched Acopio Colombia's live site city-by-city for Quibdó, Cali,
+Manizales, and Pereira specifically — cities already tracked, but never
+individually queried against this particular source before (prior passes sampled
+it generally, not per-city).
+
+### 9 new PendingAidPoint + 1 monetary-donation channel
+
+- **Quibdó**: Punto de Solidaridad Quibdó (Calle 27A #23-44, Barrio Los Ángeles) —
+  verified, a third distinct Quibdó location alongside the pass-5 "Chocó de Pie"
+  pair.
+- **Cali**: 4 points — Antigua Licorera del Valle and Plazoleta Jairo Varela (both
+  verified), Banco de Alimentos de Cali and Escuela Nacional del Deporte (both
+  listed "Reportado" — self-reported, not yet verified by Acopio Colombia's own
+  process, weaker status flagged explicitly in each note).
+- **Manizales**: Sr Buñuelo Manizales (Carrera 23 #60-26) — verified, distinct
+  from the food bank/university/Fundación Plataformas points already pending.
+- **Pereira**: Complejo Bodeguero Alpaca (verified) + two CAFE-network addresses
+  (CAFE Comuna del Café, CAFE Consota) — both "Reportado." CAFE is the network
+  `wiki/13a-mapadelterremoto-watch.md` already flagged as having more sites than
+  the "original 7" it tracked by name; these two give us actual addresses for two
+  of the ones we didn't have.
+- **ONE Inversión Social** — "Una noche por Chocó," a Chocó-targeted monetary
+  channel found in Cuidar a Colombia's `canales` data (not sampled in earlier
+  passes): Bancolombia account + Bre-B key, run with Sankofa Danzafro/La
+  Pascasia/Corporación Presentes, fuente_oficial. Seeded as a `MONETARY_DONATION`
+  aid point for Quibdó.
+
+One explicit duplicate-risk flag: "Banco de Alimentos de Cali (Acopio Colombia)"
+may be the same institution as an existing/other Banco de Alimentos de Cali
+record — noted directly in its `submitterNote` for the moderator to check before
+approving, rather than silently risking a duplicate.
+
+### Next steps (pass 7)
+1. Review all pending items — `/admin/comunidad` has 30 pending, `/admin/moderacion`
+   has 23 pending aid points, across all 7 passes combined.
+2. Acopio Colombia's search has a substring-matching quirk worth knowing about:
+   searching "Cali" also matched "California Tattoo" in Bogotá. Always check the
+   actual city field on each result, not just that a search returned it.
+3. Sr Buñuelo Manizales and the CAFE-network addresses suggest there may be more
+   value in searching Acopio Colombia/Cuidar a Colombia per-neighborhood or
+   per-network-name (e.g. "CAFE", "Comfamiliar") rather than just per-city — not
+   attempted yet.
