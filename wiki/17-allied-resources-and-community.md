@@ -465,13 +465,78 @@ source, treat it as unverified/likely-false, not as a lead to promote.
   Dual-seeded as two separate aid points (one per address).
 
 ### Next steps (pass 5)
-1. Review all pending items — `/admin/comunidad` now has 29 pending across all 5
-   passes, `/admin/moderacion` has 8 pending aid points across passes 2-5.
-   @mariapaz_buitrago's entry specifically needs a location call before approval.
+1. ~~Review all pending items~~ — superseded by pass 6 below.
 2. If someone encounters the "PUNTOS DE ACOPIO OFICIALES" 8-city graphic (or its
    Manizales/Armenia/Quibdó claims) from an independent source later, don't trust
    it without re-verification — see the debunking note above.
-3. Armenia remains the thinnest-covered of the 5 red-alert cities across all 5
-   passes combined — most Armenia-specific searches redirect to Pereira/Manizales
-   results instead. Worth a dedicated Armenia-only sweep if more research is
-   wanted.
+
+## Pass 6 (2026-08-14) — deeper into already-known sources, new municipio
+
+Different angle from passes 2-5: instead of fresh searches, went back into sites
+this project already trusts and pulled their *raw data* directly (Cuidar a
+Colombia's `/data/app.json`, Acopio Colombia's live search) rather than reading
+sampled posts, plus re-checked ayudaspereira.com now that it's grown since pass 1
+(28 → 41 Pereira centers).
+
+### New municipio: Buenaventura
+
+Cuidar a Colombia's raw dataset marks Buenaventura `gravedad: "critica"` with
+`nivel_evidencia: "incluye_fuente_oficial"` and `seguimiento_prioritario: true` —
+the same evidentiary bar as our existing tracked cities, not an incidental
+mention. Real, official-sourced damage: ~20 landslides cutting the Cali highway,
+3 deaths in the corridor's tunnels, airport restricted to humanitarian flights
+only, confirmed by the Gobernación del Valle del Cauca directly (not just press).
+This is categorically different from cities like Bogotá/Medellín/Barranquilla
+that also show up in these datasets — those are national donation-collection
+*hubs* for money/goods headed elsewhere, not places the earthquake itself hit.
+Buenaventura is disaster-affected in its own right, which is the bar for a
+tracked `Municipio`, not just "a city with a collection point."
+
+Added as `Municipio` (DIVIPOLA `76109`, Valle del Cauca, `severityLabel: CRITICA`).
+**Deliberately left `redAlert: false`** — that field maps to the specific
+official 5-city list (Cali/Pereira/Manizales/Armenia/Quibdó) established early in
+this project's stage-1 research from named sources (Infobae, UNGRD); `CRITICA`
+severity is a separate, broader signal and shouldn't silently overload that
+field's meaning.
+
+3 real Buenaventura acopio points seeded (`PendingAidPoint`), two of them
+cross-confirmed independently across two different allied sites (Cuidar a
+Colombia's dataset AND Acopio Colombia's live search both list "Centro
+multimodal de Puente Nayero" under the same name):
+- Banco de Alimentos de Buenaventura (ABACO network — same network as the
+  already-approved Manizales food bank)
+- Centro de acopio La Licorera (direct Gobernación del Valle source)
+- Centro multimodal de Puente Nayero (Corporación Corhapep) — cross-confirmed
+
+### 2 new Armenia aid points (existing municipio, new coverage)
+
+ayudaspereira.com — already trusted, already the source for the 28 approved
+Pereira/Dosquebradas points — now also lists Armenia directly: Barrio Limonar
+(Etapa 3, Mz 5, Casa 20) and Power Music Center (Carrera 14 #9-72), each with a
+named responsable. Same platform, same trust level as what's already approved.
+
+### Other candidate cities found — NOT added, weak/single-source evidence
+
+ayudaspereira.com's growth also surfaced real but thin signal in ~12 other small
+towns (Filandia, Ibagué, Quimbaya, Roldanillo, Bolívar, Riosucio, Santa Rosa de
+Cabal, Vereda Aurora Valle, Guática, Apía, Anserma, Congal Bajo-Alcalá, El Águila,
+El Dovio) — each with just 1-2 self-reported centers on a single platform, no
+independent corroboration. Also Nóvita, Chocó, flagged in Cuidar a Colombia's own
+dataset as `gravedad: "alta"` but `nivel_evidencia: "una_fuente_secundaria"` (one
+secondary source only). None of these were added as tracked municipios — the
+same discipline as not seeding the debunked infographic's claims: single-source,
+small-scale signal doesn't clear the bar Buenaventura cleared. Listed here so a
+future pass doesn't have to rediscover them from scratch, and can prioritize
+strengthening evidence for these specifically rather than searching blind.
+
+### Next steps (pass 6)
+1. Review all pending items — `/admin/comunidad` has 30 pending, `/admin/moderacion`
+   has 13 pending aid points, across all 6 passes combined.
+2. If any of the "not added" candidate towns above gets a second, independent,
+   official-leaning source, that's the trigger to add it as a tracked municipio —
+   don't add on single-source self-reported data alone (this is exactly the
+   standard Buenaventura had to clear).
+3. Cuidar a Colombia's and Acopio Colombia's raw data/API access (rather than
+   sampled posts) turned out to be far more productive than fresh web/social
+   search for this kind of cross-referencing — worth using as the first move in
+   any future pass, not a fallback.
