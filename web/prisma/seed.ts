@@ -473,6 +473,19 @@ async function main() {
     })
   }
 
+  // ── Social posts ──────────────────────────────────────────────────────
+  // Reuses permalinks already vetted as tier-4 Sources above (see
+  // armenia_coliseo_sur / alcaldia_pereira_fb / instagram_blood_flyer) —
+  // not new/invented content, just the same real posts also modeled here
+  // so /comunidad has something to show on a fresh DB.
+  await prisma.socialPost.createMany({
+    data: [
+      { platform: 'TIKTOK', permalink: 'https://www.tiktok.com/@stefannycastellanosm/video/7673334781010038023', authorHandle: '@stefannycastellanosm', municipioId: municipios.armenia, category: 'AID_POINT' },
+      { platform: 'FACEBOOK', permalink: 'https://www.facebook.com/AlcaldiaDePereira/posts/pfbid0iNQ9mEs7ozeDZhJCZQ4eq5dMQLL8RP7ApwonQdRSHnUeZxHPeCF8CAUv6oqy2Vpbl', authorHandle: 'Alcaldía de Pereira', municipioId: municipios.pereira, category: 'OFFICIAL' },
+      { platform: 'INSTAGRAM', permalink: 'https://www.instagram.com/p/Db8reTIOk6e/', category: 'NEED' },
+    ],
+  })
+
   console.log('Seed complete.')
 }
 
