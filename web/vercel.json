@@ -3,6 +3,7 @@
   "crons": [
     { "path": "/api/cron/usgs", "schedule": "0 12 * * *" },
     { "path": "/api/cron/bulletins", "schedule": "0 12 * * *" },
-    { "path": "/api/cron/aggregator-check", "schedule": "0 12 * * 1" }
+    { "path": "/api/cron/aggregator-check", "schedule": "0 12 * * 1" },
+    { "path": "/api/cron/gov-news-check", "schedule": "0 13 * * *" }
   ]
 }
