@@ -662,12 +662,45 @@ but worth explicitly re-checking rather than assuming it's stayed true for
 5+ days.
 
 ### Next steps (pass 9)
-1. Review all pending items — `/admin/comunidad` has 30 pending, `/admin/moderacion`
-   now has 25 pending aid points (43 already approved), `/recursos` has 8 allied
-   sites, across all 9 passes.
+1. ~~Review all pending items~~ — superseded by pass 10 below.
 2. Research this session has covered: X, Instagram, Facebook, TikTok direct
    search; Cuidar a Colombia and Acopio Colombia raw-data mining per-city for
    all 9 tracked municipios; GitHub repo search for new allied sites (3 rounds).
-   Genuine remaining gaps: grassroots housing offers (confirmed dead end, not
-   worth re-trying without a different data source entirely), and the
-   CAFE-network/per-neighborhood search angle noted in pass 8, not yet tried.
+   Genuine remaining gap: grassroots housing offers (confirmed dead end, not
+   worth re-trying without a different data source entirely).
+
+## Pass 10 (2026-08-14) — the CAFE network, complete
+
+Followed up directly on pass 8's tip: searched Acopio Colombia for "CAFE"
+itself (Comfamiliar's Centro de Atención Familiar en Emergencia network) rather
+than per-city. `wiki/13a-mapadelterremoto-watch.md` knew this network existed
+("the original 7 CAFE network," referenced by count during stage-1 research) but
+never had names or addresses for its sites.
+
+### 5 more CAFE-network points — all 7 now identified by name and address
+
+Pass 7 had already found 2 (CAFE Comuna del Café, CAFE Consota). This pass found
+the remaining 5: **CAFE El Remanso**, **CAFE Kennedy**, **CAFE Ormaza**, **CAFE
+Perla del Otún**, **CAFE San Nicolás** — all in Pereira, all "Reportado" status
+on Acopio Colombia (self-reported, not yet verified by that site's own process).
+
+One of them resolves an old open thread directly: **CAFE Perla del Otún**'s
+address ("Diagonal a la iglesia de los 2.500 Lotes, sector Cuba") almost
+certainly is the "2.500 Lotes" point (P-720/P-721) that
+`wiki/13a-mapadelterremoto-watch.md` already logged as added "en el segundo día
+de la emergencia" — that reference had a name but no real address; this gives
+it one, under its actual operating network's name.
+
+With this pass, the "original 7 CAFE network" wiki/13a referenced only by count
+is now fully mapped by name and address, 7 for 7.
+
+### Next steps (pass 10)
+1. Review all pending items — `/admin/comunidad` has 30 pending,
+   `/admin/moderacion` has 30 pending aid points (still 43 approved and live),
+   `/recursos` has 8 allied sites, across all 10 passes.
+2. Genuinely diminishing returns now on the per-network/per-neighborhood
+   technique that worked well for CAFE — no other named network (Comfamiliar
+   itself runs CAFE; ABACO's food banks were already found per-city) is known
+   to have unmapped members the same way. Next real gains are more likely from
+   waiting for new activity (new GitHub repos, new social posts) than
+   re-mining the same two datasets a third time.
