@@ -40,10 +40,6 @@ export function AlliedResourceCard({ resource }: { resource: AlliedResource }) {
           )}
         </div>
 
-        {resource.notes && (
-          <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-500">{resource.notes}</p>
-        )}
-
         <p className="mt-3 text-sm">
           <ExternalLink href={resource.url}>Visitar sitio</ExternalLink>
         </p>
