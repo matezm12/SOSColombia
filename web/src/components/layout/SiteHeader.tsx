@@ -39,7 +39,7 @@ export async function SiteHeader() {
           SOSColombia
         </Link>
 
-        <nav className="hidden items-center gap-4 xl:flex">
+        <nav className="hidden items-center gap-5 xl:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}

@@ -116,3 +116,41 @@ None of this is irreversible or expensive to start — flag now if a different s
     - **Data completeness**: department-level toll rollups (was 0 rows), `MISSING_CROWDSOURCED` national record, and — the headline fix — `HEALTH`/`VET`/`BLOOD_DONATION` aid points (was 0 rows each despite being real schema categories since the very first seed). Idempotent upsert-based seeding was scoped **out** of this pass (a real, separate engineering task) in favor of a proven additive-script pattern; flagged as still-needed follow-up before the seed can safely be re-run wholesale.
     - **5 new pages** unlocking data that had zero UI before: `/cifras` (national + department figures, full append-only history — the direct fix for "cifras is blank"), `/donar` (the `CrowdfundingCampaign` table, 16 orgs, zero UI before this), `/informes` (`GovReport`, 5 rows), `/fuentes` (full source-transparency registry), `/ayuda` (cross-city aid-point directory with a kind filter).
     - Deferred, not built: full seed idempotency (slug-based upserts), `SocialPost` embeds (0 rows, needs a registered Meta app), aid-point geocoding for the map.
+12. [x] `/recursos` (allied resources) + `/comunidad` (moderated social embeds) built
+    2026-08-14 — see `wiki/17-allied-resources-and-community.md` for the full design
+    rationale, research passes, and seeded data. `SocialPost` embeds turned out not
+    to need a registered Meta app after all: `SocialEmbed.tsx` renders each
+    platform's public client-side widget script directly from the permalink,
+    same trick `GoFundMeEmbed.tsx` already used — the deferred item in #11 above
+    is resolved, not still open.
+
+## UI/layout conventions
+
+**Never shrink content to force a fit — wrap or scroll instead.** Established
+2026-08-14 after the header nav (`SiteHeader.tsx`) started clipping against the
+logo as `NAV_LINKS` grew past what a fixed-width single-row flex container could
+hold. The fix that actually held up was raising the breakpoint at which the
+compact/mobile disclosure menu takes over (`md` → `xl`) — not shrinking gaps,
+padding, or font size to cram more in. Shrinking is a trap: it "fixes" the
+symptom at today's item count and breaks again at the next one, since the
+underlying container still can't grow. Concretely:
+
+- **Card/tile collections** (city list on `/`, allied-resource cards on
+  `/recursos`, aid-point cards on `/ayuda`) already do this right — plain CSS
+  Grid (`grid grid-cols-1 sm:grid-cols-2 ...`) that adds rows as items grow,
+  never overflows or needs resizing. This is the default pattern for any list
+  whose length depends on the database (municipios, resources, campaigns) —
+  don't reach for a fixed-column layout or a horizontal-only strip for these.
+- **Fixed-width horizontal rows that can't wrap** (a nav bar, a tab strip, a
+  filter-pill row) are the actual risk case. When the row's content can outgrow
+  its container, the options in order of preference are: (1) let it wrap to a
+  second line if that reads fine visually, (2) fall back to a compact/overflow
+  menu (dropdown, "More ▾", or the mobile disclosure pattern) at the breakpoint
+  where it stops fitting, (3) `overflow-x-auto` with a real horizontal scroll
+  (and touch/trackpad affordance, not just a clipped edge) — never (4) silently
+  shrinking gap/padding/font-size to buy a few more pixels, since that degrades
+  readability today and just delays the same overflow bug to the next item added.
+- Before shipping any layout with a bounded number of visible items (a carousel,
+  a "top N" list, a truncated row), log what's hidden rather than silently
+  dropping it — matches the no-silent-caps discipline already used for research
+  passes (see `wiki/17-allied-resources-and-community.md`).
