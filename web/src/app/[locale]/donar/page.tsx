@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { CampaignCard } from "@/components/data/CampaignCard";
 import { AidPointCard } from "@/components/data/AidPointCard";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export const dynamic = "force-dynamic";
 
@@ -59,9 +60,7 @@ export default async function DonarPage() {
         </Link>
       </Card>
 
-      <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-        {t("sections.verified")}
-      </h2>
+      <SectionHeading>{t("sections.verified")}</SectionHeading>
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
         {verified.map((c) => (
           <CampaignCard key={c.id} campaign={c} />
@@ -71,9 +70,7 @@ export default async function DonarPage() {
 
       {monetaryPoints.length > 0 && (
         <>
-          <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-            {t("sections.local")}
-          </h2>
+          <SectionHeading>{t("sections.local")}</SectionHeading>
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {monetaryPoints.map((p) => (
               <div key={p.id}>
@@ -89,9 +86,7 @@ export default async function DonarPage() {
 
       {individual.length > 0 && (
         <>
-          <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-            {t("sections.individual")}
-          </h2>
+          <SectionHeading>{t("sections.individual")}</SectionHeading>
           <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
             {t("sections.individualNote")}
           </p>
@@ -105,9 +100,7 @@ export default async function DonarPage() {
 
       {flagged.length > 0 && (
         <>
-          <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-            {t("sections.flagged")}
-          </h2>
+          <SectionHeading>{t("sections.flagged")}</SectionHeading>
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {flagged.map((c) => (
               <CampaignCard key={c.id} campaign={c} />

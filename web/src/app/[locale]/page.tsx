@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CityCard } from "@/components/data/CityCard";
 import { bestDeathMetric } from "@/lib/queries";
 import { routing } from "@/i18n/routing";
@@ -106,9 +107,7 @@ export default async function Home(props: PageProps<"/[locale]">) {
           </Link>
         </div>
 
-        <h2 className="mt-12 text-lg font-semibold text-black dark:text-zinc-50">
-          {t("ciudades")}
-        </h2>
+        <SectionHeading>{t("ciudades")}</SectionHeading>
         <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {municipios.map((m) => {
             // Prefer the official reported death count; fall back to INMLCF's

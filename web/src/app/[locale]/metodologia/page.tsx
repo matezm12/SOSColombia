@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { ContradictionCard } from "@/components/data/ContradictionCard";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 // Contradictions get resolved/added over time — never freeze at build time.
 export const dynamic = "force-dynamic";
@@ -25,9 +26,7 @@ export default async function MetodologiaPage() {
 
       {open.length > 0 && (
         <>
-          <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-            {t("discrepanciasAbiertas")}
-          </h2>
+          <SectionHeading>{t("discrepanciasAbiertas")}</SectionHeading>
           <div className="mt-4 space-y-4">
             {open.map((c) => (
               <ContradictionCard key={c.id} contradiction={c} />
@@ -38,9 +37,7 @@ export default async function MetodologiaPage() {
 
       {resolved.length > 0 && (
         <>
-          <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-            {t("discrepanciasResueltas")}
-          </h2>
+          <SectionHeading>{t("discrepanciasResueltas")}</SectionHeading>
           <div className="mt-4 space-y-4">
             {resolved.map((c) => (
               <ContradictionCard key={c.id} contradiction={c} />

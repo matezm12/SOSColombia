@@ -4,6 +4,8 @@ import { nationalTollRecords, departmentTollRecords, latestByMetric } from "@/li
 import { PageShell } from "@/components/layout/PageShell";
 import { TollCard } from "@/components/data/TollCard";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
 import { METRIC_LABEL } from "@/lib/labels";
 import { formatNumber, formatDate } from "@/lib/format";
 
@@ -42,9 +44,7 @@ export default async function CifrasPage() {
       title={t("title")}
       lede={t("lede")}
     >
-      <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-        {t("ultimosValores")}
-      </h2>
+      <SectionHeading>{t("ultimosValores")}</SectionHeading>
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {latestNational.map((r) => (
           <TollCard key={r.id} record={r} />
@@ -56,14 +56,10 @@ export default async function CifrasPage() {
 
       {departmentsByMetric.size > 0 && (
         <>
-          <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-            {t("porDepartamento")}
-          </h2>
+          <SectionHeading>{t("porDepartamento")}</SectionHeading>
           {[...departmentsByMetric.entries()].map(([metric, records]) => (
             <div key={metric} className="mt-4">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
-                {METRIC_LABEL[metric] ?? metric}
-              </h3>
+              <SubsectionHeading>{METRIC_LABEL[metric] ?? metric}</SubsectionHeading>
               <div className="mt-2 overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
                 <table className="w-full text-sm">
                   <tbody>
@@ -93,18 +89,14 @@ export default async function CifrasPage() {
         </>
       )}
 
-      <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-        {t("historialCompleto")}
-      </h2>
+      <SectionHeading>{t("historialCompleto")}</SectionHeading>
       <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
         {t("historialLede")}
       </p>
       <div className="mt-4 space-y-6">
         {[...historyByMetric.entries()].map(([metric, records]) => (
           <div key={metric}>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
-              {METRIC_LABEL[metric] ?? metric}
-            </h3>
+            <SubsectionHeading>{METRIC_LABEL[metric] ?? metric}</SubsectionHeading>
             <div className="mt-2 overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
               <table className="w-full text-sm">
                 <tbody>

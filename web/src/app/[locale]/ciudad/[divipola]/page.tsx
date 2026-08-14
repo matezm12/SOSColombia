@@ -7,6 +7,8 @@ import { TollCard } from "@/components/data/TollCard";
 import { AidPointCard } from "@/components/data/AidPointCard";
 import { CampaignCard } from "@/components/data/CampaignCard";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
 import { AID_KIND_LABEL } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
 
@@ -110,9 +112,7 @@ export default async function CiudadPage(
             })}
         </p>
 
-        <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-          {t("cifras")}
-        </h2>
+        <SectionHeading>{t("cifras")}</SectionHeading>
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {[...latestByMetric.values()].map((record) => (
             <TollCard key={record.id} record={record} />
@@ -122,15 +122,11 @@ export default async function CiudadPage(
           )}
         </div>
 
-        <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-          {t("puntosDeAyuda")}
-        </h2>
+        <SectionHeading>{t("puntosDeAyuda")}</SectionHeading>
         <div className="mt-4 space-y-6">
           {Object.entries(aidByKind).map(([kind, points]) => (
             <div key={kind}>
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500">
-                {AID_KIND_LABEL[kind] ?? kind}
-              </h3>
+              <SubsectionHeading>{AID_KIND_LABEL[kind] ?? kind}</SubsectionHeading>
               <ul className="mt-2 space-y-2">
                 {points?.map((point) => (
                   <li key={point.id}>
@@ -145,9 +141,7 @@ export default async function CiudadPage(
           )}
         </div>
 
-        <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-          {t("campanasDeRecaudacion")}
-        </h2>
+        <SectionHeading>{t("campanasDeRecaudacion")}</SectionHeading>
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {municipio.campaigns.map((campaign) => (
             <CampaignCard key={campaign.id} campaign={campaign} />

@@ -4,6 +4,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { METRIC_LABEL } from "@/lib/labels";
 import { formatDateTime } from "@/lib/format";
 
@@ -35,9 +36,7 @@ export default async function BoletinesPage() {
         completa el formulario, y aprueba para crear el TollRecord real.
       </p>
 
-      <h2 className="mt-8 text-lg font-semibold text-black dark:text-zinc-50">
-        Pendientes ({pending.length})
-      </h2>
+      <SectionHeading>Pendientes ({pending.length})</SectionHeading>
       <div className="mt-4 space-y-4">
         {pending.map((p) => (
           <Card key={p.id}>
@@ -182,9 +181,7 @@ export default async function BoletinesPage() {
 
       {reviewed.length > 0 && (
         <>
-          <h2 className="mt-10 text-lg font-semibold text-black dark:text-zinc-50">
-            Revisadas recientemente
-          </h2>
+          <SectionHeading>Revisadas recientemente</SectionHeading>
           <div className="mt-4 space-y-2">
             {reviewed.map((p) => (
               <div
