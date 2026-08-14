@@ -1124,3 +1124,91 @@ damage-safety evaluations to residents who can't afford one.
 ### Next steps (pass 16)
 Move to the next city — Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas,
 and San José del Palmar remain.
+
+## Pass 17 — deep pass on Armenia (2026-08-14)
+
+Fourth city in the rotation. Armenia had a genuinely unusual profile going
+in: the city itself has **0 official confirmed deaths** (a real finding from
+the Mayor, not a data gap — Quindío department has a separate, disputed
+1-victim attribution to an ambiguous "Armenia-Calarcá" unit that's already
+logged as an open contradiction and was deliberately left untouched this
+pass), but 6,284 citizen-reported damnificados. The single biggest gap
+flagged in the brief was the same shape as Manizales's: **zero confirmed
+blood donation points**, closed this pass.
+
+### Fundación Kenovy: a real contradiction, resolved
+The most interesting single thread this pass: Manizales's pass (16) had
+flagged, via a third party's aggregator post, that Fundación Kenovy's
+donation number was reported broken. This pass independently re-investigated
+from scratch (not just re-asserting either claim) and found: Kenovy is a real
+93.4K-follower, Meta-verified animal shelter based in **Armenia** (not
+Manizales — it's referenced as a shelter across the Eje Cafetero region),
+genuinely destroyed by the quake per five independent mainstream outlets (El
+Tiempo, TV Azteca, BluRadio, Las2orillas, and RTVC Noticias — Colombia's
+state broadcaster), and its Bre-B/Nequi/Daviplata number (3009018232) is
+currently live — the same number appears consistently across its own
+official bio and dozens of posts spanning months, well before the quake, with
+zero broken-link complaints found anywhere. Three of five agents (X,
+Instagram, crowdfunding) converged on this independently. Seeded as a VET
+aid point with the full resolution documented in `submitterNote` rather than
+silently picking a side.
+
+### New aid points (13)
+- **Cruz Roja Colombiana blood donation point** (Av. Bolívar #23 Norte-60) —
+  closes the stated gap, corroborated across X, Instagram, and Facebook via
+  an official Banco Nacional de Sangre/Cruz Roja graphic.
+- **Fundación Kenovy Colombia** (VET) — see above.
+- **5 new acopio points**: the Centro de Convenciones del Quindío
+  (the department's central humanitarian hub, corroborated independently on
+  both Facebook and TikTok), the Armenia fire department HQ, a barrio-level
+  point run by the official Junta de Acción Comunal of Barrio Santander, a
+  grassroots point in a previously-uncovered neighborhood (Rincón Santo), and
+  a collection effort by the real, internationally-affiliated Rotaract/Rotary
+  Armenia clubs.
+- **2 new public-facing health points**: a mobile mental-health/medical
+  brigade from the official Hospital Mental de Filandia (E.S.E.), explicitly
+  public-facing unlike the campus-only Universidad del Quindío brigade
+  already on file, and a documented emergency response deployment (Cruz Roja,
+  an Army logistics battalion, and USAR team CAUTE Emergencias sin Fronteras)
+  at Hospital San Juan de Dios.
+- **4 crowdfunding campaigns**: Fundación Covida (a 30+-year Armenia
+  disability-services nonprofit with a collapsed wall, $16K+ raised from 442
+  donors, multi-outlet press corroboration — the strongest crowdfunding find
+  of any city pass so far), two diaspora GoFundMe/Vaki family campaigns, and
+  one lower-confidence multi-city GoFundMe included at low confidence with an
+  explicit fund-custody caveat for the admin to weigh.
+
+### New community embeds (17)
+Notable: an Instagram carousel ("Armenia se une para ayudar") naming several
+unverified leads worth a future pass (Fundación Tizu, Villa Carolina, Doña
+Hilda, Fundación Manos Unidas de Dios), an official Secretaría de Salud del
+Quindío injury balance (64 injured in Armenia, 40 in Quimbaya, 24 in
+Circasia), and a resident's account that their complex (Conjunto Alejandría)
+felt entirely overlooked by relief efforts despite no loss of life there.
+
+### Checked, deliberately not seeded
+- **"Ayúdanos a reconstruir nuestra casa después del terremoto"** (Katherin y
+  Joan, Vaki) — a real, specific, plausible story (structural engineer
+  visit, partial demolition order) but zero donations at time of check.
+  Excluded per the project's standing skepticism toward zero-traction
+  campaigns, consistent with how earlier passes have handled this same
+  pattern — worth a follow-up check in a later pass.
+- **Fundación Oki Doki Hogar de Paso** — 310 animals affected, real damage,
+  but a commenter explicitly reports its transfer key doesn't work. Excluded
+  on the broken-donation-link rule.
+- **A second, new public shelter beyond Coliseo del Sur** — actively searched
+  for across all 5 agents and not found; one candidate (via a parody account)
+  and one re-confirmation of Coliseo del Sur itself were the only "results."
+  Logged as a genuine, still-open gap rather than silently accepted.
+- **Two malformed-URL leads** (an X post about Kenovy's damage and a
+  "no fatalities" post, both without a clean status permalink) were dropped
+  rather than seeded with an unusable link — their content is already
+  corroborated by cleaner sources above.
+- Two GoFundMe campaigns whose stories turned out to actually be for
+  **Calarcá**, not Armenia city, despite Armenia-branded titles/slugs —
+  excluded to avoid compounding the project's existing Armenia-Calarcá
+  attribution ambiguity.
+
+### Next steps (pass 17)
+Move to the next city — Quibdó, Buenaventura, Popayán, Dosquebradas, and San
+José del Palmar remain.
