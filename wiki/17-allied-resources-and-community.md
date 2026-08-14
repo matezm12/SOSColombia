@@ -401,11 +401,77 @@ surfaces places/needs, not individual emergency situations to act on) and
 potentially already resolved/stale by the time anyone would see it here.
 
 ### Next steps (pass 4)
-1. Review all pending items at `/admin/comunidad` (5 new this pass, 22 total
-   pending across all passes) and `/admin/moderacion` (1 new, 4 total pending
-   aid points across passes 2-4).
-2. If more X research is wanted, the same logged-in-browser approach works — just
-   needs someone to drive it interactively (Claude's browser automation is not
-   subject to the WebSearch quota, but each search still takes a real navigate +
-   screenshot round-trip, so it's slower per-query than WebSearch was when it had
-   budget left).
+1. ~~Review all pending items~~ — superseded by pass 5 below.
+2. ~~If more X research is wanted~~ — extended to Instagram/Facebook in pass 5.
+
+## Pass 5 (2026-08-14) — Instagram + Facebook, via logged-in browser
+
+Same approach as pass 4 (WebSearch/WebFetch can't meaningfully access either
+platform's real content — Instagram captions especially — but the user's own
+logged-in sessions can). Searched Instagram's keyword search and hashtag pages,
+and Facebook's post search, across ~8 queries targeting Manizales/Armenia/Quibdó
+specifically (the cities every prior pass under-covered relative to Pereira/Cali).
+
+### Real find: a partially-debunked "official" acopio infographic is circulating
+
+A graphic titled "PUNTOS DE ACOPIO OFICIALES — TERREMOTO COLOMBIA" appeared via two
+separate reposting accounts during this sweep, listing specific addresses for 8
+cities (Bogotá, Medellín, Cali, Pereira, Manizales, Barranquilla, Armenia, Quibdó)
+with an ABACO-network branding treatment that reads as credible at a glance. **A
+comment on one repost, from someone who says they physically went to the listed
+Bogotá address, states flatly that nothing exists there** ("no hay nada, no existe
+nada de banco de alimentos en esa dirección... No compartan información falsa").
+That's a direct, first-hand debunking of at least one entry.
+
+**None of this graphic's claimed addresses were seeded** — a confirmed-false entry
+undermines confidence in the rest of the same graphic, including its Manizales claim
+(Universidad de Manizales, Cra 9 #19-03 — notably a *different* institution than
+Universidad de Caldas, which pass 3 verified independently via that university's own
+official page and La Patria's corroboration). If `/admin/moderacion` or
+`/admin/comunidad` ever surfaces this graphic or its specific addresses from another
+source, treat it as unverified/likely-false, not as a lead to promote.
+
+### 7 new PendingSocialPost + 4 new PendingAidPoint
+
+- **@fundacionplataformas** (Instagram) — Manizales, Calle 47 #34-20 Prado Medio.
+  High confidence: the post carries Instagram's own location tag ("Manizales,
+  Caldas - Colombia"), not just claimed text. Dual-seeded as an aid point.
+- **@bancodealimentosmanizales** (Instagram) — Manizales, Calle 49 #27A-85/Faneón.
+  **Highest confidence of this whole research effort**: an established
+  institution (Banco Arquidiocesano de Alimentos, part of the ABACO network
+  already known as a tier-1 org, run with Cáritas Arquidiocesana), explicit
+  bank accounts, explicit itemized accept/reject rules. Dual-seeded as an aid
+  point.
+- **@mariapaz_buitrago** (Instagram) — **seeded with an explicit ambiguity
+  warning, not as a confirmed Manizales location**: headlined "¡MANIZALES NOS
+  NECESITA!" but two commenters on the post itself ask whether the address is
+  actually in Bogotá. No `municipioId` assigned pending clarification — this is
+  exactly the kind of thing a human moderator needs to look at directly rather
+  than have auto-resolved.
+- **@laplazadewein** (Instagram) — general medical-supply needs list spanning
+  Pereira/Manizales/Cali/Quibdó, no specific address. Verified account, medium
+  confidence, less actionable without a drop-off point.
+- **@jeissonyjonnyasesores** (Instagram) — a real beauty-salon business (verified,
+  location-tagged Pereira) converted both its Armenia and Pereira locations into
+  acopio points, 8am-4pm, itemized needs.
+- **@arcadejuana.col** (Instagram) — Hospital San Francisco de Asís de Quibdó (the
+  department's only second-level hospital) requested urgent medical-supply
+  support; a Bogotá-based collective is running the actual collection point.
+  21K+ likes, high reach.
+- **Mujeres Imparables** (Facebook) — "Chocó de Pie" campaign, **two real physical
+  addresses inside Quibdó itself** (not a Bogotá proxy this time): Rosales Cll 21
+  and Silencio Cra 8#28-45B, each with its own phone number, plus a Bancolombia
+  account. Run in coalition with JMD La Voz and Imparables y La Voz del Pacífico.
+  Dual-seeded as two separate aid points (one per address).
+
+### Next steps (pass 5)
+1. Review all pending items — `/admin/comunidad` now has 29 pending across all 5
+   passes, `/admin/moderacion` has 8 pending aid points across passes 2-5.
+   @mariapaz_buitrago's entry specifically needs a location call before approval.
+2. If someone encounters the "PUNTOS DE ACOPIO OFICIALES" 8-city graphic (or its
+   Manizales/Armenia/Quibdó claims) from an independent source later, don't trust
+   it without re-verification — see the debunking note above.
+3. Armenia remains the thinnest-covered of the 5 red-alert cities across all 5
+   passes combined — most Armenia-specific searches redirect to Pereira/Manizales
+   results instead. Worth a dedicated Armenia-only sweep if more research is
+   wanted.
