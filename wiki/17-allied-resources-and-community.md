@@ -248,9 +248,109 @@ All via `prisma/seed-social-posts-pass2.ts`, origin `AUTOMATION_SWEEP`, awaiting
   detailed here since none were close enough to the bar to be worth re-checking.
 
 ### Next steps (pass 2)
-1. Review the 5 pending social posts + 1 pending aid point at `/admin/comunidad` and
-   `/admin/moderacion`.
+1. ~~Review the 5 pending social posts + 1 pending aid point~~ — superseded by pass 3
+   below, review everything together.
 2. A genuine gap remains: no verified grassroots housing-offer post exists anywhere
    in this dataset. Worth a dedicated re-check if `/comunidad` ever needs that
    category populated — X/Instagram's scraping limitations may ease with different
    tooling (e.g. authenticated browser automation instead of WebFetch/WebSearch).
+
+## Pass 3 (2026-08-14) — TikTok, Facebook, new allied sites, X retry
+
+Four parallel agents: TikTok sweep (unexplored in passes 1-2), Facebook groups/pages
+sweep, new allied-resource sites (missing-persons platforms, volunteer-coordination
+tools, university dashboards, Caldas/Quindío government), and a harder X/Twitter push.
+Session-wide WebSearch quota (200 calls) ran out mid-pass — the X/Twitter agent got
+zero searches and returned nothing; the other three adapted (WebFetch against search
+engines directly, or a logged-in Facebook browser session) and still produced real
+results. If more research is wanted soon, it needs a fresh session or a raised
+`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`.
+
+### New allied resources — 4 seeded
+
+- **Desaparecidos.co** — a second, independent missing-persons/family-reunification
+  registry (~4,890 cases, 8 cities), plus a hospital locator and lost-pets search.
+  Custom domain, no author attribution found anywhere on the site. Tier 4.
+- **Colombia Te Busca** (colombiatebusca.com) — was already cited as a `Source` for
+  one crowdsourced-missing-persons figure (see `wiki/03-death-toll.md`) but never
+  added to the `/recursos` directory itself. Confirmed live (5,353 registered,
+  2026-08-13) with a real Facebook page. Custom domain. Tier 4.
+- **Terremoto Colombia 2026** (terremoto-colombia-2026.vercel.app) — dashboard of
+  official casualty/damage figures over time + a directory of verified official
+  channels (report damage, request aid, donate, volunteer). Vercel-hosted, no custom
+  domain. Self-described "under construction." Tier 4.
+- **Terremoto Colombia** (terremotocolombia.vercel.app) — quantifies damage using
+  real Copernicus EMS Rapid Mapping (EMSR916) satellite data + USGS ShakeMap across
+  650 municipios, auto-updating daily via GitHub Actions. Genuinely novel — a
+  grassroots analog to the Microsoft AI for Good building-damage dataset already
+  documented in `wiki/13-opensource-tools.md`. Vercel-hosted, self-labeled
+  "estimación-proxy," built by one individual dev. Tier 5.
+
+Checked and explicitly rejected as not-yet-functional: monitor-sismo-colombia-2026
+(stuck on "Cargando datos…"), mapa-ayuda-terremoto-colombia (Supabase setup error,
+no data). Several other GitHub repos found had no live deployment at all.
+
+Explicit gaps confirmed (not search failures): no volunteer-skill-matching tool
+exists, no university-run damage dashboard exists (several universities issued
+solidarity statements but none built a tool), and neither Caldas nor Quindío has a
+dedicated government earthquake microsite comparable to Risaralda/Valle/Chocó's.
+
+### New community embeds — 11 seeded (4 TikTok, 7 Facebook)
+
+TikTok (all high-to-medium confidence, cross-checked against news coverage):
+- **@musicalifyco** — footballer Jhon Arias (Quibdó native) chartered planes with
+  medics/supplies to Quibdó hospitals. High confidence, 8+ outlets corroborating.
+- **@noti90minutos** — new acopio point at Ciudadela Petronio Álvarez, Cali (active
+  since Aug 12). Also seeded as a `PendingAidPoint` (kind `ACOPIO`).
+- **@cambiamoscolombia** — Quibdó needs report (water, medicine, food) — not a
+  donation solicitation, lower scam risk.
+- **@full_cali** — hundreds of volunteers working through rubble, Cali, quake day.
+
+Facebook (verified via a logged-in browser session, which worked far better than
+unauthenticated scraping — Facebook blocks that entirely):
+- **Fundación Kilele** (Quibdó) — youth mental-health/education nonprofit, working
+  donation link, own website, pre-existing mission.
+- **Fundación CHOCÓ TE Quiere** (Quibdó) — local nonprofit, public WhatsApp donation
+  contact.
+- **Universidad de Caldas** official page (Manizales) — Comunicado Institucional
+  No. 3, activated its Coliseo (Velódromo sector) as an acopio point, 300+
+  volunteers, corroborated by La Patria. Also seeded as a `PendingAidPoint`.
+- **ACOPI Caldas** — regional small/business association, verifiable physical
+  address and own site — the corporate/CSR angle this pass specifically went
+  looking for.
+- **630 Café** (Manizales community media) — actively reposts the Alcaldía de
+  Manizales' own updated acopio-center graphics (La Avanzada, Chipre, Milán, Av.
+  Santander neighborhoods) — useful as an aggregated source, but only neighborhood
+  names were captured, not full addresses, so no separate `PendingAidPoint` spun off
+  this one.
+- **Fundación Manos Unidas de Dios** (Armenia) — elder-care nonprofit, own site,
+  connected to an international church relief effort.
+- **Comunidad La Finca y Zona Norte, Madrid (Cundinamarca)** — hyperlocal
+  neighborhood page running a dated (Aug 13-17), items-only donation drive at a
+  specific address. Madrid, Cundinamarca isn't a tracked municipio (it's near
+  Bogotá, outside the disaster zone, organizing *outbound* donations) — seeded with
+  no `municipioId`, location in `placeName` instead.
+
+Rejected, worth recording: a politically-entangled Miami collection-point page (real
+physical point, but mixed with partisan content — too entangled to recommend
+cleanly); two Facebook-flagged "AI content" posts; several generic
+disaster-alert/meme groups; a municipal youth office whose real activity happened on
+Instagram, not Facebook (stale FB timeline). On TikTok specifically: an anonymous
+personal-Nequi-number donation appeal with zero institutional backing (same scam
+profile as prior rejected finds — not added as a new named scam-warning entry since
+existing `/donar` warning language about "new and anonymous profiles, urgency
+pressure" already covers this pattern generically), plus a cluster of
+templated/engagement-bait "how to help Colombia" videos from generic personal
+accounts, and several off-topic results that turned out to be about the earlier
+Venezuela earthquake despite keyword matches.
+
+### Next steps (pass 3)
+1. Review all pending items at `/admin/comunidad` (11 new + 5 from pass 2 = 16 total)
+   and `/admin/moderacion` (2 new aid points).
+2. X/Twitter remains effectively unresearched across all 3 passes — every attempt
+   hit either "not indexable" or quota exhaustion. If this matters enough to solve
+   properly, it needs authenticated browser access to x.com, not WebSearch/WebFetch.
+3. 630 Café's aggregated Manizales acopio-center info (La Avanzada, Chipre, Milán,
+   Av. Santander) could become real `PendingAidPoint` rows if someone pulls exact
+   addresses from the Alcaldía de Manizales' own graphics directly — not attempted
+   this pass since only neighborhood names were captured secondhand.
