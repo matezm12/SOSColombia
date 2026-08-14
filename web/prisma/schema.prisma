@@ -29,11 +29,12 @@ model Event {
 // ── Geography ────────────────────────────────────────────────────────────
 
 model Department {
-  id            String       @id @default(cuid())
-  name          String
-  divipolaCode  String       @unique
-  municipios    Municipio[]
-  tollRecords   TollRecord[]
+  id                  String              @id @default(cuid())
+  name                String
+  divipolaCode        String              @unique
+  municipios          Municipio[]
+  tollRecords         TollRecord[]
+  pendingTollRecords  PendingTollRecord[]
 }
 
 model Municipio {
@@ -49,11 +50,13 @@ model Municipio {
   lat              Float?
   lng              Float?
 
-  tollRecords      TollRecord[]
-  aidPoints        AidPoint[]
-  pendingAidPoints PendingAidPoint[]
-  socialPosts      SocialPost[]
-  campaigns        CrowdfundingCampaign[]
+  tollRecords        TollRecord[]
+  pendingTollRecords PendingTollRecord[]
+  aidPoints          AidPoint[]
+  pendingAidPoints   PendingAidPoint[]
+  socialPosts        SocialPost[]
+  pendingSocialPosts PendingSocialPost[]
+  campaigns          CrowdfundingCampaign[]
 
   @@index([departmentId])
 }
@@ -85,6 +88,37 @@ model TollRecord {
 
   @@index([municipioId, metric])
   @@index([departmentId, metric])
+}
+
+// Staging table for tier-2 bulletin detections (wiki/10-app-architecture.md's
+// data-update-mechanism design) — mirrors PendingAidPoint's shape/discipline.
+// The bulletins cron (web/src/app/api/cron/bulletins) only detects that a NEWER
+// numbered bulletin exists (e.g. "Comunicado Oficial No. 07"), it doesn't parse
+// figures out of it (formats aren't consistent enough yet to trust unattended) —
+// so metric/value/asOf start null here and a moderator fills them in at
+// /admin/boletines after reading the actual bulletin, which is what promotes
+// this row into a real TollRecord.
+model PendingTollRecord {
+  id                  String            @id @default(cuid())
+  municipio           Municipio?        @relation(fields: [municipioId], references: [id])
+  municipioId         String?
+  department          Department?       @relation(fields: [departmentId], references: [id])
+  departmentId        String?
+  metric              TollMetric?
+  value               Float?
+  unit                String?
+  asOf                DateTime?
+  sourceUrl           String?
+  sourceOrg           String?           // e.g. "INMLCF (Medicina Legal)" — free text, no Source row exists yet
+  submitterNote       String?           // what the automated check actually detected, e.g. "Comunicado Oficial No. 07 found, No. 06 on file"
+  origin              SubmissionOrigin  @default(AUTOMATION_SWEEP)
+  status              SubmissionStatus  @default(PENDING)
+  reviewNote          String?
+  createdAt           DateTime          @default(now())
+  reviewedAt          DateTime?
+  promotedTollRecordId String?
+
+  @@index([status])
 }
 
 enum TollMetric {
@@ -296,4 +330,59 @@ enum SocialPostCategory {
   NEED
   HUMAN_INTEREST
   OFFICIAL
+}
+
+// ── Community submissions (embeds) — staging table, mirrors PendingAidPoint ─
+// Never insert straight into SocialPost — community-submitted embeds land here
+// first and only become a public SocialPost once approved at /admin/comunidad.
+
+model PendingSocialPost {
+  id                String            @id @default(cuid())
+  platform          SocialPlatform
+  permalink         String
+  authorHandle      String?
+  category          SocialPostCategory
+  municipio         Municipio?        @relation(fields: [municipioId], references: [id])
+  municipioId       String?
+  placeName         String?           // the place/resource this post is about, if not yet in our directory
+  submitterNote     String?
+  submitterContact  String?           // optional email/phone for follow-up — never shown publicly
+  origin            SubmissionOrigin  @default(COMMUNITY)
+  status            SubmissionStatus  @default(PENDING)
+  reviewNote        String?
+  createdAt         DateTime          @default(now())
+  reviewedAt        DateTime?
+  promotedSocialPostId String?
+
+  @@index([status])
+}
+
+// ── Allied resources — external sites/tools worth boosting, not our own data ─
+// Cards on /recursos linking out to independent trackers, directories, and
+// donation platforms other people built for this event — distinct from
+// Source (which cites where OUR data came from).
+
+model AlliedResource {
+  id                    String                  @id @default(cuid())
+  name                  String
+  url                   String
+  org                   String?
+  description           String
+  category              AlliedResourceCategory
+  hostingNoCustomDomain Boolean                 @default(false) // true = vercel.app/netlify.app/github.io/pages.dev etc., not their own domain
+  ogImageUrl            String?
+  tier                  Int                     // same 1-6 scale as Source
+  status                SourceStatus            @default(LIVE)
+  notes                 String?
+  addedAt               DateTime                @default(now())
+  lastCheckedAt         DateTime?
+}
+
+enum AlliedResourceCategory {
+  MAP_TRACKER
+  AID_DIRECTORY
+  DONATION_PLATFORM
+  NEWS_AGGREGATOR
+  VOLUNTEER_COORDINATION
+  OTHER
 }

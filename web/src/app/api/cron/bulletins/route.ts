@@ -1,21 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 import { isAuthorizedCronRequest } from "@/lib/cronAuth";
 import { notifyOps } from "@/lib/notify";
 
+// Prisma 7's driver adapter (@prisma/adapter-pg) needs the Node.js runtime, not Edge.
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // Tier 2 sources (wiki/10-app-architecture.md): structured bulletins with no API,
 // checked for newer numbered releases than what's already on file.
 //
-// Scope note (deliberate, not an oversight): this route DETECTS and REPORTS a newer
-// bulletin, it does not yet INSERT a new TollRecord row. The architecture doc's tier-2
-// design calls for inserting into a staging/review path (the same pattern PendingAidPoint
-// already uses for aid points — see web/src/app/admin/moderacion) once a newer bulletin
-// is confirmed. That staging step is real follow-up work, not built here: wiring it up
-// blind, with no bulletin ever having been auto-parsed and reviewed yet, risked shipping
-// an unreviewed number straight into the append-only toll history. Detect-and-report first,
-// then build the staging insert once this route's detection has proven reliable over a
-// few real cycles — tracked in wiki/16-deferred-queue.md.
+// Scope note: this route DETECTS a newer bulletin, it doesn't parse figures out of
+// it — bulletin formats aren't consistent enough yet to trust unattended. What it
+// does do is stage a PendingTollRecord stub (metric/value/asOf left null) so a
+// moderator sees it at /admin/boletines, reads the actual bulletin, and fills in
+// the real numbers on approval. `dedupeAndStage` guards against re-staging the same
+// still-unreviewed detection every single day the cron runs.
 const INMLCF_NEWS_URL = "https://www.medicinalegal.gov.co/web/guest/noticias";
 const RELIEFWEB_005_URL =
   "https://reliefweb.int/report/colombia/colombia-flash-update-005-actualizacion-afectaciones-por-terremoto-en-colombia";
@@ -118,6 +118,20 @@ async function checkReliefWebFlashUpdate005(): Promise<ReliefWebCheckResult> {
   }
 }
 
+// Only creates a stub if no still-PENDING one already exists for this exact
+// sourceUrl — otherwise a daily cron would pile up a fresh duplicate every day
+// nobody's gotten around to reviewing it yet.
+async function dedupeAndStage(sourceUrl: string, sourceOrg: string, submitterNote: string) {
+  const existing = await prisma.pendingTollRecord.findFirst({
+    where: { sourceUrl, status: "PENDING" },
+  });
+  if (existing) return existing;
+
+  return prisma.pendingTollRecord.create({
+    data: { sourceUrl, sourceOrg, submitterNote, origin: "AUTOMATION_SWEEP" },
+  });
+}
+
 export async function GET(request: NextRequest) {
   if (!isAuthorizedCronRequest(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -128,14 +142,34 @@ export async function GET(request: NextRequest) {
     checkReliefWebFlashUpdate005(),
   ]);
 
-  if (inmlcf.hasNewerBulletin || ochaFlashUpdate005.found) {
+  const staged: string[] = [];
+
+  if (inmlcf.hasNewerBulletin) {
+    await dedupeAndStage(
+      INMLCF_NEWS_URL,
+      "INMLCF (Medicina Legal)",
+      `Comunicado Oficial No. ${inmlcf.highestFound} detected — No. ${LAST_KNOWN_INMLCF_COMUNICADO} on file.`,
+    );
+    staged.push("inmlcf");
+  }
+
+  if (ochaFlashUpdate005.found) {
+    await dedupeAndStage(
+      RELIEFWEB_005_URL,
+      "OCHA / Equipo Humanitario País Colombia",
+      "OCHA Flash Update 005 page found (previously unpublished) — No. 004 on file.",
+    );
+    staged.push("ochaFlashUpdate005");
+  }
+
+  if (staged.length > 0) {
     await notifyOps(
       "SOSColombia: newer bulletin detected",
-      `<p>A scheduled check found a newer numbered bulletin than what's on file.</p>
+      `<p>A scheduled check found a newer numbered bulletin than what's on file, and staged it at /admin/boletines for review.</p>
        <pre>${JSON.stringify({ inmlcf, ochaFlashUpdate005 }, null, 2)}</pre>
-       <p>This route is detect-only — nothing was written to TollRecord. Review the source and add it manually.</p>`,
+       <p>Nothing was written to TollRecord yet — review the source and fill in the real figures at /admin/boletines.</p>`,
     );
   }
 
-  return NextResponse.json({ checked: true, inmlcf, ochaFlashUpdate005 });
+  return NextResponse.json({ checked: true, inmlcf, ochaFlashUpdate005, staged });
 }
