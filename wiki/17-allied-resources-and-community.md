@@ -953,3 +953,87 @@ Pereira's deep pass is now genuinely exhausted across X, Instagram, TikTok,
 Facebook, and crowdfunding — move to the next city in the per-city rotation
 (Cali, Manizales, Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas, San
 José del Palmar).
+
+## Pass 15 — deep pass on Cali (2026-08-14)
+
+Second city in the per-city deep-pass rotation. Cali is Colombia's
+third-largest city (official Alcaldía figures: 96 confirmed deaths, 1,224
+injured, 111 missing) and already had baseline coverage — two blood banks
+(Valle del Lili, Cruz Roja Valle), one shelter complex (Unidad Deportiva
+Panamericana), one vet brigade with no fixed address, and several acopio
+points from earlier passes. The brief to all 5 agents explicitly listed what
+was already known so they wouldn't re-find it, and asked them to push into
+specific low-income comunas (Aguablanca, Siloé, Terrón Colorado, etc.) where
+grassroots aid is more likely to show up on social media than official
+channels.
+
+**Heavy cross-agent overlap this time** — Cali's scale meant the same real
+institutions surfaced independently on 3-4 platforms each, which is a good
+corroboration signal but required careful deduping before seeding (seed once
+per real-world entity, cite the strongest source, note the others in
+`submitterNote` rather than creating near-duplicate pending records).
+
+### New aid points (15)
+- **3 new blood donation points**: Hospital Universitario del Valle (HUV),
+  Clínica Imbanaco, and Hemolife — all three came from a single official
+  Alcaldía/Secretaría de Salud flyer (Instagram) naming them alongside the
+  already-known Valle del Lili/Cruz Roja Valle, and HUV specifically was also
+  independently confirmed via a viral X post, an Army blood-donation report,
+  and TikTok footage of the bank's own entrance signage.
+- **3 new shelters (ALBERGUE)**: Coliseo de Hockey Miguel Calero and Diamante
+  de Béisbol turned out to be **the only two shelters the Alcaldía has
+  officially announced** — confirmed via a city councilman, ICBF Colombia,
+  and El Salvador's own government press office (which delivered aid there).
+  Iglesia Avivamiento Cali, a large established megachurch, is a third,
+  separately-announced shelter with very high organic engagement on its own
+  post (9.5K reactions).
+- **2 vet points**: Agrocanes Clínica Veterinaria (a real clinic offering
+  free X-rays, new) and an address enrichment for the already-known Centro de
+  Bienestar Animal de Cali (previously had no fixed address on file).
+- **7 GoFundMe/Vaki crowdfunding campaigns**, ranging from very strong
+  (Familia Saavedra's "Ana nos necesita" — $103K+ raised from 2,274 donors,
+  and its story directly matches an independently-corroborated news story
+  about triplet Isabella Saavedra, see below) to speculative-but-flagged
+  (a €620-raised Cali→Turin, Italy diaspora campaign — new corridor, weak
+  traction, included with an explicit caution note for admins).
+
+### New community embeds (14)
+Notable ones: an Instagram post from Diario Occidente listing unidentified
+patients across two Cali hospitals so the public can help identify them; two
+independently-corroborated human-interest deaths (Isabella Saavedra, one of a
+set of triplets, found dead after 82+ hours under rubble — matches the
+Familia Saavedra GoFundMe above; and Lenny Fernández, who died shielding her
+dog Salomón, who survived under her body); and an official UAEPA post
+reporting 298 animals still missing citywide.
+
+### Checked, deliberately not seeded
+- **Coliseo del Pueblo (Siloé, Comuna 20)** — an X post from El Salvador's
+  official government press account, corroborated by two more independent
+  posts, described a humanitarian aid delivery to a "centro de acopio" here.
+  Kept as a community embed but **not** seeded as its own aid point: the
+  researching agent could not rule out that this is the same physical venue
+  as the already-tracked Unidad Deportiva Panamericana complex under an
+  informal name, and a second agent's attempt to independently verify it on
+  Instagram came back empty. Flagged rather than guessed.
+- **Banco de Alimentos de Cali's "reportado" (unverified) status** from an
+  earlier pass — this pass's brief specifically asked agents to check it.
+  Confirmed: their own Facebook page and El País Cali both show them active,
+  but their activity matches the already-known Plazoleta Jairo Varela acopio
+  address exactly — corroboration of an existing point, not a new one, so
+  nothing new was seeded for it.
+- **Villalobos Animal News** vet acopio post — Instagram itself flagged it as
+  AI content, commenters report the phone lines don't answer, and multiple
+  commenters weren't even sure it was located in Cali vs. Bogotá. Classic
+  reject pattern.
+- **David Londono's GoFundMe** reappeared in Cali search results (it's
+  actually for Pereira/Marsella) — excluded again, consistent with passes 13
+  and 14.
+- Diaspora collection drives found in New York, Los Angeles, and Washington
+  DC (CAPA "Fuerza Colombia", Macondo Kitchen, DMV with Colombia) were
+  explicitly **not** seeded as Cali aid points since the physical drop-off
+  locations are outside Colombia and the drives are general-Colombia, not
+  Cali-specific — noted in agent output as diaspora context only.
+
+### Next steps (pass 15)
+Move to the next city in the rotation — Manizales, Armenia, Quibdó,
+Buenaventura, Popayán, Dosquebradas, and San José del Palmar remain.
