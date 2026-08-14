@@ -784,3 +784,108 @@ Necoclí itself isn't a disaster-affected city worth tracking.
    second, equally deep pass on Facebook specifically (only lightly checked
    there in pass 11) — the grassroots-activity density found here on Instagram
    may not be fully mirrored yet.
+
+## Pass 13 — per-city deep pass, starting with Pereira (2026-08-14)
+
+New research mode starting this pass: instead of one broad sweep across
+several cities per pass, run a dedicated multi-agent `Workflow` per city —
+one agent per platform (X, Instagram, Facebook, TikTok) plus a dedicated
+GoFundMe/Vaki crowdfunding sweep, all running in parallel and browser-driven
+(logged into X/Instagram/Facebook as the researcher; TikTok needs no login).
+The goal: exhaust each city's social-media surface individually rather than
+spreading searches thin across all cities at once. Starting with Pereira
+since it's the deepest-covered city already and a natural calibration point
+for the new workflow shape. More cities to follow in subsequent passes.
+
+Facebook's agent (`facebook-pereira`) failed on a transient safety-classifier
+block (`Stage 2 classifier error - blocking based on stage 1 assessment`) —
+not a real content issue, just an infra hiccup. Retried via `Workflow` resume
+(same run ID, the other 4 agents replay from cache instantly) rather than
+re-running the whole pass; if it lands, its findings become their own
+follow-up seed script rather than reopening this one.
+
+**10 new aid points, 11 new community embeds.** Two strong new finds fill
+gaps this project didn't have before: Pereira's **first BLOOD_DONATION aid
+point** (Hospital Universitario San Jorge, corroborated independently by
+Instagram — hospital-tagged post — and a TikTok video from El Tiempo shot
+outside the hospital showing donor lines) and its **first HEALTH aid point**
+(an improvised medical post at the Coliseo Mayor, stood up after Clínica
+Comfamiliar's own facility became inoperable — corroborated by France 24
+Español, El Espectador, and kienyke independently reporting the same
+patient-relocation story).
+
+### New aid points
+- **Hospital Universitario San Jorge — Banco de Sangre** (BLOOD_DONATION),
+  Carrera 4 #24-88. High confidence, triple-corroborated (hospital's own
+  Instagram tag, a multi-city donor graphic, El Tiempo's TikTok footage).
+- **Puesto médico de emergencia — Coliseo Mayor** (HEALTH). High confidence,
+  corroborated by three independent news outlets.
+- **Puesto veterinario de emergencia — Parque Olaya Herrera** (VET).
+  Medium-high confidence, 15.3K-like TikTok video shot on site.
+- **Adóptame Pereira** (VET) — pre-existing rescue account (not created for
+  the earthquake) running an emergency supply drive; comments show real
+  donors already confirming drop-offs. High confidence.
+- **PPAA — Asociación de Protección y Bienestar Animal** (VET) — two physical
+  addresses plus a registered NIT backing the receiving bank account. Medium
+  confidence.
+- **Consultas Veterinarias Gratis — Dra. Luisa Fernanda López** (VET) — named
+  individual professional, free service, no money ask. Medium confidence.
+- **4 GoFundMe/Vaki crowdfunding campaigns** (MONETARY_DONATION): Kathryn
+  Winn's "Help Pereira Families Recover" ($2,916/$6,500, 27 donors), Cristian
+  David Parra Machado's phased-plan campaign (24 donors), Estefany Moreno &
+  Diana Castro's "Help My Hometown Pereira" (strongest of the batch — named
+  personal loss, sister on the ground, explicit receipt-posting commitment),
+  and a Vaki fund for UTP (Universidad Tecnológica de Pereira) students
+  displaced from damaged student housing.
+
+**Explicitly excluded from this pass:** a fifth GoFundMe (David Londono,
+"Help Our Family Affected by Colombia's Earthquake") whose two named
+beneficiaries are actually in Dosquebradas and Marsella, not Pereira proper,
+despite the organizer framing it as Pereira-based — kept out to avoid
+misattributing aid to the wrong municipio, even though it's a real, decently
+-traction campaign (44 donors, the highest in the batch). Also excluded: a
+low-traction GoFundMe with only £81/4 donors and an unverified third-party
+coordinator; two Vaki campaigns whose real slugs 404'd on the guessed URL
+(`ayudemos-a-la-familia-mill-n...`, a "Pereira se levanta" campaign referenced
+widely on IG/TikTok but never located); a personal Nequi-account appeal
+declaring itself "the only channel" (matches the project's known scam
+pattern); and a TikTok GoFundMe link wrapped in generic urgency hashtags with
+zero institutional backing.
+
+### New community embeds (11)
+Split across categories: 2 X posts (a BluRadio blood-donation video without a
+specific address, and a Canal 1 post on MinSalud/PAHO/Red Cross departmental
+health-response coordination), 4 Instagram posts (an official Alcaldía de
+Pereira missing-persons announcement with real hotline numbers; a large
+organic crowd-sourced missing-persons thread that incidentally confirms
+on-the-ground conditions in Galicia, Boston, Providencia and El Remanso; a
+building-collapse NEED post from the Álamos neighborhood — not previously
+covered; a mental-health-hotline post citing Colombia's real Línea 106), and
+5 TikTok posts (the three videos corroborating the new aid points above, a
+cross-corroborated missing-person case — Juan Felipe Giraldo, confirmed
+independently by three news outlets — and a lower-confidence acopio lead in
+the Cuba/"2.500 Lotes" sector flagged explicitly as unverified pending admin
+review, since the account has no identifiable organizing entity behind it).
+
+One deliberately excluded lead: a TikTok Vaki fundraiser for "familia Toro"
+with real-looking engagement (2K+ likes) but a personal, non-institutional
+account whose actual Vaki link only lives in the bio (unverifiable from the
+video itself) — same reasoning as the two 404'd Vaki slugs above, don't seed
+a link no one has actually confirmed resolves.
+
+### Also observed
+A recurring cluster of Instagram posts flagged by Instagram itself as "AI
+content," recycling the same five-city list (Chocó/Pereira/Manizales/
+Cali/Armenia) across blood-donation, animal-aid, and shelter posts — read as
+AI-generated engagement-farming content. Where the underlying factual claims
+(hospital names, real hotline numbers) were independently verifiable as real
+Colombian institutions, they were kept at reduced confidence; where an
+account had zero institutional signal, it was rejected outright.
+
+### Next steps (pass 13)
+1. Confirm whether the Facebook retry landed; if so, fold its findings into a
+   small follow-up seed script rather than editing this one.
+2. Continue the per-city deep-pass workflow for the remaining tracked cities
+   (Cali, Manizales, Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas, San
+   José del Palmar) — Pereira was chosen first as the calibration run for this
+   new workflow shape, not because it's the only city getting this treatment.
