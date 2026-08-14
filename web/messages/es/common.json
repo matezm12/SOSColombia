@@ -29,7 +29,7 @@
     "fallecidosReportados": "fallecidos reportados",
     "ctaAyuda": "Ver todos los puntos de ayuda →",
     "ctaDonar": "Cómo donar →",
-    "ciudadNoListada": "¿Tu ciudad no aparece en la lista? Revisa todos los puntos de ayuda del país."
+    "ciudadNoListada": "¿Tu ciudad no aparece en la lista? Revisa <link>todos los puntos de ayuda del país</link>."
   },
   "footer": {
     "descripcion": "Proyecto independiente de datos verificados sobre el terremoto de Colombia del 10 de agosto de 2026.",

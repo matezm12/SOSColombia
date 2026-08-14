@@ -134,6 +134,16 @@ export default async function Home(props: PageProps<"/[locale]">) {
             );
           })}
         </ul>
+
+        <p className="mt-6 text-sm text-zinc-500 dark:text-zinc-500">
+          {t.rich("ciudadNoListada", {
+            link: (chunks) => (
+              <Link href="/ayuda" className="underline">
+                {chunks}
+              </Link>
+            ),
+          })}
+        </p>
       </PageShell>
     </>
   );

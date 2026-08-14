@@ -29,7 +29,7 @@
     "fallecidosReportados": "reported deaths",
     "ctaAyuda": "See all aid points →",
     "ctaDonar": "How to donate →",
-    "ciudadNoListada": "Don't see your city on the list? Check all aid points nationwide."
+    "ciudadNoListada": "Don't see your city on the list? Check <link>all aid points nationwide</link>."
   },
   "footer": {
     "descripcion": "Independent project tracking verified data on Colombia's August 10, 2026 earthquake.",
