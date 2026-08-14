@@ -726,11 +726,61 @@ specifically for these two cities.
   embed already covers all 5 locations in one place).
 
 ### Next steps (pass 11)
-1. Review all pending items — `/admin/comunidad` has 33 pending,
-   `/admin/moderacion` has 33 pending aid points, `/recursos` has 8 allied
-   sites, across all 11 passes.
+1. ~~Review all pending items~~ — superseded by pass 12 below.
 2. Popayán now has 3 independently-found aid points despite starting this
    session with zero social/allied-site coverage — confirms the "direct
    per-city social search" technique still has real yield even on
    previously-neglected cities, when tried with genuinely fresh query angles
    rather than repeating the same generic terms.
+
+## Pass 12 (2026-08-14) — Instagram deep dive on Buenaventura
+
+Buenaventura turned out to have unusually strong grassroots Instagram activity
+— a single keyword search returned a dense results page (Necoclí-based diaspora
+collection drives, a chamber-of-commerce/diocese corridor, small businesses
+converting to acopio points, human-interest/awareness posts, and more) rather
+than the handful of results other searches this session typically returned.
+
+### 1 new aid point + 3 community embeds
+
+- **PCN — Proceso de Comunidades Negras** (Calle 4 #16-90, Barrio Santa Rosa) —
+  a nationally significant Afro-Colombian organization, real weight in Pacific
+  coast communities specifically. Bank account, phone contact, and the account
+  actively replying to comments confirming donations still being received.
+  High confidence.
+- **Diócesis de Buenaventura corridor** — Cámara de Comercio de Buenaventura +
+  Confecámaras posted about this, and it turned out to be **the same physical
+  address as the ABACO food bank already seeded in pass 6** (Av. Simón Bolívar
+  #47C-70) — no duplicate aid point created, but the post itself adds a bank
+  account and named contact the earlier entry didn't have, so it's seeded as
+  its own community embed.
+- **@samuelsuarez10_sb** — not a donation channel, a human-interest/awareness
+  post from a Buenaventura native: 30 hours post-quake, aid hadn't arrived and
+  the only land route to the rest of the country was still cut. Corroborated
+  in its own comments by other locals.
+
+### Checked, not seeded — a real broken-donation-link finding
+
+**Manos Visibles** (a real, already-known org — referenced in `/donar`'s own
+scam-warning copy as one of several legitimate actors using "SOS Chocó"-style
+branding) posted a donation appeal for Buenaventura. **Two independent
+commenters report the QR code and Nequi payment link are both deactivated,
+unresolved as of this check.** Manos Visibles itself isn't a scam — this is a
+legitimate org with a currently-broken payment mechanism, which is a different
+problem than the scam patterns flagged elsewhere in this doc, but the practical
+result for a donor is the same: don't seed a "donation channel" that doesn't
+currently work. Worth re-checking later in case it gets fixed.
+
+Also checked, not seeded: a Necoclí (Antioquia)-based diaspora collection drive
+routing donations through Medellín to Chocó/Buenaventura/Cali — real, but a
+multi-step logistics chain rather than a direct Buenaventura address, and
+Necoclí itself isn't a disaster-affected city worth tracking.
+
+### Next steps (pass 12)
+1. Review all pending items — `/admin/comunidad` has 36 pending,
+   `/admin/moderacion` has 34 pending aid points, `/recursos` has 8 allied
+   sites, across all 12 passes.
+2. Buenaventura's unusually rich Instagram results suggest it may be worth a
+   second, equally deep pass on Facebook specifically (only lightly checked
+   there in pass 11) — the grassroots-activity density found here on Instagram
+   may not be fully mirrored yet.
