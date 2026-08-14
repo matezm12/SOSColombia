@@ -345,12 +345,67 @@ accounts, and several off-topic results that turned out to be about the earlier
 Venezuela earthquake despite keyword matches.
 
 ### Next steps (pass 3)
-1. Review all pending items at `/admin/comunidad` (11 new + 5 from pass 2 = 16 total)
-   and `/admin/moderacion` (2 new aid points).
-2. X/Twitter remains effectively unresearched across all 3 passes — every attempt
-   hit either "not indexable" or quota exhaustion. If this matters enough to solve
-   properly, it needs authenticated browser access to x.com, not WebSearch/WebFetch.
+1. ~~Review all pending items~~ — superseded by pass 4 below, review everything
+   together.
+2. ~~X/Twitter remains effectively unresearched~~ — solved in pass 4, see below.
 3. 630 Café's aggregated Manizales acopio-center info (La Avanzada, Chipre, Milán,
    Av. Santander) could become real `PendingAidPoint` rows if someone pulls exact
    addresses from the Alcaldía de Manizales' own graphics directly — not attempted
    this pass since only neighborhood names were captured secondhand.
+
+## Pass 4 (2026-08-14) — X/Twitter, via the user's logged-in browser
+
+Passes 2-3 both concluded X/Twitter was unresearchable — WebSearch/WebFetch can't
+index it at all, and pass 3's dedicated X agent got zero searches in before the
+session's WebSearch quota ran out. The fix: the user is logged into X in their own
+Chrome session, and browser automation isn't subject to the WebSearch quota at all.
+Searched X directly (`x.com/search?f=live`) across ~12 queries — general donation
+terms, per-city acopio terms, payment-method terms (Nequi/Bre-B), housing-offer
+phrase variants, and category terms (veterinary, medical brigades).
+
+**Housing offers: confirmed dead end, not a tooling problem.** With real X access and
+multiple targeted phrase searches ("ofrezco alojamiento," "tengo espacio," "casa
+disponible," "puedo alojar" + damnificados/terremoto), nothing surfaced beyond noise
+matches and pre-existing unrelated content. Three passes, three access methods
+(WebSearch, WebFetch, direct logged-in browser), zero results — this category
+appears to genuinely not exist on social media for this event, not to be hidden
+behind a search limitation.
+
+### 5 new PendingSocialPost + 1 more PendingAidPoint
+
+- **@ElOpinometro_** — Luis Díaz (Liverpool/Colombia footballer) joined relief
+  efforts via his Foundation, opened an acopio center in Barranquilla. High
+  confidence (verified public figure). No `municipioId` (Barranquilla untracked).
+- **@Power69ful** — Centro Comercial San Façon, Calle 13 #20-90, **Pereira** —
+  explicitly goods-only, no money accepted (reduces scam risk). Generic personal
+  account, but specific verifiable address — seeded as both a `PendingSocialPost`
+  and a `PendingAidPoint` (kind `ACOPIO`).
+- **@Ditu_Tv** — Once Caldas footballers (Jefry Zapata, Juan Patiño) at a Manizales
+  acopio point ("Blanco Blanco de Manizales"). Established sports-media account, no
+  exact address given so no separate aid-point row.
+- **@danielgarciacg** — Palacio de los Deportes, Bogotá, hosting a dated (Aug 16)
+  donation event for Chocó families. No `municipioId` (Bogotá untracked).
+- **@MalaMMujer** — Caicedonia (Valle del Cauca, also earthquake-affected but
+  outside our 5 tracked cities) relief truck, collection point in Teusaquillo,
+  Bogotá. Verified account relaying another org's effort, not the organizer itself
+  — medium confidence.
+
+Explicitly rejected during this sweep: an anonymous personal-appeal post ("mi
+familia perdimos nuestra casa... colabórame") — textbook version of the
+already-documented scam pattern (new/anonymous account, pure urgency, no
+institutional backing); several viral CNN/news veterinary-evacuation reposts with
+no actionable location/contact; general solidarity/commentary posts with no
+specific new information; and an individual's real-time rescue plea (a person
+possibly trapped, tagging @MinInterior) — out of scope for `/comunidad` (which
+surfaces places/needs, not individual emergency situations to act on) and
+potentially already resolved/stale by the time anyone would see it here.
+
+### Next steps (pass 4)
+1. Review all pending items at `/admin/comunidad` (5 new this pass, 22 total
+   pending across all passes) and `/admin/moderacion` (1 new, 4 total pending
+   aid points across passes 2-4).
+2. If more X research is wanted, the same logged-in-browser approach works — just
+   needs someone to drive it interactively (Claude's browser automation is not
+   subject to the WebSearch quota, but each search still takes a real navigate +
+   screenshot round-trip, so it's slower per-query than WebSearch was when it had
+   budget left).
