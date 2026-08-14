@@ -1212,3 +1212,108 @@ felt entirely overlooked by relief efforts despite no loss of life there.
 ### Next steps (pass 17)
 Move to the next city — Quibdó, Buenaventura, Popayán, Dosquebradas, and San
 José del Palmar remain.
+
+## Pass 18 — deep pass on Quibdó (2026-08-14)
+
+Fifth city in the rotation, and the department capital of Chocó — the
+epicenter (San José del Palmar) is in this department. The brief flagged
+Quibdó as likely thinner in mainstream coverage than Cali/Manizales/Armenia
+given the city's long history of underinvestment, and asked agents to
+capture that aid-equity gap itself as content where credibly documented, not
+just chase new addresses. The TikTok agent hit a transient connection error
+mid-run and was retried separately (same run ID, the other 4 replayed from
+cache); all 5 completed clean on the second attempt.
+
+### A hospital that's both the answer and part of the problem
+Quibdó's blood-donation gap turned out to have a genuinely double-edged
+answer. Hospital San Francisco de Asís (Barrio Kennedy) *is* the city's
+designated blood bank — but its blood-storage refrigeration unit broke in
+the earthquake, confirmed independently by four mainstream outlets (El
+Colombiano, Publimetro, Hechos Colombia, Qhubo Bogotá). So Quibdó currently
+has **zero functional blood storage**, at the one place that's supposed to
+provide it. Rather than seed a BLOOD_DONATION aid point that would send real
+donors to a facility that can't currently process them, this is recorded as
+an ACOPIO entry for the hospital's broader medical-supply drive, with the
+broken-refrigeration status spelled out explicitly in `needsText` — Cruz Roja
+was separately reported (TikTok) to be evaluating alternate Chocó collection
+points, but no specific Quibdó address for those existed yet at research
+time.
+
+### A data-quality note on this pass
+The Facebook agent's results all used `facebook.com/search/posts/?q=...`
+search-result URLs as their "permalinks" rather than links to the specific
+posts it was describing — it couldn't get individual post permalinks to
+stick this run. Since `PendingSocialPost.permalink` has to be a real,
+embeddable post URL (that's what the embed component renders from), none of
+its findings were seeded as community embeds; a search-results page would
+just render as broken. Its factual findings (blood-bank refrigeration
+failure, chief among them) were folded into the aid points above via
+`submitterNote`, since `sourceUrl` on a `PendingAidPoint` is a citation link
+rather than something that has to render live.
+
+### New aid points (13)
+- **Hospital San Francisco de Asís medical-supply drive** (ACOPIO, Barrio
+  Kennedy — a barrio not previously covered) plus its **own official monetary
+  channel** (Bre-B QR via Fundación Empresas Conscientes).
+- **2 new VET leads**: a mobile 8-organization animal-rescue coalition and a
+  Quibdó-based vet clinic + foundation (Zoovet + Fundación Protectora del
+  Pacífico) — Quibdó's first confirmed VET content of any kind.
+- **The Diócesis de Quibdó's own acopio point and two donation accounts**
+  (food bank + Pastoral Social, separate NITs from the already-known
+  Gobernación channel).
+- **ASINCH**, a real cultural institution with a SWIFT code enabling
+  international diaspora donations to repair artist/student housing — a
+  direct answer to the diaspora-angle ask.
+- **A new barrio acopio point** (Reddhhpac, Barrio Pandeyuca — cross-platform
+  corroborated on Instagram and Facebook, though the org's normal mandate is
+  the San Juan river communities, not Quibdó proper — flagged for admin
+  verification).
+- **A congressman's district office** repurposed as a collection point
+  (identity verifiable, flagged medium confidence given the political
+  affiliation).
+- **A formal volunteer medical-brigade call** (Fundación Médicos Amigos)
+  requiring ReTHUS professional credentials — the first vetted health-brigade
+  content beyond the already-known Jhon Arias private-plane story.
+- **2 diaspora GoFundMe campaigns** and **one low-confidence, single-sourced
+  acopio lead** (a gas station collection point, included with an explicit
+  low-confidence flag per established practice).
+
+### New community embeds (18)
+A cluster worth reading together: an official Defensoría del Pueblo
+denunciation of "inhumane" conditions at Quibdó's only shelter (Coliseo de
+Boxeo), a TikTok report that the same shelter is now also flooding in heavy
+rain, and — the strongest single documentation of the aid-equity angle this
+project has captured for any city — regional outlet CNC Chocó covering the
+president's own on-record statement that "Chocó has been abandoned to its
+fate" during a visit to Quibdó. Also: confirmation via the mayor (TikTok,
+CAMBIO) that search-and-rescue in Chocó formally closed with the city's
+death toll at 9, which explains why no active missing-persons posts turned
+up this pass, and a small but telling detail — a veterinary brigade
+originally planned for Quibdó was redirected to the nearby municipality of
+Lloró after responders learned Lloró has zero vet clinics of its own.
+
+### Checked, deliberately not seeded
+- **Fundación Thaar Wajaphasim** — a real, NIT-registered indigenous
+  organization (Barrio Medrano) doing direct cash aid and mental-health first
+  aid, referenced across multiple independent Instagram roundup posts and
+  checking out against Colombian business registries. No agent could pin
+  down a working direct-donation URL or a specific post permalink within
+  scope (a guessed URL 404'd) — flagged as a strong lead for a follow-up
+  pass rather than seeded with a guessed link.
+- **A padre-run Zelle solicitation** ("De Chicago al Chocó") routing
+  donations to a business name unrelated to any named charity — rejected
+  outright as high scam-risk.
+- **A Vaki campaign** ("Chocó Nos Necesita: 100 Kits de Esperanza") with a
+  $30M COP goal but only ~$3 raised, urgency-driven copy, and no
+  Quibdó-specific detail — rejected, though flagged as more procedurally
+  organized than most rejected candidates in case a future pass wants a
+  second look.
+- Barrio-specific searches for Yesquita, Huapango, Obapo, Tomás Pérez, Niño
+  Jesús, Zona Norte (beyond the one human-interest post captured), Zona Sur,
+  Alameda Reyes, and Samper came back largely empty across all platforms —
+  Pandeyuca, Kennedy, and Las Palmas were the only barrios that produced real
+  results this pass.
+
+### Next steps (pass 18)
+Move to the next city — Buenaventura, Popayán, Dosquebradas, and San José del
+Palmar remain.
