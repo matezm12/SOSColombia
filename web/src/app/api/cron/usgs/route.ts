@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { isAuthorizedCronRequest } from "@/lib/cronAuth";
+import { notifyOps } from "@/lib/notify";
 
 // Prisma 7's driver adapter (@prisma/adapter-pg) needs the Node.js runtime, not Edge.
 export const runtime = "nodejs";
@@ -100,6 +101,15 @@ export async function GET(request: NextRequest) {
     differs(stored.depthUsgsKm, current.depthUsgsKm) ||
     differs(stored.epicenterLatUsgs, current.epicenterLatUsgs) ||
     differs(stored.epicenterLngUsgs, current.epicenterLngUsgs);
+
+  if (changed) {
+    await notifyOps(
+      "SOSColombia: USGS event facts changed",
+      `<p>USGS revised the event facts for us6000tjl2. Stored value on file (Event row) does not match what USGS reports now.</p>
+       <pre>${JSON.stringify({ stored, current }, null, 2)}</pre>
+       <p>This route is read-only — nothing was written. Review and update the Event row manually if the new figures check out.</p>`,
+    );
+  }
 
   // Deliberately read-only for now — per wiki/10-app-architecture.md's tier-1 cadence
   // ("Event facts: once, static after confirmation"), auto-writing back to the Event

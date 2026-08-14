@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAuthorizedCronRequest } from "@/lib/cronAuth";
+import { notifyOps } from "@/lib/notify";
 
 export const dynamic = "force-dynamic";
 
@@ -126,6 +127,15 @@ export async function GET(request: NextRequest) {
     checkInmlcf(),
     checkReliefWebFlashUpdate005(),
   ]);
+
+  if (inmlcf.hasNewerBulletin || ochaFlashUpdate005.found) {
+    await notifyOps(
+      "SOSColombia: newer bulletin detected",
+      `<p>A scheduled check found a newer numbered bulletin than what's on file.</p>
+       <pre>${JSON.stringify({ inmlcf, ochaFlashUpdate005 }, null, 2)}</pre>
+       <p>This route is detect-only — nothing was written to TollRecord. Review the source and add it manually.</p>`,
+    );
+  }
 
   return NextResponse.json({ checked: true, inmlcf, ochaFlashUpdate005 });
 }
