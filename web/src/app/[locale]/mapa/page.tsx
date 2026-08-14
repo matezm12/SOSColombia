@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { bestDeathMetric } from "@/lib/queries";
 import MapaClient, {
   type MunicipioMarker,
   type EpicenterPoint,
@@ -19,9 +20,7 @@ export default async function MapaPage() {
       include: {
         _count: { select: { aidPoints: true } },
         tollRecords: {
-          where: { metric: "DEATHS_REPORTED_OFFICIAL" },
-          orderBy: { asOf: "desc" },
-          take: 1,
+          where: { metric: { in: ["DEATHS_REPORTED_OFFICIAL", "DEATHS_CONFIRMED_FORENSIC"] } },
         },
       },
     }),
@@ -30,16 +29,20 @@ export default async function MapaPage() {
 
   // Prisma can't be called from a Client Component, so the fetch happens here and only
   // the plain data each marker needs gets passed down.
-  const markers: MunicipioMarker[] = municipios.map((m) => ({
-    name: m.name,
-    divipolaCode: m.divipolaCode,
-    lat: m.lat as number,
-    lng: m.lng as number,
-    severityLabel: m.severityLabel,
-    populationDane: m.populationDane,
-    aidPointCount: m._count.aidPoints,
-    deathValue: m.tollRecords[0]?.value,
-  }));
+  const markers: MunicipioMarker[] = municipios.map((m) => {
+    const death = bestDeathMetric(m.tollRecords);
+    return {
+      name: m.name,
+      divipolaCode: m.divipolaCode,
+      lat: m.lat as number,
+      lng: m.lng as number,
+      severityLabel: m.severityLabel,
+      populationDane: m.populationDane,
+      aidPointCount: m._count.aidPoints,
+      deathValue: death?.value,
+      deathIsForensic: death?.metric === "DEATHS_CONFIRMED_FORENSIC",
+    };
+  });
 
   const epicenter: EpicenterPoint | null = event
     ? {
