@@ -695,12 +695,42 @@ With this pass, the "original 7 CAFE network" wiki/13a referenced only by count
 is now fully mapped by name and address, 7 for 7.
 
 ### Next steps (pass 10)
-1. Review all pending items — `/admin/comunidad` has 30 pending,
-   `/admin/moderacion` has 30 pending aid points (still 43 approved and live),
-   `/recursos` has 8 allied sites, across all 10 passes.
+1. ~~Review all pending items~~ — superseded by pass 11 below.
 2. Genuinely diminishing returns now on the per-network/per-neighborhood
    technique that worked well for CAFE — no other named network (Comfamiliar
    itself runs CAFE; ABACO's food banks were already found per-city) is known
-   to have unmapped members the same way. Next real gains are more likely from
-   waiting for new activity (new GitHub repos, new social posts) than
-   re-mining the same two datasets a third time.
+   to have unmapped members the same way.
+
+## Pass 11 (2026-08-14) — direct social search for Buenaventura and Popayán
+
+Every prior social-media pass (2-5) predates Buenaventura and Popayán getting
+real attention (passes 6/9 found them via allied-site datasets, not social
+search directly). This pass corrected that gap: targeted X and Facebook search
+specifically for these two cities.
+
+### 3 new aid points + 3 community embeds
+
+- **@GobValle** (X, official verified Gobernación del Valle del Cauca account) —
+  announced a collection center at Centro Comercial Único, Torre 1, Local 48,
+  serving both Buenaventura and Dagua (Dagua isn't tracked — single mention, not
+  added as a municipio, same discipline as Nóvita in pass 6).
+- **Soy de Buenaventura** (Facebook, verified community page) — a specific
+  rural-area appeal for the corregimiento of Zacarías Río Dagua, real address
+  and 3 phone lines.
+- **@CNTI_Indigena** (X, Comisión Nacional de Territorios Indígenas — a
+  state-recognized official body, verified) — posted 5 acopio points run by
+  indigenous organizations: **CRIC in Popayán** (a third Popayán point,
+  independent of the two found via allied sites in pass 9) plus 4 in Bogotá
+  (ONIC, Gobierno Mayor, Casa del CRIC, CRIC Nacional) — the Bogotá ones aren't
+  separately seeded as aid points (Bogotá untracked, and the single social
+  embed already covers all 5 locations in one place).
+
+### Next steps (pass 11)
+1. Review all pending items — `/admin/comunidad` has 33 pending,
+   `/admin/moderacion` has 33 pending aid points, `/recursos` has 8 allied
+   sites, across all 11 passes.
+2. Popayán now has 3 independently-found aid points despite starting this
+   session with zero social/allied-site coverage — confirms the "direct
+   per-city social search" technique still has real yield even on
+   previously-neglected cities, when tried with genuinely fresh query angles
+   rather than repeating the same generic terms.
