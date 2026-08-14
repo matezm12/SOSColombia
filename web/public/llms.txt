@@ -1,0 +1,57 @@
+# SOSColombia
+
+> Independent, volunteer-run tracker of verified data on the August 10, 2026 earthquake in Colombia. Not a government or news outlet. Spanish-first (English at /en).
+
+## About
+
+SOSColombia is an independent project, not affiliated with the Colombian government, UNGRD, or any news outlet. It aggregates and cross-checks figures from official bulletins (UNGRD, INMLCF/Medicina Legal, SGC, DANE), international humanitarian reports (OCHA, UNICEF, Cruz Roja Colombiana), local governments (Cali, Armenia, Manizales, Cauca), and press/social sources, then republishes them with full attribution.
+
+The core discipline: every figure carries its source, a source-quality tier (1 = official primary source, down to 6), and the date it claims to represent (`asOf`), separate from when it was captured (`retrievedAt`). Figures are append-only — a new report never overwrites an old one, so the full history of how a number changed over time stays visible. When two credible sources disagree, the site logs both and states the disagreement openly (see /metodologia) instead of picking one as "the" number.
+
+## What This Site Tracks
+
+- **Cities/municipios**: 7 tracked in depth — Pereira, Cali, Manizales, Armenia, Quibdó, San José del Palmar, and Popayán, across 7 departments (Risaralda, Valle del Cauca, Caldas, Quindío, Chocó, Cauca). A national UNGRD situation report cites a broader 14 departments / 403 municipios affected overall.
+- **Death toll**: tracked as multiple parallel metrics from different institutions, never merged into a single number — officially reported deaths (UNGRD, OCHA) and forensically confirmed deaths (INMLCF/Medicina Legal, bodies received vs. bodies identified), plus injured, missing (official vs. crowdsourced), and people/families affected ("damnificados").
+- **Structural damage**: homes destroyed/damaged, collapsed buildings, affected schools/health centers/community centers.
+- **Aid points**: shelters (albergues), collection points (acopios), health points, veterinary/animal-welfare points, blood donation points, and monetary donation points — each with a status (active/full/closed/unconfirmed) and a source.
+- **Crowdfunding campaigns**: GoFundMe, Vaki, and organizational funds (UNICEF, Cruz Roja Colombiana, World Vision, CARE, Save the Children, Fundación Éxito, Fundación Bancolombia, Confecámaras/ABACO, and others), each with a verification status (verified / plausible / unconfirmed / flagged as scam) and whether it's reachable from outside Colombia.
+- **Government reports**: official documents and bulletins (presidential decree, departmental disaster declarations, UNGRD balances, OCHA flash updates, INMLCF comunicados).
+- **Source registry**: every source used, with its org, tier, live/dead status, and how many records trace back to it.
+- **Open contradictions**: logged explicitly rather than silently resolved, each with both conflicting values and both sources.
+
+## Structure
+
+- `/` — home page, cities overview with severity and latest death-toll figure per city
+- `/cifras` — national and department-level figures over time, plus full append-only history per metric
+- `/mapa` — interactive map of tracked cities and the earthquake epicenter (SGC and USGS readings shown separately)
+- `/ayuda` — aid points directory, filterable by type
+- `/donar` — donation info: verified campaigns, local monetary-donation points, scam warnings
+- `/donar/internacional` — donation channels reachable from outside Colombia
+- `/informes` — official government reports and bulletins
+- `/fuentes` — full source registry (organization, tier, status, records derived)
+- `/metodologia` — open and resolved data contradictions, and how the project handles conflicting figures
+- `/ciudad/{divipola-code}` — per-city dashboard: figures, aid points, and crowdfunding campaigns for that municipio (e.g. `/ciudad/76001` for Cali)
+- `/sugerir` — form to suggest an aid point (goes to moderation, not published directly)
+- `/comunidad` — verified social-media posts (aid requests, official updates) by city
+- `/recursos` — links to other independent trackers, directories, and donation platforms built by other people for this event
+
+English versions of every page exist at the same path prefixed with `/en` (e.g. `/en/mapa`, `/en/ciudad/76001`). Spanish is the default, unprefixed locale.
+
+## Markdown Mirrors
+
+Clean, AI-readable markdown versions of key pages are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS). Confirmed live: `/md` (homepage mirror) and `/md/mapa` (city/epicenter data as a table). More mirrors are being added following the same `/md/{page-path}` pattern — check for a given page's mirror before assuming it doesn't exist.
+
+## Key Facts
+
+- Earthquake occurred August 10, 2026, 07:34 local time (UTC-5), Colombia.
+- Magnitude 7.4, reported consistently by both the Servicio Geológico Colombiano (SGC) and USGS.
+- Epicenter near San José del Palmar, Chocó — SGC reads 4.99, -76.29; USGS reads 4.8436, -76.2422 (the two agencies' readings differ slightly and both are shown).
+- Depth: SGC ~103 km (revised upward across several bulletins), USGS ~110.3 km — logged as an open, unresolved discrepancy.
+- 7 municipios are tracked in depth; a national UNGRD report separately cites 403 municipios and 14 departments affected overall.
+- Reported death toll moved from 239 (UNGRD, Aug 12) to 241 (OCHA Flash Update 004, Aug 12) to 265 (UNGRD, Aug 13); forensic confirmation (INMLCF) separately logged 230 bodies received / 205 identified as of Aug 12 — these are different metrics, not corrections of each other.
+- Presidential Decreto 1171 declared a national state of disaster the night of August 11, 2026.
+- San José del Palmar, the literal epicenter, had zero confirmed deaths as of the last recorded figure.
+
+## Contact / Contributing
+
+Anyone can suggest an aid point at `/sugerir` — submissions go into a moderation queue and are reviewed before publication, never published automatically. No public contact email or phone number is listed on the site.

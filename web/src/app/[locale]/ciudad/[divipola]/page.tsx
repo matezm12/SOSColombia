@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { TollCard } from "@/components/data/TollCard";
@@ -152,7 +153,15 @@ export default async function CiudadPage(
             <CampaignCard key={campaign.id} campaign={campaign} />
           ))}
           {municipio.campaigns.length === 0 && (
-            <EmptyState>{t("sinCampanas")}</EmptyState>
+            <EmptyState>
+              {t.rich("sinCampanas", {
+                link: (chunks) => (
+                  <Link href="/donar" className="underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
+            </EmptyState>
           )}
         </div>
       </PageShell>

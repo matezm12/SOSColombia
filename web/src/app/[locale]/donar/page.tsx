@@ -13,6 +13,11 @@ export default async function DonarPage() {
   const t = await getTranslations("donar");
   const [campaigns, monetaryPoints] = await Promise.all([
     prisma.crowdfundingCampaign.findMany({
+      // International campaigns get their own page (/donar/internacional) —
+      // without this filter they showed here too, duplicating that page
+      // entirely and making the promo card below imply a split that wasn't
+      // actually real.
+      where: { international: false },
       orderBy: { verificationStatus: "asc" },
       include: { municipios: { select: { name: true, divipolaCode: true } } },
     }),

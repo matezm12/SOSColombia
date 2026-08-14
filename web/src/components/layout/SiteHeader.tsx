@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -8,12 +9,17 @@ import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 export async function SiteHeader() {
   const t = await getTranslations("nav");
 
+  // Ayuda/Donar first — the two links someone arriving right after the
+  // earthquake actually needs — the rest follow in a secondary group. Same
+  // order feeds both the desktop bar and the mobile disclosure below; on
+  // mobile PRIMARY_COUNT draws a divider so the priority is visible even
+  // one tap deep, not just in list order.
   const NAV_LINKS = [
     { href: "/", label: t("inicio") },
-    { href: "/cifras", label: t("cifras") },
-    { href: "/mapa", label: t("mapa") },
     { href: "/ayuda", label: t("ayuda") },
     { href: "/donar", label: t("donar") },
+    { href: "/cifras", label: t("cifras") },
+    { href: "/mapa", label: t("mapa") },
     { href: "/donar/internacional", label: t("internacional") },
     { href: "/recursos", label: t("recursos") },
     { href: "/comunidad", label: t("comunidad") },
@@ -21,6 +27,7 @@ export async function SiteHeader() {
     { href: "/fuentes", label: t("fuentes") },
     { href: "/metodologia", label: t("metodologia") },
   ];
+  const PRIMARY_COUNT = 3; // Inicio, Ayuda, Donar
 
   return (
     <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black">
@@ -60,14 +67,22 @@ export async function SiteHeader() {
               {t("menu")}
             </summary>
             <nav className="absolute right-0 z-20 mt-2 flex w-56 flex-col gap-1 rounded-lg border border-zinc-200 bg-white p-3 shadow-lg dark:border-zinc-800 dark:bg-zinc-950">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="rounded px-2 py-1.5 text-sm text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:bg-zinc-50 hover:decoration-zinc-500 dark:text-zinc-400 dark:decoration-zinc-700 dark:hover:bg-zinc-900 dark:hover:decoration-zinc-400"
-                >
-                  {link.label}
-                </Link>
+              {NAV_LINKS.map((link, i) => (
+                <Fragment key={link.href}>
+                  {i === PRIMARY_COUNT && (
+                    <hr className="my-1 border-zinc-100 dark:border-zinc-900" />
+                  )}
+                  <Link
+                    href={link.href}
+                    className={
+                      i < PRIMARY_COUNT
+                        ? "rounded px-2 py-1.5 text-sm font-medium text-black underline decoration-zinc-300 underline-offset-4 hover:bg-zinc-50 hover:decoration-zinc-500 dark:text-zinc-50 dark:decoration-zinc-700 dark:hover:bg-zinc-900 dark:hover:decoration-zinc-400"
+                        : "rounded px-2 py-1.5 text-sm text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:bg-zinc-50 hover:decoration-zinc-500 dark:text-zinc-400 dark:decoration-zinc-700 dark:hover:bg-zinc-900 dark:hover:decoration-zinc-400"
+                    }
+                  >
+                    {link.label}
+                  </Link>
+                </Fragment>
               ))}
               <Link
                 href="/sugerir"

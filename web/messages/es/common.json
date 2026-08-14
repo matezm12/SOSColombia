@@ -26,7 +26,10 @@
     "lede": "Magnitud {magnitude} (SGC), epicentro cerca de San José del Palmar, Chocó. Datos verificados de fuentes oficiales — cada cifra lleva su fuente y fecha, nunca un solo número \"definitivo\".",
     "ciudades": "Ciudades",
     "fallecidosConfirmados": "fallecidos confirmados (Medicina Legal)",
-    "fallecidosReportados": "fallecidos reportados"
+    "fallecidosReportados": "fallecidos reportados",
+    "ctaAyuda": "Ver todos los puntos de ayuda →",
+    "ctaDonar": "Cómo donar →",
+    "ciudadNoListada": "¿Tu ciudad no aparece en la lista? Revisa todos los puntos de ayuda del país."
   },
   "footer": {
     "descripcion": "Proyecto independiente de datos verificados sobre el terremoto de Colombia del 10 de agosto de 2026.",
