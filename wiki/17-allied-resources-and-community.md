@@ -1037,3 +1037,90 @@ reporting 298 animals still missing citywide.
 ### Next steps (pass 15)
 Move to the next city in the rotation — Manizales, Armenia, Quibdó,
 Buenaventura, Popayán, Dosquebradas, and San José del Palmar remain.
+
+## Pass 16 — deep pass on Manizales (2026-08-14)
+
+Third city in the rotation. Manizales had the lightest existing coverage of
+the three cities done so far: one shelter complex (Palogrande, two coliseos),
+two blood banks with a known address contradiction already on file, three
+acopio points, and a donation campaign (Cámara de Comercio de Manizales) with
+no captured payment details. The single biggest gap flagged in the brief:
+**zero confirmed VET/animal-welfare aid points** — that's where this pass
+found the most.
+
+### Two funds, not a contradiction
+Two agents (X, Facebook) found one Davivienda account/Bre-B key for the
+Cámara de Comercio de Manizales campaign; two others (Instagram, TikTok) plus
+the crowdfunding agent found a *different* account/key, cross-confirmed
+identically across four independent regional media accounts (Canal Telecafé,
+BUM Television, El Expreso Día, Emisora UM FM). Rather than treat this as a
+data conflict to resolve, reading both sets of source posts closely showed
+they're genuinely **two different funds** run by the same Chamber of
+Commerce, with different partner institutions: a community fund ("Juntos por
+Manizales," co-run with Cruz Roja Caldas and the Alcaldía) and a business
+fund ("Fondo Solidario por los Empresarios de Caldas," co-run with the
+Chinchiná chamber and Caldas's Secretaría de Desarrollo). Both are seeded as
+separate entries.
+
+### New aid points (10)
+- **Unidad de Protección Animal (UPA) — Alcaldía de Manizales** (VET) —
+  fills the stated VET gap with the strongest possible source: an official
+  municipal program (not a business or individual), coordinating with the
+  Policía Nacional's Carabineros unit, running a field census of affected
+  animals across comunas and sheltering 18 dogs + 3 cats at Coliseo Mayor.
+- **3 real veterinary clinics** offering free earthquake-related care:
+  Centro Veterinario Santa Mónica, Movet Express Manizales, and ABC
+  Veterinarios (the last one itself earthquake-damaged but still operating).
+- **An informal animal shelter** in the El Arenillo sector run by an elderly
+  founder ("doña Lucía") caring for ~120 dogs and cats — real, named contact,
+  but no formal legal entity found, so flagged medium confidence.
+- **A psychosocial-support brigade** (Corporación Red Afecto, HEALTH) — new
+  angle beyond the physical/veterinary aid points, though its meeting venue
+  couldn't be fully disambiguated from the already-known Palogrande coliseos.
+- **The two Cámara de Comercio funds** described above, both now with full
+  payment details captured for the first time.
+- **2 Vaki crowdfunding campaigns** for individual families — one of which
+  (Jose Ivan Vallejo Velez's) had a stale "zero donors" read from a cached
+  Google snippet in one agent's pass, corrected to its real state (148
+  donors, $8,760 raised) after another agent checked the live page directly.
+
+### New community embeds (14)
+Two missing-persons cases worth flagging specifically: Jeimy Damaris Díaz
+Sánchez (still unresolved at time of research) and Lizeth Sofía Mera Mora — a
+Universidad de Caldas student whose case a highly-liked comment confirms was
+**already resolved** (she was found), kept in the record specifically so it
+doesn't get mis-reported as an active search later. Also a grassroots need
+case in Chipre (Germán Ceballos) with strong organic neighbor corroboration
+in the comments, and a structural engineer publicly offering free
+damage-safety evaluations to residents who can't afford one.
+
+### Checked, deliberately not seeded
+- **Fundación Ángeles de la Calle** — already on file as a live `AidPoint`
+  with `UNCONFIRMED` status (not a `PendingAidPoint`, so out of scope for a
+  new pending record). This pass found independent media confirmation
+  (Revista 4 Patas citing Semana.com) that it's real and still needs help —
+  logged as a community embed pointing at that corroboration so whoever
+  manages the live table can upgrade its status, rather than creating a
+  duplicate pending entry.
+- **San Miguel Medicina Veterinaria** — one agent logged this as a Manizales
+  vet clinic (Belén neighborhood); a second agent flagged that its address is
+  actually in Medellín's much larger, better-known Belén comuna, not
+  Manizales. Excluded on the stricter read rather than guessed.
+- **A Florida-diaspora bulletin** citing "273 muertos" nationally — wildly
+  inconsistent with Manizales's own official 6-death figure and every other
+  source in this project; excluded as unreliable.
+- **An Instagram scam warning** (radionacionalco) reporting that fraudsters
+  are soliciting donations while name-dropping real Manizales businesses —
+  no permalink was captured for it, so it couldn't be seeded as a record, but
+  worth noting here as a live caution matching this project's existing
+  skepticism pattern.
+- No new shelter beyond the Palogrande complex, no barrio-specific aid points
+  found for San José, La Enea, Solferino, Aranjuez, Cervantes, Bosques del
+  Norte, La Sultana, Fátima, or El Carmen despite dedicated searches across
+  all 5 agents (only Chipre produced results), and no US/Spain
+  diaspora-specific crowdfunding campaign for Manizales — all noted as real
+  gaps, not just unsearched ground.
+
+### Next steps (pass 16)
+Move to the next city — Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas,
+and San José del Palmar remain.
