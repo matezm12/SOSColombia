@@ -1,8 +1,8 @@
 {
   "metodologia": {
     "title": "Methodology",
-    "intro1": "A disaster's figures change from source to source and from day to day — that doesn't always mean an error. This site never overwrites a number with a newer one: every figure is recorded with its source, its date, and its reliability level, and the most recent one is shown without erasing the history.",
-    "intro2": "When two reliable sources disagree on the same data point, we log it as a discrepancy instead of silently picking one. Some are resolved as more information comes in; others stay open until a definitive figure exists.",
+    "intro1": "A disaster's numbers change from source to source and from day to day — that doesn't always mean an error. This site never overwrites a number with a newer one: every number is recorded with its source, its date, and its reliability level, and the most recent one is shown without erasing the history.",
+    "intro2": "When two reliable sources disagree on the same data point, we log it as a discrepancy instead of silently picking one. Some are resolved as more information comes in; others stay open until a definitive number exists.",
     "discrepanciasAbiertas": "Open discrepancies",
     "discrepanciasResueltas": "Resolved discrepancies",
     "sinDiscrepancias": "No discrepancies recorded yet."

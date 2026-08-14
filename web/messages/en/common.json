@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "SOSColombia — 2026 Earthquake",
-    "description": "Verified data on Colombia's August 10, 2026 earthquake: official figures, aid points, and how to donate, by city."
+    "description": "Verified data on Colombia's August 10, 2026 earthquake: official numbers, aid points, and how to donate, by city."
   },
   "nav": {
     "inicio": "Home",
-    "cifras": "Figures",
+    "cifras": "Numbers",
     "mapa": "Map",
     "ayuda": "Aid",
     "donar": "Donate",
@@ -23,7 +23,7 @@
   "home": {
     "eyebrow": "SOSColombia",
     "title": "Colombia Earthquake — August 10, 2026",
-    "lede": "Magnitude {magnitude} (SGC), epicenter near San José del Palmar, Chocó. Verified data from official sources — every figure carries its source and date, never a single \"final\" number.",
+    "lede": "Magnitude {magnitude} (SGC), epicenter near San José del Palmar, Chocó. Verified data from official sources — every number carries its source and date, never a single \"final\" figure.",
     "ciudades": "Cities",
     "fallecidosConfirmados": "confirmed deaths (forensic medicine authority)",
     "fallecidosReportados": "reported deaths",
