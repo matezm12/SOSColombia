@@ -1,0 +1,20 @@
+{
+  "donarInternacional": {
+    "backLabel": "Cómo donar",
+    "title": "Donaciones internacionales",
+    "lede": "Canales que puedes usar desde cualquier país — aceptan tarjeta extranjera o PayPal, sin necesidad de cuenta bancaria colombiana. Para transferencias locales en pesos y puntos por ciudad, ve a la página de donación general.",
+    "warningTitle": "Antes de donar",
+    "warnings": {
+      "trustLevel": "Verifica el nivel de confianza de cada campaña — “Verificado” solo significa que confirmamos la organización, no que respaldamos su gestión de fondos.",
+      "individualNote": "Las campañas GoFundMe con organizador individual (no institución) llevan una nota cuando encontramos algo digno de mención — léela antes de donar.",
+      "distrust": "Desconfía de canales compartidos solo por WhatsApp/SMS sin otro rastro y de presión de urgencia."
+    },
+    "sections": {
+      "verified": "Organizaciones verificadas",
+      "individual": "Campañas individuales",
+      "individualSubtext": "Recaudadores individuales, no instituciones — revisa el nivel de confianza de cada una antes de donar.",
+      "flagged": "Riesgo de fraude"
+    },
+    "emptyVerified": "Ninguna todavía."
+  }
+}

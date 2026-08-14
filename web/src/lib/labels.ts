@@ -110,3 +110,26 @@ export const SOURCE_STATUS_LABEL: Record<string, string> = {
   DEAD: "Inactiva",
   NEEDS_RECHECK: "Por revisar",
 };
+
+export const ALLIED_CATEGORY_LABEL: Record<string, string> = {
+  MAP_TRACKER: "Mapa / rastreador",
+  AID_DIRECTORY: "Directorio de ayuda",
+  DONATION_PLATFORM: "Plataforma de donación",
+  NEWS_AGGREGATOR: "Agregador de noticias",
+  VOLUNTEER_COORDINATION: "Coordinación de voluntariado",
+  OTHER: "Otro",
+};
+
+export const SOCIAL_PLATFORM_LABEL: Record<string, string> = {
+  X: "X",
+  INSTAGRAM: "Instagram",
+  FACEBOOK: "Facebook",
+  TIKTOK: "TikTok",
+};
+
+export const SOCIAL_CATEGORY_LABEL: Record<string, string> = {
+  AID_POINT: "Punto de ayuda",
+  NEED: "Necesidad puntual",
+  HUMAN_INTEREST: "Historia humana",
+  OFFICIAL: "Fuente oficial",
+};

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Badge } from "../ui/Badge";
 import { SEVERITY_LABEL } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";

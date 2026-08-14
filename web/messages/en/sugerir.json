@@ -1,0 +1,39 @@
+{
+  "sugerir": {
+    "title": "Suggest an aid point",
+    "lede": "Do you know of a shelter, donation collection center, or aid point that isn't on the site? Tell us. Every suggestion is reviewed before it's published — it doesn't appear automatically.",
+    "fields": {
+      "ciudad": "City *",
+      "tipo": "Type of point *",
+      "nombre": "Place name *",
+      "direccion": "Address",
+      "telefono": "Phone",
+      "necesita": "What do they need?",
+      "fuente": "Source link (post, news article, official page)",
+      "contexto": "Additional context",
+      "contacto": "Your contact info (optional, not published)"
+    },
+    "placeholders": {
+      "nombre": "E.g.: Municipal Coliseum",
+      "direccion": "If you know it",
+      "necesita": "E.g.: mattresses, water, diapers",
+      "fuente": "https://...",
+      "contexto": "Any detail that helps verify it",
+      "contacto": "Email or phone, in case we need to confirm something"
+    },
+    "selectCiudad": "Select a city",
+    "selectTipo": "Select a type",
+    "kinds": {
+      "ALBERGUE": "Shelter (where families are staying)",
+      "ACOPIO": "Donation collection center (where to donate items)",
+      "HEALTH": "Health",
+      "VET": "Veterinary",
+      "BLOOD_DONATION": "Blood donation",
+      "MONETARY_DONATION": "Monetary donation"
+    },
+    "submit": "Send suggestion",
+    "errors": {
+      "required": "City, type, and name are required."
+    }
+  }
+}

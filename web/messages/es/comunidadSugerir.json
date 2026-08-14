@@ -1,0 +1,33 @@
+{
+  "comunidadSugerir": {
+    "title": "Compartir una publicación",
+    "lede": "¿Viste en redes sociales un punto de ayuda, una necesidad puntual o una historia sobre esta emergencia que no está en el sitio? Cada publicación se revisa antes de aparecer — no se publica automáticamente.",
+    "fields": {
+      "platform": "Plataforma *",
+      "permalink": "Enlace a la publicación *",
+      "category": "Categoría *",
+      "municipio": "Ciudad (si aplica)",
+      "authorHandle": "Cuenta que publicó (opcional)",
+      "placeName": "Lugar del que habla (si no está en nuestro directorio)",
+      "submitterNote": "Contexto adicional",
+      "submitterContact": "Tu contacto (opcional, no se publica)"
+    },
+    "placeholders": {
+      "permalink": "https://...",
+      "authorHandle": "@usuario",
+      "placeName": "Ej: Centro de acopio en el barrio X",
+      "submitterNote": "Cualquier detalle que ayude a revisarlo",
+      "submitterContact": "Email o teléfono, por si necesitamos confirmar algo"
+    },
+    "selectPlatform": "Selecciona una plataforma",
+    "selectCategory": "Selecciona una categoría",
+    "noSpecificCity": "Sin ciudad específica",
+    "categories": {
+      "aidPoint": "Punto de ayuda no listado",
+      "need": "Necesidad puntual",
+      "humanInterest": "Historia humana",
+      "official": "Fuente oficial"
+    },
+    "submit": "Enviar publicación"
+  }
+}

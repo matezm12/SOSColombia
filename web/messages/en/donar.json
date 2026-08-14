@@ -1,0 +1,24 @@
+{
+  "donar": {
+    "title": "How to donate",
+    "lede": "Organizations and campaigns verified by this project. Each one carries a confidence level — verify for yourself before donating, especially for individual campaigns.",
+    "scamWarning": {
+      "heading": "Before you donate",
+      "point1": "“SOS Chocó” is not a single organization — it's a slogan used by at least 5 different actors (Manos Visibles, Fundación Plan, FECOER, among others). Verify exactly which organization your donation goes to before trusting a link with that name.",
+      "point2": "“Rescatistas LATAM” was investigated and no evidence was found that it exists as a real organization. Do not donate through channels using that name.",
+      "point3": "Be wary of: links shared only via WhatsApp/SMS with no other trace, new and anonymous profiles, urgency pressure, and “exclusive victim lists”."
+    },
+    "international": {
+      "text": "Donating from outside Colombia? The local channels on this page require a Colombian bank account for some cases.",
+      "cta": "See international donations →"
+    },
+    "sections": {
+      "verified": "Verified organizations",
+      "local": "Local and institutional channels",
+      "individual": "Individual campaigns",
+      "individualNote": "Individual fundraisers, not institutions — check the confidence level of each one before donating.",
+      "flagged": "Fraud risk"
+    },
+    "emptyVerified": "None yet."
+  }
+}

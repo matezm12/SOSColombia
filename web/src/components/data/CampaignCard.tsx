@@ -1,5 +1,5 @@
 import type { Prisma } from "@prisma/client";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { ExternalLink } from "../ui/ExternalLink";

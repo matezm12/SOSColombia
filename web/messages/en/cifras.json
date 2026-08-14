@@ -1,0 +1,12 @@
+{
+  "cifras": {
+    "title": "National figures",
+    "lede": "Every figure is recorded with its source and date — never overwritten. Below is the most recent value for each indicator, followed by the full history.",
+    "ultimosValores": "Latest values",
+    "sinCifras": "No national figures published yet.",
+    "porDepartamento": "By department",
+    "historialCompleto": "Full history",
+    "historialLede": "A disaster's numbers change from report to report — that isn't always an error. Here is every published value, not just the most recent one.",
+    "verPorCiudad": "For figures by city, go to <link>each city's page</link>."
+  }
+}

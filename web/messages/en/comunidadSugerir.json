@@ -1,0 +1,33 @@
+{
+  "comunidadSugerir": {
+    "title": "Share a post",
+    "lede": "Did you see an aid point, a specific need, or a human story about this emergency on social media that isn't on the site? Every post is reviewed before it appears — nothing is published automatically.",
+    "fields": {
+      "platform": "Platform *",
+      "permalink": "Link to the post *",
+      "category": "Category *",
+      "municipio": "City (if applicable)",
+      "authorHandle": "Account that posted it (optional)",
+      "placeName": "Place it refers to (if not in our directory)",
+      "submitterNote": "Additional context",
+      "submitterContact": "Your contact (optional, not published)"
+    },
+    "placeholders": {
+      "permalink": "https://...",
+      "authorHandle": "@username",
+      "placeName": "E.g.: Aid collection center in neighborhood X",
+      "submitterNote": "Any detail that helps us review it",
+      "submitterContact": "Email or phone, in case we need to confirm something"
+    },
+    "selectPlatform": "Select a platform",
+    "selectCategory": "Select a category",
+    "noSpecificCity": "No specific city",
+    "categories": {
+      "aidPoint": "Unlisted aid point",
+      "need": "Specific need",
+      "humanInterest": "Human story",
+      "official": "Official source"
+    },
+    "submit": "Submit post"
+  }
+}

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { SEVERITY_LABEL } from "@/lib/labels";
@@ -29,20 +30,28 @@ export type EpicenterPoint = {
 // borders, labels), no API key/account/billing surface — chosen for the same
 // reason this project avoided Mapbox originally.
 //
-// Used unconditionally, light-only, regardless of site theme — deliberate,
-// not an oversight. Two different no-key style sources were tried for a
-// theme-matched dark variant (OpenFreeMap's "dark" and CARTO's own
-// "dark-matter") and both exhibited the identical failure in testing: style/
-// sprite/TileJSON all fetched fine, but zero vector-tile requests ever fired
-// and `map.loaded()` never resolved — reproduced across maplibre-gl 6.3.0 and
-// 5.24.0, Turbopack and webpack. Every *light* style tried (CARTO positron,
-// and the original bare MapLibre demo style) rendered correctly. Given two
-// independent dark styles failed identically, a light-only map is the
-// reliable choice for now; the page chrome (legend, popup, borders) still
-// follows the site's dark mode via Tailwind, only the tile imagery doesn't —
-// a common, acceptable pattern for map embeds. Worth revisiting if a proven
-// dark vector style turns up.
+// Used unconditionally, light-only, regardless of site theme. A theme-matched
+// dark variant was tried previously and appeared broken (style/sprite/
+// TileJSON fetched fine but no tiles ever rendered) — that was misdiagnosed
+// as a style problem; the real cause was the worker-URL bug fixed below via
+// setWorkerUrl, which blocked tile loading for *every* style, light included
+// (it just went unnoticed on light styles until now). A dark variant is
+// likely viable now; not switched over here since that's a separate call.
 const STYLE_LIGHT = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+
+// MapLibre derives its worker script URL from `import.meta.url` of its own
+// bundled module. Under Next.js/Turbopack that resolves to a `/_next/static/
+// chunks/...` path with no `maplibre-gl-worker.mjs` sitting next to it, so
+// the worker request 404s (served the HTML fallback page instead of JS) and
+// module-worker creation fails silently — no thrown error, just a console
+// warning. Without a working worker, tiles can never be parsed: style,
+// sprite, and tiles.json all fetch fine, but zero vector-tile requests are
+// ever issued and the map sits permanently blank. Fix: serve the worker
+// script (and its one relative import, maplibre-gl-shared.mjs) as static
+// files from /public — copied from node_modules/maplibre-gl/dist — and point
+// MapLibre at them directly instead of letting it guess a bundler-relative
+// URL. Re-copy both files if maplibre-gl is upgraded.
+maplibregl.setWorkerUrl("/maplibre-gl-worker.mjs");
 
 // Reads the CSS custom property directly (rather than a Tailwind class on the
 // marker element) since MapLibre markers are plain DOM nodes outside Tailwind's
@@ -64,6 +73,7 @@ export default function MapaClient({
   municipios: MunicipioMarker[];
   epicenter: EpicenterPoint | null;
 }) {
+  const t = useTranslations("mapa");
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const [selected, setSelected] = useState<MunicipioMarker | null>(null);
 
@@ -117,7 +127,7 @@ export default function MapaClient({
       el.style.background = "#facc15";
       el.style.border = "2px solid white";
       el.style.boxShadow = "0 0 0 1px rgba(0,0,0,0.35)";
-      el.title = "Epicentro (SGC)";
+      el.title = t("epicentroSgc");
       markers.push(
         new maplibregl.Marker({ element: el }).setLngLat([epicenter.lngSgc, epicenter.latSgc]).addTo(map),
       );
@@ -131,7 +141,7 @@ export default function MapaClient({
       el.style.background = "#a78bfa";
       el.style.border = "2px solid white";
       el.style.boxShadow = "0 0 0 1px rgba(0,0,0,0.35)";
-      el.title = "Epicentro (USGS)";
+      el.title = t("epicentroUsgs");
       markers.push(
         new maplibregl.Marker({ element: el }).setLngLat([epicenter.lngUsgs, epicenter.latUsgs]).addTo(map),
       );
@@ -148,7 +158,7 @@ export default function MapaClient({
       markers.forEach((marker) => marker.remove());
       map.remove();
     };
-  }, [municipios, epicenter]);
+  }, [municipios, epicenter, t]);
 
   return (
     <div className="relative w-full">
@@ -158,7 +168,7 @@ export default function MapaClient({
       />
 
       <div className="absolute left-4 top-4 z-10 rounded-lg border border-zinc-200 bg-white/95 p-3 text-xs shadow-sm dark:border-zinc-800 dark:bg-zinc-950/95">
-        <p className="font-medium text-zinc-700 dark:text-zinc-300">Severidad</p>
+        <p className="font-medium text-zinc-700 dark:text-zinc-300">{t("severidad")}</p>
         <ul className="mt-1.5 space-y-1">
           {Object.entries(SEVERITY_LABEL).map(([key, label]) => (
             <li key={key} className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
@@ -171,11 +181,11 @@ export default function MapaClient({
           ))}
           <li className="mt-1 flex items-center gap-1.5 border-t border-zinc-100 pt-1 text-zinc-600 dark:border-zinc-900 dark:text-zinc-400">
             <span className="inline-block h-2.5 w-2.5 rotate-45 border border-white bg-[#facc15]" />
-            Epicentro (SGC)
+            {t("epicentroSgc")}
           </li>
           <li className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
             <span className="inline-block h-2.5 w-2.5 rotate-45 border border-white bg-[#a78bfa]" />
-            Epicentro (USGS)
+            {t("epicentroUsgs")}
           </li>
         </ul>
       </div>
@@ -189,14 +199,14 @@ export default function MapaClient({
               </p>
               {selected.severityLabel && (
                 <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">
-                  Severidad: {SEVERITY_LABEL[selected.severityLabel] ?? selected.severityLabel}
+                  {t("severidad")}: {SEVERITY_LABEL[selected.severityLabel] ?? selected.severityLabel}
                 </p>
               )}
             </div>
             <button
               type="button"
               onClick={() => setSelected(null)}
-              aria-label="Cerrar"
+              aria-label={t("cerrar")}
               className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
             >
               ×
@@ -204,18 +214,18 @@ export default function MapaClient({
           </div>
           <dl className="mt-2 space-y-0.5 text-xs text-zinc-500 dark:text-zinc-500">
             {selected.populationDane && (
-              <div>{formatNumber(selected.populationDane)} habitantes (DANE)</div>
+              <div>{formatNumber(selected.populationDane)} {t("habitantesDane")}</div>
             )}
             {selected.deathValue !== undefined && (
-              <div>{formatNumber(selected.deathValue)} fallecidos reportados</div>
+              <div>{formatNumber(selected.deathValue)} {t("fallecidosReportados")}</div>
             )}
-            <div>{selected.aidPointCount} puntos de ayuda registrados</div>
+            <div>{selected.aidPointCount} {t("puntosAyudaRegistrados")}</div>
           </dl>
           <Link
             href={`/ciudad/${selected.divipolaCode}`}
             className="mt-3 inline-block text-sm text-zinc-600 underline hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
           >
-            Ver ciudad →
+            {t("verCiudad")}
           </Link>
         </div>
       )}

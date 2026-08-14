@@ -1,0 +1,20 @@
+{
+  "donarInternacional": {
+    "backLabel": "How to donate",
+    "title": "International donations",
+    "lede": "Channels you can use from any country — they accept foreign cards or PayPal, no Colombian bank account required. For local transfers in pesos and donation points by city, see the general donation page.",
+    "warningTitle": "Before you donate",
+    "warnings": {
+      "trustLevel": "Check each campaign's trust level — “Verified” only means we confirmed the organization, not that we vouch for how it manages funds.",
+      "individualNote": "GoFundMe campaigns run by an individual organizer (not an institution) carry a note whenever we find something worth mentioning — read it before donating.",
+      "distrust": "Be wary of channels shared only via WhatsApp/SMS with no other trace, and of urgency pressure."
+    },
+    "sections": {
+      "verified": "Verified organizations",
+      "individual": "Individual campaigns",
+      "individualSubtext": "Individual fundraisers, not institutions — check each one's trust level before donating.",
+      "flagged": "Fraud risk"
+    },
+    "emptyVerified": "None yet."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "donar": {
+    "title": "Cómo donar",
+    "lede": "Organizaciones y campañas verificadas por este proyecto. Cada una lleva un nivel de confianza — verifica tú mismo antes de donar, especialmente en campañas individuales.",
+    "scamWarning": {
+      "heading": "Antes de donar",
+      "point1": "“SOS Chocó” no es una sola organización — es un lema que usan al menos 5 actores distintos (Manos Visibles, Fundación Plan, FECOER, entre otros). Verifica a cuál organización específica va tu donación antes de confiar en un enlace con ese nombre.",
+      "point2": "“Rescatistas LATAM” fue investigado y no se encontró evidencia de que exista como organización real. No dones a través de canales con ese nombre.",
+      "point3": "Desconfía de: enlaces compartidos solo por WhatsApp/SMS sin otro rastro, perfiles nuevos y anónimos, presión de urgencia, y “listas exclusivas de víctimas”."
+    },
+    "international": {
+      "text": "¿Donas desde fuera de Colombia? Los canales locales de esta página requieren cuenta bancaria colombiana para algunos casos.",
+      "cta": "Ver donaciones internacionales →"
+    },
+    "sections": {
+      "verified": "Organizaciones verificadas",
+      "local": "Canales locales e institucionales",
+      "individual": "Campañas individuales",
+      "individualNote": "Recaudadores individuales, no instituciones — revisa el nivel de confianza de cada una antes de donar.",
+      "flagged": "Riesgo de fraude"
+    },
+    "emptyVerified": "Ninguna todavía."
+  }
+}

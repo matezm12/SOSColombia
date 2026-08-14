@@ -1,21 +1,27 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-
-const NAV_LINKS = [
-  { href: "/", label: "Inicio" },
-  { href: "/cifras", label: "Cifras" },
-  { href: "/mapa", label: "Mapa" },
-  { href: "/ayuda", label: "Ayuda" },
-  { href: "/donar", label: "Donar" },
-  { href: "/donar/internacional", label: "Internacional" },
-  { href: "/informes", label: "Informes" },
-  { href: "/fuentes", label: "Fuentes" },
-  { href: "/metodologia", label: "Metodología" },
-];
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 // Server component; mobile menu uses a native <details>/<summary>
-// disclosure. ThemeToggle is the one client island.
-export function SiteHeader() {
+// disclosure. ThemeToggle and LanguageSwitcher are the client islands.
+export async function SiteHeader() {
+  const t = await getTranslations("nav");
+
+  const NAV_LINKS = [
+    { href: "/", label: t("inicio") },
+    { href: "/cifras", label: t("cifras") },
+    { href: "/mapa", label: t("mapa") },
+    { href: "/ayuda", label: t("ayuda") },
+    { href: "/donar", label: t("donar") },
+    { href: "/donar/internacional", label: t("internacional") },
+    { href: "/recursos", label: t("recursos") },
+    { href: "/comunidad", label: t("comunidad") },
+    { href: "/informes", label: t("informes") },
+    { href: "/fuentes", label: t("fuentes") },
+    { href: "/metodologia", label: t("metodologia") },
+  ];
+
   return (
     <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
@@ -40,16 +46,18 @@ export function SiteHeader() {
             href="/sugerir"
             className="rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
           >
-            Sugerir un punto
+            {t("sugerirPunto")}
           </Link>
+          <LanguageSwitcher />
           <ThemeToggle />
         </nav>
 
         <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
           <ThemeToggle />
           <details className="relative">
             <summary className="cursor-pointer list-none rounded-md border border-zinc-200 px-3 py-1.5 text-sm text-zinc-600 dark:border-zinc-800 dark:text-zinc-400">
-              Menú
+              {t("menu")}
             </summary>
             <nav className="absolute right-0 z-20 mt-2 flex w-56 flex-col gap-1 rounded-lg border border-zinc-200 bg-white p-3 shadow-lg dark:border-zinc-800 dark:bg-zinc-950">
               {NAV_LINKS.map((link) => (
@@ -65,7 +73,7 @@ export function SiteHeader() {
                 href="/sugerir"
                 className="rounded px-2 py-1.5 text-sm font-medium text-black dark:text-zinc-50"
               >
-                Sugerir un punto →
+                {t("sugerirPuntoCorto")}
               </Link>
             </nav>
           </details>

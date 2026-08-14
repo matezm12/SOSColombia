@@ -1,0 +1,10 @@
+{
+  "metodologia": {
+    "title": "Metodología",
+    "intro1": "Las cifras de un desastre cambian de fuente a fuente y de día a día — eso no siempre significa un error. Este sitio nunca sobrescribe un número con otro más nuevo: cada cifra queda registrada con su fuente, su fecha y su nivel de confiabilidad, y se muestra la más reciente sin borrar el historial.",
+    "intro2": "Cuando dos fuentes confiables no coinciden en un mismo dato, lo registramos como una discrepancia en lugar de elegir una de las dos en silencio. Algunas se resuelven con más información; otras quedan abiertas hasta que exista un dato definitivo.",
+    "discrepanciasAbiertas": "Discrepancias abiertas",
+    "discrepanciasResueltas": "Discrepancias resueltas",
+    "sinDiscrepancias": "Sin discrepancias registradas todavía."
+  }
+}

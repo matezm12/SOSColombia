@@ -1,6 +1,8 @@
 import { timingSafeEqual } from "crypto";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import createIntlMiddleware from "next-intl/middleware";
+import { routing } from "@/i18n/routing";
 
 // Simple HTTP Basic Auth gate for /admin/*.
 //
@@ -11,6 +13,12 @@ import type { NextRequest } from "next/server";
 // Next.js 16 renamed the `middleware.ts` file convention to `proxy.ts`
 // (functionality is unchanged) — see
 // node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/proxy.md.
+// A proxy.ts file may export only a single proxy function, so locale
+// detection (next-intl) and the admin auth gate both live in the one
+// `proxy` export below, branching on path — admin/* never runs the intl
+// middleware and public routes never run the auth check.
+
+const intlMiddleware = createIntlMiddleware(routing);
 
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME ?? "admin";
 const REALM_HEADERS = {
@@ -37,6 +45,10 @@ function safeCompare(a: string, b: string): boolean {
 }
 
 export function proxy(request: NextRequest) {
+  if (!request.nextUrl.pathname.startsWith("/admin")) {
+    return intlMiddleware(request);
+  }
+
   const adminPassword = process.env.ADMIN_PASSWORD;
 
   // Security default: if no password is configured, deny all access rather
@@ -79,5 +91,18 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/admin/:path*",
+  matcher: [
+    "/admin/:path*",
+    // next-intl's recommended pattern: run on every path except API routes,
+    // Next internals, and any request for a file with an extension
+    // (favicon.ico, sitemap.xml, robots.txt, llms.txt, images, etc.).
+    //
+    // "md" is excluded too: src/app/md/** hosts plain-markdown mirror routes
+    // for AI crawlers, built as a sibling tree of [locale] (not nested under
+    // it, and using route.ts not page.tsx — see src/app/md/route.ts). Without
+    // this exclusion the intl middleware rewrites e.g. /md -> /es/md before
+    // Next's router sees it, and since /es/md doesn't exist as a route, every
+    // /md/* request 404s. This is the same reason "api" is excluded.
+    "/((?!api|md|_next|_vercel|.*\\..*).*)",
+  ],
 };

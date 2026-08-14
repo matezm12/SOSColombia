@@ -1,0 +1,8 @@
+{
+  "ayuda": {
+    "title": "Aid points",
+    "lede": "All verified aid points, across every city. Filter by type or go to each city's page to see only theirs.",
+    "todos": "All",
+    "vacio": "No aid points match this filter."
+  }
+}

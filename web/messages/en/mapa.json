@@ -1,0 +1,15 @@
+{
+  "mapa": {
+    "title": "Map",
+    "lede": "Location of cities with verified data and the earthquake epicenter (SGC and USGS estimates differ slightly; both are shown). Tap a marker for details.",
+    "sinCoordenadas": "No coordinates loaded yet.",
+    "severidad": "Severity",
+    "epicentroSgc": "Epicenter (SGC)",
+    "epicentroUsgs": "Epicenter (USGS)",
+    "cerrar": "Close",
+    "habitantesDane": "residents (DANE)",
+    "fallecidosReportados": "reported deaths",
+    "puntosAyudaRegistrados": "registered aid points",
+    "verCiudad": "View city →"
+  }
+}

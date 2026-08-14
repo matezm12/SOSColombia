@@ -1,0 +1,8 @@
+{
+  "ayuda": {
+    "title": "Puntos de ayuda",
+    "lede": "Todos los puntos de ayuda verificados, de todas las ciudades. Filtra por tipo o entra a la página de cada ciudad para ver solo la suya.",
+    "todos": "Todos",
+    "vacio": "Sin puntos de ayuda para este filtro."
+  }
+}

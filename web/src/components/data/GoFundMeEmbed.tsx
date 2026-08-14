@@ -63,7 +63,12 @@ export function GoFundMeEmbed({
   return (
     <div
       ref={containerRef}
-      className="overflow-x-auto rounded-md border border-zinc-200 dark:border-zinc-800"
+      // p-1 insets the iframe from the rounded border so its square corners
+      // don't visibly poke out, and stops the white widget from running
+      // edge-to-edge inside a near-black dark-mode card. overflow-x-auto
+      // (not overflow-hidden) is deliberate — it's the safety net for
+      // phones narrower than the widget's fixed ~300px width.
+      className="overflow-x-auto rounded-lg border border-zinc-200 p-1 dark:border-zinc-700"
     />
   );
 }

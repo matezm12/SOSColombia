@@ -1,0 +1,13 @@
+{
+  "ciudad": {
+    "volver": "All cities",
+    "subtitulo": "{department} · DIVIPOLA {code}",
+    "subtituloPoblacion": " · {population} inhabitants (DANE)",
+    "cifras": "Figures",
+    "sinCifras": "No figures published yet for this city.",
+    "puntosDeAyuda": "Aid points",
+    "sinPuntosDeAyuda": "No confirmed aid points yet for this city.",
+    "campanasDeRecaudacion": "Fundraising campaigns",
+    "sinCampanas": "No fundraising campaign specific to this city yet."
+  }
+}

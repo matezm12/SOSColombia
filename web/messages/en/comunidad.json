@@ -1,0 +1,9 @@
+{
+  "comunidad": {
+    "title": "Community",
+    "lede": "Posts from Instagram, X, Facebook, and TikTok about places and needs that aren't in our directory yet — reviewed before being published here.",
+    "prompt": "Did you see a post about an aid point or a specific need that isn't on the site?",
+    "cta": "Share a post →",
+    "empty": "No posts yet."
+  }
+}

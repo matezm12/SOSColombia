@@ -1,0 +1,12 @@
+{
+  "cifras": {
+    "title": "Cifras nacionales",
+    "lede": "Cada cifra queda registrada con su fuente y fecha — nunca se sobrescribe. Abajo se muestra el valor más reciente de cada indicador, seguido del historial completo.",
+    "ultimosValores": "Últimos valores",
+    "sinCifras": "Sin cifras nacionales publicadas todavía.",
+    "porDepartamento": "Por departamento",
+    "historialCompleto": "Historial completo",
+    "historialLede": "Los números de un desastre cambian de reporte a reporte — eso no siempre es un error. Aquí está cada valor publicado, no solo el más reciente.",
+    "verPorCiudad": "Para cifras por ciudad, ve a la <link>página de cada ciudad</link>."
+  }
+}

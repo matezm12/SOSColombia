@@ -14,11 +14,11 @@ export function ContradictionCard({ contradiction: c }: { contradiction: Contrad
         </Badge>
       </div>
       <div className="mt-3 grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
-        <div className="rounded border border-zinc-100 p-2 dark:border-zinc-900">
+        <div className="rounded-md border border-zinc-100 p-2 dark:border-zinc-900">
           <p className="text-black dark:text-zinc-50">{c.valueA}</p>
           <p className="mt-0.5 text-xs text-zinc-500">{c.sourceA}</p>
         </div>
-        <div className="rounded border border-zinc-100 p-2 dark:border-zinc-900">
+        <div className="rounded-md border border-zinc-100 p-2 dark:border-zinc-900">
           <p className="text-black dark:text-zinc-50">{c.valueB}</p>
           <p className="mt-0.5 text-xs text-zinc-500">{c.sourceB}</p>
         </div>

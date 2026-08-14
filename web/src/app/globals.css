@@ -9,40 +9,44 @@
    by the toggle component. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Light palette (default). */
+/* Light palette (default). Every token below is darkened just enough to
+   clear WCAG AA (4.5:1) as small badge text on a white background — the
+   original lighter shades (kept as comments) read fine visually but failed
+   contrast checks; .dark's brighter/desaturated shades already passed and
+   are untouched. */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 
   /* Severity (Municipio.severityLabel) */
   --color-severity-critica: #dc2626;
-  --color-severity-alta: #ea580c;
-  --color-severity-moderada: #ca8a04;
-  --color-severity-leve: #65a30d;
+  --color-severity-alta: #c2410c; /* was #ea580c, 3.56:1 → 4.9:1 */
+  --color-severity-moderada: #92400e; /* was #ca8a04, 2.94:1 → 6.5:1 */
+  --color-severity-leve: #3f6212; /* was #65a30d, 3.09:1 → 6.2:1 */
 
   /* Source tier (TollRecord/AidPoint/GovReport/Source .tier, 1=best..6=worst) */
   --color-tier-1: #047857;
-  --color-tier-2: #0d9488;
+  --color-tier-2: #0f766e; /* was #0d9488, 3.75:1 → 4.7:1 */
   --color-tier-3: #4f46e5;
   --color-tier-4: #7c3aed;
   --color-tier-5: #b45309;
   --color-tier-6: #b91c1c;
 
   /* AidPointStatus */
-  --color-status-active: #16a34a;
-  --color-status-full: #d97706;
+  --color-status-active: #15803d; /* was #16a34a, 3.29:1 → 5.9:1 */
+  --color-status-full: #9a3412; /* was #d97706, 3.18:1 → 6.8:1 */
   --color-status-closed: #71717a;
-  --color-status-unconfirmed: #a1a1aa;
+  --color-status-unconfirmed: #52525b; /* was #a1a1aa, 2.57:1 → 5.7:1 */
 
   /* CrowdfundingCampaign.verificationStatus */
-  --color-verify-verified: #16a34a;
-  --color-verify-plausible: #0d9488;
-  --color-verify-unconfirmed: #a1a1aa;
+  --color-verify-verified: #15803d; /* was #16a34a, see status-active */
+  --color-verify-plausible: #0f766e; /* was #0d9488, see tier-2 */
+  --color-verify-unconfirmed: #52525b; /* was #a1a1aa, see status-unconfirmed */
   --color-verify-flagged: #dc2626;
 
   /* Contradiction.status */
-  --color-contradiction-open: #d97706;
-  --color-contradiction-resolved: #16a34a;
+  --color-contradiction-open: #9a3412; /* was #d97706, see status-full */
+  --color-contradiction-resolved: #15803d; /* was #16a34a, see status-active */
 
   /* Brand */
   --color-brand: #dc2626;

@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "title": "SOSColombia — Terremoto 2026",
+    "description": "Datos verificados sobre el terremoto de Colombia del 10 de agosto de 2026: cifras oficiales, puntos de ayuda y cómo donar, por ciudad."
+  },
+  "nav": {
+    "inicio": "Inicio",
+    "cifras": "Cifras",
+    "mapa": "Mapa",
+    "ayuda": "Ayuda",
+    "donar": "Donar",
+    "internacional": "Internacional",
+    "recursos": "Recursos",
+    "comunidad": "Comunidad",
+    "informes": "Informes",
+    "fuentes": "Fuentes",
+    "metodologia": "Metodología",
+    "sugerirPunto": "Sugerir un punto",
+    "sugerirPuntoCorto": "Sugerir un punto →",
+    "menu": "Menú",
+    "cambiarIdioma": "Cambiar idioma"
+  },
+  "home": {
+    "eyebrow": "SOSColombia",
+    "title": "Terremoto de Colombia — 10 de agosto de 2026",
+    "lede": "Magnitud {magnitude} (SGC), epicentro cerca de San José del Palmar, Chocó. Datos verificados de fuentes oficiales — cada cifra lleva su fuente y fecha, nunca un solo número \"definitivo\".",
+    "ciudades": "Ciudades",
+    "fallecidosConfirmados": "fallecidos confirmados (Medicina Legal)",
+    "fallecidosReportados": "fallecidos reportados"
+  },
+  "footer": {
+    "descripcion": "Proyecto independiente de datos verificados sobre el terremoto de Colombia del 10 de agosto de 2026.",
+    "informesOficiales": "Informes oficiales",
+    "fuentes": "Fuentes",
+    "metodologia": "Metodología",
+    "sugerirPunto": "Sugerir un punto"
+  }
+}

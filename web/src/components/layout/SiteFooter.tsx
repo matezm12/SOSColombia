@@ -1,20 +1,20 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
-const FOOTER_LINKS = [
-  { href: "/informes", label: "Informes oficiales" },
-  { href: "/fuentes", label: "Fuentes" },
-  { href: "/metodologia", label: "Metodología" },
-  { href: "/sugerir", label: "Sugerir un punto" },
-];
+export async function SiteFooter() {
+  const t = await getTranslations("footer");
 
-export function SiteFooter() {
+  const FOOTER_LINKS = [
+    { href: "/informes", label: t("informesOficiales") },
+    { href: "/fuentes", label: t("fuentes") },
+    { href: "/metodologia", label: t("metodologia") },
+    { href: "/sugerir", label: t("sugerirPunto") },
+  ];
+
   return (
     <footer className="border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black">
       <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10 text-sm text-zinc-500 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
-        <p className="max-w-sm">
-          Proyecto independiente de datos verificados sobre el terremoto de
-          Colombia del 10 de agosto de 2026.
-        </p>
+        <p className="max-w-sm">{t("descripcion")}</p>
         <nav className="flex flex-wrap gap-x-6 gap-y-2 sm:justify-end">
           {FOOTER_LINKS.map((link) => (
             <Link
