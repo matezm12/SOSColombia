@@ -170,10 +170,87 @@ seeded**: no live deployment exists (only self-deploy instructions in the README
 the README states it was built for the **Venezuela** earthquake of 2026-06-24, not
 this event. Zero evidence it's been adapted/deployed for the Colombia response.
 
-### Next steps
-1. Review the 32 pending candidates at `/admin/moderacion` (28 Pereira/Dosquebradas
-   from ayudaspereira.com + 4 Cali/Armenia/Manizales from Cuidar a Colombia).
+### Next steps (pass 1)
+1. ~~Review the 32 pending candidates at `/admin/moderacion`~~ — done 2026-08-14, all
+   32 approved.
 2. If deeper coverage of Cuidar a Colombia's/Acopio Colombia's full datasets is ever
    wanted for our other tracked cities specifically, pull `/data/app.json` from
    Cuidar a Colombia and re-query Acopio Colombia's live site filtered to
    Pereira/Cali/Manizales/Armenia/Quibdó — not attempted this pass (sample-only).
+
+## Social media search — pass 2 (2026-08-14)
+
+Follow-up pass specifically targeting individual social media posts (not aggregator
+sites) — donation channels, housing/shelter offers, and aid points/needs in the
+comparatively under-covered cities (Manizales, Armenia, Quibdó). Three parallel
+agents, one per angle. Real constraint hit repeatedly: X/Twitter posts aren't
+indexable via the available search tools at all, and Instagram captions usually
+can't be fetched directly (image-blob-only responses) — most findings had to be
+verified by direct-fetching the specific post where possible and cross-checking
+against independent mainstream news coverage, not by reading the post text directly
+in every case. Confidence levels reflect that.
+
+### Seeded — 5 PendingSocialPost + 1 PendingAidPoint
+
+All via `prisma/seed-social-posts-pass2.ts`, origin `AUTOMATION_SWEEP`, awaiting
+`/admin/comunidad` review:
+
+- **@goyo (Instagram)** — Gloria "Goyo" Martínez Perea (ChocQuibTown), directing
+  bank-transfer donations to her hometown Condoto, Chocó via FUNDESOPA. High
+  confidence — account number cross-confirmed by Publimetro and Expreso.ec.
+  Condoto isn't one of our tracked municipios (only Quibdó/San José del Palmar exist
+  for Chocó) — seeded with no `municipioId`, place named in `placeName` instead
+  rather than creating a new municipio for one post.
+- **@juanma.cuantico (Instagram)** — third-party-organized Vaki campaign to rebuild
+  "Manuelina," a pasta restaurant in Manizales destroyed in the quake. Medium
+  confidence — couldn't independently confirm this Vaki URL isn't already inside the
+  excluded GoFundMe hub, though it's a distinct platform.
+- **@jhonnyrivera (Instagram)** — singer Jhonny Rivera converted his Hotel La Rivera
+  (Calle 20 #3-58, Pereira) into a free shelter for displaced families + 15 visiting
+  doctors, plus a physical donation point and QR code for money. Corroborated by 8+
+  outlets. Seeded as **both** a `PendingSocialPost` (category `AID_POINT`) and a
+  `PendingAidPoint` (kind `ALBERGUE`) — the hotel is a real place worth having in the
+  directory itself, not just an embed.
+- **@fundacionkenovycolombia (Instagram)** — a 300+-dog rescue shelter outside
+  Armenia had partial roof/wall/enclosure collapse; posting specific supply needs
+  (fencing, dog houses, roof tiles, food) and now capping visitors at 20/day for
+  structural-risk reasons. High confidence — verified directly against an
+  established 56K-follower account's own post captions, cross-confirmed by El Tiempo
+  and Semana in identical detail.
+- **@yuri_copete (Instagram)** — Miss Universe Chocó 2020, posting from abroad,
+  confirmed her family's Quibdó house destroyed same-day, family safe, asking that
+  institutional aid prioritize Chocoano families. High confidence — content
+  verified directly, corroborated by 5 outlets.
+
+### Rejected — worth recording, not seeded
+
+- No individual/grassroots housing offers (a private citizen or informal host)
+  survived verification at all — every hotel/lodging offer found traced back to
+  press-relayed PR statements (Hotel Campestre Monte Carlo Manizales, Hoteles
+  Spiwak Cali) with no discoverable social-media permalink to the offer itself.
+  Genuine gap, not a search failure.
+- No individually-posted (not journalist-sourced) aid point survived verification
+  for Manizales specifically — several leads (Fundación Lazos de Amor, Edén del
+  Abuelo, Ángeles de la Calle Manizales) traced back to press interviews, not the
+  orgs' own current posts.
+- **Two red flags surfaced, now listed in `/donar`'s scam-warning box (point4/point5,
+  both locales)**, matching this project's existing practice of naming known bad
+  actors (see the "SOS Chocó"/"Rescatistas LATAM" entries already there):
+  - `terremoto-colombia-donacionesverifica.netlify.app` — matches the classic scam
+    pattern (generic branding, no institutional identity, free hosting). Live scam
+    site, not a rejected-for-insufficient-evidence candidate.
+  - A fundraiser tied to a sitting congressman, publicly flagged by a former
+    Attorney General for routing donations into a personal bank account —
+    possible illegal mass fundraising under Código Penal art. 316.
+- Other rejected leads (engagement-bait "comment COLOMBIA for the link" posts, a
+  barber-campaign with no discoverable permalink, a family GoFundMe with no stable
+  social-media permalink) — see the raw agent transcripts if ever needed, not
+  detailed here since none were close enough to the bar to be worth re-checking.
+
+### Next steps (pass 2)
+1. Review the 5 pending social posts + 1 pending aid point at `/admin/comunidad` and
+   `/admin/moderacion`.
+2. A genuine gap remains: no verified grassroots housing-offer post exists anywhere
+   in this dataset. Worth a dedicated re-check if `/comunidad` ever needs that
+   category populated — X/Instagram's scraping limitations may ease with different
+   tooling (e.g. authenticated browser automation instead of WebFetch/WebSearch).
