@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/navigation";
+import { ArrowLeftIcon } from "@/components/ui/icons";
 
 const WIDTH_CLASS: Record<"narrow" | "default" | "wide", string> = {
   narrow: "max-w-xl",
@@ -29,9 +30,10 @@ export function PageShell({
         {backHref && (
           <Link
             href={backHref}
-            className="text-sm text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
+            className="inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
           >
-            ← {backLabel}
+            <ArrowLeftIcon className="h-3.5 w-3.5" />
+            {backLabel}
           </Link>
         )}
         {(eyebrow || title || lede) && (

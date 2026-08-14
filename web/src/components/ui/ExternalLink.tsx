@@ -1,6 +1,8 @@
 // The fix for "cards have no outbound links" — one component, used everywhere
 // a card needs to point at its source/permalink/donation page.
 
+import { ExternalLinkIcon } from "@/components/ui/icons";
+
 export function ExternalLink({
   href,
   children,
@@ -18,9 +20,7 @@ export function ExternalLink({
       className={`inline-flex items-center gap-1 text-blue-600 underline decoration-blue-600/30 underline-offset-2 hover:decoration-blue-600 dark:text-blue-400 dark:decoration-blue-400/30 dark:hover:decoration-blue-400 ${className}`}
     >
       {children}
-      <span aria-hidden="true" className="text-[0.7em]">
-        ↗
-      </span>
+      <ExternalLinkIcon className="h-3 w-3" />
     </a>
   );
 }

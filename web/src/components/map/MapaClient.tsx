@@ -7,6 +7,7 @@ import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { SEVERITY_LABEL } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
+import { CloseIcon } from "@/components/ui/icons";
 
 export type MunicipioMarker = {
   name: string;
@@ -218,7 +219,7 @@ export default function MapaClient({
               aria-label={t("cerrar")}
               className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
             >
-              ×
+              <CloseIcon className="h-4 w-4" />
             </button>
           </div>
           <dl className="mt-2 space-y-0.5 text-xs text-zinc-500 dark:text-zinc-500">
