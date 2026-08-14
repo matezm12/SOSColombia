@@ -17,6 +17,11 @@ export type MunicipioMarker = {
   populationDane: number | null;
   aidPointCount: number;
   deathValue?: number;
+  // Which metric deathValue actually is — DEATHS_REPORTED_OFFICIAL and
+  // DEATHS_CONFIRMED_FORENSIC are never merged (same discipline as
+  // everywhere else in this project), so the caller must say which one it
+  // picked and the popup must label it correctly, not assume "reported".
+  deathIsForensic?: boolean;
 };
 
 export type EpicenterPoint = {
@@ -221,7 +226,10 @@ export default function MapaClient({
               <div>{formatNumber(selected.populationDane)} {t("habitantesDane")}</div>
             )}
             {selected.deathValue !== undefined && (
-              <div>{formatNumber(selected.deathValue)} {t("fallecidosReportados")}</div>
+              <div>
+                {formatNumber(selected.deathValue)}{" "}
+                {selected.deathIsForensic ? t("fallecidosConfirmados") : t("fallecidosReportados")}
+              </div>
             )}
             <div>{selected.aidPointCount} {t("puntosAyudaRegistrados")}</div>
           </dl>

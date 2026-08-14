@@ -31,15 +31,15 @@ export async function SiteHeader() {
 
   return (
     <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-8 px-6 py-4">
         <Link
           href="/"
-          className="text-sm font-semibold uppercase tracking-wide text-brand"
+          className="shrink-0 text-sm font-semibold uppercase tracking-wide text-brand"
         >
           SOSColombia
         </Link>
 
-        <nav className="hidden items-center gap-5 md:flex">
+        <nav className="hidden items-center gap-4 xl:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -49,17 +49,19 @@ export async function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/sugerir"
-            className="rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-          >
-            {t("sugerirPunto")}
-          </Link>
-          <LanguageSwitcher />
-          <ThemeToggle />
+          <div className="ml-2 flex items-center gap-3 border-l border-zinc-200 pl-5 dark:border-zinc-800">
+            <Link
+              href="/sugerir"
+              className="rounded-md bg-black px-3 py-1.5 text-sm font-medium whitespace-nowrap text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+            >
+              {t("sugerirPunto")}
+            </Link>
+            <LanguageSwitcher />
+            <ThemeToggle />
+          </div>
         </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <LanguageSwitcher />
           <ThemeToggle />
           <details className="relative">

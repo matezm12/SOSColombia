@@ -7,16 +7,46 @@ import { usePathname } from "next/navigation";
 // outside the [locale] segment's NextIntlClientProvider, so no next-intl
 // client hook (useLocale, useTranslations, next-intl's usePathname) has
 // context to read from here. Plain usePathname() has no such dependency.
+//
+// Flags are inline SVGs, not Unicode flag emoji (🇨🇴/🇺🇸): Windows has no
+// system font that renders the regional-indicator-pair emoji as an actual
+// flag glyph, so on Windows Chrome/Edge those sequences fall back to
+// showing the raw two-letter code as plain text ("CO"/"US") — small,
+// easy to misread as UI chrome, and easy to miss-click since the text
+// glyphs render narrower than the emoji they're standing in for. SVGs
+// render identically everywhere.
+function FlagCO({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 3 2" className={className} aria-hidden="true">
+      <rect width="3" height="2" fill="#FCD116" />
+      <rect width="3" height="1" y="1" fill="#003893" />
+      <rect width="3" height="0.5" y="1.5" fill="#CE1126" />
+    </svg>
+  );
+}
+
+function FlagUS({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 19 10" className={className} aria-hidden="true">
+      <rect width="19" height="10" fill="#B22234" />
+      {[1, 3, 5, 7, 9].map((y) => (
+        <rect key={y} width="19" height="0.77" y={y - 0.77} fill="#fff" />
+      ))}
+      <rect width="7.6" height="5.38" fill="#3C3B6E" />
+    </svg>
+  );
+}
+
 export function LanguageSwitcher() {
   const pathname = usePathname();
   const isEnglish = pathname === "/en" || pathname.startsWith("/en/");
   const bare = isEnglish ? pathname.slice(3) || "/" : pathname;
 
   const targets = [
-    { code: "es" as const, flag: "🇨🇴", label: "Español", href: bare },
+    { code: "es" as const, Flag: FlagCO, label: "Español", href: bare },
     {
       code: "en" as const,
-      flag: "🇺🇸",
+      Flag: FlagUS,
       label: "English",
       href: bare === "/" ? "/en" : `/en${bare}`,
     },
@@ -25,17 +55,19 @@ export function LanguageSwitcher() {
 
   return (
     <div className="flex items-center gap-1" role="group" aria-label="Language / Idioma">
-      {targets.map((target) => (
+      {targets.map(({ code, Flag, label, href }) => (
         <a
-          key={target.code}
-          href={target.href}
-          aria-current={current === target.code ? "true" : undefined}
-          title={target.label}
-          className={`rounded px-1.5 py-1 text-base leading-none transition-opacity ${
-            current === target.code ? "opacity-100" : "opacity-40 hover:opacity-80"
+          key={code}
+          href={href}
+          aria-current={current === code ? "true" : undefined}
+          title={label}
+          className={`flex h-8 w-8 items-center justify-center rounded-md border transition-opacity ${
+            current === code
+              ? "border-zinc-300 opacity-100 dark:border-zinc-700"
+              : "border-transparent opacity-45 hover:opacity-90"
           }`}
         >
-          {target.flag}
+          <Flag className="h-4 w-4 rounded-[2px] object-cover ring-1 ring-black/10 dark:ring-white/10" />
         </a>
       ))}
     </div>
