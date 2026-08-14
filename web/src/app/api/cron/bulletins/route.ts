@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { isAuthorizedCronRequest } from "@/lib/cronAuth";
 import { notifyOps } from "@/lib/notify";
+import { upsertSource } from "@/lib/sources";
 
 // Prisma 7's driver adapter (@prisma/adapter-pg) needs the Node.js runtime, not Edge.
 export const runtime = "nodejs";
@@ -140,6 +141,23 @@ export async function GET(request: NextRequest) {
   const [inmlcf, ochaFlashUpdate005] = await Promise.all([
     checkInmlcf(),
     checkReliefWebFlashUpdate005(),
+  ]);
+
+  // Keep /fuentes honest about whether these two are actually reachable right
+  // now, independent of whether a newer bulletin happened to show up today.
+  await Promise.all([
+    upsertSource({
+      url: INMLCF_NEWS_URL,
+      org: "INMLCF (Medicina Legal)",
+      tier: 1,
+      status: inmlcf.ok ? "LIVE" : "NEEDS_RECHECK",
+    }),
+    upsertSource({
+      url: RELIEFWEB_005_URL,
+      org: "OCHA / Equipo Humanitario País Colombia",
+      tier: 1,
+      status: ochaFlashUpdate005.ok ? "LIVE" : "NEEDS_RECHECK",
+    }),
   ]);
 
   const staged: string[] = [];

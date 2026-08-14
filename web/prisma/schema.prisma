@@ -192,6 +192,7 @@ model PendingAidPoint {
   needsText          String?
   accessRestriction  String?
   sourceUrl          String?           // link backing the claim (social post, news article, official page)
+  sourceOrg          String?           // e.g. "Alcaldía de Pereira" — set by automated sweeps; community submissions leave this null
   submitterNote      String?           // free-text context from whoever submitted this
   submitterContact   String?           // optional email/phone for follow-up questions — never shown publicly
   origin             SubmissionOrigin  @default(COMMUNITY)

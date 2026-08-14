@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { isAuthorizedCronRequest } from "@/lib/cronAuth";
 import { notifyOps } from "@/lib/notify";
+import { upsertSource } from "@/lib/sources";
 
 // Prisma 7's driver adapter (@prisma/adapter-pg) needs the Node.js runtime, not Edge.
 export const runtime = "nodejs";
@@ -67,10 +68,12 @@ async function checkMunicipio(
       cache: "no-store",
     });
     if (!res.ok) {
+      await upsertSource({ url, org: `mapadelterremoto.com — ${name}`, tier: 4, status: "NEEDS_RECHECK" });
       return { municipio: name, slug, url, ok: false, status: res.status, gaps: [] };
     }
     html = await res.text();
   } catch (err) {
+    await upsertSource({ url, org: `mapadelterremoto.com — ${name}`, tier: 4, status: "NEEDS_RECHECK" });
     return {
       municipio: name,
       slug,
@@ -80,6 +83,8 @@ async function checkMunicipio(
       gaps: [],
     };
   }
+
+  await upsertSource({ url, org: `mapadelterremoto.com — ${name}`, tier: 4, status: "LIVE" });
 
   const gaps: MunicipioGapCheck["gaps"] = [];
 

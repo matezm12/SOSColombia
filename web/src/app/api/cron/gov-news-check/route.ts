@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { isAuthorizedCronRequest } from "@/lib/cronAuth";
 import { notifyOps } from "@/lib/notify";
+import { upsertSource } from "@/lib/sources";
 import type { AidPointKind } from "@prisma/client";
 
 // Prisma 7's driver adapter (@prisma/adapter-pg) needs the Node.js runtime, not Edge.
@@ -97,6 +98,8 @@ function findCandidates(text: string): Finding[] {
 }
 
 async function checkSource(source: (typeof GOV_NEWS_SOURCES)[number]) {
+  const orgLabel = `Alcaldía de ${source.municipioName}`;
+
   const municipio = await prisma.municipio.findFirst({ where: { name: source.municipioName } });
   if (!municipio) {
     return { municipio: source.municipioName, url: source.url, ok: false, error: "Municipio not found in DB", staged: 0 };
@@ -109,10 +112,12 @@ async function checkSource(source: (typeof GOV_NEWS_SOURCES)[number]) {
       cache: "no-store",
     });
     if (!res.ok) {
+      await upsertSource({ url: source.url, org: orgLabel, tier: 1, status: "NEEDS_RECHECK" });
       return { municipio: source.municipioName, url: source.url, ok: false, status: res.status, staged: 0 };
     }
     html = await res.text();
   } catch (err) {
+    await upsertSource({ url: source.url, org: orgLabel, tier: 1, status: "NEEDS_RECHECK" });
     return {
       municipio: source.municipioName,
       url: source.url,
@@ -121,6 +126,8 @@ async function checkSource(source: (typeof GOV_NEWS_SOURCES)[number]) {
       staged: 0,
     };
   }
+
+  await upsertSource({ url: source.url, org: orgLabel, tier: 1, status: "LIVE" });
 
   const candidates = findCandidates(stripHtml(html));
   let staged = 0;
@@ -139,6 +146,7 @@ async function checkSource(source: (typeof GOV_NEWS_SOURCES)[number]) {
         kind: candidate.kind,
         name: "Detección automática — revisar",
         sourceUrl: source.url,
+        sourceOrg: orgLabel,
         submitterNote: candidate.snippet,
         origin: "AUTOMATION_SWEEP",
       },

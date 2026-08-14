@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { upsertSource } from "@/lib/sources";
 import type { TollMetric } from "@prisma/client";
 
 const VALID_METRICS = new Set<string>([
@@ -39,14 +40,10 @@ export async function approveTollRecord(formData: FormData) {
   const pending = await prisma.pendingTollRecord.findUnique({ where: { id } });
   if (!pending || pending.status !== "PENDING") return;
 
-  const source = await prisma.source.create({
-    data: {
-      url: pending.sourceUrl ?? "detección automática, sin enlace",
-      org: pending.sourceOrg ?? "Detección automática (revisada por moderación)",
-      tier: Number.isFinite(tier) ? tier : 2,
-      status: "LIVE",
-      lastFetchedAt: new Date(),
-    },
+  const source = await upsertSource({
+    url: pending.sourceUrl ?? "detección automática, sin enlace",
+    org: pending.sourceOrg ?? "Detección automática (revisada por moderación)",
+    tier: Number.isFinite(tier) ? tier : 2,
   });
 
   const tollRecord = await prisma.tollRecord.create({

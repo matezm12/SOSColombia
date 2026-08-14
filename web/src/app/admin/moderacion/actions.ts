@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { upsertSource } from "@/lib/sources";
 
 export async function approveSubmission(formData: FormData) {
   const id = String(formData.get("id") ?? "");
@@ -10,14 +11,18 @@ export async function approveSubmission(formData: FormData) {
   const pending = await prisma.pendingAidPoint.findUnique({ where: { id } });
   if (!pending || pending.status !== "PENDING") return;
 
-  const source = await prisma.source.create({
-    data: {
-      url: pending.sourceUrl ?? "sugerencia comunitaria, sin enlace",
-      org: "Sugerencia comunitaria (revisada por moderación)",
-      tier: 4,
-      status: "LIVE",
-      lastFetchedAt: new Date(),
-    },
+  // An automated gov-site sweep finding is a materially more reliable source
+  // than an anonymous community tip — reflect that in the org label and tier
+  // instead of always attributing it to "community suggestion."
+  const isAutomated = pending.origin === "AUTOMATION_SWEEP";
+  const source = await upsertSource({
+    url: pending.sourceUrl ?? "sugerencia comunitaria, sin enlace",
+    org:
+      pending.sourceOrg ??
+      (isAutomated
+        ? "Detección automática (revisada por moderación)"
+        : "Sugerencia comunitaria (revisada por moderación)"),
+    tier: isAutomated ? 1 : 4,
   });
 
   const aidPoint = await prisma.aidPoint.create({
