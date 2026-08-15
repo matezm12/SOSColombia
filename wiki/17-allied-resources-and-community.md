@@ -4186,3 +4186,73 @@ different personal numbers under four different names).
 ### Next steps (pass 57)
 Continue round 5: Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas,
 San José del Palmar, and Pijao remain.
+
+## Pass 58
+
+Round 5 continues: Armenia, a fifth pass on the city most exhaustively
+covered so far (four prior rounds — 17, 26, 35, 48). Yield was mostly
+status confirmation this time, and dedup did a lot of the work: five
+"new" finds turned out to already be on file (Centro de Convenciones de
+Armenia from pass 17, OVNI Club from pass 26, Fundación Covida's Vaki
+from pass 17/35, and two GoFundMe campaigns — Karol Sofia Perdomo Muñoz
+and Jenny Fabiana Salazar Londoño — both from pass 48), plus a sixth
+"Punto de acopio para Pijao" that matched pass 48's entry down to the
+exact address and Instagram permalink. None re-seeded.
+
+### Coliseo del Sur: still at the edge, not over it
+The shelter holds steady at 56 families (150-200 people), unchanged from
+pass 48's near-capacity reading. The Alcaldía is now weighing a second
+shelter. Rents nearby have spiked to ~$2.5M COP/month — the first thread
+in a pattern that shows up twice more this round.
+
+### A rent-gouging pattern, corroborated twice
+Landlords hiking prices up to 50% on displaced families looking for
+housing was flagged once already (pass 48, a single Instagram post). This
+round an independent Facebook source (citing local outlet Finito) reports
+the same phenomenon with its own figures and its own citable link — two
+separate platforms now on record for the same exploitation pattern.
+
+### A missing-persons case turns genuinely contested
+Cristian Camilo Arango Marín's case, open since pass 48, does not resolve
+cleanly this round. The family's own Facebook channel (already on file,
+same URL as pass 48) was still actively soliciting help. A crowdsourced
+tracker, encontrados.co, shows a "La tengo conmigo" (found) entry dated
+Aug 15. A second crowdsourced tracker, colombiatebusca.com, still listed
+him "Por localizar" as of hours before this pass. Three of five agents
+read this three different ways — one called it resolved, one called it
+still open, one called it genuinely mixed. Recorded as an open
+contradiction, not asserted either way; flagged for whoever holds contact
+with the family.
+
+### Death toll: a number that doesn't hold up to city-level scrutiny
+Multiple sources this round cite "tres fallecidos en el Quindío" — up
+from the 1 dead / 134 injured Armenia-specific figure confirmed in pass
+48. But it's a department-wide figure, and two of five agents explicitly
+rejected it as unattributable to Armenia specifically (Calarcá, Quimbaya,
+and Circasia all sustained damage too). Not logged as a TollRecord;
+recorded as a flagged social post instead, pending an Armenia-specific
+official source.
+
+### New aid points (4)
+A named foundation running a children's-and-pets collection drive with a
+bank account on file, a new individual Vaki campaign, and two new
+diaspora GoFundMe campaigns (Salt Lake City and Melbourne organizers)
+neither matching anything in the prior four rounds' history.
+
+### New community embeds (6 of 7 attempted — one already on file)
+The Coliseo del Sur status update (folded in with an individual case,
+William Uriel Cardona, found in the same post's comments), the
+second-source rent-gouging report, a new residential complex (Las
+Brisas) with families still in tents, a fresh legal explainer on
+accessing the rental subsidy, a new official debris-disposal measure
+starting Aug 16, the flagged-not-confirmed department death toll, and a
+personal-account caution (a toy/school-supplies drive run through a
+private Nequi account).
+
+### Next steps (pass 58)
+Continue round 5: Quibdó, Buenaventura, Popayán, Dosquebradas, San José
+del Palmar, and Pijao remain. Separately: Ibagué/Tolima is being added
+as an 11th tracked city (compounding earthquake + wildfire crisis,
+confirmed via governor/mayor-level official sources and a named
+reconstruction fund — same bar that justified Pijao), with a dedicated
+research pass to follow.
