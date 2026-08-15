@@ -4296,3 +4296,117 @@ pass (X, Instagram, Facebook, TikTok, crowdfunding) follows next.
 Run Ibagué's dedicated research pass. Then resume round 5: Quibdó,
 Buenaventura, Popayán, Dosquebradas, San José del Palmar, and Pijao
 remain.
+
+## Pass 60
+
+Ibagué's dedicated 5-agent research pass. Four of five agents (X,
+Instagram, Facebook, crowdfunding) finished; the TikTok agent hit a
+session-wide capacity limit mid-run and did not complete — deferred to a
+follow-up pass. The four that finished corroborated each other heavily:
+the same handful of official acopio points turned up independently
+across three or four agents apiece, unusually strong cross-sourcing for
+a first pass with no prior-round baseline to build on.
+
+### A compounding crisis, confirmed at street level
+Beyond the department-wide fire numbers already known from pass 59,
+Ibagué has its own quake-specific damage: 48 families preventively
+evacuated from a residential tower (Conjunto Alta Vista) after cracks
+and material detachment — though the mayor's office found no structural
+compromise to the building overall — plus ~32 property inspections
+citywide and structural cracks at the Palacio de Justicia bad enough
+that Asonal Judicial held a protest and hearings were suspended. None of
+these figures were forced into a TollRecord: they don't map cleanly onto
+this project's toll metrics without overstating what's actually
+confirmed, so they're documented here in prose instead — the same
+discipline applied to Pijao's hectares-burned figures back in pass 37.
+
+### Six confirmed acopio points, no confirmed shelter
+The city's aid infrastructure is real and multiply-sourced: the
+Alcaldía's Parque Deportivo hub (which explicitly redistributes aid
+onward to San Luis, Chocó, Cali, and Pereira), the Arquidiócesis's Banco
+de Alimentos, the Gobernación del Tolima's own collection point, a mall
+(La Estación) extending its hours through the weekend, and two
+Presidencia-backed points (Casa Loma, Plazas del Bosque) tied to a
+primera dama visit. What's notably absent: no dedicated, verified
+albergue (shelter) for Ibagué's own displaced residents was found in
+this pass — the city's residential damage so far has been handled via
+evacuation-and-inspection rather than an organized public shelter.
+Flagged honestly as a gap, not papered over.
+
+### A donor caution: a shelter that probably isn't real
+Two of the four agents independently flagged a supposed collection point
+at an "Instituto Tecnológico Gustavo A. Madero," reproduced identically
+across several aggregator pages. It uses Mexican address conventions
+("colonia," "Avenida ... Poniente") foreign to Colombia, and doesn't
+appear anywhere on the Alcaldía de Ibagué's own verified channels — very
+likely a recycled misinformation template, possibly reused from an
+unrelated Mexican campaign. Not seeded as an aid point; flagged here so
+nobody sends donations there.
+
+### A logistics gap worth surfacing
+Multiple sources converge on a real bottleneck: citizen donations have
+piled up faster than the city can move them. El Irreverente Ibagué's
+on-the-ground reporting from the Parque Deportivo itself put it bluntly —
+plenty of goods collected, not enough vehicles to get them to the
+affected municipios.
+
+### New aid points (8)
+Parque Deportivo, Banco Arquidiocesano de Alimentos (goods + a named
+bank account), Gobernación del Tolima's own point, La Estación mall,
+Casa Loma, Plazas del Bosque, the volunteer fire brigade's support/
+volunteer call, and two unaddressed-but-official points in barrio
+Ambato.
+
+### New community embeds (3)
+The transport-logistics gap, the Palacio de Justicia structural-safety
+concern, and a real slice of local culture — the weekly "Jueves de
+Aguapanelazo" community gathering asking attendees to bring a donation
+alongside the usual hot drink and bread.
+
+## Pass 61
+
+Round 5 resumes: Quibdó — but only partially. Four of the five agents
+(X, Instagram, Facebook, TikTok) hit the same session-wide capacity
+limit that caught Ibagué's TikTok agent, and failed outright before
+producing any output. Only the crowdfunding agent completed, and — with
+WebSearch also exhausted — it fell back to a broad browser sweep that
+ended up covering more ground than its label suggests.
+
+### Hospital San Francisco de Asís: not better, arguably worse
+The one real development this pass: a second aftershock (M4.2, Aug 14)
+forced another partial evacuation — patients moved outside under
+donated tents, a corridor closed, ICU patients kept inside for
+life-support dependency. More significant than the evacuation itself:
+the Superintendencia de Salud has since formally intervened the
+hospital, naming hospital manager Ovidio Garrido as the official agente
+interventor, with the ER reported at 245-340% over capacity depending on
+source. The Gobernación del Chocó announced a $1,200 million COP
+investment for the ER — but Minsalud at the national level has publicly
+disputed how bad the Gobernación says things actually are, an intra-
+government disagreement about the severity itself. Net read: the
+hospital is still operating, still not stabilized, and now under formal
+intervention — a step further into crisis since pass 49, not a recovery.
+
+### Everything else: no material movement
+The surviving agent checked the Benavides fraud scandal (he's now
+publicly promised a "Veeduría Ciudadana" citizen oversight committee,
+still no actual accounting published, no procedural advance beyond the
+original Corte Suprema complaint), new scam reports (none Quibdó-
+specific beyond Benavides), subsidy disbursement (announced nationally,
+private aid trickling in, government subsidy cash still not confirmed
+flowing), the death toll (Chocó's search-and-rescue phase was formally
+declared concluded Aug 13; toll holds around 13 dead / ~131 injured,
+unchanged), and three already-seeded GoFundMe campaigns plus the Vaki
+solar-lighting campaign (all still open, funding totals checked, no new
+campaign cleared the trust bar — one candidate was rejected as visibly
+AI-generated boilerplate with a leftover chatgpt.com tracking parameter
+pasted into the story text).
+
+### New community embeds (1)
+The Hospital San Francisco de Asís intervention update.
+
+### Next steps (pass 61)
+Retry Quibdó's four failed angles (X, Instagram, Facebook, TikTok) once
+capacity resets — logged, not abandoned. Then continue round 5:
+Buenaventura, Popayán, Dosquebradas, San José del Palmar, and Pijao
+remain.
