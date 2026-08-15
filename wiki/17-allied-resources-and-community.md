@@ -4127,3 +4127,62 @@ Petronio Álvarez hub.
 ### Next steps (pass 56)
 Continue round 5: Manizales, Armenia, Quibdó, Buenaventura, Popayán,
 Dosquebradas, San José del Palmar, and Pijao remain.
+
+## Pass 57 — round 5 continues: Manizales, a Homecenter correction (2026-08-15)
+
+Same narrow round-5 brief as passes 55-56, applied to Manizales (four
+prior rounds: 16, 25, 34, 47), plus a specific carryover: chase the
+Homecenter donation-reselling controversy other cities' rounds this week
+found trending and had traced to Manizales.
+
+### The Homecenter story doesn't hold up as Manizales-specific
+All five agents dug into this. Verdict: genuinely contested, not
+confirmed. A Manizales news outlet did air its own on-camera
+clarification from a real local Homecenter employee — but tracing the
+original viral video's hashtags and reposts points instead toward
+Antioquia (San Pedro de los Milagros/Medellín), and one post attributes
+it to Pereira. Most likely explanation: a national, multi-city
+controversy that Manizales media happened to amplify hardest, not an
+incident specific to this city. Documented as an open contradiction
+rather than asserted either way — worth correcting the assumption from
+whichever earlier pass first routed this story here.
+
+### The real confirmed development: subsidy money is now flowing
+The "second phase" rental-subsidy program pass 47 flagged as announced-
+but-not-flowing has genuinely started disbursing. $300,000 COP/month for
+renters (the mayor is working to extend it from 1 to 3 months), 3 months
+for on-site property owners, paid out via Cruz Roja pickup after an SMS
+notice — plus a new price-gouging hotline threatening Fiscalía/Sijín
+referral.
+
+### Donations ran dry, a new drop-off point opened
+The Alcaldía announced general donations exhausted after distributing
+2,800 mercados, and reopened collection at Coliseo Menor (distinct from
+the Coliseo Mayor shelter) with a detailed itemized needs list — found
+independently by all five research agents, the strongest single-finding
+corroboration of this round-5 cycle so far.
+
+### Two "new" campaigns turned out to already be seeded
+The crowdfunding agent flagged two campaigns as new, but cross-checking
+against the wiki caught both: one (Sandra Milena Rendón Valencia's
+workshop rebuild) is very likely the identical campaign already seeded
+under Pereira in pass 45, and the other (Mariana Montes González's Vaki)
+was already seeded for this same city in pass 47. Neither was re-seeded.
+
+### New aid points (3)
+The Coliseo Menor collection point, a new official monetary fund
+(Fondo Solidario Comunitario, backed by the mayor, the Cámara de
+Comercio, and Cruz Roja), and a Vaki campaign found independently by
+three of the five agents.
+
+### New community embeds (6 of 7 attempted — one already on file)
+Once Caldas players volunteering at the new collection point, the
+rental-subsidy disbursement update, the contested Homecenter story, a
+negative shelter-conditions report, a personal-account caution (a food
+brigade soliciting to an individual's bank account), an individual family
+appeal, and a probable-scam pattern (one creator soliciting to four
+different personal numbers under four different names).
+
+### Next steps (pass 57)
+Continue round 5: Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas,
+San José del Palmar, and Pijao remain.
