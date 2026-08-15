@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
+import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { ContradictionCard } from "@/components/data/ContradictionCard";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -65,6 +66,12 @@ export default async function MetodologiaPage(props: PageProps<"/[locale]/metodo
           <EmptyState>{t("sinDiscrepancias")}</EmptyState>
         </div>
       )}
+
+      <p className="mt-10 border-t border-zinc-100 pt-6 text-sm dark:border-zinc-900">
+        <Link href="/cambios" className="text-blue-600 hover:underline dark:text-blue-400">
+          {t("cambiosLink")}
+        </Link>
+      </p>
     </PageShell>
   );
 }

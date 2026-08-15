@@ -67,6 +67,10 @@ ${open.length > 0 ? open.map(contradictionLines).join("\n\n") : "Sin discrepanci
 ## Discrepancias resueltas
 
 ${resolved.length > 0 ? resolved.map(contradictionLines).join("\n\n") : "Sin discrepancias resueltas todavía."}
+
+## Ver más
+
+Historial completo de actividad del sitio: ${SITE_URL}/md/cambios
 `;
 
   return new Response(markdown, {

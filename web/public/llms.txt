@@ -35,6 +35,7 @@ The core discipline: every figure carries its source, a source-quality tier (1 =
 - `/comunidad` — verified social-media posts (aid requests, official updates) by city
 - `/recursos` — links to other independent trackers, directories, and donation platforms built by other people for this event
 - `/datos` — open data export: full dataset as JSON, plus CSV for toll records and aid points
+- `/cambios` — public activity feed: every new figure, verified aid point, reviewed campaign, logged discrepancy, and added resource, most recent first
 
 English versions of every page exist at the same path prefixed with `/en` (e.g. `/en/mapa`, `/en/ciudad/76001`). Spanish is the default, unprefixed locale.
 
@@ -44,7 +45,7 @@ The full dataset is machine-readable at `/api/export` (JSON: event, toll records
 
 ## Markdown Mirrors
 
-Clean, AI-readable markdown versions of every content page are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS): `/md`, `/md/ayuda`, `/md/cifras`, `/md/ciudad/{divipola-code}`, `/md/comunidad`, `/md/donar`, `/md/donar/internacional`, `/md/fuentes`, `/md/informes`, `/md/mapa`, `/md/metodologia`, `/md/recursos`. Spanish-only (default locale), same as the underlying pages' default content. The two submission forms (`/sugerir`, `/comunidad/sugerir`) and their thank-you pages aren't mirrored — they're interactive flows, not content to quote.
+Clean, AI-readable markdown versions of every content page are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS): `/md`, `/md/ayuda`, `/md/cambios`, `/md/cifras`, `/md/ciudad/{divipola-code}`, `/md/comunidad`, `/md/donar`, `/md/donar/internacional`, `/md/fuentes`, `/md/informes`, `/md/mapa`, `/md/metodologia`, `/md/recursos`. Spanish-only (default locale), same as the underlying pages' default content. The two submission forms (`/sugerir`, `/comunidad/sugerir`) and their thank-you pages aren't mirrored — they're interactive flows, not content to quote.
 
 ## Key Facts
 

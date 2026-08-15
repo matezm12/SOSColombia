@@ -5,6 +5,7 @@
     "intro2": "When two reliable sources disagree on the same data point, we log it as a discrepancy instead of silently picking one. Some are resolved as more information comes in; others stay open until a definitive number exists.",
     "discrepanciasAbiertas": "Open discrepancies",
     "discrepanciasResueltas": "Resolved discrepancies",
-    "sinDiscrepancias": "No discrepancies recorded yet."
+    "sinDiscrepancias": "No discrepancies recorded yet.",
+    "cambiosLink": "See the full activity log →"
   }
 }
