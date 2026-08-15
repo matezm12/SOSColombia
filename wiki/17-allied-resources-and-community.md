@@ -2548,3 +2548,57 @@ The items above.
 ### Next steps (pass 34)
 Continue the third round: Armenia, Quibdó, Buenaventura, Popayán,
 Dosquebradas, and San José del Palmar remain.
+
+## Pass 35 — third round continues: Armenia (2026-08-15)
+
+### An important nuance to Fundación Covida's "funded and rebuilding" status
+Pass 26 upgraded Covida's status after a progress video showed demolition
+underway. This pass found the fuller picture: over 200 users — people with
+fibromyalgia, arthritis, and disabilities — still can't access hydrotherapy
+because a rear wall of the facility remains structurally compromised. The
+foundation, with a 38-year history and 14,000+ families served, is still
+actively asking for infrastructure-recovery support. Not a contradiction of
+the earlier finding, but a fuller picture worth keeping alongside it.
+
+### Two new institutional acopio points
+Casa Holística Ananda — a pre-existing wellness center, not a
+quake-created account — opened a collection point with a full address and
+multiple verifiable payment channels (Nequi, Western Union with a named
+ID), corroborated independently by an organic post from a student
+describing her teacher's house being opened for the same purpose.
+Separately, an established local ambulance company (Ambulancias Paramedic
+911) opened a donation point at Florida Mall, corroborated by a staff
+member's cross-post.
+
+### Other updates
+A new missing-persons appeal (Cristian Camilo Arango Marín, with a direct
+contact number). The Gobernación del Quindío delivered 500kg of pet food
+to six animal-welfare foundations — a direct, encouraging follow-up to the
+Fundación Oki Doki crisis documented in pass 26. Engineering teams continue
+touring damaged schools to determine what can safely reopen. A new
+reconstruction-phase friction point surfaced: a pre-existing housing
+project (announced before the quake) is now also being pitched as housing
+for displaced families, creating uncertainty for both groups as the
+official census proceeds. El Colombiano reported fresh building-damage
+detail: Condominio El Rincón fully evacuated after a 5th-floor water tank
+collapse, the Universidad del Quindío's Bloque de Ciencias Básicas closed,
+and the Hotel Armenia Estelar damaged.
+
+### Status checks, no change
+Coliseo del Sur remains open. Fundación Oki Doki's corrected payment key
+shows no further issues in the comments. No new scam or updated
+Armenia-specific casualty figures were found this pass.
+
+### New aid points (3)
+Casa Holística Ananda, the Ambulancias Paramedic 911 collection point, and
+a diaspora GoFundMe (Jacobo Echeverria, funding debris-removal tools for a
+US-Colombia volunteer network) — the last flagged with a dating caveat
+since the organizer's own post is timestamped roughly three days prior,
+so it may predate this pass's window rather than being brand-new.
+
+### New community embeds (7)
+The items above.
+
+### Next steps (pass 35)
+Continue the third round: Quibdó, Buenaventura, Popayán, Dosquebradas, and
+San José del Palmar remain.
