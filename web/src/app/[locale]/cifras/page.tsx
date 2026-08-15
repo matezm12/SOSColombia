@@ -10,7 +10,9 @@ import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
 import { METRIC_LABEL } from "@/lib/labels";
 import { formatNumber, formatDate } from "@/lib/format";
 
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: toll records arrive
+// via cron/moderation, not per-second.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -22,7 +24,9 @@ export async function generateMetadata({
   return { title: t("title"), description: t("lede") };
 }
 
-export default async function CifrasPage() {
+export default async function CifrasPage(props: PageProps<"/[locale]/cifras">) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("cifras");
   const [national, byDepartment] = await Promise.all([
     nationalTollRecords(),

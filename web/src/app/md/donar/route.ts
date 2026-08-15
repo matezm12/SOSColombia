@@ -14,9 +14,8 @@ import { formatCurrency, formatNumber, formatDate } from "@/lib/format";
 // this is the page an LLM answering "how do I donate to Colombia earthquake
 // relief" would want to quote, so it must carry the same warnings verbatim.
 //
-// Verification status / raised amounts change frequently — never cache as
-// static build-time output.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic — see donar/page.tsx.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

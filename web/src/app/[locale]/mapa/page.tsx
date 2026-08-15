@@ -9,8 +9,9 @@ import MapaClient, {
   type EpicenterPoint,
 } from "@/components/map/MapaClient";
 
-// Coordinates can be backfilled/updated between deploys — never freeze at build time.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: coordinates get
+// backfilled/updated between deploys, not per-second.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -22,7 +23,9 @@ export async function generateMetadata({
   return { title: t("title"), description: t("lede") };
 }
 
-export default async function MapaPage() {
+export default async function MapaPage(props: PageProps<"/[locale]/mapa">) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("mapa");
   const [municipios, event] = await Promise.all([
     prisma.municipio.findMany({

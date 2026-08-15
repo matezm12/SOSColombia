@@ -8,10 +8,9 @@ import { formatNumber } from "@/lib/format";
 // mirrors only the default (unprefixed) locale's content. Queries the exact
 // same models/fields the real page renders; no invented data.
 //
-// Data changes constantly (new toll records) — never let this get cached as
-// static output at build time. Route Handlers opt out of the static cache
-// the same way page.tsx does.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic — see [locale]/page.tsx.
+// Route Handlers support the same revalidate export as page.tsx.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

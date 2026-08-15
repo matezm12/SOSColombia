@@ -8,9 +8,8 @@ import { formatCurrency, formatNumber, formatDate } from "@/lib/format";
 // filtered to international:true campaigns, same verification-status split
 // and warning content.
 //
-// Verification status / raised amounts change frequently — never cache as
-// static build-time output.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic — see donar/page.tsx.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

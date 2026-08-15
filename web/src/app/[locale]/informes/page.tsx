@@ -5,7 +5,9 @@ import { PageShell } from "@/components/layout/PageShell";
 import { GovReportCard } from "@/components/data/GovReportCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: reports land
+// occasionally, not per-second.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -17,7 +19,9 @@ export async function generateMetadata({
   return { title: t("title"), description: t("lede") };
 }
 
-export default async function InformesPage() {
+export default async function InformesPage(props: PageProps<"/[locale]/informes">) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("informes");
   const reports = await prisma.govReport.findMany({ orderBy: { date: "desc" } });
 

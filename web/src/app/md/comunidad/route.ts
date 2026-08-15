@@ -9,8 +9,9 @@ import { formatDate } from "@/lib/format";
 // crawler/LLM should follow for the actual content. Same query/take(60)/order
 // as the real page.
 //
-// New posts land constantly -- never freeze at build time.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: posts land
+// occasionally, not per-second.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

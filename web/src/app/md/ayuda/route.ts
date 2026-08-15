@@ -7,8 +7,9 @@ import { formatDate } from "@/lib/format";
 // the mirror always shows everything so a crawler gets the full directory in
 // one request).
 //
-// Aid-point status/needs change constantly — never freeze at build time.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: aid-point status
+// changes occasionally, not per-second.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

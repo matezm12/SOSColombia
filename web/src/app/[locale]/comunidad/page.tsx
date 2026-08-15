@@ -7,7 +7,9 @@ import { Card } from "@/components/ui/Card";
 import { CommunityFeed } from "@/components/data/CommunityFeed";
 import { EmptyState } from "@/components/ui/EmptyState";
 
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: community posts land
+// occasionally, not per-second.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -19,7 +21,9 @@ export async function generateMetadata({
   return { title: t("title"), description: t("lede") };
 }
 
-export default async function ComunidadPage() {
+export default async function ComunidadPage(props: PageProps<"/[locale]/comunidad">) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("comunidad");
   const posts = await prisma.socialPost.findMany({
     include: { municipio: { select: { name: true, divipolaCode: true } } },

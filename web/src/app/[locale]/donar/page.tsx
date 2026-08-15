@@ -9,7 +9,10 @@ import { AidPointCard } from "@/components/data/AidPointCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: donation status/raised
+// amounts don't change second-to-second, and this keeps a traffic spike from
+// hitting the database on every request.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -21,7 +24,12 @@ export async function generateMetadata({
   return { title: t("title"), description: t("lede") };
 }
 
-export default async function DonarPage() {
+export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
+  // Awaiting params before getTranslations (even though the value isn't used
+  // directly) is what lets this route qualify for static rendering + ISR --
+  // without it, next-intl resolves the locale through a path Next treats as
+  // a Dynamic API, forcing the whole route to server-render on every request.
+  await props.params;
   const t = await getTranslations("donar");
   const [campaigns, monetaryPoints] = await Promise.all([
     prisma.crowdfundingCampaign.findMany({

@@ -6,8 +6,9 @@ import { formatDate } from "@/lib/format";
 // Same query (all GovReports, most recent first) and same fields as
 // GovReportCard: org, docType, date, tier, summary, keyFigures, url.
 //
-// New reports land continuously — never cache as static build-time output.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: reports land
+// occasionally, not per-second.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

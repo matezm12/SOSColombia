@@ -6,9 +6,9 @@ import { formatDate } from "@/lib/format";
 // Same query (all Sources with derived-record counts), same ordering
 // (tier asc, org asc), same columns as the real table.
 //
-// Source status/tier can change between deploys — never cache as static
-// build-time output.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: source status/tier
+// changes occasionally, not per-second.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

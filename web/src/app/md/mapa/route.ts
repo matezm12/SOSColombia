@@ -8,9 +8,9 @@ import { formatNumber } from "@/lib/format";
 // severity, population, death toll, aid-point count per city, plus the two
 // epicenter readings (SGC/USGS differ slightly, both real pages show both).
 //
-// Coordinates can be backfilled between deploys — never cache as static
-// build-time output.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: coordinates get
+// backfilled between deploys, not per-second.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

@@ -4,8 +4,9 @@ import { ALLIED_CATEGORY_LABEL } from "@/lib/labels";
 // Markdown mirror of the allied-resources directory (src/app/[locale]/recursos/page.tsx).
 // Same filter (status != DEAD), same category grouping/order, as the real page.
 //
-// Resources get added/checked over time -- never freeze at build time.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: resources get added/
+// checked over time, not per-second.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

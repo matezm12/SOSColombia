@@ -7,8 +7,9 @@ import { formatNumber, formatDate } from "@/lib/format";
 // append-only-history framing: every previously published value stays on
 // the record, nothing gets silently overwritten.
 //
-// Toll records arrive continuously — never cache as static build-time output.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: toll records arrive
+// via cron/moderation, not per-second.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

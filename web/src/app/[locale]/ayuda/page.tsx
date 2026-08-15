@@ -7,7 +7,12 @@ import { AidPointCard } from "@/components/data/AidPointCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { AID_KIND_LABEL } from "@/lib/labels";
 
-export const dynamic = "force-dynamic";
+// Deliberately NOT converted to ISR like its sibling pages: the `?tipo=`
+// filter reads searchParams, which forces real per-request dynamic rendering
+// regardless of any `revalidate` export -- Next can't statically cache a
+// route whose output depends on the query string. The unfiltered /md/ayuda
+// mirror (bot/LLM traffic) is still ISR-cached; this only affects human
+// visitors picking a filter tab.
 
 export async function generateMetadata({
   params,

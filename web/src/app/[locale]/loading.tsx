@@ -1,7 +1,9 @@
 // Shown automatically by Next.js while any [locale] page's async data fetch
-// is in flight — every page here is `force-dynamic` with no Suspense
-// boundary of its own, so without this the tab was just blank/frozen during
-// the request. One generic skeleton rather than a bespoke one per route:
+// is in flight — pages here use a short ISR revalidation window (see each
+// page's own `revalidate` export) rather than full static generation, and
+// none has a Suspense boundary of its own, so without this the tab was just
+// blank/frozen during a cache-miss request. One generic skeleton rather than
+// a bespoke one per route:
 // most pages share the same PageShell(title+lede) -> card-grid shape, and a
 // close-enough placeholder beats the maintenance cost of five near-identical
 // ones.

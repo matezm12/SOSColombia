@@ -5,7 +5,8 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
 import { InternationalCampaignFilters } from "@/components/data/InternationalCampaignFilters";
 
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic — see donar/page.tsx.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -17,7 +18,11 @@ export async function generateMetadata({
   return { title: t("title"), description: t("lede") };
 }
 
-export default async function DonarInternacionalPage() {
+export default async function DonarInternacionalPage(
+  props: PageProps<"/[locale]/donar/internacional">
+) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("donarInternacional");
   const campaigns = await prisma.crowdfundingCampaign.findMany({
     where: { international: true },

@@ -4,8 +4,9 @@ import { prisma } from "@/lib/prisma";
 import { submitAidPoint } from "./actions";
 import { PageShell } from "@/components/layout/PageShell";
 
-// The municipio list should reflect the current database, not a build-time snapshot.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: the municipio list
+// changes rarely, and this avoids a DB round trip on every request.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -17,7 +18,9 @@ export async function generateMetadata({
   return { title: t("title"), description: t("lede") };
 }
 
-export default async function SugerirPage() {
+export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("sugerir");
   const municipios = await prisma.municipio.findMany({
     orderBy: { name: "asc" },

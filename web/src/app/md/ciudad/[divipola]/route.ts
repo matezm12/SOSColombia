@@ -15,8 +15,15 @@ import { formatCurrency, formatDate, formatNumber } from "@/lib/format";
 // toll record per metric (full history stays in the DB, never overwritten),
 // aid points grouped by kind, and any city-focused crowdfunding campaigns.
 //
-// Toll figures and aid points update constantly — never freeze at build time.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic — see ciudad/page.tsx.
+export const revalidate = 60;
+
+// See ciudad/page.tsx for why this is needed for the dynamic segment to be
+// prerendered/ISR-cached instead of falling back to fully dynamic.
+export async function generateStaticParams() {
+  const municipios = await prisma.municipio.findMany({ select: { divipolaCode: true } });
+  return municipios.map((m) => ({ divipola: m.divipolaCode }));
+}
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

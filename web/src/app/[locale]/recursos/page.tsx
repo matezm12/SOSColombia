@@ -6,7 +6,9 @@ import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ALLIED_CATEGORY_LABEL } from "@/lib/labels";
 
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: resources get added/
+// checked over time, not per-second.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -27,7 +29,9 @@ const CATEGORY_ORDER = [
   "OTHER",
 ] as const;
 
-export default async function RecursosPage() {
+export default async function RecursosPage(props: PageProps<"/[locale]/recursos">) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("recursos");
   const resources = await prisma.alliedResource.findMany({
     where: { status: { not: "DEAD" } },

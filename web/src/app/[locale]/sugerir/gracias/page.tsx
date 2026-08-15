@@ -7,7 +7,9 @@ import { PageShell } from "@/components/layout/PageShell";
 // something worth surfacing in search results.
 export const metadata: Metadata = { robots: { index: false, follow: true } };
 
-export default async function GraciasPage() {
+export default async function GraciasPage(props: PageProps<"/[locale]/sugerir/gracias">) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("sugerirGracias");
 
   return (

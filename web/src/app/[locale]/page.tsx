@@ -8,9 +8,11 @@ import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
 import { bestDeathMetric } from "@/lib/queries";
 import { routing } from "@/i18n/routing";
 
-// This data changes constantly (new toll records, new aid points) — never let
-// Next.js freeze it as static HTML at build time.
-export const dynamic = "force-dynamic";
+// Data updates via cron (at most daily) plus occasional manual moderation,
+// not per-second — a short revalidation window keeps this fresh without a
+// DB round trip on every single request, which matters most exactly when
+// it's least convenient: a traffic spike.
+export const revalidate = 60;
 
 // Same custom domain as the root layout's SITE_URL — kept local instead of
 // exported/shared because JSON-LD is the only thing on this page that needs
@@ -40,11 +42,12 @@ export default async function Home(props: PageProps<"/[locale]">) {
 
   // City-specific projects first (the point of this section — small, local
   // efforts like Ayudas Pereira/Cali Ayuda), then broader national ones, capped
-  // at 6 (two full rows of the 3-col desktop grid) so the strip stays a
-  // highlight, not a second /recursos.
+  // at 8 (two full rows of the 4-col desktop grid — 1-col mobile stays a
+  // scroll either way, so the cap only matters on wider screens) so the strip
+  // stays a highlight, not a second /recursos.
   const homepageResources = [...featuredResources]
     .sort((a, b) => Number(b.municipioId != null) - Number(a.municipioId != null))
-    .slice(0, 6);
+    .slice(0, 8);
 
   const canonicalUrl = `${SITE_URL}${locale === routing.defaultLocale ? "" : `/${locale}`}`;
 
@@ -174,7 +177,7 @@ export default async function Home(props: PageProps<"/[locale]">) {
             <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
               {t("proyectosDestacadosLede")}
             </p>
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {homepageResources.map((r) => (
                 <AlliedResourceCard key={r.id} resource={r} />
               ))}

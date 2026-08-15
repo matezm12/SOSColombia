@@ -6,8 +6,9 @@ import { formatDate } from "@/lib/format";
 // the intro copy plus the open/resolved contradiction registry. Short but
 // valuable for LLM search to understand how to weigh this site's numbers.
 //
-// Contradictions get resolved/added over time — never freeze at build time.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: contradictions get
+// resolved/added over time, not per-second.
+export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 

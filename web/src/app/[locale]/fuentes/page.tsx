@@ -7,7 +7,9 @@ import { ExternalLink } from "@/components/ui/ExternalLink";
 import { TIER_LABEL, SOURCE_STATUS_LABEL } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: source status/tier
+// changes occasionally, not per-second.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -19,7 +21,9 @@ export async function generateMetadata({
   return { title: t("title"), description: t("lede") };
 }
 
-export default async function FuentesPage() {
+export default async function FuentesPage(props: PageProps<"/[locale]/fuentes">) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("fuentes");
   const sources = await prisma.source.findMany({
     include: { _count: { select: { tollRecords: true, aidPoints: true } } },

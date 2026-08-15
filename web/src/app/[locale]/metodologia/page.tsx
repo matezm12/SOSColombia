@@ -6,8 +6,9 @@ import { ContradictionCard } from "@/components/data/ContradictionCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-// Contradictions get resolved/added over time — never freeze at build time.
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: contradictions get
+// resolved/added over time, not per-second.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -19,7 +20,9 @@ export async function generateMetadata({
   return { title: t("title"), description: t("intro1") };
 }
 
-export default async function MetodologiaPage() {
+export default async function MetodologiaPage(props: PageProps<"/[locale]/metodologia">) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("metodologia");
   const contradictions = await prisma.contradiction.findMany({
     orderBy: [{ status: "asc" }, { loggedAt: "desc" }],

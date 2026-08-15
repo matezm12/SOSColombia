@@ -4,7 +4,9 @@ import { prisma } from "@/lib/prisma";
 import { submitCommunityPost } from "./actions";
 import { PageShell } from "@/components/layout/PageShell";
 
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: this page is mostly
+// a static form, no need for a DB round trip on every request.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -23,7 +25,11 @@ const PLATFORM_OPTIONS = [
   { value: "TIKTOK", label: "TikTok" },
 ];
 
-export default async function SugerirComunidadPage() {
+export default async function SugerirComunidadPage(
+  props: PageProps<"/[locale]/comunidad/sugerir">
+) {
+  // See donar/page.tsx for why this await matters for static rendering.
+  await props.params;
   const t = await getTranslations("comunidadSugerir");
   const municipios = await prisma.municipio.findMany({ orderBy: { name: "asc" } });
 

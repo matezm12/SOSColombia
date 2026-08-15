@@ -14,11 +14,20 @@ import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
 import { AID_KIND_LABEL } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
 
-// Toll figures and aid points update constantly — never freeze at build time.
-// (Already rendered dynamically by default due to the [divipola] segment with no
-// generateStaticParams, but stated explicitly rather than relying on that implicit
-// behavior.)
-export const dynamic = "force-dynamic";
+// Short revalidation window instead of force-dynamic: figures update via
+// cron/moderation, not per-second, so a 60s cache keeps things fresh without
+// a DB round trip on every request.
+export const revalidate = 60;
+
+// Without this, the [divipola] segment has no known values at build time and
+// the route falls back to fully dynamic regardless of `revalidate` above —
+// pre-rendering the currently-tracked cities is what makes ISR apply here.
+// New municipios added later still work: Next renders and caches them on
+// first request (generateStaticParams doesn't need to be exhaustive).
+export async function generateStaticParams() {
+  const municipios = await prisma.municipio.findMany({ select: { divipolaCode: true } });
+  return municipios.map((m) => ({ divipola: m.divipolaCode }));
+}
 
 export async function generateMetadata({
   params,
