@@ -2670,3 +2670,109 @@ The items above.
 ### Next steps (pass 36)
 Continue the third round: Buenaventura, Popayán, Dosquebradas, and San
 José del Palmar remain.
+
+## Pass 37 — Pijao, Quindío added as a tenth tracked city (2026-08-15)
+
+Per an explicit user request: Pijao (a small municipality of ~5,400 people
+in southern Quindío, part of the UNESCO Paisaje Cultural Cafetero) is
+fighting an out-of-control wildfire in its rural veredas on top of
+earthquake damage. Added as a `CRITICA`/red-alert municipio (divipola
+63548), with a new `Municipio.alertNote` field so the homepage and city
+page explicitly state the compound-disaster reason rather than relying on
+the generic severity badge alone. Deliberately worded to avoid overclaiming
+causation — no source found anywhere confirms the fire was earthquake-
+triggered; every source treats it as a concurrent, compounding emergency
+(dry season, wind, and steep terrain are the cited factors), not a
+documented consequence of the quake.
+
+### The fire, in detail
+It broke out around 7:00–10:00pm on August 11 (the day after the M7.4
+quake) in vereda La Maicena and sector Cueva Loca, at the Pijao–Génova
+boundary — reportedly starting in an avocado plantation. By the end of
+that first night, Pijao's own volunteer fire department counted **eight
+separate wildfire foci** across the municipality's rural veredas (La
+Maicena, Cueva Loca, El Cinabrio, Maicena Alta, Cañaveral, Sinabrio, El
+Jardín); the Alcaldía's own same-day communiqué instead describes "tres
+incendios" (three active fronts) — both figures are logged rather than
+resolved to one, since they likely reflect different counting methods
+(ignition points vs. active fronts). As of the most detailed ground report
+(Crónica del Quindío, Aug 14), the fire was still not fully contained
+after three-plus days, had spread into neighboring Génova, and — critically
+— **no fire truck can reach the terrain**: responders and residents are
+using garden hoses and hand-hauled water tanks. Génova's mayor gave a
+rough, explicitly-unverified estimate of ~200 hectares burned on the
+Pijao side and ~30 on the Génova side. One unoccupied house was lost;
+Canal Trece separately confirmed Pijao's local response capacity was
+"overwhelmed" because the same limited resources were simultaneously
+handling earthquake injury/rubble response. Mutual aid arrived from fire
+departments in Barcelona, La Tebaida, Buenavista, Córdoba, Génova, Armenia
+and Caicedonia (Valle del Cauca), plus the Colombian Army's 5th Mountain
+Battalion. Local authorities formally requested UNGRD/military aerial
+firefighting support (Bambi Bucket helicopters) and mutual-aid tanker
+trucks from Armenia/Calarcá — no source confirms that aerial support was
+ever actually delivered to Pijao specifically (confirmed Bambi Bucket
+deployments found were all for Antioquia).
+
+### A previously-undocumented earthquake figure
+National and departmental coverage consistently names Quimbaya as
+Quindío's worst-hit municipality and never breaks out Pijao specifically
+— the Gobernación's own "17,000+ edificaciones afectadas" departmental
+tally doesn't mention Pijao by name. This research pass found Pijao's own
+number: the mayor's Aug 11 preliminary balance puts **73 predios affected
+(48 urban, 25 rural), 7 of them totally collapsed and declared
+uninhabitable**, plus severe damage to the municipal church. The town's
+water utility (EPQ) was confirmed unaffected. Sourced via a crowdsourced
+tracker citing the Alcaldía's own balance (tier 3, not yet nationally
+EDAN-validated) — logged as a new `TollRecord` (pass 37b), the first ever
+for this municipio.
+
+### The animal-welfare angle, confirmed
+The Gobernación del Quindío's PYBA (Protección y Bienestar Animal) unit,
+working with Universidad Alexander von Humboldt's veterinary program and
+Policía Nacional, treated ~30-35 dogs and cats in vereda La Maicena and
+relocated 6 puppies plus a pregnant female dog to a foster home. FEDEGÁN
+(the national ranchers' federation) separately flagged rural/livestock
+concern and put a field representative on the ground, though no specific
+livestock-casualty figures were found — the confirmed animal response so
+far covers companion/farm pets, not cattle.
+
+### A caution worth keeping
+An unverified Bre-B donation key ("@GLP760") is circulating attached to
+one of the donation drives below, claimed to be from the Alcaldía but not
+independently confirmed on the Alcaldía's own channel. Given active
+national police warnings about fake post-earthquake donation campaigns,
+this is flagged rather than trusted — verify any Pijao donation channel
+directly with the Alcaldía before sending money.
+
+### New aid points (7)
+Pijao's own volunteer fire department (requesting volunteers and
+equipment); the Gobernación's PYBA veterinary brigade; Fundación Kenovy
+Colombia's water-collection drive (Armenia-based, supporting Pijao and
+Génova); the "Pijao Nos Necesita" donation drive (Media Maratón Quindío,
+cross-tagged by the Alcaldía and Gobernación); ICBF's Bienestarina and
+psychosocial-support delivery to Vereda La Mariela; the Alcaldía's own
+emergency-line directory; and the one crowdfunding campaign found that
+names Pijao (a diaspora GoFundMe covering four Quindío towns, ~49%
+funded).
+
+### New community embeds (9)
+The items above — mutual-aid fire response, the doble emergencia framing,
+the ground-level "no truck access" reality, military support, the
+livestock/rural angle, cross-municipal corroboration from Génova's own
+fire department, the fire's origin story, the original SOS appeal from
+the fire captain, and the donation-scam caution.
+
+### Checked, deliberately not seeded
+No missing-persons report specific to Pijao was found (a genuine gap, not
+a search failure). No scam warning specifically names a fake Pijao
+campaign — only generic national warnings exist, which is why the
+@GLP760 key is flagged as a caution rather than confirmed fraud. No
+livestock/cattle casualty figures were found despite targeted searching.
+A "Pijao Informa" page that looked promising turned out to be a generic
+clickbait template reused across dozens of unrelated cities worldwide.
+
+### Next steps
+Pijao now sits alongside the other nine tracked cities for future
+follow-up rounds. Given how fast this situation is still moving (the fire
+was uncontained as of the most recent report), a follow-up pass sooner
+than the ~24h cadence used for the other cities may be warranted.
