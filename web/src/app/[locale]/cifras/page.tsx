@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { nationalTollRecords, departmentTollRecords, latestByMetric } from "@/lib/queries";
@@ -10,6 +11,16 @@ import { METRIC_LABEL } from "@/lib/labels";
 import { formatNumber, formatDate } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "cifras" });
+  return { title: t("title"), description: t("lede") };
+}
 
 export default async function CifrasPage() {
   const t = await getTranslations("cifras");

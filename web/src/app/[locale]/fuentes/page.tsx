@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
@@ -7,6 +8,16 @@ import { TIER_LABEL, SOURCE_STATUS_LABEL } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "fuentes" });
+  return { title: t("title"), description: t("lede") };
+}
 
 export default async function FuentesPage() {
   const t = await getTranslations("fuentes");

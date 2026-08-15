@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
@@ -10,6 +11,16 @@ import MapaClient, {
 
 // Coordinates can be backfilled/updated between deploys — never freeze at build time.
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "mapa" });
+  return { title: t("title"), description: t("lede") };
+}
 
 export default async function MapaPage() {
   const t = await getTranslations("mapa");

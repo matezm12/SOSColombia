@@ -1,6 +1,8 @@
 {
   "ciudad": {
     "volver": "Todas las ciudades",
+    "metaTitle": "Terremoto en {city}",
+    "metaDescription": "Cifras verificadas, puntos de ayuda y cómo donar en {city}, {department}.",
     "subtitulo": "{department} · DIVIPOLA {code}",
     "subtituloPoblacion": " · {population} habitantes (DANE)",
     "cifras": "Cifras",

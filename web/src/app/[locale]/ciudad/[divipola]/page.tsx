@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
@@ -18,6 +19,28 @@ import { formatNumber } from "@/lib/format";
 // generateStaticParams, but stated explicitly rather than relying on that implicit
 // behavior.)
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; divipola: string }>;
+}): Promise<Metadata> {
+  const { locale, divipola } = await params;
+  const municipio = await prisma.municipio.findUnique({
+    where: { divipolaCode: divipola },
+    include: { department: true },
+  });
+  if (!municipio) return {};
+
+  const t = await getTranslations({ locale, namespace: "ciudad" });
+  return {
+    title: t("metaTitle", { city: municipio.name }),
+    description: t("metaDescription", {
+      city: municipio.name,
+      department: municipio.department.name,
+    }),
+  };
+}
 
 export default async function CiudadPage(
   props: PageProps<"/[locale]/ciudad/[divipola]">

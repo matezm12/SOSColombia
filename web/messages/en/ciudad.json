@@ -1,6 +1,8 @@
 {
   "ciudad": {
     "volver": "All cities",
+    "metaTitle": "{city} Earthquake",
+    "metaDescription": "Verified numbers, aid points, and how to donate in {city}, {department}.",
     "subtitulo": "{department} · DIVIPOLA {code}",
     "subtituloPoblacion": " · {population} inhabitants (DANE)",
     "cifras": "Numbers",

@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
+
+// Thank-you confirmation page — thin/duplicate content by nature, not
+// something worth surfacing in search results.
+export const metadata: Metadata = { robots: { index: false, follow: true } };
 
 export default async function GraciasPage() {
   const t = await getTranslations("comunidadSugerirGracias");

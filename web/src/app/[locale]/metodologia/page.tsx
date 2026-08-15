@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
@@ -7,6 +8,16 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 // Contradictions get resolved/added over time — never freeze at build time.
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metodologia" });
+  return { title: t("title"), description: t("intro1") };
+}
 
 export default async function MetodologiaPage() {
   const t = await getTranslations("metodologia");

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { submitAidPoint } from "./actions";
@@ -5,6 +6,16 @@ import { PageShell } from "@/components/layout/PageShell";
 
 // The municipio list should reflect the current database, not a build-time snapshot.
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "sugerir" });
+  return { title: t("title"), description: t("lede") };
+}
 
 export default async function SugerirPage() {
   const t = await getTranslations("sugerir");

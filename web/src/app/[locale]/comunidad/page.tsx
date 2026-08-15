@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
@@ -7,6 +8,16 @@ import { CommunityFeed } from "@/components/data/CommunityFeed";
 import { EmptyState } from "@/components/ui/EmptyState";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "comunidad" });
+  return { title: t("title"), description: t("lede") };
+}
 
 export default async function ComunidadPage() {
   const t = await getTranslations("comunidad");

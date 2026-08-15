@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
@@ -7,6 +8,16 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { AID_KIND_LABEL } from "@/lib/labels";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "ayuda" });
+  return { title: t("title"), description: t("lede") };
+}
 
 const KINDS = ["ALBERGUE", "ACOPIO", "HEALTH", "VET", "BLOOD_DONATION", "MONETARY_DONATION"] as const;
 

@@ -1,9 +1,20 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { submitCommunityPost } from "./actions";
 import { PageShell } from "@/components/layout/PageShell";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "comunidadSugerir" });
+  return { title: t("title"), description: t("lede") };
+}
 
 const PLATFORM_OPTIONS = [
   { value: "INSTAGRAM", label: "Instagram" },
