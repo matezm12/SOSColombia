@@ -10,7 +10,7 @@ The core discipline: every figure carries its source, a source-quality tier (1 =
 
 ## What This Site Tracks
 
-- **Cities/municipios**: 7 tracked in depth — Pereira, Cali, Manizales, Armenia, Quibdó, San José del Palmar, and Popayán, across 7 departments (Risaralda, Valle del Cauca, Caldas, Quindío, Chocó, Cauca). A national UNGRD situation report cites a broader 14 departments / 403 municipios affected overall.
+- **Cities/municipios**: 11 tracked in depth — Pereira, Dosquebradas (Risaralda); Cali, Buenaventura (Valle del Cauca); Manizales (Caldas); Armenia, Pijao (Quindío); Quibdó, San José del Palmar (Chocó); Popayán (Cauca); Ibagué (Tolima) — 7 departments. A national UNGRD situation report cites a broader 14 departments / 403 municipios affected overall.
 - **Death toll**: tracked as multiple parallel metrics from different institutions, never merged into a single number — officially reported deaths (UNGRD, OCHA) and forensically confirmed deaths (INMLCF/Medicina Legal, bodies received vs. bodies identified), plus injured, missing (official vs. crowdsourced), and people/families affected ("damnificados").
 - **Structural damage**: homes destroyed/damaged, collapsed buildings, affected schools/health centers/community centers.
 - **Aid points**: shelters (albergues), collection points (acopios), health points, veterinary/animal-welfare points, blood donation points, and monetary donation points — each with a status (active/full/closed/unconfirmed) and a source.
