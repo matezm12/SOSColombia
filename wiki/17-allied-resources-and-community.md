@@ -3150,3 +3150,58 @@ The items above.
 
 ### Next steps (pass 42)
 San José del Palmar remains — the final city in the third round.
+
+## Pass 43 — third round closes: San José del Palmar (2026-08-15)
+
+The smallest, most remote, and most recently double-covered city in this
+project — genuinely thin results were the expected and honest outcome,
+and that's what this pass found, plus one real new grassroots effort.
+
+### A new supply drive for a rural corregimiento
+A Bogotá-based cultural/community network is organizing a truck shipment
+of basic supplies specifically for the Consejo Comunitario Afrodescendiente
+de San Pedro de Ingará, a rural corregimiento of San José del Palmar —
+distinct from the Proceso de Comunidades Negras collection point already
+on file, and pointed directly at the rural-verification gap the last two
+passes left open.
+
+### Quantified progress, still-unresolved rural isolation
+A local outlet reported over 50 tonnes of humanitarian aid have now
+reached the town — the first concrete tonnage figure, though from a
+single source not independently corroborated this pass. UNICEF España put
+a number on the isolation problem: 45+ landslides still blocking roads,
+leaving thousands of rural families cut off. Two unverified citizen posts
+described the Nóvita–San José del Palmar corridor specifically — 22
+isolated hamlets, a river damming dangerously in vereda Surumita — adding
+real-sounding detail with no institutional source to confirm it.
+
+### Status checks
+The town's one known crowdfunding campaign (Valentina Jurado's Vaki)
+remains active and still drawing donations, now at $46,480 from 1,828
+donors. No progress was found on the access road beyond its one-lane
+status, no conclusion to rural-zone casualty verification, no update to
+the ASOPERCHO donation-key caution, and no new missing-persons or scam
+reports — all checked directly and confirmed unchanged rather than simply
+unsearched.
+
+### New aid points (1)
+The San Pedro de Ingará supply drive.
+
+### New community embeds (3)
+The items above.
+
+### This closes the third follow-up round across all ten tracked cities
+Pereira, Cali, Manizales, Armenia, Quibdó, Buenaventura, Popayán,
+Dosquebradas, and San José del Palmar have each now had three research
+passes (an original deep pass, a follow-up round, and this tightly-scoped
+third round), plus Pijao — the city added mid-project for its compounding
+earthquake-and-wildfire crisis — which received three deep passes of its
+own given how fast that situation was moving. 43 research passes total.
+The throughline across this third round: several open contradictions from
+earlier passes got resolved rather than just re-confirmed (Cali's death
+toll converged, Quibdó's congressman story escalated to a formal
+complaint, Buenaventura's hospital ship deployed, Pijao's fire-support
+question resolved toward "probably not delivered" after exposing recycled
+boilerplate as the strongest false-positive evidence) — a sign that
+tight, repeated, skeptical passes are catching real signal, not just
+noise.
