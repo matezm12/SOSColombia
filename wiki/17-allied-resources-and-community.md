@@ -3205,3 +3205,99 @@ question resolved toward "probably not delivered" after exposing recycled
 boilerplate as the strongest false-positive evidence) — a sign that
 tight, repeated, skeptical passes are catching real signal, not just
 noise.
+
+## Pass 44 — Pijao, a fourth pass: who *outside* Pijao is amplifying it (2026-08-15)
+
+A deliberately different angle from passes 37-39, which verified Pijao's own
+local situation. This pass asked: who *elsewhere* in Colombia — other cities,
+pages, communities, national media — has noticed Pijao's compounding
+earthquake-and-wildfire crisis and is actively redirecting attention or
+donations toward it, the way a Bogotá cultural network did for San José del
+Palmar in pass 43. Five parallel agents (X, Instagram, Facebook, TikTok+
+YouTube, and a general web sweep), all instructed to record an honest
+`originCity` for every candidate rather than assume a Pijao-sounding post is
+externally organized.
+
+### Real cross-city amplification, confirmed
+- **Cumbres Blancas Colombia** — a 63K-follower Bogotá-headquartered
+  mountain-ecosystem NGO running an active donation drive (Bancolombia
+  account + landing page) for wildfire brigades, whose Aug 14 appeal
+  explicitly lists "Pijao, Génova" among the fire zones alongside Nariño and
+  Antioquia. Two of five agents corroborated this independently.
+- **co.inspires.lab** — actually an Armenia, Quindío account by its own bio
+  (not Bogotá, despite one agent's mistaken inference) — but its firefighter/
+  volunteer supply appeal for "Pijao y Génova" (with a live Nequi number) is
+  the clearest confirmed instance of the exact pattern asked for: it was
+  reposted verbatim, within 24-48 hours, by accounts based in Antioquia
+  (@antioquiaenvivo), Ocaña/Norte de Santander (@mi.ocana, 600+ km away), and
+  a 188K-follower influencer (@2ombie.girl) — genuine cross-country spread of
+  a Pijao-specific call for help. Those reposts themselves couldn't be seeded
+  as social posts (no agent captured an exact permalink, only search-result
+  evidence), so they're recorded here rather than invented.
+- **Mariana Terán Ramírez (@marianateranr)** — a 182K-follower national
+  sustainability-lawyer influencer with no Quindío tie, co-published with
+  Cumbres Blancas a "how to help with Colombia's wildfires" directory whose
+  Quindío slide names Pijao specifically (La Maizena, Cueva Loca) and lists
+  concrete Pijao drop-off points (the Esto es Quindío trailer, the old Pijao
+  galería) plus a named volunteer distributing donations. In her comments she
+  personally redirects a Bogotá and a Medellín follower toward Cumbres
+  Blancas — a documented instance of an outside account actively routing
+  other-city donors toward Pijao's needs.
+- **National media, not just Quindío-regional outlets**: RTVC Noticias
+  (Colombia's national public broadcaster) and Canal Trece (national public
+  TV) both ran dedicated posts naming Pijao and vereda La Maicena
+  specifically; Pulzo (national Bogotá digital outlet) ran a short with the
+  community's own request for "máxima difusión." None carry a donation
+  mechanism — they're awareness coverage, not aid points — but they confirm
+  Pijao's story reached the national press, not just regional Quindío media.
+- **#SOSPijao's actual origin** — tracked down the primary source: a Pijao
+  resident's Aug 12 Facebook post tagging Bomberos, Cruz Roja, Defensa Civil,
+  Policía, Ejército, UNGRD and the Alcaldía directly, reporting that promised
+  Fuerza Aeroespacial aerial support never arrived. This is the origin post
+  behind the hashtag and behind the already-logged contested Bambi Bucket
+  question (pass 39) — corroborates rather than reopens that finding.
+
+### New aid point: Corpofomento Pijao
+A pre-existing local reconstruction corporation (independently confirmed via
+a SENA community-development guide and a Crónica del Quindío article naming
+one of its administrators) is now taking Bancolombia donations with a full
+NIT and four named administrators — a genuinely new, structured local
+donation channel not found in three prior passes, being reshared toward
+audiences outside Pijao (an English translation circulated among diaspora
+accounts).
+
+### Explicitly rejected: "Una Garra por Colombia" (Vaki, Senator Andrea Padilla)
+Came up repeatedly across four of five agents as a tempting lead — a real,
+verified, $113K+ national Vaki campaign for earthquake-affected animals,
+amplified by a sitting senator and a former senator/governor. But its own
+base campaign page scopes itself to "el occidente del país" (Chocó/Pacific
+region) and never names Pijao or Quindío. Only one Armenia-based amplifier
+(Fundación Kenovy Colombia) captioned a share as being for Pijao/Génova
+reconstruction — not enough to treat the campaign itself as a Pijao channel.
+Not seeded, consistent with the "name Pijao specifically, not just the
+earthquake generally" bar this pass was held to.
+
+### Also checked, genuinely empty
+No Bogotá/Medellín/Cali/Barranquilla/Bucaramanga account organizing a
+physical collection drive naming Pijao was found beyond the co.inspires.lab
+repost chain above; no diaspora campaign (US/Spain/elsewhere) names Pijao
+specifically (existing GoFundMes all say "Quindío" generally); no "adopt a
+family" or "sponsor a vereda" mechanism naming Pijao exists on any platform
+searched; #SOSPijao and #PijaoNecesita don't function as real aggregating
+hashtags on Instagram's own index (searching the tags returns unrelated
+content); X/Twitter surfaced almost nothing on this specific angle — the
+real signal was on Instagram and Facebook.
+
+### New aid points (3)
+Cumbres Blancas Colombia (MONETARY_DONATION), co.inspires.lab (ACOPIO),
+Corpofomento Pijao (MONETARY_DONATION).
+
+### New community embeds (5)
+Mariana Terán Ramírez's donation directory, RTVC Noticias, Canal Trece,
+Pulzo, and the #SOSPijao origin post.
+
+### Next steps (pass 44)
+Per the user's standing instruction, Pijao's research now pauses here
+pending their review of what's been gathered across four passes — the
+natural next step, once they're satisfied, is resuming city coverage
+elsewhere rather than a fifth Pijao-specific pass.
