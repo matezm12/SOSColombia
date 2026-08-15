@@ -32,11 +32,15 @@ export async function SiteHeader() {
   return (
     <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-8 px-6 py-4">
-        <Link
-          href="/"
-          className="shrink-0 text-sm font-semibold uppercase tracking-wide text-brand"
-        >
-          SOSColombia
+        <Link href="/" className="shrink-0" aria-label="SOSColombia">
+          {/* eslint-disable-next-line @next/next/no-img-element -- static local asset, no next/image usage elsewhere in the project */}
+          <img
+            src="/brand/soscolombia-logo.png"
+            alt="SOSColombia"
+            width={964}
+            height={200}
+            className="h-7 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-5 xl:flex">
