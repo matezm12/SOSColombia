@@ -21,7 +21,7 @@ export default async function ModeracionPage() {
     }),
     prisma.pendingAidPoint.findMany({
       where: { status: { not: "PENDING" } },
-      include: { municipio: true },
+      include: { municipio: true, reviewedByVolunteer: { select: { name: true } } },
       orderBy: { reviewedAt: "desc" },
       take: 20,
     }),
@@ -110,6 +110,12 @@ export default async function ModeracionPage() {
               >
                 <span className="text-zinc-700 dark:text-zinc-300">
                   {p.name} · {p.municipio.name}
+                  {p.reviewedByVolunteer && (
+                    <span className="text-zinc-400 dark:text-zinc-600">
+                      {" "}
+                      · revisado por {p.reviewedByVolunteer.name}
+                    </span>
+                  )}
                 </span>
                 <span
                   className={

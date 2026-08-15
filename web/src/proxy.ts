@@ -1,93 +1,66 @@
-import { timingSafeEqual } from "crypto";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "@/i18n/routing";
+import { SESSION_COOKIE, verifySession, type VolunteerScope } from "@/lib/session";
 
-// Simple HTTP Basic Auth gate for /admin/*.
-//
-// There is no real user-auth system yet (see wiki/10-app-architecture.md), and
-// /admin/moderacion lets anyone approve/reject public aid-point submissions, so
-// this is a stopgap that must never fail open.
+// Per-volunteer session gate for /admin/*, replacing the old single shared
+// Basic-Auth password. See wiki/10-app-architecture.md and src/lib/session.ts's
+// module comment for the full design (signed stateless cookie, no DB call
+// here — that's what keeps this cheap on every /admin/* request given the
+// Supabase pooler's 15-connection cap).
 //
 // Next.js 16 renamed the `middleware.ts` file convention to `proxy.ts`
-// (functionality is unchanged) — see
-// node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/proxy.md.
+// (functionality is unchanged, and as of v16 it defaults to the Node.js
+// runtime rather than Edge — see
+// node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/proxy.md).
 // A proxy.ts file may export only a single proxy function, so locale
-// detection (next-intl) and the admin auth gate both live in the one
+// detection (next-intl) and the admin session gate both live in the one
 // `proxy` export below, branching on path — admin/* never runs the intl
-// middleware and public routes never run the auth check.
+// middleware and public routes never run the session check.
 
 const intlMiddleware = createIntlMiddleware(routing);
 
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME ?? "admin";
-const REALM_HEADERS = {
-  "WWW-Authenticate": 'Basic realm="Admin", charset="UTF-8"',
-} as const;
-
-function unauthorized(message: string) {
-  return new NextResponse(message, { status: 401, headers: REALM_HEADERS });
-}
-
-/** Constant-time string comparison to avoid leaking length/content via timing. */
-function safeCompare(a: string, b: string): boolean {
-  const aBuf = Buffer.from(a);
-  const bBuf = Buffer.from(b);
-
-  if (aBuf.length !== bBuf.length) {
-    // Still perform a comparison of matching length so mismatched-length
-    // inputs don't return measurably faster than matching-length ones.
-    timingSafeEqual(aBuf, aBuf);
-    return false;
-  }
-
-  return timingSafeEqual(aBuf, bBuf);
+/**
+ * Which scope flag a given /admin path requires. `null` = public (the login
+ * page itself). `"any"` = any logged-in volunteer, regardless of scope (the
+ * landing page and logout).
+ */
+function requiredScope(pathname: string): keyof VolunteerScope | "any" | null {
+  if (pathname === "/admin/login") return null;
+  if (pathname.startsWith("/admin/moderacion")) return "moderacion";
+  if (pathname.startsWith("/admin/comunidad")) return "comunidad";
+  if (pathname.startsWith("/admin/boletines")) return "boletines";
+  if (pathname.startsWith("/admin/volunteers")) return "admin";
+  return "any";
 }
 
 export function proxy(request: NextRequest) {
-  if (!request.nextUrl.pathname.startsWith("/admin")) {
+  const { pathname } = request.nextUrl;
+
+  if (!pathname.startsWith("/admin")) {
     return intlMiddleware(request);
   }
 
-  const adminPassword = process.env.ADMIN_PASSWORD;
-
-  // Security default: if no password is configured, deny all access rather
-  // than leaving /admin routes open to the public. Never fail open.
-  if (!adminPassword) {
-    return new NextResponse(
-      "Admin access is not configured: the ADMIN_PASSWORD environment variable is not set. Access denied.",
-      { status: 503 },
-    );
+  const required = requiredScope(pathname);
+  if (required === null) {
+    return NextResponse.next();
   }
 
-  const authHeader = request.headers.get("authorization");
-
-  if (authHeader?.startsWith("Basic ")) {
-    const encoded = authHeader.slice("Basic ".length);
-
-    let decoded: string;
-    try {
-      decoded = Buffer.from(encoded, "base64").toString("utf-8");
-    } catch {
-      return unauthorized("Invalid credentials.");
-    }
-
-    const separatorIndex = decoded.indexOf(":");
-    const username = separatorIndex === -1 ? decoded : decoded.slice(0, separatorIndex);
-    const password = separatorIndex === -1 ? "" : decoded.slice(separatorIndex + 1);
-
-    // Compute both comparisons unconditionally (not `&&`-short-circuited) so a
-    // correct-username/wrong-password request doesn't take measurably longer
-    // than a wrong-username request — that timing gap would partly defeat the
-    // point of using timingSafeEqual in the first place.
-    const usernameOk = safeCompare(username, ADMIN_USERNAME);
-    const passwordOk = safeCompare(password, adminPassword);
-    if (usernameOk && passwordOk) {
-      return NextResponse.next();
-    }
+  const payload = verifySession(request.cookies.get(SESSION_COOKIE)?.value);
+  if (!payload) {
+    const loginUrl = new URL("/admin/login", request.url);
+    loginUrl.searchParams.set("next", pathname);
+    return NextResponse.redirect(loginUrl);
   }
 
-  return unauthorized("Authentication required.");
+  if (required !== "any" && !payload.scope[required] && !payload.scope.admin) {
+    // Logged in, but not scoped for this section — send them to the landing
+    // page, which only shows the sections they actually have access to.
+    return NextResponse.redirect(new URL("/admin", request.url));
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {

@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { upsertSource } from "@/lib/sources";
+import { requireScope } from "@/lib/volunteer";
 import type { TollMetric } from "@prisma/client";
 
 const VALID_METRICS = new Set<string>([
@@ -26,6 +27,9 @@ const VALID_METRICS = new Set<string>([
 // actual figures here, after reading the bulletin themselves, which is what this
 // form on /admin/boletines is for.
 export async function approveTollRecord(formData: FormData) {
+  const volunteer = await requireScope("boletines");
+  if (!volunteer) return;
+
   const id = String(formData.get("id") ?? "");
   const metric = String(formData.get("metric") ?? "");
   const value = Number(formData.get("value"));
@@ -65,6 +69,7 @@ export async function approveTollRecord(formData: FormData) {
     data: {
       status: "APPROVED",
       reviewedAt: new Date(),
+      reviewedByVolunteerId: volunteer.id,
       promotedTollRecordId: tollRecord.id,
     },
   });
@@ -73,12 +78,15 @@ export async function approveTollRecord(formData: FormData) {
 }
 
 export async function rejectTollRecord(formData: FormData) {
+  const volunteer = await requireScope("boletines");
+  if (!volunteer) return;
+
   const id = String(formData.get("id") ?? "");
   if (!id) return;
 
   await prisma.pendingTollRecord.update({
     where: { id },
-    data: { status: "REJECTED", reviewedAt: new Date() },
+    data: { status: "REJECTED", reviewedAt: new Date(), reviewedByVolunteerId: volunteer.id },
   });
 
   revalidatePath("/admin/boletines");

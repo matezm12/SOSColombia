@@ -19,6 +19,7 @@ export default async function BoletinesPage() {
     }),
     prisma.pendingTollRecord.findMany({
       where: { status: { not: "PENDING" } },
+      include: { reviewedByVolunteer: { select: { name: true } } },
       orderBy: { reviewedAt: "desc" },
       take: 20,
     }),
@@ -190,6 +191,12 @@ export default async function BoletinesPage() {
               >
                 <span className="text-zinc-700 dark:text-zinc-300">
                   {p.sourceOrg ?? "Fuente sin identificar"}
+                  {p.reviewedByVolunteer && (
+                    <span className="text-zinc-400 dark:text-zinc-600">
+                      {" "}
+                      · revisado por {p.reviewedByVolunteer.name}
+                    </span>
+                  )}
                 </span>
                 <span
                   className={

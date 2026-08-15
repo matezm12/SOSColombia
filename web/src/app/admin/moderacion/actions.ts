@@ -3,8 +3,12 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { upsertSource } from "@/lib/sources";
+import { requireScope } from "@/lib/volunteer";
 
 export async function approveSubmission(formData: FormData) {
+  const volunteer = await requireScope("moderacion");
+  if (!volunteer) return;
+
   const id = String(formData.get("id") ?? "");
   if (!id) return;
 
@@ -45,6 +49,7 @@ export async function approveSubmission(formData: FormData) {
     data: {
       status: "APPROVED",
       reviewedAt: new Date(),
+      reviewedByVolunteerId: volunteer.id,
       promotedAidPointId: aidPoint.id,
     },
   });
@@ -53,12 +58,15 @@ export async function approveSubmission(formData: FormData) {
 }
 
 export async function rejectSubmission(formData: FormData) {
+  const volunteer = await requireScope("moderacion");
+  if (!volunteer) return;
+
   const id = String(formData.get("id") ?? "");
   if (!id) return;
 
   await prisma.pendingAidPoint.update({
     where: { id },
-    data: { status: "REJECTED", reviewedAt: new Date() },
+    data: { status: "REJECTED", reviewedAt: new Date(), reviewedByVolunteerId: volunteer.id },
   });
 
   revalidatePath("/admin/moderacion");

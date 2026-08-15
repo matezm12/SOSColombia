@@ -118,6 +118,8 @@ model PendingTollRecord {
   reviewNote          String?
   createdAt           DateTime          @default(now())
   reviewedAt          DateTime?
+  reviewedByVolunteer   Volunteer?      @relation(fields: [reviewedByVolunteerId], references: [id])
+  reviewedByVolunteerId String?
   promotedTollRecordId String?
 
   @@index([status])
@@ -202,6 +204,8 @@ model PendingAidPoint {
   reviewNote         String?
   createdAt          DateTime          @default(now())
   reviewedAt         DateTime?
+  reviewedByVolunteer   Volunteer?     @relation(fields: [reviewedByVolunteerId], references: [id])
+  reviewedByVolunteerId String?
   promotedAidPointId String?           // set once approved and copied into AidPoint
 
   @@index([status])
@@ -355,6 +359,8 @@ model PendingSocialPost {
   reviewNote        String?
   createdAt         DateTime          @default(now())
   reviewedAt        DateTime?
+  reviewedByVolunteer   Volunteer?    @relation(fields: [reviewedByVolunteerId], references: [id])
+  reviewedByVolunteerId String?
   promotedSocialPostId String?
 
   @@index([status])
@@ -393,4 +399,29 @@ enum AlliedResourceCategory {
   NEWS_AGGREGATOR
   VOLUNTEER_COORDINATION
   OTHER
+}
+
+// ── Volunteer accounts & moderation attribution ─────────────────────────
+// Replaces the old single shared Basic-Auth password for /admin/* — each
+// volunteer gets their own account (provisioned by an isAdmin volunteer at
+// /admin/volunteers, no public signup) scoped to specific admin sections,
+// and every approve/reject action stamps who did it via reviewedByVolunteerId
+// below, so review activity can be attributed per person.
+
+model Volunteer {
+  id            String    @id @default(cuid())
+  name          String    // real name — what compensation reporting keys off
+  username      String    @unique
+  passwordHash  String    // scrypt "salt:hash" hex, see src/lib/session.ts
+  canModeracion Boolean   @default(false)
+  canComunidad  Boolean   @default(false)
+  canBoletines  Boolean   @default(false)
+  isAdmin       Boolean   @default(false) // implies all sections + /admin/volunteers
+  active        Boolean   @default(true)  // soft-revoke — keeps attribution history intact
+  createdAt     DateTime  @default(now())
+  lastLoginAt   DateTime?
+
+  reviewedAidPoints   PendingAidPoint[]
+  reviewedSocialPosts PendingSocialPost[]
+  reviewedTollRecords PendingTollRecord[]
 }
