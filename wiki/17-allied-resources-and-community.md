@@ -1493,3 +1493,91 @@ kept as human-interest context alongside the Facebook post that does.
 
 ### Next steps (pass 20)
 Move to the next city — Dosquebradas and San José del Palmar remain.
+
+## Pass 21 — deep pass on Dosquebradas (2026-08-14)
+
+Eighth city in the rotation. Dosquebradas sits directly next to Pereira in
+the same metro area, so the user explicitly asked for extra care that
+findings here are genuinely unique to Dosquebradas rather than repeats of
+Pereira content just because someone from either city can reasonably seek
+help in the other. Every agent was briefed to discount generic "Pereira y
+Dosquebradas" mentions unless Dosquebradas got its own concrete detail
+(address, contact, named institution), and every candidate was additionally
+cross-checked at synthesis time against everything already seeded for
+Pereira (passes 13-14).
+
+That discipline caught real things: a "Centro Veterinario de Dosquebradas"
+free-consultation post surfaced in search results but its actual caption
+said "para perros y gatos afectados por el terremoto en Pereira" — Pereira,
+not Dosquebradas — and was excluded despite matching the query. A widely
+reposted Instagram caption claiming "Damnificados por el terremoto en
+Dosquebradas" (Vaki "PENSANDO EN TODOS") turned out, on opening the actual
+campaign page, to describe aid for Cali, Chocó, and Buenaventura only, with
+zero Dosquebradas content — a viral copy-paste false positive, excluded.
+
+### A genuine near-duplicate, not re-seeded
+One Instagram find (a Nequi key from SINALTRAINAL/Revolución Obrera) turned
+out to share the exact same street address as the already-known "Sede
+sindicato de trabajadores La Rosa" acopio point from an earlier pass. Rather
+than seed it under a different name — which would have created a real
+duplicate location in the queue — this is logged here only: it adds a new
+Nequi payment channel (3225387512) to that already-existing point, which an
+admin can add manually when reviewing it, rather than as its own pending
+entry.
+
+### Richer than expected on shelters
+Contrary to the brief's own expectation (calibrated toward Popayán-level
+thinness), Dosquebradas turned out to have real, well-sourced ALBERGUE
+content — four separate shelter situations, one of them (Fundación Cristiana
+Rescatados Por Su Sangre, ~150 people) corroborated by a verified local news
+outlet two days after the original post. Two of the four (Polideportivo del
+Campestre and "Campestre B") may describe the same physical complex under
+different names — flagged explicitly in both entries rather than guessed
+either way.
+
+### New aid points (16)
+- **First blood-donation point** for Dosquebradas (ESE Hospital Santa
+  Mónica, its own hospital — distinct from Pereira's Hospital San Jorge).
+- **3 VET points**: a local veterinary clinic, a steel-fabrication business
+  donating free pet ID tags, and a home-based dog shelter destroyed in the
+  quake.
+- **4 shelter situations** (see above).
+- **6 monetary channels**: the Cámara de Comercio's own accounts; a Vaki
+  campaign corroborated by Pulzo press coverage and found independently by
+  two agents; a diaspora GoFundMe (Staten Island, NY) found independently by
+  two agents; the strongest single find of this pass — a real roadside-
+  assistance company (Asistimotos) whose 14-year Pereira headquarters was
+  condemned, rebuilding specifically from its existing Dosquebradas branch;
+  and one low-confidence individual collection flagged explicitly for manual
+  verification before approval.
+- **3 acopio points**, including Cáritas Pereira's food bank — its name
+  references Pereira, but its actual operating site relocated to a church in
+  Barrio Santa Isabel, Dosquebradas, after its original Pereira location
+  (Las Aromas) was damaged. Worth noting as the opposite failure mode from
+  the ones caught above: an org with "Pereira" in its name that is, in fact,
+  now genuinely and physically operating in Dosquebradas.
+
+### New community embeds (18)
+Three missing-persons threads specific to Dosquebradas (one resolved — an
+Argentine resident found alive after hours missing, reported by Infobae and
+corroborated by three Argentine outlets), an official municipal curfew
+decree, and fresh structural-damage reporting on two named residential
+complexes (Portal del Parque's Torre 6, fully collapsed; Barrio La Graciela,
+evacuated as a precaution).
+
+### Checked, deliberately not seeded
+- The SINALTRAINAL/La Rosa address duplicate (see above).
+- The viral "PENSANDO EN TODOS" false-positive campaign (see above).
+- A GoFundMe ("Relief for Families in Pereira and Dosquebradas") whose story
+  text never gets more specific than "the Pereira quake" — excluded for
+  failing the same-city-specificity bar the user asked for.
+- A leftover Vaki campaign about a robbery at a Dosquebradas minimarket
+  ("Rescatar el Minimercado Megahorro") — confirmed via its own page text to
+  predate the earthquake entirely (a COVID-era fundraiser), unrelated
+  despite matching the Barrio Frailes location.
+- BLOOD_DONATION beyond the one hospital drive came back genuinely empty on
+  every platform except Instagram; VET and new health-brigade content beyond
+  what's listed came back empty on X, Facebook, and TikTok specifically.
+
+### Next steps (pass 21)
+One city remains: San José del Palmar, the earthquake's epicenter itself.
