@@ -158,6 +158,15 @@ export default async function Home(props: PageProps<"/[locale]">) {
             ),
           })}
         </p>
+        <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
+          {t.rich("ayudaAnimales", {
+            link: (chunks) => (
+              <Link href="/ayuda?tipo=VET" className="underline">
+                {chunks}
+              </Link>
+            ),
+          })}
+        </p>
 
         {homepageResources.length > 0 && (
           <>
