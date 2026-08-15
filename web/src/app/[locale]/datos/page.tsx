@@ -4,10 +4,16 @@ import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
+import { METRIC_LABEL } from "@/lib/labels";
 
 // Short revalidation window instead of force-dynamic -- see donar/page.tsx
 // for why `await props.params` before getTranslations matters here.
 export const revalidate = 60;
+
+// Same custom domain as the root layout's SITE_URL -- kept local since
+// JSON-LD is the only thing on this page needing an absolute URL (same
+// pattern as [locale]/page.tsx and ciudad/[divipola]/page.tsx).
+const SITE_URL = "https://www.soscolombia.xyz";
 
 export async function generateMetadata({
   params,
@@ -33,8 +39,53 @@ export default async function DatosPage(props: PageProps<"/[locale]/datos">) {
       prisma.alliedResource.count({ where: { status: { not: "DEAD" } } }),
     ]);
 
+  // schema.org/Dataset -- points AI/search consumers straight at the real
+  // export endpoints instead of leaving them to scrape the HTML. Distinct
+  // formats are separate DataDownload entries per schema.org convention;
+  // variableMeasured lists what TollRecord actually tracks so a consumer can
+  // tell what's in the JSON/CSV without downloading it first.
+  const datasetSchema = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: "SOSColombia — dataset abierto",
+    description: t("lede"),
+    url: `${SITE_URL}/datos`,
+    isAccessibleForFree: true,
+    license: "Uso libre con atribución -- cada registro conserva su fuente original citada.",
+    creator: {
+      "@type": "Organization",
+      name: "SOSColombia",
+      url: SITE_URL,
+    },
+    variableMeasured: Object.values(METRIC_LABEL),
+    distribution: [
+      {
+        "@type": "DataDownload",
+        name: "Dataset completo (JSON)",
+        encodingFormat: "application/json",
+        contentUrl: `${SITE_URL}/api/export`,
+      },
+      {
+        "@type": "DataDownload",
+        name: "Cifras (CSV)",
+        encodingFormat: "text/csv",
+        contentUrl: `${SITE_URL}/api/export/csv/toll-records`,
+      },
+      {
+        "@type": "DataDownload",
+        name: "Puntos de ayuda (CSV)",
+        encodingFormat: "text/csv",
+        contentUrl: `${SITE_URL}/api/export/csv/aid-points`,
+      },
+    ],
+  };
+
   return (
     <PageShell backHref="/" title={t("title")} lede={t("lede")}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchema) }}
+      />
       <p className="mt-6 text-sm text-zinc-500 dark:text-zinc-500">
         {t("resumen", { tollRecords, aidPoints, campaigns, reports, contradictions, resources })}
       </p>
