@@ -26,8 +26,13 @@ export function AlliedResourceCard({ resource }: { resource: ResourceWithOptiona
         />
       )}
       <div className="flex flex-1 flex-col p-4">
-        <div className={`flex flex-wrap items-start justify-between gap-x-2 gap-y-1 ${resource.ogImageUrl ? "" : "pr-8"}`}>
-          <span className="min-w-0 font-medium text-black dark:text-zinc-50">{resource.name}</span>
+        {/* Stacked, not side-by-side — a title+badge row with justify-between let
+            the title shrink to near-nothing to keep the badge on the same line
+            instead of ever wrapping, so a long tier label (e.g. "Declaración
+            oficial vía prensa") just overflowed the card edge under
+            overflow-hidden. Stacking is width-proof regardless of label length. */}
+        <div className={`flex flex-col items-start gap-1.5 ${resource.ogImageUrl ? "" : "pr-8"}`}>
+          <span className="font-medium text-black dark:text-zinc-50">{resource.name}</span>
           <Badge variant="tier" value={resource.tier}>
             {TIER_LABEL[resource.tier] ?? `nivel ${resource.tier}`}
           </Badge>

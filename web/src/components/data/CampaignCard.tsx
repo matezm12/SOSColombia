@@ -20,9 +20,14 @@ export function CampaignCard({ campaign }: { campaign: CampaignWithMunicipios })
   return (
     <Card id={campaign.id} className="relative">
       <ShareButton anchorId={campaign.id} label={campaign.title} />
-      <div className="flex items-center justify-between gap-2 pr-8">
+      {/* Stacked, not side-by-side — same reasoning as AlliedResourceCard: a
+          title+badges row with no flex-wrap risked the badges overflowing the
+          card edge for a long title or several badges at once (e.g. "Riesgo
+          de fraude" + "Internacional" + "Mensual" together). Badges wrap onto
+          their own line(s) here regardless of how many or how long. */}
+      <div className="pr-8">
         <span className="font-medium text-black dark:text-zinc-50">{campaign.title}</span>
-        <div className="flex shrink-0 items-center gap-1.5">
+        <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
           {campaign.international && (
             <Badge variant="neutral">Internacional</Badge>
           )}

@@ -74,7 +74,7 @@ export function Badge({
 }) {
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${classFor(variant, value)}`}
+      className={`inline-flex shrink-0 items-center justify-center rounded-md px-2 py-1 text-center text-xs font-medium leading-snug ${classFor(variant, value)}`}
     >
       {children}
     </span>
