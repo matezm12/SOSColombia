@@ -3607,3 +3607,77 @@ so no specific claim about which ones or why.
 ### Next steps (pass 48)
 Continue round 4: Quibdó, Buenaventura, Popayán, Dosquebradas, San José
 del Palmar, and Pijao remain.
+
+## Pass 49 — round 4 continues: Quibdó, with a specific priority (2026-08-15)
+
+Same narrow round-4 brief as passes 45-48, applied to Quibdó (three prior
+rounds: passes 18, 27, 36) — plus a specific carryover assignment from
+Cali's pass 46: dig into Congressman Óscar Benavides's earthquake-
+donation-fraud scandal, since the money itself was solicited "para el
+Chocó."
+
+### The Benavides story: same complaint, much richer detail
+All five agents independently confirmed this is the SAME formal Corte
+Suprema complaint pass 36 already logged (Sala de Instrucción, magistrate
+Francisco Farfán) — not a second scandal. What this pass adds: the
+denunciante is now named (Daniel David Martínez, a law graduate, 21-page
+filing), and — for the first time — the disputed account holder is named:
+José Francisco Ibalde Ibarra, a Benavides-aligned political ally and
+fellow congressional candidate via the same Consejo Comunitario El
+Naranjo, directly contradicting his staffer's public claim that the money
+went through a foundation. The complaint formally requests investigation
+for estafa, captación masiva de dinero, and peculado por apropiación,
+plus referral to the Fiscalía. Benavides has published no accounting —
+only a defiant "matoneo judicial" framing and a verbal promise of a
+future "rendición de cuentas peso por peso." The claimed total keeps
+climbing: ~$300M → ~$400M → now $700M+ COP and 40+ tons. One agent
+surfaced a second, differently-named denunciante (Santiago Alvarán,
+@SALVARANM) in a pro-Benavides repost — genuinely unclear whether this is
+the same filing described differently or a separate one; flagged as an
+open question rather than resolved.
+
+### A 5-agent-corroborated crowdfunding find
+"Una Luz de Esperanza," a Vaki campaign to install 300 solar lighting
+points in Quibdó neighborhoods lacking power (already delivered 150+
+solar power banks), was found independently by all five research agents —
+the strongest single-finding corroboration of this entire round-4 cycle
+so far. It's explicitly coordinated with Quibdó's own Oficina de Gestión
+Social for last-mile distribution.
+
+### National scam alert, plus a concrete new local pattern
+The Policía Nacional/Dijín issued a nationwide fraud alert about fake
+donation campaigns, relevant to Chocó donors specifically given the
+Benavides context. Separately, a specific new scam pattern surfaced:
+calls placed from inside prisons, posing as a would-be donor or an
+official, asking the target to cover "transport money" for aid that never
+arrives — with four specific contact numbers named.
+
+### Reconstruction phase, and one big pledge without a channel yet
+The Chocó governor gave a detailed, on-record reconstruction interview
+(search-and-rescue formally closed, a request for national structural-
+engineering assistance, and a push for a Quibdó-specific rental subsidy
+rather than a homogenized national rate). Separately, Grupo Argos and
+Nicky Jam launched "Adopta un Hogar," a $13,000M COP reconstruction
+pledge spanning Chocó, the Eje Cafetero, and Valle del Cauca — real and
+heavily corroborated, but not seeded as an aid point since it has no
+donor- or beneficiary-facing channel yet, only an institutional
+announcement.
+
+### New aid points (4)
+"Una Luz de Esperanza" solar-lighting Vaki, a diaspora GoFundMe for one
+Quibdó family's home rebuild, Fundación Sí Mujer's "Mujeres que
+Reconstruyen" (spanning Buenaventura/Quibdó/norte del Valle), and a local
+gas-station business's donation account (seeded at reduced confidence —
+Instagram flagged the post itself as AI content, though the underlying
+business/NIT is real).
+
+### New community embeds (7)
+The Benavides story's detailed update, Benavides's own rebuttal video,
+the national police scam alert, the Chocó governor's reconstruction
+interview, the new prison-caller scam pattern, a rescue-hero's death
+(Luis Alberto "Lucho" Rivas Salguero, who died pulling a second person
+from rubble), and the Adopta un Hogar announcement.
+
+### Next steps (pass 49)
+Continue round 4: Buenaventura, Popayán, Dosquebradas, San José del
+Palmar, and Pijao remain.
