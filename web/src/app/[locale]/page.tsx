@@ -125,7 +125,12 @@ export default async function Home(props: PageProps<"/[locale]">) {
         </div>
 
         <SectionHeading first>{t("ciudades")}</SectionHeading>
-        <ul className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
+        {/* CSS columns, not grid: a `grid` row's track height always matches
+            its tallest cell (items-start only aligns content within the
+            cell, it doesn't shrink the row) — a tall alertNote card next to
+            a short one left dead space under the short one either way.
+            Columns let each card take only its own height. */}
+        <ul className="mt-4 columns-1 gap-3 sm:columns-2">
           {municipios.map((m) => {
             // Prefer the official reported death count; fall back to INMLCF's
             // forensic-confirmed count (e.g. Pereira, which only has the latter
@@ -133,7 +138,7 @@ export default async function Home(props: PageProps<"/[locale]">) {
             // the card just labels whichever one it's showing.
             const death = bestDeathMetric(m.tollRecords);
             return (
-              <li key={m.id}>
+              <li key={m.id} className="mb-3 break-inside-avoid">
                 <CityCard
                   name={m.name}
                   divipolaCode={m.divipolaCode}
