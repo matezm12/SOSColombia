@@ -2044,3 +2044,95 @@ researching agent itself flagged the content as likely AI-generated.
 ### Next steps (pass 27)
 Continue the follow-up round: Buenaventura, Popayán, Dosquebradas, and San
 José del Palmar remain.
+
+## Pass 28 — follow-up round: Buenaventura (2026-08-15)
+
+### The strongest find: a cross-platform accountability story
+Former president Gustavo Petro (X) and an independent TikTok account both
+surfaced the same story within hours of each other: the hospital ship
+*Benkos Biohó*, built at a cost of over 82 billion pesos specifically to
+serve Pacific-coast communities, was never deployed to earthquake-hit
+Buenaventura because health-staff contracts aboard it weren't renewed
+during the presidential transition. Picked up internationally by The
+Economist's piece on "two very different Colombias." This is the sharpest
+aid-equity/accountability story found for Buenaventura so far, and it
+corroborates independently across two platforms.
+
+### Casualty figures are updating, but conflict
+The Distrito Especial de Buenaventura's own 14 August balance (26 dead, 433
+injured, 10,148 families/homes affected) doesn't match a Red+ Noticias
+report from roughly two days earlier citing 16 dead, 258 injured, 7,150+
+homes affected. Both readings are logged as separate community embeds
+rather than merged or resolved — the same discipline applied to Cali (pass
+24) and Manizales (pass 25) when same-window figures don't clearly settle.
+No new `TollRecord` entries were added this pass.
+
+### A fresh, corroborated national scam alert
+Colombia's Dijín (police investigative unit) warned of scammers inventing a
+fake "Oficina Desarrolladora de Gobierno" and a fictitious official
+("Ricardo Suárez") to funnel fake solidarity-campaign donations into
+personal accounts — corroborated within hours by Caracol Radio, El Tiempo,
+and CAMBIO Colombia. Applies nationally, but directly relevant to vetting
+any Buenaventura-labeled donation appeal.
+
+### The fishing economy gets its first dedicated relief call
+Fedepazcifico (an artisanal fishers' federation with no verifiable account
+of its own) had its appeal relayed by Centro para la Justicia Marina, an
+established marine-rights NGO — corroborated independently across X,
+Instagram, and Facebook, all within the last day. This is the first
+fishing-economy-specific recovery campaign found for Buenaventura,
+answering the port/fishing angle this pass was scoped to check.
+
+### Port-economy recovery signals
+Coffee exports have resumed gradual operation through the Port of
+Buenaventura (El Colombiano), while shipping line CMA CGM reports recovery
+as "gradual but still complex" — container returns and land transport
+remain delayed (Mundo Marítimo, dated the same day). A personal account
+with photos claims the TCBUEN container terminal was still non-operational
+days after the quake due to continued aftershocks.
+
+### Other reconstruction and equity signals
+The Interior Minister, speaking from Buenaventura, publicly warned aid
+"cannot be used for political purposes" and urged residents to report
+irregularities — corroborated by three outlets in the same news cycle. A
+Housing Ministry materials-plus-community-labor reconstruction scheme was
+announced (cement companies donate materials, affected families provide
+labor). Noticias Caracol quantified an education gap (2,800+ students
+affected). El Colombiano ran an equity story naming Indigenous and
+Afro-Colombian Pacific communities, including Buenaventura, as hardest to
+reach — extending the same pattern already documented for Chocó. A teleSUR
+report described youths in the Barrio El Campín organizing their own
+emergency response amid alleged local-government neglect.
+
+### New aid points (8)
+The fishing-economy relief call; a Diócesis de Buenaventura + Cámara de
+Comercio/Confecámaras humanitarian corridor; a PCN/ABEDUA acopio point in
+Barrio Santa Rosa (Afro-Colombian community org, confirmed still active); a
+Comisión Intereclesial de Justicia y Paz fund for rural Chocó and
+Buenaventura reconstruction (schools, childcare centers — the strongest
+equity-focused aid point this pass); a Bogotá-to-Buenaventura donation truck
+with named local distribution partners; FOCUSA (flagged lower-confidence —
+small account, AI-flagged flyer image); and two active Vaki campaigns, one
+larger and institutionally co-promoted (líderes/lideresas focus, $8,389
+from 168 donors) and one smaller but genuinely live ($644 from 15 donors).
+
+### New community embeds (15)
+The items above, plus the delayed house-collapse report and the updated
+official/conflicting casualty figures.
+
+### Checked, deliberately not seeded
+A cluster of small, individually-organized English-language GoFundMe
+campaigns (typical first-week diaspora pattern, no institutional backing)
+was reviewed and excluded. A Facebook post citing "6,125 fallecidos" turned
+out to be a mismatched, unrelated Venezuela story. A theft-of-humanitarian-
+aid post that looked Buenaventura-relevant turned out, per its own
+hashtags, to be about Pereira. Two generic anti-fraud PSA posts with no
+named scammer or campaign were excluded as too vague (the Dijín alert above
+was used instead, since it names specifics). No new shelter closures, no
+back-to-school announcement, and no distinct US-diaspora-organized
+Afro-Colombian crowdfunding campaign (beyond the two Vaki campaigns
+already seeded) were found this pass.
+
+### Next steps (pass 28)
+Continue the follow-up round: Popayán, Dosquebradas, and San José del
+Palmar remain.
