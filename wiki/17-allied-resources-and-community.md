@@ -2973,3 +2973,66 @@ newest, smallest, and most acutely time-sensitive addition to this
 project. Per the user's explicit instruction, moving on now to the
 remaining third-round follow-up cities: Buenaventura, Popayán,
 Dosquebradas, and San José del Palmar.
+
+## Pass 40 — third round continues: Buenaventura (2026-08-15)
+
+### The hospital ship "Benkos Biohó" controversy resolves
+Pass 28 documented an accountability story: the mobile hospital ship meant
+for Buenaventura and the Pacific coast sat idle because health-staff
+contracts weren't renewed. This pass found it resolved — DIMAR (Colombia's
+maritime authority) posted directly that it made its Buenaventura pier
+available for the ship's operation, and the hospital's own interventor and
+the harbor master confirmed it opened an operating room and is treating
+quake patients. Gustavo Petro's own account corroborates the timing while
+keeping a political blame dispute alive over who caused the delay — the
+operational resolution is solid across multiple institutional sources
+even though the politics aren't fully settled.
+
+### A new, Buenaventura-specific donation scam
+Distinct from the Pereira QR-code scam already documented: singer Jhonny
+Rivera runs a separate Buenaventura-specific relief appeal, and scammers
+copied it with a swapped QR code. Confirmed by Rivera's own account and
+Noticias RCN — a second instance of the same attack pattern hitting a
+second real, trusted channel.
+
+### Casualty figures: more fragmented, not less
+Five different Buenaventura-specific death tolls (10, 13, 16, 22, 26)
+were all found circulating within this single pass, none from one
+consolidated official source. Deliberately left out of `TollRecord` given
+active disagreement rather than convergence — logged only in the
+community embeds as an unresolved mess, consistent with how this project
+handles genuine same-window conflicts it can't responsibly resolve.
+
+### New damage detail and official visits
+The Alcaldía Distrital's own figure: 3,956 homes destroyed or damaged
+citywide. A ministerial visit (Interior Minister Rodrigo Lara, VP José
+Manuel Restrepo) toured Barrio Lleras — a palafitic (stilt-house)
+neighborhood in comuna 3 — finding 800+ homes destroyed there specifically,
+with a Ministry of Housing reconstruction plan to follow once the
+emergency response stabilizes. The Valle del Cauca Governor declared 3
+days of official mourning and a department-wide moment of silence, citing
+150+ dead across the department (not Buenaventura-specific).
+
+### A research-prompt correction, not a data error
+This pass's own instructions asked agents to check whether "Canchas
+Panamericanas" and "Casa Grande de la Solidaridad" — Buenaventura fixtures
+per the prompt — had changed status. Multiple agents independently
+determined both are actually Cali facilities (already correctly seeded
+under Cali in passes 24 and 33), not Buenaventura ones. No correction
+needed in the database — this was an error in how this specific pass's
+research brief was framed, not a prior data mistake, but worth recording
+so it doesn't get repeated.
+
+### New aid points (2)
+The now-operational Benkos Biohó hospital ship, and Manos Visibles' new
+"Fondo de Reconstrucción S.O.S. Pacífico" — a credible, established
+Afro-Colombian equity NGO (led by former Culture Minister Paula Moreno)
+launching a dedicated Buenaventura/Chocó reconstruction fund with concrete
+logistics already moving.
+
+### New community embeds (6)
+The items above.
+
+### Next steps (pass 40)
+Continue the third round: Popayán, Dosquebradas, and San José del Palmar
+remain.
