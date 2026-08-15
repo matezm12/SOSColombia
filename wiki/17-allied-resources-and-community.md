@@ -1754,3 +1754,79 @@ confirmed it.
 Continue the follow-up round through the remaining eight cities: Cali,
 Manizales, Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas, and San
 José del Palmar.
+
+## Pass 24 — follow-up round: Cali (2026-08-14)
+
+Cali's original deep pass (15) had found that the Alcaldía officially
+announced only two shelters. This follow-up meaningfully updates that: an
+official cali.gov.co article confirms a third, **Canchas Panamericanas /
+Unidad Deportiva Panamericana** (~60 families, 129 people), independently
+corroborated by El País and Caracol Radio. On top of that, a video from
+Cali's own Secretaria de Bienestar Social (Nigeria Rentería Lozano) lists
+three more active shelter points not previously on file — a church, a
+migrant-inclusive transit home, and a point in Barrio Capri — bringing the
+known shelter count for Cali from 2 to potentially 6.
+
+### The strongest cross-agent finding of the follow-up round so far
+A Vaki campaign for **Casa Mangle**, a pre-existing Cali cultural venue
+(artists, musicians, small vendors) whose roof was damaged, was found
+independently by all 5 agents — matching the strength of the Vaki finding
+from San José del Palmar's original deep pass (pass 22). Its Facebook and
+Instagram presence predates the earthquake by weeks, ruling out a
+fly-by-night account.
+
+### Reconstruction phase, in Cali's own words
+Mayor Alejandro Eder stated directly (corroborated across at least three
+independent outlets) that Cali's reconstruction will take at least two
+years and the humanitarian crisis at least three more months — an explicit,
+on-record pivot from emergency to recovery. Concretely: schools confirmed to
+reopen August 24 (99 of 338 affected sites inspected, 63 cleared), a new
+citywide "Donatón" activated, and blood banks (HUV, Imbanaco, Hemolife)
+reporting full reserves — donors can now only book future appointments
+rather than walk in.
+
+### A genuine distribution-bottleneck complaint
+A well-engaged Instagram post (2.5K likes, 400+ comments, tagging the
+Alcaldía directly) alleges the Coliseo del Pueblo collection center is
+sitting on stockpiled donations — medicine, diapers, hygiene kits, food —
+that aren't reaching the small foundations and juntas de acción comunal that
+need them. This isn't a scam; it's a coordination/logistics problem, logged
+as a NEED post rather than treated as resolved or dismissed.
+
+### A conflicting casualty figure, left undocumented
+Three different Cali-specific death counts surfaced the same day: 74
+(mayor Eder, described as CTI-certified), 96 (already on file from Cali's
+own government site, Aug 12), and 111 (CW+ Noticias, "today 5pm" balance).
+Unlike Pereira's pass-23 casualty update, these three don't clearly resolve
+into a single authoritative same-day reading, so — rather than guess which
+is most current or merge them — none were added as new `TollRecord` entries
+this pass. All three are preserved in community-embed notes for a future
+pass to resolve with clearer sourcing.
+
+### New aid points (8)
+The four new shelter locations above; two acopio efforts tied to relief
+logistics (an architect-led drive collecting fabric and cardboard tubes to
+build 100 privacy modules inside the already-known Coliseo de Hockey
+shelter, and a Suzuki-parts dealer's collection point routing through a
+parish to the Banco de Alimentos); a departmental-culture-office-backed
+alternate acopio point; and the Casa Mangle Vaki campaign.
+
+### New community embeds (17)
+Extensive official-channel coverage of the reconstruction pivot (Concejo de
+Cali backing terrain-stabilization work, a police scam alert, a search
+extension for missing persons, international rescue brigades still active),
+plus the Coliseo del Pueblo distribution complaint and a fresh scam report
+about a seller mocking earthquake victims after being confronted.
+
+### Checked, deliberately not seeded
+A personal Nequi collection for 26+ rural homes in the corregimiento de La
+Paz was checked and excluded on the same individual/no-institutional-backing
+basis as always, despite specific, checkable detail (named local builders,
+a real home count) — logged as a lead worth independent verification, not a
+vetted channel. Several near-identical individual Vaki/GoFundMe campaigns
+matching the pattern already exhaustively catalogued in pass 15 were not
+re-added.
+
+### Next steps (pass 24)
+Continue the follow-up round: Manizales, Armenia, Quibdó, Buenaventura,
+Popayán, Dosquebradas, and San José del Palmar remain.
