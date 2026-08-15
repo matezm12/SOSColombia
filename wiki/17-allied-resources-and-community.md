@@ -3744,3 +3744,64 @@ statement.
 ### Next steps (pass 50)
 Continue round 4: Popayán, Dosquebradas, San José del Palmar, and Pijao
 remain.
+
+## Pass 51 — round 4 continues: Popayán, thin no more (2026-08-15)
+
+Same narrow round-4 brief as passes 45-50, applied to Popayán (four
+prior passes: 9, 11, 20, 29, 41) — historically the thinnest of the
+tracked cities given its MODERADA (not red-alert) severity. This round
+bucked that pattern.
+
+### A real, actively-spreading official campaign
+An Alcaldía de Popayán "Centros de Acopio Popayán SOS" graphic went out
+Aug 13, naming restaurants and bars (Old Jack, El Sabio, Chilango, El
+Aguante, Antojadas) as donation drop-offs — and was still being actively
+reshared by 7+ independent accounts, plus a satellite network of car/moto
+dealerships posting their own addresses, as of this pass. Restaurants
+serving as acopio points is a category this project hadn't seen before in
+Popayán. Consolidated into one aid point rather than seeded as several
+near-duplicates, since multiple agents kept rediscovering the same
+underlying graphic. The already-known Casa de la Moneda point (Gobernación
+del Cauca) turned out to be closing on the exact day of this pass and had
+narrowed to medications-only — folded into the same entry as a status
+update rather than re-seeded.
+
+### Four more genuinely new municipal/institutional points
+A Ciudad Moderna municipal collection point (independently corroborated
+same-day by two accounts, open through Aug 21), a second Alcaldía point at
+its Movilidad Segura office, a Pacto Histórico party-office collection
+point (address inconsistent across sources, flagged rather than guessed
+at), and — via the Cámara de Comercio del Cauca tagged by the
+Archdiocese — a food-bank point distinct from the three already on file.
+A 35-year-old local supermarket chain, Supertiendas San Diego, also opened
+all its stores as drop-offs with an itemized needs list.
+
+### One possible duplicate flagged
+"Ikonos Centro Empresarial," tied to the first lady's national "Colombia,
+Un Solo Corazón" campaign, has an address distinct from — but suspiciously
+close to — "Ikonos Plaza Comercial" in the restaurant-network flyer. Both
+reference an "Ikonos" complex in Popayán; could be the same site hosting
+two campaigns, or a naming mix-up. Flagged for a moderator rather than
+resolved.
+
+### Confirmed, repeatedly: no Popayán-specific crowdfunding exists
+The dedicated crowdfunding sweep found the same absence every prior pass
+on this city has found — no GoFundMe or Vaki campaign specifically
+targets Popayán. Several campaigns surfaced under "Popayán terremoto"
+searches but turned out, on inspection, to be about Pereira, Venezuela's
+La Guaira earthquake, or no city at all. This is now a repeatedly-
+confirmed absence, not a search gap.
+
+### New aid points (7)
+The consolidated restaurant/bar acopio network, the Ikonos/Un Solo Corazón
+point (duplicate-risk flagged), Ciudad Moderna, Movilidad Segura, Pacto
+Histórico (address inconsistency flagged), Supertiendas San Diego, and the
+Cámara de Comercio/Arquidiócesis food bank.
+
+### New community embeds (3)
+A Red Cross-backed one-day donation-sorting event at Terraplaza mall, a
+needs alert for a damaged elder-care home with no concrete donation
+channel, and the first lady's national campaign's Popayán visit.
+
+### Next steps (pass 51)
+Continue round 4: Dosquebradas, San José del Palmar, and Pijao remain.
