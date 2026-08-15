@@ -2502,3 +2502,49 @@ The items above.
 ### Next steps (pass 33)
 Continue the third round: Manizales, Armenia, Quibdó, Buenaventura,
 Popayán, Dosquebradas, and San José del Palmar remain.
+
+## Pass 34 — third round continues: Manizales (2026-08-15)
+
+A genuinely quiet pass — most of the five research agents found nothing
+clearing the freshness bar, consistent with how thoroughly pass 25 already
+covered this city. What did surface was concrete rather than marginal.
+
+### A grassroots kitchen scaling fast
+La Patria reported a community soup kitchen at Parque Caldas, organized by
+a local optician alongside street vendors turned volunteer cooks, that grew
+from ~200 to ~1,000 meals a day over four days — with a second site planned
+on Calle 30.
+
+### A new official donation channel
+The Alcaldía de Manizales announced a bank-transfer channel (with SWIFT
+code, run by the Cámara de Comercio de Manizales por Caldas) alongside a
+detailed in-kind drop-off list at Coliseo Menor — corroborated across two
+platforms (the mayor's own Instagram post with banking details, a separate
+Facebook post from the city's own account with the itemized needs list).
+
+### Status updates
+Eight buildings in the Milán neighborhood are moving through demolition
+permits. The Hemocentro del Café blood-donation appeal (already on file)
+updated its own status: paused intake Friday, resuming Saturday 8am for
+O+/O- donors only, having restocked other blood types. Tu Canal Manizales
+did an on-the-ground follow-up on the previously-flagged Coliseo Mayor
+shelter-conditions complaints.
+
+### Still unresolved
+The 5-vs-6-dead casualty conflict flagged in pass 25 remains unresolved —
+the only figure found this pass (a De la Espriella quote citing 5 dead,
+112 injured, 142 sheltered, zero missing) is dated roughly three days
+before this pass, i.e. not a fresh development, so it wasn't logged as new.
+Both diaspora GoFundMe campaigns and the Cámara de Comercio's "Ruta
+Integral" program remain active with no status change.
+
+### New aid points (2)
+Olla Comunitaria Parque Caldas, and the merged Fondo Solidario
+Comunitario/Coliseo Menor donation channel described above.
+
+### New community embeds (3)
+The items above.
+
+### Next steps (pass 34)
+Continue the third round: Armenia, Quibdó, Buenaventura, Popayán,
+Dosquebradas, and San José del Palmar remain.
