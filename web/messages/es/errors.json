@@ -1,0 +1,11 @@
+{
+  "errors": {
+    "notFoundTitle": "Página no encontrada",
+    "notFoundBody": "La página que buscas no existe o fue movida.",
+    "notFoundCta": "Volver al inicio",
+    "errorTitle": "Algo salió mal",
+    "errorBody": "Hubo un error inesperado cargando esta página. Podés intentar de nuevo, o volver al inicio si el problema persiste.",
+    "retry": "Intentar de nuevo",
+    "backHome": "Volver al inicio"
+  }
+}

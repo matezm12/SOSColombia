@@ -1,0 +1,11 @@
+{
+  "errors": {
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "The page you're looking for doesn't exist or was moved.",
+    "notFoundCta": "Back to home",
+    "errorTitle": "Something went wrong",
+    "errorBody": "There was an unexpected error loading this page. You can try again, or go back home if the problem persists.",
+    "retry": "Try again",
+    "backHome": "Back to home"
+  }
+}
