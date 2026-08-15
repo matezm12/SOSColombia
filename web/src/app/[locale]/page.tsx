@@ -163,7 +163,7 @@ export default async function Home(props: PageProps<"/[locale]">) {
             <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
               {t("proyectosDestacadosLede")}
             </p>
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {homepageResources.map((r) => (
                 <AlliedResourceCard key={r.id} resource={r} />
               ))}

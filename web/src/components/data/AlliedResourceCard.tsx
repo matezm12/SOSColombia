@@ -11,7 +11,7 @@ type ResourceWithOptionalMunicipio = AlliedResource & {
 
 export function AlliedResourceCard({ resource }: { resource: ResourceWithOptionalMunicipio }) {
   return (
-    <Card className="flex flex-col overflow-hidden p-0">
+    <Card className="flex h-full flex-col overflow-hidden p-0">
       {resource.ogImageUrl && (
         // Arbitrary third-party social-preview images — can't be routed through
         // next/image without allowlisting every allied site's domain.
@@ -24,8 +24,8 @@ export function AlliedResourceCard({ resource }: { resource: ResourceWithOptiona
         />
       )}
       <div className="flex flex-1 flex-col p-4">
-        <div className="flex items-start justify-between gap-2">
-          <span className="font-medium text-black dark:text-zinc-50">{resource.name}</span>
+        <div className="flex flex-wrap items-start justify-between gap-x-2 gap-y-1">
+          <span className="min-w-0 font-medium text-black dark:text-zinc-50">{resource.name}</span>
           <Badge variant="tier" value={resource.tier}>
             {TIER_LABEL[resource.tier] ?? `nivel ${resource.tier}`}
           </Badge>
@@ -44,7 +44,13 @@ export function AlliedResourceCard({ resource }: { resource: ResourceWithOptiona
             </Link>
           </p>
         )}
-        <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">{resource.description}</p>
+        {/* Clamped rather than shown in full — some sources are a couple of
+            sentences, others a full paragraph, and letting either run free
+            made cards in the same row wildly different heights. Full text
+            stays one click away via "Visitar sitio". */}
+        <p className="mt-2 line-clamp-5 text-sm text-zinc-700 dark:text-zinc-300">
+          {resource.description}
+        </p>
 
         <div className="mt-3 flex flex-wrap items-center gap-1.5">
           <Badge variant="neutral">{ALLIED_CATEGORY_LABEL[resource.category] ?? resource.category}</Badge>
@@ -56,7 +62,7 @@ export function AlliedResourceCard({ resource }: { resource: ResourceWithOptiona
           )}
         </div>
 
-        <p className="mt-3 text-sm">
+        <p className="mt-auto pt-3 text-sm">
           <ExternalLink href={resource.url}>Visitar sitio</ExternalLink>
         </p>
       </div>
