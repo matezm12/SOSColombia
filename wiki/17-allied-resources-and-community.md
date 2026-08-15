@@ -3301,3 +3301,89 @@ Per the user's standing instruction, Pijao's research now pauses here
 pending their review of what's been gathered across four passes — the
 natural next step, once they're satisfied, is resuming city coverage
 elsewhere rather than a fifth Pijao-specific pass.
+
+## Pass 45 — a fourth research round begins: Pereira (2026-08-15)
+
+New round across all 10 tracked cities, by explicit user request. Pereira
+already had three exhaustive rounds (passes 13, 14, 23, 32), so this pass's
+brief to all 5 agents was deliberately narrow: don't re-find the CAFE
+network, the known shelters, blood/health/vet points, or existing
+crowdfunding campaigns — hunt specifically for what a fresh sweep finds
+five days later — fresh 24-48h posts, status updates, new scams,
+reconstruction-phase news, missing-persons resolutions, and new
+crowdfunding campaigns.
+
+### Two new official shelter points, three originals now full
+The Alcaldía de Pereira's own Aug 14 "ACTUALIZACIÓN — PUNTOS DE ALBERGUE"
+infographic confirms Ecoparque El Vergel, Coliseo Mayor, and Estadio Mora
+Mora have all reached capacity, and directs families to two additional
+points: **Polideportivo Belalcázar (Boston)** and the **Plazoleta de la
+Villa Olímpica** (the latter independently corroborated by a citizen post).
+Both seeded as new ALBERGUE aid points.
+
+### A real find in the "confirmed dead end" category: ArriendoYa.org
+Every prior housing-offer search (X specifically, across three rounds)
+concluded grassroots housing offers genuinely don't exist on social media
+for this event. This round found the exception on a different platform:
+**ArriendoYa.org**, a rental-matching site built after the earthquake with
+250+ displaced families registered (Pereira, Manizales, Santa Rosa de
+Cabal, Armenia, Cali) and an open call for anyone with a vacant rental to
+list it. Real engagement, a live functioning URL, worth evaluating for
+`/recursos` in a future pass rather than just as a community embed.
+
+### 6 new crowdfunding campaigns
+5 new GoFundMe/Vaki campaigns plus a status check on one already-seeded
+campaign (Kathryn Winn's, now 48% funded). The strongest fit for this
+round's reconstruction-phase focus: Vanessa Gelacio's "Pereira Earthquake
+Home Repair & Relief Fund," run by a Pereira real-estate family doing a
+systematic damage census of their own rental network, with an explicit
+no-profit-to-company clause. The weakest, included anyway with its low
+traction flagged explicitly: Carlos Andrés Cortés' Vaki/GoFundMe for Angie
+and her non-verbal-autistic son Thiago ($122/2 donors after 4 days, but a
+verified organizer badge and real photo evidence — unlike previously
+rejected zero-traction campaigns, this one has real if modest support).
+
+### Two missing-persons resolutions, one new fatality
+Marlon García Ruíz and the Guerrero siblings (Génesis and Gabriel) — both
+open threads from earlier passes — are confirmed found safe. Separately, a
+second fatality from the Hotel Dibeni collapse surfaced: Juan Fernando
+Rodríguez Álvarez, an Ibagué resident who was staying there, found dead
+after days of search — distinct from the already-documented Juan Felipe
+Giraldo case, single-source so far.
+
+### A caution flagged next to an existing trusted aid point
+An uncorroborated TikTok allegation claims Expofuturo (an acopio point
+seeded since pass 1) has become entangled in local political leverage —
+donations and votes allegedly funneled toward specific politicians.
+Location-tagged and real engagement, but single-source and personal-account
+sourced, same evidentiary tier as the already-logged Homecenter-reselling
+rumor (pass 23) and the Manos Visibles broken-QR finding (pass 12) — noted
+as a caution, not seeded as a confirmed fact.
+
+### Checked, genuinely clean
+No new Pereira-specific donor scam/fraud report surfaced across any
+platform this round (several personal-Nequi-appeal accounts show the same
+generic risk pattern already documented, but nothing rose to a new, named
+fraud report) — searched deliberately and came back clean rather than
+unsearched. No government housing-subsidy/insurance/indemnización content
+surfaced on Instagram or TikTok specifically (worth trying official-account
+X search directly in a future pass, per the Instagram agent's own note).
+
+### New aid points (8)
+2 ALBERGUE (Polideportivo Belalcázar, Plazoleta de la Villa Olímpica), 6
+MONETARY_DONATION (5 new GoFundMe/Vaki campaigns + the Angie/Thiago
+low-traction campaign).
+
+### New community embeds (11)
+The items above — national reconstruction news (Santo Domingo family's
+COP 100bn pledge, WCK's ongoing multi-city meal operations, the PND/
+Emergencia Económica inclusion announcement), the ArriendoYa.org find, two
+missing-persons resolutions, the Hotel Dibeni second fatality, the official
+shelter-capacity update itself, the Expofuturo caution, one human-interest
+resolution (Carlos Cortés Alarcón), and a small local business's donation
+bonds.
+
+### Next steps (pass 45)
+Continue round 4 through the remaining cities: Cali, Manizales, Armenia,
+Quibdó, Buenaventura, Popayán, Dosquebradas, San José del Palmar, and
+Pijao.
