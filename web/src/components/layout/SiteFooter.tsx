@@ -8,6 +8,7 @@ export async function SiteFooter() {
     { href: "/informes", label: t("informesOficiales") },
     { href: "/fuentes", label: t("fuentes") },
     { href: "/metodologia", label: t("metodologia") },
+    { href: "/datos", label: t("datosAbiertos") },
     { href: "/sugerir", label: t("sugerirPunto") },
   ];
 

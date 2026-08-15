@@ -1,0 +1,16 @@
+{
+  "datos": {
+    "title": "Open data",
+    "lede": "The full verified dataset, ready to download and reuse. Every record carries its source, date, and reliability tier, same as the rest of the site.",
+    "resumen": "{tollRecords} figures · {aidPoints} aid points · {campaigns} campaigns · {reports} reports · {contradictions} contradictions · {resources} allied resources",
+    "jsonTitle": "Full JSON",
+    "jsonDescription": "Figures, aid points, donation campaigns, official reports, open contradictions, and allied resources, all in one structured file.",
+    "downloadJson": "Download JSON →",
+    "csvTitle": "CSV by table",
+    "csvDescription": "The two tables easiest to open in a spreadsheet.",
+    "downloadCifrasCsv": "Figures (CSV) →",
+    "downloadAyudaCsv": "Aid points (CSV) →",
+    "license": "Free to use, with attribution. Every record already carries its own cited source — keep it when you reuse the data.",
+    "methodologyLink": "Read the full methodology →"
+  }
+}
