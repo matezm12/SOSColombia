@@ -4000,3 +4000,66 @@ Palmar's first-ever official municipal social account, and Pijao's
 animal-casualty gap finally closing — a sign that repeated, disciplined
 passes keep surfacing real signal even on cities already researched
 three times over.
+
+## Pass 55 — a fifth research round begins: Pereira (2026-08-15)
+
+New round across all 10 cities, by user request ("keep going"). Pereira
+already had four rounds (passes 13, 14, 23, 32, 45), so this pass's brief
+was narrower still: hunt for what a fresh sweep finds days later, and
+specifically check whether the Expofuturo controversy flagged in pass 45
+developed further. Contrary to expectations of near-saturation, this
+round surfaced a real, active fraud wave and a genuine escalation.
+
+### A live fraud wave, not isolated incidents
+Three independent, police-corroborated scam reports converged within a
+24-48h window: a fake trapped-person alert that mobilized firefighters,
+ambulances, and Defensa Civil for hours — only for the real objective to
+turn out to be recovering a business's cash register; a fraudster posing
+as a "Director de Sanidad" contacting affected municipios by WhatsApp;
+and altered/fake donation QR codes, publicly flagged by singer Jhonny
+Rivera, who is personally involved in Pereira relief. All three surfaced
+within the same window and were corroborated by multiple outlets plus an
+apparent Policía Nacional alert — read together, this looks like an
+active fraud pattern, not scattered one-offs.
+
+### Expofuturo: confirmed legitimate AND under a new specific allegation
+Both things are true at once. The venue is confirmed still operating as
+a real, bank-account-verified official acopio point run jointly with the
+Cámara de Comercio de Pereira. At the same time, the political-misuse
+allegation flagged in pass 45 escalated from a single anonymous TikTok
+post to at least three independent Facebook pages within 12 hours, now
+naming a sitting senator, María Irma Noreña, by name. Still unadjudicated
+by any official body — logged as an active, developing allegation, not a
+confirmed fact.
+
+### A missing-persons case closes, another stays open
+Juan Felipe Giraldo — the Hotel Dibeni case that went viral through his
+father's search — was confirmed dead the day he was due to marry. A
+second case, a Mexican couple (Mario Zapata and Brenda Flores) vacationing
+in Pereira, remains open.
+
+### Reconstruction financing: announced, not yet disbursed
+National utility relief, a rental-subsidy program, and a Concejo-
+authorized $100 billion COP infrastructure-loan reallocation have all
+been announced for Risaralda/Pereira — but no source found this round
+confirms any of it has actually reached a household yet. That gap between
+announcement and disbursement is itself the notable finding.
+
+### New aid points (11)
+A new Army-supported shelter (address unconfirmed, flagged for
+verification), two fresh local-business acopio points, a reconstruction-
+focused Vaki campaign, a new international/diaspora donation channel via
+Global Shapers Pereira, and six new crowdfunding campaigns — including a
+genuinely novel one: a local tabloid (Q'hubo Pereira) funding physical
+missing-person flyers for residents without reliable internet access.
+
+### New community embeds (9)
+Both sides of the Expofuturo story, a shelter-capacity status update, the
+Giraldo resolution and the still-open Zapata/Flores case, all three new
+scam reports, the reconstruction-financing status, and a structural-
+danger report paired with two professionals now offering free structural
+inspections.
+
+### Next steps (pass 55)
+Continue round 5: Cali, Manizales, Armenia, Quibdó, Buenaventura,
+Popayán, Dosquebradas, San José del Palmar, and Pijao remain.
