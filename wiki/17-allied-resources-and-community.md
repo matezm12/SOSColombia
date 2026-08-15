@@ -4063,3 +4063,67 @@ inspections.
 ### Next steps (pass 55)
 Continue round 5: Cali, Manizales, Armenia, Quibdó, Buenaventura,
 Popayán, Dosquebradas, San José del Palmar, and Pijao remain.
+
+## Pass 56 — round 5 continues: Cali (2026-08-15)
+
+Same narrow round-5 brief as pass 55, applied to Cali (four prior rounds:
+15, 24, 33, 46). Genuinely productive despite the depth of prior
+coverage — a real toll-figure convergence, a fully-named closure of a
+tracked case, and a concrete (if still pre-disbursement) reconstruction
+figure.
+
+### Death toll converges upward
+The Alcaldía-vs-CPI split tracked since pass 46 (104 vs 110) has
+resolved — not by one side catching up to the other, but by both being
+overtaken. The Alcaldía's own Aug 15 balance now reports 111 fallecidos,
+77 desaparecidos (down from 115 as bodies were identified), and 1,416
+heridos, independently corroborated by multiple outlets. Logged as new
+`TollRecord` rows.
+
+### The Saavedra triplets case, now fully named
+Already closed in pass 46, this round surfaced the complete detail:
+Isabella Saavedra Caicedo — the third and last missing sister — was found
+dead in the Edificio María Alvira alongside her sister Sofía and both
+parents, confirming four family deaths. Ana María remains the sole
+survivor, recovering post-surgery.
+
+### Reconstruction: a real number, still no money moving
+Mayor Alejandro Éder gave Cali's first concrete reconstruction cost
+estimate — ~$10 billones COP over ~3 years — and formalized the
+estampillas funding request first flagged in pass 46 into a specific
+$350,000 million COP ask to the national government. But a sitting city
+councilwoman publicly demanded the Secretaría de Vivienda speed up
+subsidy delivery, and a separate report from Comuna 18 describes families
+still sleeping in the street with only a census visit so far — the
+announcement-to-disbursement gap already seen in other cities' passes
+holds here too.
+
+### A genuine contradiction flagged, not resolved
+Two agents independently reported the same Vaki URL
+(reconstruyamos-hogar) with two different beneficiary families and
+organizers. Rather than pick one, both descriptions are recorded in the
+aid point's note with an explicit flag for a moderator to check the live
+page directly before approving — the page's content may have changed
+between checks, or one agent copied the wrong URL.
+
+### New aid points (9)
+Three new official Alcaldía-run collection points (including a new
+24-hour site), a youth-sports-club acopio point, and five new
+crowdfunding campaigns — one found independently by four of the five
+research agents.
+
+### New toll records (3)
+DEATHS_REPORTED_OFFICIAL: 111, MISSING_OFFICIAL: 77 (down from 115),
+INJURED: 1,416.
+
+### New community embeds (7)
+The reconstruction-financing announcement, a fake-census-taker scam
+alert, a new Centro Cibernético Policial fraud warning, the subsidy-
+not-yet-disbursed status update, a rumor-correction (a building
+incorrectly believed to be an official acopio site), the full Saavedra
+case closure, and a volunteer-intake status update to the Ciudadela
+Petronio Álvarez hub.
+
+### Next steps (pass 56)
+Continue round 5: Manizales, Armenia, Quibdó, Buenaventura, Popayán,
+Dosquebradas, San José del Palmar, and Pijao remain.
