@@ -1317,3 +1317,90 @@ Lloró after responders learned Lloró has zero vet clinics of its own.
 ### Next steps (pass 18)
 Move to the next city — Buenaventura, Popayán, Dosquebradas, and San José del
 Palmar remain.
+
+## Pass 19 — deep pass on Buenaventura (2026-08-14)
+
+Sixth city in the rotation, and a follow-up to the earlier Instagram-only
+deep dive (pass 12) that had found unusually rich grassroots activity here —
+this pass extended that with the full X/Facebook/TikTok/crowdfunding
+treatment. Buenaventura entered this pass with zero confirmed points in four
+whole categories (BLOOD_DONATION, VET, HEALTH, ALBERGUE), all flagged as
+top priority. The road to Cali being cut by landslides (with deaths in the
+highway tunnels) and the airport running humanitarian-only flights for a
+period meant this pass also explicitly asked agents to document whether aid
+was physically reaching the city at all — it was, largely by air.
+
+### Buenaventura's first shelter
+**Manglaria (Manglaria Pacífico)**, Carrera 56b #5-92, is the first
+confirmed ALBERGUE for Buenaventura across every pass run so far — a real
+address inside the city itself (not a Cali/Bogotá staging point), organic
+community engagement in the comments, small capacity (~15 people). Given
+multiple independent sources this pass describing people sleeping in the
+street with nowhere to go, this genuinely closes a real gap rather than
+just adding a data point.
+
+### A VET finding corroborated on all four platforms
+**Fundación Salvando Huellitas Buenaventura**, an existing shelter housing
+200+ rescued animals, was found independently by all four social platforms
+this pass — X and Instagram via its verified Vaki crowdfunding campaign
+(269 donors, ~$6,300 raised), Facebook via an unrelated post from a
+different account describing the same shelter and needs, and TikTok via a
+Publimetro Colombia news report. That's the strongest single-entity
+corroboration of any aid point across all six city passes so far.
+
+### New aid points (13)
+- **Manglaria** (ALBERGUE) — see above.
+- **2 VET points**: Salvando Huellitas (see above) and a mobile veterinary
+  brigade from Bogotá scheduled for Aug 22-25 (exact Buenaventura site still
+  unconfirmed at research time).
+- **3 HEALTH points**: a formal medical brigade from the Colegio Médico
+  Colombiano (partnered with Propacífico), the district health secretariat's
+  own activation, and a merged entry combining three corroborating reports
+  of a national medical reinforcement wave — a field hospital deployment, a
+  Hospital Universitario del Valle medical mission, and a Satena flight that
+  landed with 3 tons of aid and 15 health professionals (vivid, concrete
+  evidence of the air-bridge workaround for the blocked road).
+- **7 crowdfunding campaigns**: a diaspora GoFundMe (Catalina García Cure)
+  that explicitly names Patrulla Aérea Civil Colombiana as its delivery
+  partner and directly documents the access-gap story; a Vaki campaign
+  supporting community leaders (líderes/lideresas) specifically, found
+  independently by 4 of 5 agents; three more Vaki/GoFundMe campaigns at
+  varying confidence; and an international wire-transfer channel (SWIFT
+  code) from an account whose backing organization couldn't be independently
+  verified, included at low confidence with that caveat explicit.
+
+### New community embeds (20)
+A striking cluster documents the access crisis directly: a France 24 report
+citing 3 landslides that closed the only road, a TikTok call for machinery
+and personnel to clear it, a logistics professional organizing aid for
+hard-to-reach rural veredas, and an official Alcaldía Local de Isla Cascajal
+coordination meeting. Also a genuine, specific missing-person case (Steven
+Ballesteros, last seen heading to a wake) and new comuna/barrio-level
+detail — Isla Cascajal, Villa del Carmen (Comuna 12), Barrio El Jardín, and
+Barrio 12 de Abril — that hadn't surfaced in any prior Buenaventura pass.
+
+### Checked, deliberately not seeded
+- **A pet-food collection post** (Coraye) with a Nequi number — Instagram
+  itself flagged it as AI content, engagement was minimal, and the account
+  appeared to be running near-identical templated appeals across multiple
+  different disaster-affected cities in parallel — the exact multi-city
+  templating pattern this project already treats as a red flag. Excluded.
+- **"Servicio ZOOCIAL BUENAVENTURA"** — turned out to be a reposted TikTok
+  video of unrelated people with a personal savings account attached; a
+  direct search for the org by name returned nothing. Rejected as likely
+  fabricated.
+- **BLOOD_DONATION remains genuinely uncovered** — the only earthquake-
+  adjacent institutional blood-donation post found for Buenaventura
+  specifically turned out to predate the earthquake by four years. Every
+  agent that searched this angle came back empty; treated as a real,
+  unresolved gap rather than a search miss.
+- A malformed TikTok permalink (missing its video ID) describing a claim
+  about an unmobilized hospital ship was dropped rather than seeded with a
+  broken link — the underlying claim was flagged as unverified by the
+  researching agent itself regardless.
+- Manos Visibles was deliberately not re-searched this pass (already
+  confirmed broken in pass 12) per the brief's own instruction.
+
+### Next steps (pass 19)
+Move to the next city — Popayán, Dosquebradas, and San José del Palmar
+remain.
