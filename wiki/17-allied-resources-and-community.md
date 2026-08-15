@@ -1902,3 +1902,72 @@ timestamp inspection.
 ### Next steps (pass 25)
 Continue the follow-up round: Armenia, Quibdó, Buenaventura, Popayán,
 Dosquebradas, and San José del Palmar remain.
+
+## Pass 26 — follow-up round: Armenia (2026-08-14)
+
+### Fundación Covida: from "real and damaged" to "funded and rebuilding"
+All 5 agents independently confirmed Fundación Covida's Vaki campaign is
+still active — not closed, not fully funded (it runs through August 2027).
+The strongest evidence: the organizer posted a dated "Día 4" video update
+the same day this pass ran, showing actual demolition work underway on the
+collapsed pool wall, with $16,684 raised from 445 named donors. This moves
+the finding from pass 17 ("the campaign is real") to something stronger:
+funds are visibly, transparently being spent.
+
+### A genuinely new shelter
+**Coliseo del Sur** in Armenia — corroborated independently by three
+separate TikTok accounts over a 2-day window, all describing the same venue
+with consistent eligibility criteria (verified housing loss) and an active
+request for mattresses. Not on file from the original pass.
+
+### A new animal-welfare crisis, with a payment-key correction worth flagging
+**Fundación Oki Doki**, sheltering 310 animals, has a roof close to
+collapse. The shopping mall Unicentro Armenia is hosting a donation point
+at its own information desk — strong independent corroboration. Notably,
+commenters flagged that an earlier-circulated Nequi key for the foundation
+"no sirve" (doesn't work); a corrected official key was posted afterward.
+Logged with an explicit caution for donors to verify payment details
+directly with the foundation before sending money, exactly the kind of
+in-flight correction this project's discipline is built to catch.
+
+### A cluster of new institutional acopio points
+The Diócesis de Armenia (two physical points plus a bank account), the
+teachers' union SUTEQ (running through Aug 21), and the Gobernación del
+Quindío's own center at the Centro de Convenciones are the strongest new
+finds; four smaller business-run points round out the list.
+
+### The response has entered a reconstruction phase here too
+Government rental subsidies for families who lost their homes entirely,
+department-wide school structural inspections (running Aug 12-15, after a
+preliminary diagnosis found ~70% of Quindío's educational institutions with
+damage), and a Cámara de Comercio survey of 1,600+ merchants finding 84%
+reported earthquake damage — all dated within the last 1-2 days, all
+distinct from the emergency-relief content the original pass found.
+
+### New aid points (11)
+The shelter and animal-welfare finds above, plus the Diócesis's two acopio
+points and monetary channel, SUTEQ, the departmental government's center,
+and four smaller business/individual acopio points, all with concrete
+addresses.
+
+### New community embeds (14)
+Beyond the reconstruction-phase and Covida updates above: a resident's
+complaint that a damaged residential complex (Las Vegas) is still without
+help and that pet-owning residents are being denied rental housing; a
+resilience feature explicitly invoking Armenia's 1999 earthquake recovery;
+and infrastructure-normalization signals (Claro reporting 86% of cell towers
+restored across the five hardest-hit departments, Chocó formally closing
+search-and-rescue operations at the epicenter).
+
+### Checked, deliberately not seeded
+A GoFundMe titled for Armenia turned out, on inspection, to be for a home in
+Calarcá — excluded on the same geographic-precision basis used throughout
+this project. A Vaki campaign ("Renacer-Armenia") with zero donors and a
+fully anonymous organizer was excluded despite resurfacing as "very recent."
+No scam or broken-donation-link reports specific to this earthquake were
+found for Armenia this pass — the only scam-adjacent post located was a
+stale, unrelated Pereira pet-adoption fraud warning from months earlier.
+
+### Next steps (pass 26)
+Continue the follow-up round: Quibdó, Buenaventura, Popayán, Dosquebradas,
+and San José del Palmar remain.
