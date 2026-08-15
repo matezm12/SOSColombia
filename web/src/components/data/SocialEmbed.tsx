@@ -88,7 +88,23 @@ export function SocialEmbed({
       } else if (platform === "TIKTOK") {
         blockquote.className = "tiktok-embed";
         blockquote.setAttribute("cite", permalink);
+        // TikTok's embed.js resolves the video via data-video-id — confirmed against
+        // TikTok's own oembed endpoint (tiktok.com/oembed?url=...), whose returned HTML
+        // always sets this plus an author-link <a> inside <section>. Without
+        // data-video-id specifically, the widget renders "video unavailable" — the
+        // cite attribute alone isn't enough for it to resolve which video to load.
+        const match = permalink.match(/tiktok\.com\/(@[\w.-]+)\/video\/(\d+)/);
         const section = document.createElement("section");
+        if (match) {
+          const [, handle, videoId] = match;
+          blockquote.setAttribute("data-video-id", videoId);
+          const a = document.createElement("a");
+          a.target = "_blank";
+          a.title = handle;
+          a.href = `https://www.tiktok.com/${handle}?refer=embed`;
+          a.textContent = handle;
+          section.appendChild(a);
+        }
         blockquote.appendChild(section);
       }
       container.appendChild(blockquote);
