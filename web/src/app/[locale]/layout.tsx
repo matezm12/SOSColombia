@@ -76,11 +76,19 @@ export async function generateMetadata({
       siteName: "SOSColombia",
       locale: locale === "es" ? "es_CO" : "en_US",
       type: "website",
+      // Explicit, not relying on Next's opengraph-image.tsx file-convention
+      // auto-wiring: that file lives at app/opengraph-image.tsx, one level
+      // above this independent [locale] root layout (see the multi-root-
+      // layout note above), and auto-detection doesn't cross that boundary —
+      // the live page shipped with zero og:image/twitter:image meta tags
+      // until this was added explicitly.
+      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
+      images: [`${SITE_URL}/opengraph-image`],
     },
   };
 }
