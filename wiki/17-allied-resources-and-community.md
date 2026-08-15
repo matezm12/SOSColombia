@@ -2380,3 +2380,66 @@ casualty figures keep updating unevenly city to city, aid-equity and
 scam-caution stories have sharpened rather than faded, and — per the
 user's explicit instruction — the Pereira/Dosquebradas overlap is now
 documented rather than silently absorbed into one city's list.
+
+## Pass 32 — third round begins: Pereira (2026-08-15)
+
+Started a third pass across the nine cities, scoped tightly to only the
+last ~24 hours since each city's follow-up pass, on the expectation that
+yield would be thin this soon after pass 23-31. Pereira, run first, proved
+that expectation partly wrong — this narrow window still turned up a
+scam directly hijacking an already-seeded aid point.
+
+### A scam confirmed against a real, previously-verified aid point
+Singer Jhonny Rivera — whose Hotel La Rivera is already seeded here as a
+shelter/collection point that had raised over 140 million pesos — publicly
+denounced that scammers copied his image and swapped the QR code on his
+donation account to divert funds. Corroborated by Noticias RCN within
+hours. This is the sharpest kind of scam-caution finding this project can
+produce: not a warning about a hypothetical bad actor, but a confirmed
+attack on a channel already trusted and pointed to by name. Logged
+prominently, with an explicit note to verify the QR/donation channel
+directly with the hotel before donating.
+
+### A missing-persons case closes
+Juan Felipe Giraldo, 24, missing since the Hotel Dibeni collapse on day
+one, was confirmed dead four days later — days before he was due to marry,
+leaving a 2-year-old son. Corroborated across at least six independent
+outlets (El Tiempo, Noticias Caracol, Semana, El País, Pulzo, HCH Telev
+Digital) within the same few hours.
+
+### Two newly-evolved scam patterns
+A first-person account described a new fraud vector: fake rental listings
+targeting families displaced by the earthquake, soliciting a Nequi deposit
+for housing "sight unseen" before the scammer disappears — distinct from
+the QR-donation scams already documented. Separately, Telemedellín reported
+volunteers denouncing a fake trapped-persons rescue alert that was actually
+used to redirect labor toward looting a cash register from a damaged
+business.
+
+### Status changes and other updates
+Two already-seeded shelters (Coliseo Mayor, Estadio Mora Mora) are now at
+capacity, with the Alcaldía redirecting arrivals elsewhere. The president
+visited Pereira and announced emergency-decree resources specific to the
+city. The Alcaldía's own account restated its PMU casualty balance (95
+dead, 270 missing, 259 injured) — the same figures already logged as
+`TollRecord` entries in pass 23a, so no new toll rows were added, only the
+fresh post URL. All three previously-known Pereira crowdfunding campaigns
+(Convite por Pereira, Familia Millán, the UTP Vaki fund) were re-checked
+live and show no status change.
+
+### New aid points (2)
+Todos Somos UTP — a new institutional bank-account campaign from the UTP
+alumni association, distinct from the already-known UTP Vaki fund, with
+concrete first-day results (33 students relocated, 168 food packages
+collected). A second possible new shelter (Piscinas Olímpicas) was seeded
+with an explicit unconfirmed flag — reported only by a partisan repost
+account, not the Alcaldía's own verified channel.
+
+### New community embeds (7)
+The items above.
+
+### Next steps (pass 32)
+Continue the third round through the remaining eight cities, keeping the
+same tight ~24h scope. Given how quickly this pass still surfaced a
+confirmed scam and a missing-persons resolution, the tighter window is
+worth keeping rather than reverting to a full re-sweep.
