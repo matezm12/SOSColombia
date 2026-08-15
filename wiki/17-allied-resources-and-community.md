@@ -3387,3 +3387,82 @@ bonds.
 Continue round 4 through the remaining cities: Cali, Manizales, Armenia,
 Quibdó, Buenaventura, Popayán, Dosquebradas, San José del Palmar, and
 Pijao.
+
+## Pass 46 — round 4 continues: Cali (2026-08-15)
+
+Same narrow round-4 brief as pass 45, applied to Cali (three prior rounds:
+passes 15, 24, 33). A genuine complication this pass: several candidates
+that looked new at first turned out, on cross-checking against the
+`rejected` notes from the project's own prior passes, to be duplicates —
+Familia Saavedra's GoFundMe (already seeded pass 15, now 83% funded and
+still growing), Casa Mangle's Vaki (already seeded pass 24, still active),
+and the Ciudadela Petronio Álvarez acopio hub (already known since pass
+33, now formally rebranded "Casa Grande de la Solidaridad" by the mayor's
+office). None of these were re-seeded — only their status updates are
+noted below.
+
+### Death toll: unchanged
+Cali's official figures (104 dead per the Alcaldía's low-end reading, 110
+per the CPI/Semana reading, 115 missing, ~1,400 injured) are unchanged
+from pass 33a's own TollRecord rows — a Nuestra Región repost and a CBS
+News figure (96 dead, dated ~Aug 13) both surfaced this round but neither
+represents genuine new movement, just recirculation or a stale earlier
+reading. No new TollRecord rows added.
+
+### A real institutional find: Instituto para Niños Ciegos y Sordos
+An 80+-year Cali institution serving ~150 blind/deaf children a year had
+its building badly damaged — a second-floor roof collapse and fourth-level
+wall failure killed two named staff members (Ana Lucelly Adarbe, Jaime
+Bonilla) and injured 7 more while they were trying to exit. A verified
+Vaki campaign for the repair is corroborated across Instagram, X, and the
+institute's own Facebook page. Seeded as a new MONETARY_DONATION aid
+point.
+
+### A possible duplicate flagged, not resolved
+The Gobernación del Valle's "Antigua Fábrica de Licores del Valle" acopio
+point (confirmed still active via @GobValle) has a suspiciously similar
+name to "Centro de acopio La Licorera," already seeded for Buenaventura in
+pass 6 from the same Gobernación source — they may be the same physical
+site serving as a departmental logistics hub, or two different points.
+Seeded with the ambiguity spelled out directly in its `submitterNote`
+rather than guessed at, same discipline as the Cali/Acopio-Colombia
+food-bank flag in pass 7.
+
+### New scam angle, and one explicitly excluded
+A Cali-specific fraud warning surfaced: people posing as census-takers are
+visiting affected families door-to-door to extract private information. A
+much bigger scam story — a sitting congressman (Óscar David Benavides
+Ángulo) under scrutiny for routing $300M+ COP in self-solicited donations
+through an associate's personal account, flagged by a former attorney
+general as potential estafa/lavado de activos — was found via a Cali news
+page, but the money itself was solicited "para el Chocó," so it's held out
+of Cali's list and flagged for the Quibdó/Chocó round instead. A separate
+viral Homecenter-reselling-donations claim was found already
+publicly disputed by Homecenter itself by the time this pass ran — logged
+as a contested claim, not a confirmed fraud.
+
+### Missing-persons: one tragic resolution, one positive one
+The Saavedra triplets case (Torres del Limonar) closed tragically — the
+third and final sister, Isabella, was found dead, confirming four family
+deaths total; sole survivor Ana María's existing GoFundMe is growing fast
+($123K of $150K, 2,683 donors). Separately, siblings Valentina and Juan
+Esteban Vanegas, reported missing after the quake, were found alive.
+
+### New aid points (4)
+Antigua Fábrica de Licores del Valle (ACOPIO, duplicate-risk flagged),
+Instituto para Niños Ciegos y Sordos del Valle del Cauca (MONETARY_
+DONATION), Casa Sorora (MONETARY_DONATION), Acopio Barrio Santa Teresita
+(ACOPIO, time-limited window flagged).
+
+### New community embeds (10)
+The scam alert, the Saavedra resolution, two reconstruction-financing
+announcements (Mayor Éder's $10B COP proposal, the national 3-stage
+housing plan), the $350B COP estampillas request, the Casa Grande de la
+Solidaridad rebrand, the Santa Teresita acopio source post, the HUV family
+protest, the Homecenter dispute, and the Vanegas siblings' resolution.
+
+### Next steps (pass 46)
+Continue round 4: Manizales, Armenia, Quibdó, Buenaventura, Popayán,
+Dosquebradas, San José del Palmar, and Pijao remain. The Benavides
+donation-fraud scandal should be picked up specifically in the Quibdó/
+Chocó round-4 pass, since that's where the actual money was solicited.
