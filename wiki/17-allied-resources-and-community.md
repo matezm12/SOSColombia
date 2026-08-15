@@ -1971,3 +1971,76 @@ stale, unrelated Pereira pet-adoption fraud warning from months earlier.
 ### Next steps (pass 26)
 Continue the follow-up round: Quibdó, Buenaventura, Popayán, Dosquebradas,
 and San José del Palmar remain.
+
+## Pass 27 — follow-up round: Quibdó (2026-08-14)
+
+### The hospital's blood-bank crisis got worse, not better
+The already-broken refrigeration unit at Hospital San Francisco de Asís
+(pass 18) has not been repaired. Worse: a new 4.2-magnitude aftershock
+forced the hospital's **total evacuation**, confirmed independently by
+El Colombiano (TikTok) and by CAMBIO visiting the site the same day — while
+it kept treating patients from alternate facilities. The Gobernación del
+Chocó published a WhatsApp line specifically for anyone who can source or
+donate a replacement blood-bank fridge. Two informal citizen collections for
+the same fridge were also found (one on Nequi/Bre-B, one on Nu Bank
+targeting a specific Haier model); only the stronger, cross-platform one was
+seeded, with the parallel effort noted in its `submitterNote` so donors
+aren't split across two unverified channels for one need.
+
+### A new official international donation channel
+The Alcaldía de Quibdó's own Facebook page published full USD/EUR/GBP
+SWIFT/routing details for a channel benefiting Corporación de la Fe
+(Diócesis de Quibdó) — distinct from the previously-found ASINCH channel,
+and higher-confidence because it's published by the city government itself.
+
+### Diaspora and celebrity channels, both corroborated
+GoFundMe's "El mundo mira al Chocó" (Fundación Tierra Grata, a real
+established NGO with a US-based diaspora co-organizer) is nearly fully
+funded: $98,661 of a $100,000 goal from 1,759 donors. Separately, national
+team footballer Jhon Arias (a Quibdó native) is running an active,
+escalating relief effort — three flights and a 30-ton supply truck so far —
+funded through Bancolombia and a Brazil PIX account, cross-confirmed by six
+independent mainstream outlets citing the same account number.
+
+### Reconstruction-phase and equity signals
+The president announced a "gerente especial" and a "Plan Marshall" for
+Chocó, delivered from Quibdó; the Vice President gave an official aid
+balance from the same visit. A first education-damage figure emerged for
+the department: 38 schools damaged, 20,000+ students still out of class. El
+Espectador named specific Quibdó barrios (El Futuro, Flores de Buenaños,
+Villa La Victoria, Obrero La Brisa) still without help, residents in debt
+with no reconstruction pathway — the aid-equity gap from the original pass
+persists and sharpens. A new scam-adjacent story surfaced too: Caracol
+Radio's #LaLuciérnaga questioned whether a sitting congressman could
+legally solicit Chocó donations into a personal/friend's account —
+allegation, not proven, but a real accountability story worth tracking.
+
+### New aid points (6)
+The hospital evacuation status update, the merged blood-fridge collection,
+the Alcaldía's international channel, Fundación Escuela Taller de Quibdó
+(housing reconstruction), the GoFundMe, and the Jhon Arias channel.
+
+### New community embeds (12)
+Beyond the items above: a Villa Avelina report (38 homes collapsed, asking
+for construction materials rather than emergency aid); a Zona Minera house
+that survived the quake but collapsed two days later after heavy rain,
+illustrating ongoing structural risk; and continued confirmation of hospital
+overcrowding (245% ER capacity, all 9 ICU beds full, patients transferred to
+Antioquia).
+
+### Checked, still unresolved
+Fundación Thaar Wajaphasim — re-checked by all 5 agents, still no findable
+donation channel, unchanged from pass 18. Cruz Roja's alternate
+blood-donation points for Quibdó — still not confirmed to exist, "being
+evaluated" status unchanged. No updated official Quibdó-specific
+casualty/damage figures were found this pass (9 confirmed deaths,
+search-and-rescue closed, holds from the original pass), so no new
+`TollRecord` entries were needed here, unlike Pereira's pass 23a. An
+Instagram lead about Alcaldía/Diócesis construction-material bonds was
+dropped for lacking a real post permalink (search-results URL only); an
+account amplifying CMGRD registration info was dropped after the
+researching agent itself flagged the content as likely AI-generated.
+
+### Next steps (pass 27)
+Continue the follow-up round: Buenaventura, Popayán, Dosquebradas, and San
+José del Palmar remain.
