@@ -2602,3 +2602,71 @@ The items above.
 ### Next steps (pass 35)
 Continue the third round: Quibdó, Buenaventura, Popayán, Dosquebradas, and
 San José del Palmar remain.
+
+## Pass 36 — third round continues: Quibdó (2026-08-15)
+
+No brand-new aid points this pass — every channel checked (the blood-bank
+fridge, Fundación Thaar Wajaphasim, the GoFundMe) was either unchanged or
+a status update to something already on file. The news is institutional
+and significant.
+
+### The congressman donation-misuse story escalates to a formal complaint
+Pass 27 flagged an allegation that Rep. Óscar Benavides might be
+improperly collecting Chocó earthquake donations into a personal-adjacent
+account. This pass found it escalated to a formal complaint filed with the
+Sala de Instrucción of Colombia's Supreme Court, naming a specific
+magistrate (Francisco Farfán), a specific denunciante, and a specific
+account holder allegedly linked to the funds. Former Attorney General
+Francisco Barbosa publicly joined calls for investigation. Benavides
+responded defiantly on his own TikTok, saying funds route through
+"Asociación BNL2" and his legal representative rather than his personal
+account — and now claims over $700 million COP and 40+ tons of aid
+collected, up from ~$300 million in the prior pass. Both the legal
+escalation and the figure escalation are logged.
+
+### A presidential visit, and reconstruction-phase institutional moves
+President De la Espriella visited Quibdó, confirming search-and-rescue is
+formally closed (13 dead department-wide, per the Governor) and announcing
+a special management office for Chocó with economic-emergency decrees due
+the following week. Local authorities flagged at least 100 Quibdó homes
+needing demolition for structural risk. Separately, Bogotá sent a
+structural-engineering delegation (IDU, IDIGER, Camacol) to help guide
+reconstruction planning, and the First Lady sent 12 trucks of supplies.
+
+### An existing shelter failed overnight
+A temporary shelter (apparently the Coliseo de Boxeo) flooded during a
+storm, forcing an emergency nighttime relocation to the Coliseo del Jardín
+with help from the taxi drivers' guild and police. The Gobernación
+responded by activating new shelter points and 7 Starlink connectivity
+points across Chocó municipalities — but the flooding itself is a caution
+worth keeping on file for anyone directing people to that shelter.
+
+### Other developments
+Four people reported missing in Quibdó were found alive and unharmed.
+Residents of the El Piñal neighborhood say announced aid ("300 tents")
+hasn't reached them, so they're pooling money to rent an excavator
+themselves — a concrete aid-equity/distribution-gap signal. An unconfirmed
+lead suggests a Medellín city councilman's relief truck may include a
+replacement blood-bank fridge, but this rests on a video-transcript
+fragment, not a confirmed caption or news report — logged as a lead, not a
+resolution.
+
+### Status updates to known channels
+GoFundMe "El mundo mira al Chocó" reached 100% of its $100,000 goal
+(1,784 donors) and remains open. Fundación Escuela Taller de Quibdó's
+cumulative total reached $40.2 million COP, amplified by allied
+organizations nationally. Jhon Arias's effort continues escalating (a
+third aid plane, a 30-ton truck, plans for new physical collection points
+in Cartagena and Medellín).
+
+### New aid points (0)
+None this pass — everything found was either a status update to an
+existing channel or too unconfirmed to seed (the possible blood-fridge
+lead).
+
+### New community embeds (11)
+The items above.
+
+### Next steps (pass 36)
+Continue the third round: Buenaventura, Popayán, Dosquebradas, and San
+José del Palmar remain.
