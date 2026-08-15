@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { ExternalLink } from "../ui/ExternalLink";
+import { ShareButton } from "../ui/ShareButton";
 import { ALLIED_CATEGORY_LABEL, SOURCE_STATUS_LABEL, TIER_LABEL } from "@/lib/labels";
 
 type ResourceWithOptionalMunicipio = AlliedResource & {
@@ -11,7 +12,8 @@ type ResourceWithOptionalMunicipio = AlliedResource & {
 
 export function AlliedResourceCard({ resource }: { resource: ResourceWithOptionalMunicipio }) {
   return (
-    <Card className="flex h-full flex-col overflow-hidden p-0">
+    <Card id={resource.id} className="relative flex h-full flex-col overflow-hidden p-0">
+      <ShareButton anchorId={resource.id} label={resource.name} />
       {resource.ogImageUrl && (
         // Arbitrary third-party social-preview images — can't be routed through
         // next/image without allowlisting every allied site's domain.
@@ -24,7 +26,7 @@ export function AlliedResourceCard({ resource }: { resource: ResourceWithOptiona
         />
       )}
       <div className="flex flex-1 flex-col p-4">
-        <div className="flex flex-wrap items-start justify-between gap-x-2 gap-y-1">
+        <div className={`flex flex-wrap items-start justify-between gap-x-2 gap-y-1 ${resource.ogImageUrl ? "" : "pr-8"}`}>
           <span className="min-w-0 font-medium text-black dark:text-zinc-50">{resource.name}</span>
           <Badge variant="tier" value={resource.tier}>
             {TIER_LABEL[resource.tier] ?? `nivel ${resource.tier}`}

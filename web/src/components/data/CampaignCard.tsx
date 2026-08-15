@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { ExternalLink } from "../ui/ExternalLink";
+import { ShareButton } from "../ui/ShareButton";
 import { GoFundMeEmbed } from "./GoFundMeEmbed";
 import { isGoFundMeUrl } from "@/lib/gofundme";
 import {
@@ -17,8 +18,9 @@ type CampaignWithMunicipios = Prisma.CrowdfundingCampaignGetPayload<{
 
 export function CampaignCard({ campaign }: { campaign: CampaignWithMunicipios }) {
   return (
-    <Card>
-      <div className="flex items-center justify-between gap-2">
+    <Card id={campaign.id} className="relative">
+      <ShareButton anchorId={campaign.id} label={campaign.title} />
+      <div className="flex items-center justify-between gap-2 pr-8">
         <span className="font-medium text-black dark:text-zinc-50">{campaign.title}</span>
         <div className="flex shrink-0 items-center gap-1.5">
           {campaign.international && (
