@@ -3,9 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
-import { CampaignCard } from "@/components/data/CampaignCard";
-import { EmptyState } from "@/components/ui/EmptyState";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { InternationalCampaignFilters } from "@/components/data/InternationalCampaignFilters";
 
 export const dynamic = "force-dynamic";
 
@@ -27,12 +25,6 @@ export default async function DonarInternacionalPage() {
     include: { municipios: { select: { name: true, divipolaCode: true } } },
   });
 
-  const verified = campaigns.filter((c) => c.verificationStatus === "VERIFIED");
-  const individual = campaigns.filter(
-    (c) => c.verificationStatus === "PLAUSIBLE" || c.verificationStatus === "UNCONFIRMED",
-  );
-  const flagged = campaigns.filter((c) => c.verificationStatus === "FLAGGED_SCAM");
-
   return (
     <PageShell
       backHref="/donar"
@@ -51,38 +43,22 @@ export default async function DonarInternacionalPage() {
         </ul>
       </Card>
 
-      <SectionHeading first>{t("sections.verified")}</SectionHeading>
-      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {verified.map((c) => (
-          <CampaignCard key={c.id} campaign={c} />
-        ))}
-        {verified.length === 0 && <EmptyState>{t("emptyVerified")}</EmptyState>}
-      </div>
-
-      {individual.length > 0 && (
-        <>
-          <SectionHeading>{t("sections.individual")}</SectionHeading>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
-            {t("sections.individualSubtext")}
-          </p>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {individual.map((c) => (
-              <CampaignCard key={c.id} campaign={c} />
-            ))}
-          </div>
-        </>
-      )}
-
-      {flagged.length > 0 && (
-        <>
-          <SectionHeading>{t("sections.flagged")}</SectionHeading>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {flagged.map((c) => (
-              <CampaignCard key={c.id} campaign={c} />
-            ))}
-          </div>
-        </>
-      )}
+      <InternationalCampaignFilters
+        campaigns={campaigns}
+        labels={{
+          typeLabel: t("filters.typeLabel"),
+          cityLabel: t("filters.cityLabel"),
+          allTypes: t("filters.allTypes"),
+          allCities: t("filters.allCities"),
+          national: t("filters.national"),
+          sectionVerified: t("sections.verified"),
+          sectionIndividual: t("sections.individual"),
+          individualSubtext: t("sections.individualSubtext"),
+          sectionFlagged: t("sections.flagged"),
+          emptyVerified: t("emptyVerified"),
+          emptyFiltered: t("filters.emptyFiltered"),
+        }}
+      />
     </PageShell>
   );
 }

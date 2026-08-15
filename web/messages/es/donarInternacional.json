@@ -15,6 +15,14 @@
       "individualSubtext": "Recaudadores individuales, no instituciones — revisa el nivel de confianza de cada una antes de donar.",
       "flagged": "Riesgo de fraude"
     },
-    "emptyVerified": "Ninguna todavía."
+    "emptyVerified": "Ninguna todavía.",
+    "filters": {
+      "typeLabel": "Tipo de donación",
+      "cityLabel": "Etiqueta de ciudad",
+      "allTypes": "Todas",
+      "allCities": "Todas las ciudades",
+      "national": "Nacional / sin ciudad específica",
+      "emptyFiltered": "Ninguna campaña coincide con estos filtros."
+    }
   }
 }

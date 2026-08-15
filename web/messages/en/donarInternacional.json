@@ -15,6 +15,14 @@
       "individualSubtext": "Individual fundraisers, not institutions — check each one's trust level before donating.",
       "flagged": "Fraud risk"
     },
-    "emptyVerified": "None yet."
+    "emptyVerified": "None yet.",
+    "filters": {
+      "typeLabel": "Donation type",
+      "cityLabel": "City tag",
+      "allTypes": "All",
+      "allCities": "All cities",
+      "national": "National / no specific city",
+      "emptyFiltered": "No campaign matches these filters."
+    }
   }
 }
