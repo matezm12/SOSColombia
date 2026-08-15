@@ -3466,3 +3466,67 @@ Continue round 4: Manizales, Armenia, Quibdó, Buenaventura, Popayán,
 Dosquebradas, San José del Palmar, and Pijao remain. The Benavides
 donation-fraud scandal should be picked up specifically in the Quibdó/
 Chocó round-4 pass, since that's where the actual money was solicited.
+
+## Pass 47 — round 4 continues: Manizales (2026-08-15)
+
+Same narrow round-4 brief as passes 45-46, applied to Manizales (three
+prior rounds: passes 16, 25, 34). This round's yield skewed heavily toward
+reconstruction-phase content rather than new physical aid points — several
+individual crowdfunding campaigns were independently found by 2-3 of the
+5 agents each, a strong corroboration signal.
+
+### Missing persons resolved systemically, not case-by-case
+Rather than an individual found-alive story, this round surfaced an
+official government report: Manizales' balance stands at 5 dead, 112
+injured, 142 people in temporary shelters, and **zero missing persons
+reported anywhere in Caldas department**. Directly answers the round's
+missing-persons angle at the department level.
+
+### Two new, distinct scam-warning threads
+The ICBF's own director publicly denied the agency solicits donations for
+this emergency — clarifying that role belongs to the Primera Dama's
+office — after impersonation concerns emerged. Separately, a rent
+price-gouging alert (citing Ley 820 de 2003) was corroborated across three
+independent outlets (Red Vox, Pulzo, El Tiempo), plus a community-sourced
+warning about a specific livestreaming donation-scammer, corroborated by
+two independent commenters.
+
+### Reconstruction promised, but not yet flowing
+The national government announced a "second phase" of housing recovery
+for Caldas (rental subsidies, utility relief) — but La Patria, Manizales'
+own longtime newspaper, published a reality-check the same week: as of
+their reporting, none of that money had actually reached victims yet.
+Kept both sides on record rather than treating the announcement alone as
+confirmation aid is flowing.
+
+### Six new individual crowdfunding campaigns, cross-corroborated
+Three were found independently by multiple agents (Mariana Montes
+González's Vaki, Ana Lida Vélez Rico's Vaki — notable for explicitly
+coordinating with an insurance claim to avoid double-collecting, a first
+for this project's crowdfunding coverage — and Sandra Milena Rendón
+Valencia's GoFundMe for her grandmother's condemned shop). Three more
+came from the dedicated crowdfunding agent alone: Diana López (a
+manicurist whose home was ordered demolished), Nicolás's "El Café de
+Nico" (a disabled entrepreneur's coffee business), and a diaspora-
+organized Vaki for three elderly Chipre sisters via a Minnesota Colombian
+community group.
+
+### New aid points (10)
+2 ACOPIO status/new points (Coliseo Menor via Once Caldas — possible
+overlap with the already-known Universidad de Caldas Coliseo point
+flagged explicitly; VELTRA; Barón Rojo Sur, time-window flagged), 1
+ALBERGUE (the Coliseos' formal shelter designation), 7 MONETARY_DONATION
+crowdfunding campaigns.
+
+### New community embeds (11)
+The two scam-warning threads, the ICBF clarification, the housing-recovery
+announcement and its La Patria reality-check, the zero-missing-persons
+report, a Barrio Milán building-marking/demolition-code system (the
+freshest find this round, ~4 hours old), a free legal-aid explainer on
+reconstruction benefits, an elderly-care foundation's urgent housing
+need, the Universidad de Caldas acopio point's "last day to donate"
+status update, and one human-interest account from Chipre.
+
+### Next steps (pass 47)
+Continue round 4: Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas,
+San José del Palmar, and Pijao remain.
