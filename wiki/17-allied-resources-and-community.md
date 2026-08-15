@@ -3870,3 +3870,69 @@ number).
 
 ### Next steps (pass 52)
 Continue round 4: San José del Palmar and Pijao remain.
+
+## Pass 53 — round 4 continues: San José del Palmar, the epicenter (2026-08-15)
+
+Same narrow round-4 brief as passes 45-52, applied to San José del Palmar
+(three prior passes: 22, 31, 43) — the smallest, most remote tracked
+town, and the earthquake's epicenter. As expected for a well-covered small
+town by its fourth pass, most content was recirculation — but one real
+find changed that.
+
+### A never-before-documented official channel
+The municipality's own Instagram account (@alcaldiamunicipalsjp) had
+never been found in three prior rounds. It carries two dated official
+communiqués showing real, measurable progress: missing persons down from
+2 to 1, and the access road improved from fully cut (14 landslides,
+"municipio incomunicado") to passable on one lane. The more recent
+communiqué also gives this town's first precise toll breakdown — 525
+families, 2,625 people affected, 40 homes collapsed, 485 damaged — logged
+as new `TollRecord` rows sourced to the municipality directly (tier 1).
+
+### A stale data conflict finally resolved
+Pass 31 had flagged a discrepancy in the Valentina Jurado Vaki campaign's
+total (some views showed real numbers, others showed a cached zero). This
+round's dedicated crowdfunding check did a fresh, direct page reload:
+confirmed real and climbing — $46,480/1,828 donors at last check to
+$47,334/1,839 donors now, contributions arriving within the hour of the
+check. Not a caching artifact.
+
+### The road is open, but the town is still fragile
+The Ministry of Transport announced (corroborated by Revista Semana) that
+the access road has been reopened — but a same-day report describes a
+pregnant woman being medically evacuated by helicopter because the town
+remains functionally isolated. Both can be true: passable but still
+fragile. Aid delivery has partly shifted to aerial drops with human-chain
+unloading given the terrain.
+
+### Reconstruction policy names the town explicitly
+The president announced a national "Plan Marshall" for Chocó, explicitly
+naming San José del Palmar (as epicenter) and Quibdó as priority
+municipalities — the first concrete reconstruction-policy announcement
+found for this town in any round. Separately, Girardota (Antioquia)
+announced it's "apadrinando" (sponsoring) the town's reconstruction — the
+same municipal solidarity pattern already seen elsewhere.
+
+### New aid points (5)
+A Cruz Roja collection point in Cartago, a one-day charity empanada sale
+in Dosquebradas, a small multi-city Vaki campaign, and two Cali-based
+collection points (one with a caveat that its stated deadline has likely
+already passed).
+
+### New toll records (6)
+MISSING_OFFICIAL: 1 (down from 2), INJURED: 2, DAMNIFICADOS_FAMILIAS: 525,
+DAMNIFICADOS_PERSONAS: 2,625, VIVIENDAS_DESTRUIDAS: 40, VIVIENDAS_
+AVERIADAS: 485 — this town's first precise official breakdown.
+
+### New community embeds (9)
+The two official municipal communiqués (folded into one entry), the
+Girardota sponsorship, an ICBF-impersonation scam alert, the road
+reopening, the isolation nuance, the Plan Marshall announcement, an SGC
+aftershock count (269 replicas), a new rural hazard report (a
+dangerously-damming river in vereda Surumita), a fresh Revista Semana
+on-the-ground report, and a data-journalism finding that the town is
+proportionally the worst-hit municipality of the entire earthquake by a
+wide margin.
+
+### Next steps (pass 53)
+Pijao remains — the final city in round 4.
