@@ -3530,3 +3530,80 @@ status update, and one human-interest account from Chipre.
 ### Next steps (pass 47)
 Continue round 4: Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas,
 San José del Palmar, and Pijao remain.
+
+## Pass 48 — round 4 continues: Armenia (2026-08-15)
+
+Same narrow round-4 brief as passes 45-47, applied to Armenia (three prior
+rounds: passes 17, 26, 35). Caught two false-"new" leads before seeding
+them: Fundación Covida's Vaki campaign (already known since pass 17, just
+grown modestly to $16,885/448 donors) and a third instance of a recurring
+mislabeling pattern — a "Terremoto armenia, reconstruir casa" GoFundMe
+whose actual home is in Calarcá, a separate municipality, already flagged
+twice in passes 17 and 26.
+
+### Armenia's first confirmed fatality
+An official municipal damage bulletin (Informe Preliminar de Afectación
+N.°11, corte 7am Aug 15) reports **1 fallecido in the zona Centro** plus
+134 injured — the first confirmed death logged for Armenia since this
+project's stage-1 research established a zero-deaths figure for the city.
+Logged as a new, separate `TollRecord` row (not merged into or replacing
+the prior zero-deaths record, per this project's append-only discipline).
+The same bulletin gives a much more granular damage picture: 10,800
+structures with some damage, 140 at collapse risk, and — notably — a full
+animal-toll breakdown (223 pets reported missing, 6 reunited, several
+injured/dead cats and dogs).
+
+### A live, official scam alert
+Armenia's own Secretario de Gobierno publicly warned of two active scam
+patterns: people posing as rescue volunteers soliciting cash, and people
+posing as damage-assessment inspectors to gain entry to homes —
+independently corroborated across four separate outlets/accounts.
+
+### Two new official aid points, one decommissioned
+The city opened two new official donation points (the CAM auditorium and
+the Coliseo del Sur, the latter also serving as a shelter now reported
+near its 60-family capacity) — while explicitly announcing the fire
+department has **stopped** accepting donations at its own facilities, so
+those spaces stay clear for emergency response. Anyone still directing
+donors to the bomberos needs that status change flagged.
+
+### Cross-corroborated: a GoFundMe found by 4 of 5 agents
+Cristian Marín's GoFundMe (a single father and his two children, sheltering
+in a church after their building was destroyed) was found independently
+by four of the five research agents — the strongest corroboration signal
+of any single finding this round. Two of the new GoFundMe campaigns carry
+an explicit possible-duplicate caveat against pass 17's two
+unnamed diaspora campaigns, flagged for a moderator with DB access to
+resolve rather than asserted either way.
+
+### Checked, genuinely still empty or unresolved
+No missing-persons resolution was found for Armenia specifically (one
+still-open case, Cristian Camilo Arango Marín, is newly logged); a
+"Renacer-Armenia" Vaki campaign resurfaced in search results claiming real
+donor traction, but a direct page reload confirmed it's still at zero
+donors and was already checked and rejected in pass 26 — the traction
+claim didn't hold up.
+
+### New aid points (9)
+1 ALBERGUE (Coliseo del Sur, status-updated), 2 ACOPIO (CAM auditorium,
+the Pijao-bound collection point organized from Armenia), 1 VET
+(Bienestar Animal's Parque Sucre detail), 1 ACOPIO address-supplement
+(Banco de Alimentos Monseñor Roberto López Londoño), 4 MONETARY_DONATION
+crowdfunding campaigns.
+
+### New toll records (2)
+DEATHS_REPORTED_OFFICIAL: 1 (Armenia's first), INJURED: 134.
+
+### New community embeds (8 of 10 attempted — 2 already on file)
+The official scam alert, Cruz Roja's shelter confirmation, the full
+damage bulletin, a rent price-gouging report, a missing-persons
+resolution, the open Arango Marín case, an RUD/legal-rights guide, and an
+awareness post on invisible ongoing damage, plus the two reconstruction-
+phase explainers (Decreto 1171 legal rights, the presidential-visit/70%-
+damage report) — the idempotency check silently skipped 2 of the 10
+permalinks as already-seeded, but which 2 wasn't captured at seed time,
+so no specific claim about which ones or why.
+
+### Next steps (pass 48)
+Continue round 4: Quibdó, Buenaventura, Popayán, Dosquebradas, San José
+del Palmar, and Pijao remain.
