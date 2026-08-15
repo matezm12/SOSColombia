@@ -1581,3 +1581,93 @@ evacuated as a precaution).
 
 ### Next steps (pass 21)
 One city remains: San José del Palmar, the earthquake's epicenter itself.
+
+## Pass 22 — deep pass on San José del Palmar (2026-08-14)
+
+Ninth and final city in the per-city deep-pass rotation: San José del
+Palmar, the earthquake's literal epicenter. A tiny, extremely rural
+municipality (~5,900 people, ALTA severity, not on the original red-alert
+list) with zero confirmed deaths — the mayor has been quoted directly across
+roughly ten news outlets confirming this — and zero aid infrastructure on
+file going in; an earlier pass had already checked the allied aid-tracking
+sites and confirmed a genuine, real gap rather than a data-collection miss.
+
+### The shape of this town's aid story
+Because San José del Palmar has no hospital, vet clinic, or shelter
+infrastructure of its own, nearly every real find this pass turned up was
+organized *from* other cities rather than locally — collection points in
+Cali, Bogotá, Tuluá, Zarzal, Andalucía, and Cartago, all explicitly
+earmarking donations for this specific town. That's a genuinely different
+aid pattern than every other city in this rotation, and it held up under
+scrutiny: several promising-looking leads (a Cali-based vet field station, a
+Pereira pet-donation point, general Bogotá-wide "centros de acopio"
+roundups) were checked and excluded specifically because they served the
+broader Chocó/regional response without being earmarked for this
+municipality by name — the bar every seeded point had to clear.
+
+### The strongest cross-agent finding of any pass
+A Vaki crowdfunding campaign ("para San José del Palmar, Chocó — Epicentro
+del terremoto") was found *independently by all five agents* — the
+strongest single-entity corroboration across all nine city passes run this
+week. Organized by an identifiable individual with a documented prior
+connection to the town (she'd visited three months before the quake),
+verified on the Vaki platform, with 1,817 real named donors and independent
+third-party vouching on X. It had already raised nearly 5x its stated goal
+by the time this pass ran.
+
+### New aid points (6)
+- **The Vaki campaign** above (MONETARY_DONATION).
+- **5 acopio points** run out of other cities, all explicitly naming San
+  José del Palmar (and often specific corregimientos within it, like San
+  Pedro de Ingará and La Molana) as a destination — including one Bogotá
+  cultural center's collection drive independently found on three separate
+  platforms, and a specific ask for a donated truck trip to reach the
+  Consejo Comunitario Afrodescendiente of San Pedro de Ingará, a corregimiento
+  an hour from the municipal seat.
+
+### New community embeds (9)
+The official municipal Alcaldía communiqué gives the fullest single picture
+of ground conditions found for this town: 0 deaths, 2 injured, 2 missing
+(at the time), 30% of rural housing partially collapsed, 14 landslides
+cutting every road in. A follow-up local news report three days later
+(elnorte_hoy) gives sharper detail — 441 damaged homes, 40 fully collapsed,
+about 20 affected veredas — and confirms the Chocó governor's statement that
+no missing-persons reports remained open by that point, resolving the
+earlier communiqué's "2 desaparecidos" figure without touching the
+project's own locked zero-death count.
+
+### Checked, deliberately not seeded
+- **A multi-town Valle del Cauca "brigade" collection network** (Tuluá,
+  Andalucía, Zarzal, Cartago addresses) reappeared across three agents, but
+  one researching agent flagged that the video's own caption alluded to an
+  unresolved internal allegation about aid being "diverted," and a separate
+  agent independently rejected the same source for lacking institutional
+  backing after noticing the organizer's other content was unrelated
+  political satire. Repeated appearance across searches here reflected the
+  same viral post being found multiple times, not independent corroboration
+  — excluded rather than amplified given the live credibility concern.
+- **A municipal "albergue canino" (dog shelter)** referenced on the
+  Alcaldía's own Instagram — one agent read it as a pre-existing, ongoing
+  municipal infrastructure project rather than earthquake-response
+  construction, and no agent could pin down a working post permalink for
+  it. Excluded on the more skeptical read.
+- **BLOOD_DONATION, ALBERGUE, and HEALTH (a dedicated field brigade)** all
+  came back genuinely, thoroughly empty — consistent with a town this small
+  and remote having no local medical infrastructure of its own to run any
+  of these, and with outside aid still reaching it mostly by truck and
+  crowdfunding rather than field medical deployment at research time.
+- Extensive international news coverage of the epicenter itself exists (BBC,
+  UNICEF, N+ Univision, Noticias Caracol, and more) confirming "ground zero"
+  is a real journalism draw independent of any aid channel — but most of it
+  is news-site content rather than a specific social-platform post with a
+  capturable permalink, so it's referenced in agent notes rather than seeded
+  as community embeds.
+
+### The rotation is complete
+This closes the per-city deep-pass initiative across all nine tracked
+cities: Pereira (13-14), Cali (15), Manizales (16), Armenia (17), Quibdó
+(18), Buenaventura (19), Popayán (20), Dosquebradas (21), and San José del
+Palmar (22). 22 research passes total since this project's stage-2 launch,
+spanning X, Instagram, Facebook, TikTok, and GoFundMe/Vaki crowdfunding for
+every city, plus the original allied-site and dataset research that started
+it.
