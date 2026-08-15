@@ -2776,3 +2776,121 @@ Pijao now sits alongside the other nine tracked cities for future
 follow-up rounds. Given how fast this situation is still moving (the fire
 was uncontained as of the most recent report), a follow-up pass sooner
 than the ~24h cadence used for the other cities may be warranted.
+
+## Pass 38 — Pijao expanded further, per user request (2026-08-15)
+
+The user asked to expand Pijao's research "a lot" before moving on to the
+rest of the cities. Ran a second, wider 5-agent pass explicitly scoped to
+verify pass 37's shakier findings against primary sources, check for a
+fire-containment update, and search outlets/angles the first pass hadn't
+covered. Result: several important corrections to what pass 37 reported,
+not just additions.
+
+### The 73-predios earthquake figure is now primary-source confirmed
+Pass 37 sourced this only through a third-party crowdsourced tracker
+(tier 3). This pass found the exact figure — "73 predios afectados, 48
+urbanos y 25 rurales, de los cuales 7 presentan colapso total" — stated on
+camera by Mayor John Jairo Restrepo Gallego on the Alcaldía's own
+Instagram, repeated verbatim across three posts. Upgraded to a tier-2
+`TollRecord` (pass 38a). The same primary source also states explicitly
+that **no deaths were reported in the municipality** — a new, directly-
+sourced figure, corroborated by the only Quindío quake-fatality story
+found being located between Montenegro and Quimbaya, not Pijao.
+
+### The fire is NOT confirmed contained — contrary to the more hopeful pass-37 framing
+Today's Alcaldía post (5 hours old at check time) shows an Army disaster-
+response brigade still inspecting "focos activos" in La Maicena and El
+Sinabrio. La Crónica del Quindío's independent field reporting from the
+same window is blunter: authorities acknowledge the fire "continúa sin
+ser controlado" along the Génova border, now in its fourth or fifth day.
+Canal Telecafé separately reported the community "vuelve a alertar" after
+an earlier "controlled" report proved premature. Net picture: partial
+control in some veredas (Sinabrio), continued active-foci monitoring in
+others (La Maicena, the Génova border) — genuinely contested, not settled.
+
+### Aerial firefighting support: a contested claim, not a resolution
+One line of research found what looked like confirmation — Génova's own
+Instagram and Quindío Noticias describing a Fuerza Aeroespacial Colombiana
+Bambi Bucket helicopter making ~32 water drops on the shared Cueva
+Loca/La Maicena fire complex around Aug 13-14. But three independent,
+harder searches by other agents in the same pass found no such
+confirmation anywhere, and traced every verified Bambi Bucket deployment
+they could find to Tolima and Antioquia specifically, not Quindío. Rather
+than pick a side, both findings are logged (see the community embed) —
+this is exactly the kind of contradiction this project's discipline
+exists to surface rather than paper over.
+
+### A methodological catch: recycled content-farm text
+A viral-looking livestock figure ("8,000 hectares of pasture, 200 sheep
+lost") turned out, on an exact-phrase check, to be boilerplate recycled
+verbatim from unrelated fire reports in Bolivia, Panama, and Peru, with
+Pijao's name substituted in. Not used. Worth keeping in mind for future
+Pijao research — this kind of content-farm contamination is a real risk
+for a small, thinly-covered town where genuine reporting is sparse.
+
+### The @GLP760 donation key: mostly de-risked, but misattributed
+Pass 37 flagged this as an unverified key possibly falsely claimed to be
+the Alcaldía's. This pass found it's real — tied to a named individual
+and traceable to roughly a year of prior Media Maratón Quindío fundraising
+activity, reposted by the Gobernación del Quindío's own official account.
+But it was checked against ~10 of the Alcaldía de Pijao's own posts and
+never appears there; the Alcaldía's own donation messaging only ever
+points to its physical Centro de Acopio. So the claim "this is the
+Alcaldía's own key" looks like a misattribution, not a fabrication — the
+key itself is probably legitimate, just belongs to a different (also
+real) campaign. Logged as a clarifying community embed rather than a
+retraction, since the original caution's underlying instinct (don't trust
+an unverified claim of official origin) was reasonable.
+
+### Genuinely new finds
+The Alcaldía runs its own physical Centro de Acopio (Secretaría de
+Gobierno) distinct from the MMQ drive already on file. World Central
+Kitchen — chef José Andrés's international relief NGO — confirmed
+operating in Pijao across multiple posts spanning several days, alongside
+the other major cities already tracked. Pijao Trail, the town's signature
+mountain race, organized an Aug 16 solidarity visit to affected fincas —
+a genuine tourism-identity-meets-disaster-response angle. Two new mental-
+health/risk-management hotlines were found that the first pass's
+emergency directory missed. A psychosocial brigade for the Ibanakuara
+community was found on Quindío's official government domain (medium
+confidence — the snippet was readable but the full article returned a
+403). First documented mention of agricultural economic loss ("pérdidas
+incalculables en cultivos"), though without hard figures. A clarifying
+detail: Pijao actually had two separate August fires — an earlier,
+smaller, apparently-already-controlled Aug 1 blaze (El Espartillal/Las
+Maravillas) distinct from the larger, ongoing, post-earthquake fire this
+whole research effort concerns. Don't conflate the two.
+
+### Dug harder, still genuinely empty
+Missing persons, Pijao/Génova-specific scams, livestock/cattle casualty
+figures, a Vaki campaign, and school-closure status all remain unfound
+after a substantially harder second search (multiple phrasings, multiple
+platforms, named-person searches). Each empty category was checked
+against specific plausible-looking leads that turned out to be false
+positives on inspection (documented in the seed script's rejected list) —
+this is a confirmed absence, not an unsearched gap.
+
+### New toll records (2)
+The primary-source-upgraded 73-predios/7-colapsos figure, and Pijao's
+first-ever zero-deaths figure, both from the Alcaldía's own statement.
+
+### New aid points (6)
+The Alcaldía's own Centro de Acopio, World Central Kitchen, Pijao Trail's
+solidarity visit, two new emergency hotlines (salud mental, DIGER), the
+Fundación SOS Internacional/Red Salud Armenia brigade, and the Ibanakuara
+psychosocial brigade.
+
+### New community embeds (9)
+The fire-status update and contradiction, the contested aerial-support
+finding, the recycled-livestock-figure catch, the GLP760 clarification,
+the crop-loss/communications-outage signal, CRQ's mutual-aid confirmation,
+the Governor's 15-point departmental request, and the updated
+animal-welfare figures.
+
+### Next steps
+Pijao's research is now substantially deeper than a typical first pass —
+matching or exceeding the two-round depth given to the other nine cities
+in a single expanded round. Per the user's instruction, the plan is to
+keep expanding Pijao further if asked, or move on to the remaining
+third-round cities (Buenaventura, Popayán, Dosquebradas, San José del
+Palmar) once satisfied.
