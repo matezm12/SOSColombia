@@ -34,8 +34,13 @@ The core discipline: every figure carries its source, a source-quality tier (1 =
 - `/sugerir` — form to suggest an aid point (goes to moderation, not published directly)
 - `/comunidad` — verified social-media posts (aid requests, official updates) by city
 - `/recursos` — links to other independent trackers, directories, and donation platforms built by other people for this event
+- `/datos` — open data export: full dataset as JSON, plus CSV for toll records and aid points
 
 English versions of every page exist at the same path prefixed with `/en` (e.g. `/en/mapa`, `/en/ciudad/76001`). Spanish is the default, unprefixed locale.
+
+## Data Export
+
+The full dataset is machine-readable at `/api/export` (JSON: event, toll records, aid points, crowdfunding campaigns, gov reports, contradictions, allied resources — each with its source). Two CSV mirrors cover single tables: `/api/export/csv/toll-records`, `/api/export/csv/aid-points`. Moderation-queue submissions are never included. Free to reuse with attribution; see `/metodologia`.
 
 ## Markdown Mirrors
 
