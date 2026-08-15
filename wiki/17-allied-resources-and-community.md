@@ -1663,11 +1663,94 @@ project's own locked zero-death count.
   capturable permalink, so it's referenced in agent notes rather than seeded
   as community embeds.
 
-### The rotation is complete
-This closes the per-city deep-pass initiative across all nine tracked
-cities: Pereira (13-14), Cali (15), Manizales (16), Armenia (17), Quibdó
-(18), Buenaventura (19), Popayán (20), Dosquebradas (21), and San José del
-Palmar (22). 22 research passes total since this project's stage-2 launch,
-spanning X, Instagram, Facebook, TikTok, and GoFundMe/Vaki crowdfunding for
-every city, plus the original allied-site and dataset research that started
-it.
+## The per-city rotation completed after pass 22
+
+Passes 13-22 covered all nine tracked cities once each: Pereira (13-14),
+Cali (15), Manizales (16), Armenia (17), Quibdó (18), Buenaventura (19),
+Popayán (20), Dosquebradas (21), and San José del Palmar (22) — 22 research
+passes total since this project's stage-2 launch, spanning X, Instagram,
+Facebook, TikTok, and GoFundMe/Vaki crowdfunding for every city, plus the
+original allied-site and dataset research that started it. Pass 23 begins a
+second, follow-up round across the same nine cities.
+
+## Pass 23 — follow-up round begins: Pereira (2026-08-14)
+
+The user asked to expand on all nine cities again, since new content is
+likely to have been posted since the original passes — a genuinely
+different research mode from the first pass on each city: instead of
+exhaustive first-contact coverage, this is a **follow-up pass** explicitly
+scoped to catch what's changed. Every agent was told the ground is already
+thoroughly covered (citing wiki passes 13-14 for Pereira specifically) and
+to focus on recency, status changes, phase shifts, and evolving scam
+reports rather than re-running first-week searches.
+
+### A significant casualty-figure update
+During the President's on-site tour of Pereira today, updated national and
+Pereira-specific figures surfaced that meaningfully exceed anything on
+file — national deaths at 285-287 (vs. 265 as of Aug 13), and, notably, the
+**first-ever Pereira city-level toll figures** captured in this project
+(previously only Risaralda department-level existed): 94-95 dead, ~259
+injured, 260-270 missing, 35,200+ damaged homes, 66 total-collapse
+buildings, 165 affected schools. Two same-day sources gave slightly
+different readings for several of these — logged as separate dated records
+per the project's standing discipline (never overwrite, log the volatility)
+rather than merged into one number. See `seed-pass23a-toll-update-aug14.ts`.
+
+### The response has entered a reconstruction phase
+Multiple independent signals converge on this: debris removal is
+intensifying and the city center is closed specifically to speed it up;
+merchants are organizing their own economic-reactivation plan; a
+construction-materials company donated cement directly to the Alcaldía;
+Rotary Club Pereira Perla del Otún proposed a formal international
+reconstruction project; and — most concretely — a new wave of crowdfunding
+campaigns explicitly frame themselves around rebuilding rather than
+emergency relief. The standout is a Vaki campaign ("Convite por Pereira")
+that distributes rent, repair, grocery, and pet-care *vouchers* redeemable
+specifically at local Pereira businesses rather than generic cash, discloses
+its platform fees, and frames itself around the city's own 1945 "convite"
+that built the Matecaña airport — a level of specificity and local grounding
+well above the norm.
+
+### Scams are evolving too
+This pass surfaced multiple fresh scam-adjacent threads that didn't exist
+in the first-week research: a national Policía Nacional alert about fake
+donation schemes; singer Jhonny Rivera (who converted his own hotel into a
+shelter) now publicly denouncing impersonation scams using his name; a
+phishing site spoofing the real government subsidy program Prosperidad
+Social; and a story (corroborated by a verified TV outlet) about a false
+"people trapped" alert that was allegedly used to redirect rescue resources
+toward recovering a business's cash register. None of these existed to
+catch in the original passes — they're a direct product of the disaster
+response continuing for multiple days.
+
+### New aid points (7)
+A free psychological-support line, a one-day pet-food donation event, an
+acopio point at Universidad Libre's Belmonte campus, a national kit-delivery
+campaign explicitly covering Pereira, and three Vaki campaigns of varying
+strength — the strongest being "Convite por Pereira" above, plus a
+family-reconstruction fund with real traction, and a UTP student fund
+flagged at low confidence (verified badge, but zero donations after 4 days
+and templated donor-trust language).
+
+### New community embeds (17)
+Beyond the reconstruction and scam threads above: a status update that
+Motel Ámasiis (which had been sheltering rescue teams and misión médica) is
+scaling back to responder-only use amid new mobility restrictions; an
+explicit correction from Expofuturo's coordinators pushing back on rumors
+the acopio point already has "enough donations"; and confirmation that 67
+schools remain under structural evaluation before classes can resume.
+
+### Checked, deliberately not seeded
+Several individual/templated fundraisers were excluded on the same
+institutional-backing bar as always (an influencer collecting entrepreneur
+pledges via DM, a UTP-adjacent Vaki campaign courting foreign credit cards
+with zero traction after days, anonymous QR-code donation posts). One
+widely-repeated but unconfirmed allegation — that Homecenter is reselling
+donated humanitarian aid — is noted in agent notes as a rumor worth
+monitoring, not reported as fact, since no outlet or official body has
+confirmed it.
+
+### Next steps (pass 23)
+Continue the follow-up round through the remaining eight cities: Cali,
+Manizales, Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas, and San
+José del Palmar.
