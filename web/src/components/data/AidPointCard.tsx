@@ -3,6 +3,7 @@ import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { ExternalLink } from "../ui/ExternalLink";
 import { SourceLine } from "../ui/SourceLine";
+import { ShareButton } from "../ui/ShareButton";
 import { GoFundMeEmbed } from "./GoFundMeEmbed";
 import { isGoFundMeUrl } from "@/lib/gofundme";
 import { AID_STATUS_LABEL } from "@/lib/labels";
@@ -13,8 +14,9 @@ export function AidPointCard({ point }: { point: AidPointWithSource }) {
   const link = point.permalink ?? point.source.url;
 
   return (
-    <Card>
-      <div className="flex items-center justify-between gap-2">
+    <Card id={point.id} className="relative">
+      <ShareButton anchorId={point.id} label={point.name} />
+      <div className="flex items-center justify-between gap-2 pr-8">
         <span className="font-medium text-black dark:text-zinc-50">{point.name}</span>
         <Badge variant="status" value={point.status}>
           {AID_STATUS_LABEL[point.status] ?? point.status}

@@ -2,6 +2,7 @@ import type { Prisma } from "@prisma/client";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
+import { ShareButton } from "../ui/ShareButton";
 import { SocialEmbed } from "./SocialEmbed";
 import { SOCIAL_CATEGORY_LABEL, SOCIAL_PLATFORM_LABEL } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
@@ -11,9 +12,12 @@ type PostWithMunicipio = Prisma.SocialPostGetPayload<{
 }>;
 
 export function CommunityPostCard({ post }: { post: PostWithMunicipio }) {
+  const label = `${SOCIAL_CATEGORY_LABEL[post.category] ?? post.category} — ${SOCIAL_PLATFORM_LABEL[post.platform] ?? post.platform}`;
+
   return (
-    <Card>
-      <div className="flex items-center justify-between gap-2">
+    <Card id={post.id} className="relative">
+      <ShareButton anchorId={post.id} label={label} />
+      <div className="flex items-center justify-between gap-2 pr-8">
         <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
           {SOCIAL_PLATFORM_LABEL[post.platform] ?? post.platform}
           {post.authorHandle && <span className="text-zinc-400 dark:text-zinc-600"> · {post.authorHandle}</span>}

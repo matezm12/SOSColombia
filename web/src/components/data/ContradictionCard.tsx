@@ -1,13 +1,15 @@
 import type { Contradiction } from "@prisma/client";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
+import { ShareButton } from "../ui/ShareButton";
 import { CONTRADICTION_STATUS_LABEL } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 
 export function ContradictionCard({ contradiction: c }: { contradiction: Contradiction }) {
   return (
-    <Card>
-      <div className="flex items-center justify-between">
+    <Card id={c.id} className="relative">
+      <ShareButton anchorId={c.id} label={c.topic} />
+      <div className="flex items-center justify-between pr-8">
         <span className="font-medium text-black dark:text-zinc-50">{c.topic}</span>
         <Badge variant="contradiction" value={c.status}>
           {CONTRADICTION_STATUS_LABEL[c.status] ?? c.status}
