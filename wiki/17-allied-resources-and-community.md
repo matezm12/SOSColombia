@@ -1830,3 +1830,75 @@ re-added.
 ### Next steps (pass 24)
 Continue the follow-up round: Manizales, Armenia, Quibdó, Buenaventura,
 Popayán, Dosquebradas, and San José del Palmar remain.
+
+## Pass 25 — follow-up round: Manizales (2026-08-14)
+
+### The Cámara de Comercio funds are confirmed active — and expanding
+Found independently by 4 of 5 agents: the two funds from pass 16 (Fondo
+Solidario Manizales and Fondo Solidario por los Empresarios de Caldas) are
+both still open, and the Cámara's own website (dated the same day) describes
+a genuine expansion into a full economic-recovery program — a free
+"Oficina Empresarial" offering legal, financial, accounting, and
+psychological advisory to damaged businesses, a formal business-damage
+census, and a same-day meeting with Colombia's Minister of Commerce
+requesting Bancoldex credit lines, tax relief, and employment subsidies.
+Logged as a distinct new entry (an update/expansion) rather than duplicating
+the original fund names.
+
+### A confirmed scam alert
+ICBF's director publicly clarified the institute does not solicit money for
+this emergency, warning that scammers are impersonating ICBF's name and logo
+to collect fraudulent donations — corroborated independently by El Tiempo
+and Portafolio.co. The real official channel for Caldas is the Oficina de
+la Primera Dama.
+
+### The coffee economy, confirmed active
+The Alcaldía de Manizales and the Comité Municipal de Cafeteros opened a
+formal route for coffee farmers to report quake damage to their fincas,
+published the same day as this pass. The regional coffee federation
+(Comité de Cafeteros de Caldas) has also begun municipality-by-municipality
+outreach visits, starting in Neira.
+
+### New aid points (9)
+Three new institutional collection points (a foundation partnered with the
+Alcaldía for rural redistribution, a church running a spiritual-and-material
+relief campaign, a toy/baby-supplies drive), a genuinely new mental-health
+service activated specifically for quake survivors (closing the mental-
+health-follow-up gap the brief asked about), a blood-donation appeal tied to
+the regional blood bank, the Cámara de Comercio update above, a newly-found
+civic organization (Club Rotario Manizales) with full NIT/bank transparency,
+and two diaspora GoFundMe campaigns, neither closed or fully funded.
+
+### New community embeds (13)
+A shelter-conditions status check worth noting specifically: a local news
+outlet made an unannounced visit to the Coliseo de Manizales shelter after
+receiving complaints about food and blankets, and confirmed conditions were
+adequate (portion sizes had simply been adjusted after an initial
+over-provision). Also: a private steel company pledging 100% of the
+material needed to rebuild the earthquake-damaged Cathedral Basilica tower,
+a new city-hall economic-reactivation office for downtown merchants, and a
+national economic-emergency declaration plus a $100 billion COP
+reconstruction pledge from the Santo Domingo family foundation.
+
+A Manizales-specific casualty figure (5 dead, 112 injured, 142 sheltered,
+zero missing — cited during the president's visit, corroborated by two
+outlets) sits close to but not identical with the 6-dead figure already on
+file; both are preserved rather than merged, consistent with this
+project's volatility-logging discipline, though no new formal `TollRecord`
+was added this pass to keep scope manageable.
+
+### Checked, deliberately not seeded
+A viral, high-engagement allegation that Homecenter is reselling donated
+aid was flagged as an unverified crowd rumor, not a confirmed institutional
+report — noted for awareness, not reported as fact. A named congressperson
+collecting donations via a personal bank account (real controversy, covered
+by Revista Semana) was excluded for lacking a clear organization or address
+to act on either as a legitimate channel or a confirmed scam. Several stale
+first-week items resurfaced by keyword match (a "falsos promotores" scam
+graphic actually dated the day of the earthquake, an already-known shelter
+resurfacing with no status change) were caught and excluded on close
+timestamp inspection.
+
+### Next steps (pass 25)
+Continue the follow-up round: Armenia, Quibdó, Buenaventura, Popayán,
+Dosquebradas, and San José del Palmar remain.
