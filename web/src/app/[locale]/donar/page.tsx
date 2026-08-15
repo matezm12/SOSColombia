@@ -56,8 +56,6 @@ export default async function DonarPage() {
           <li>{t("scamWarning.point1")}</li>
           <li>{t("scamWarning.point2")}</li>
           <li>{t("scamWarning.point3")}</li>
-          <li>{t("scamWarning.point4")}</li>
-          <li>{t("scamWarning.point5")}</li>
         </ul>
       </Card>
 

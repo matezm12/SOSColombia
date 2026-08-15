@@ -108,8 +108,8 @@ ${description}
 ## Antes de donar
 
 - "SOS Chocó" no es una sola organización — es un lema que usan al menos 5 actores distintos (Manos Visibles, Fundación Plan, FECOER, entre otros). Verifica a cuál organización específica va tu donación antes de confiar en un enlace con ese nombre.
-- "Rescatistas LATAM" fue investigado y no se encontró evidencia de que exista como organización real. No dones a través de canales con ese nombre.
 - Desconfía de: enlaces compartidos solo por WhatsApp/SMS sin otro rastro, perfiles nuevos y anónimos, presión de urgencia, y "listas exclusivas de víctimas".
+- Una recolección de fondos vinculada a un congresista fue señalada públicamente por un exfiscal general por dirigir donaciones a una cuenta bancaria personal — posible recaudación masiva irregular (Código Penal, art. 316). Verifica siempre que el canal de donación sea una cuenta institucional, no personal.
 
 ¿Donas desde fuera de Colombia? Los canales locales de esta página requieren cuenta bancaria colombiana para algunos casos. Ver [donaciones internacionales](${SITE_URL}/md/donar/internacional).
 
