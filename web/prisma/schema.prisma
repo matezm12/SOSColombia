@@ -47,6 +47,7 @@ model Municipio {
   populationAsOf   DateTime?
   severityLabel    SeverityLabel?
   redAlert         Boolean     @default(false)
+  alertNote        String?     // short, explicit reason shown alongside the severity badge when the cause isn't a plain earthquake toll (e.g. a compounding wildfire) — most municipios leave this null
   lat              Float?
   lng              Float?
 

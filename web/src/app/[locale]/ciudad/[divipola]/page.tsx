@@ -140,6 +140,12 @@ export default async function CiudadPage(
             })}
         </p>
 
+        {municipio.alertNote && (
+          <p className="mt-2 rounded-md bg-severity-critica/10 px-3 py-2 text-sm font-medium text-severity-critica">
+            {municipio.alertNote}
+          </p>
+        )}
+
         <SectionHeading first>{t("cifras")}</SectionHeading>
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {[...latestByMetric.values()].map((record) => (

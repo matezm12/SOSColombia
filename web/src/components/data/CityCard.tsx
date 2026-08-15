@@ -10,6 +10,7 @@ export function CityCard({
   severityLabel,
   deathValue,
   deathLabel,
+  alertNote,
 }: {
   name: string;
   divipolaCode: string;
@@ -17,6 +18,7 @@ export function CityCard({
   severityLabel: string | null;
   deathValue?: number;
   deathLabel?: string;
+  alertNote?: string | null;
 }) {
   return (
     <Link
@@ -36,6 +38,9 @@ export function CityCard({
         {deathValue !== undefined &&
           ` · ${formatNumber(deathValue)} ${deathLabel ?? "fallecidos reportados"}`}
       </p>
+      {alertNote && (
+        <p className="mt-1 text-sm font-medium text-severity-critica">{alertNote}</p>
+      )}
     </Link>
   );
 }

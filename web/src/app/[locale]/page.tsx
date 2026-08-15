@@ -142,6 +142,7 @@ export default async function Home(props: PageProps<"/[locale]">) {
                       ? t("fallecidosConfirmados")
                       : t("fallecidosReportados")
                   }
+                  alertNote={m.alertNote}
                 />
               </li>
             );
