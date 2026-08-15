@@ -3097,3 +3097,56 @@ The items above.
 
 ### Next steps (pass 41)
 Continue the third round: Dosquebradas and San José del Palmar remain.
+
+## Pass 42 — third round continues: Dosquebradas, Pereira dedup again (2026-08-15)
+
+Every candidate this pass was again cross-checked against Pereira's full
+aid-point list (now 64 entries) per the standing user instruction. The
+shelter network expanded, a field hospital appeared, and — notably — the
+Alcaldía's own damage-report form turned out to be broken, a second
+stale-system finding alongside the blood-donation point already flagged
+in pass 30.
+
+### The shelter network keeps growing
+Two new sites: Albergue Minuto de Dios (150-person capacity, announced
+directly by the mayor) and a fourth shelter — Las Violetas, in the
+La Graciela/vía Frailes area pass 30 had already flagged as coming —
+now confirmed live, though its capacity is reported inconsistently
+(150 vs. 300 depending on the source, both logged rather than resolved).
+Campestre B's headcount updated to ~120 people across 36 families.
+
+### A field hospital, and a second broken official system
+A "Hospital de Campaña" appeared at the municipal coliseum, run jointly
+by Fundación CardioClinic and Hospital Santa Mónica, including a free
+obstetric-ultrasound day for pregnant earthquake survivors. Separately,
+the Alcaldía's own official carousel post about the emergency response
+revealed in its own comment thread that the city's damage-report QR
+code/form is broken — at least four independent commenters flagged it —
+echoing the same blood-donation-point pattern from pass 30: an aid system
+that looks fine from the outside until you check its own comments.
+
+### Building-safety complaints with no response
+Three specific buildings in the Santa Mónica sector — Edificio SALYFE,
+Edificio Monserrate, and Hotel Veneton (three days without power, families
+waiting to see if it collapses) — were named by residents in the same
+comment thread, who say the city hasn't responded. Separately, Portal del
+Parque's Torre 6 suffered total collapse with Towers 3-5 seriously
+damaged, residents still waiting for authorization to retrieve belongings.
+A four-story building in Santa Mónica began controlled demolition.
+
+### A cross-city resource, flagged as shared
+pereiravive.com — a free, community-built rental listing site — serves
+displaced families in both Pereira and Dosquebradas explicitly, exactly
+the kind of shared resource this project's Pereira/Dosquebradas dedup
+discipline exists to catch rather than file under one city silently.
+
+### New aid points (4)
+Albergue Minuto de Dios, Albergue Las Violetas, the Hospital de Campaña at
+the municipal coliseum, and SINALTRAINAL Dosquebradas' union headquarters
+converted into a collection point.
+
+### New community embeds (6)
+The items above.
+
+### Next steps (pass 42)
+San José del Palmar remains — the final city in the third round.
