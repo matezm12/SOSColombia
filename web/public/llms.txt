@@ -39,7 +39,7 @@ English versions of every page exist at the same path prefixed with `/en` (e.g. 
 
 ## Markdown Mirrors
 
-Clean, AI-readable markdown versions of key pages are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS). Confirmed live: `/md` (homepage mirror) and `/md/mapa` (city/epicenter data as a table). More mirrors are being added following the same `/md/{page-path}` pattern — check for a given page's mirror before assuming it doesn't exist.
+Clean, AI-readable markdown versions of every content page are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS): `/md`, `/md/ayuda`, `/md/cifras`, `/md/ciudad/{divipola-code}`, `/md/comunidad`, `/md/donar`, `/md/donar/internacional`, `/md/fuentes`, `/md/informes`, `/md/mapa`, `/md/metodologia`, `/md/recursos`. Spanish-only (default locale), same as the underlying pages' default content. The two submission forms (`/sugerir`, `/comunidad/sugerir`) and their thank-you pages aren't mirrored — they're interactive flows, not content to quote.
 
 ## Key Facts
 
