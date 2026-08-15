@@ -2894,3 +2894,82 @@ in a single expanded round. Per the user's instruction, the plan is to
 keep expanding Pijao further if asked, or move on to the remaining
 third-round cities (Buenaventura, Popayán, Dosquebradas, San José del
 Palmar) once satisfied.
+
+## Pass 39 — Pijao, third and final expansion round (2026-08-15)
+
+The user asked for one more round on Pijao before moving on to the
+remaining cities. This pass was scoped specifically to resolve the two
+contradictions pass 38 left open, and it did.
+
+### Fire containment: confirmed still not contained
+As of the most recent reporting found (Aug 14-15), the fire remains
+active. A Crónica del Quindío field report — the Génova mayor speaking
+on-record at the scene — describes the situation as worsening, not
+improving, three days in. A more precise (though still informal, pending
+official measurement) hectare estimate emerged: ~200 hectares burned in
+Pijao, ~30 in Génova, with one additional unoccupied house lost on the
+Génova side. A citizen's Facebook comment publicly disputes the "controlled"
+framing entirely, alleging several homes were fully lost in the highlands
+— unverified, logged as a counter-narrative rather than a fact.
+
+### Aerial support: resolved toward "probably not delivered"
+This pass specifically hunted down the strongest evidence for "yes" from
+pass 38 — a CRQ (regional environmental authority) Instagram post citing
+Bambi Bucket use — and found that its exact wording is recycled boilerplate
+used verbatim in unrelated Antioquia wildfire posts by Cornare (that
+region's equivalent authority), which substantially undermines it as
+case-specific proof. Meanwhile, the two most detailed primary accounts —
+the Alcaldía de Génova's own thorough thank-you post naming every
+responding entity, and the Crónica del Quindío field report quoting the
+mayor on exactly which outside support arrived — both omit any aerial
+mention despite being exactly the kind of account that would credit it if
+it had happened. Net verdict after three passes: leaning "probably not
+delivered," though no source flatly denies it either.
+
+### A correction: the "Ibanakuara psychosocial brigade" doesn't appear to exist
+Pass 38 flagged this as a promising but 403-blocked lead. This pass
+finally identified the actual quindio.gov.co article behind that
+snippet — and it's dated August 25, 2025, a full year before the
+earthquake, describing an unrelated pre-existing drinking-water
+infrastructure project. No 2026 psychosocial-brigade article for
+Ibanakuara exists after three separate hard searches. Recommend
+discounting that item from pass 38. A related, genuinely current finding
+did surface in its place: SADRAQuindío ran an animal-vaccination brigade
+at the same Ibanakuara resguardo, seeded here instead.
+
+### Other findings
+An informal but apparently ongoing grassroots aid-convoy operation
+(a citizen account reporting its "7th truck, 7 tons" bound for Pijao,
+army-escorted) suggests an informal supply pipeline running alongside the
+institutional response. The Comité de Cafeteros del Quindío and the
+Ministerio de Agricultura both engaged with Pijao/Génova specifically as
+part of a 12-municipio evaluation — the clearest agricultural-relief
+signal found across all three passes, though still department-wide rather
+than a dedicated Pijao fund. A circulating "7,153 hectares" figure was
+identified as the *national* wildfire total (438 fires, 191 municipios),
+not a Pijao-specific number — flagged explicitly to prevent future
+misattribution.
+
+### Still genuinely empty after three hard passes
+Missing persons, a scam specifically naming Pijao/Génova, livestock/cattle
+casualty figures, a Vaki campaign, school-closure status, and a
+reconstruction fund or housing subsidy naming Pijao specifically (as
+opposed to Quindío department or the nation broadly) — all checked
+repeatedly with varied phrasings and platforms across three passes and
+confirmed absent rather than unsearched.
+
+### New aid points (1)
+SADRAQuindío's animal-vaccination brigade at the Ibanakuara resguardo.
+
+### New community embeds (6)
+The fire-status update, the aerial-support verdict, the citizen dissent,
+the grassroots convoy signal, the agricultural-relief signal, and the
+national-vs-local hectare-figure clarification.
+
+### Closing this round
+Three deep passes across Pijao now sit alongside a single deep pass for
+each of the other nine cities — genuinely more thorough coverage for the
+newest, smallest, and most acutely time-sensitive addition to this
+project. Per the user's explicit instruction, moving on now to the
+remaining third-round follow-up cities: Buenaventura, Popayán,
+Dosquebradas, and San José del Palmar.
