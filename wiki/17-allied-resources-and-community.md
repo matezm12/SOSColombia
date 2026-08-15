@@ -3681,3 +3681,66 @@ from rubble), and the Adopta un Hogar announcement.
 ### Next steps (pass 49)
 Continue round 4: Buenaventura, Popayán, Dosquebradas, San José del
 Palmar, and Pijao remain.
+
+## Pass 50 — round 4 continues: Buenaventura, the QR-link question revisited (2026-08-15)
+
+Same narrow round-4 brief as passes 45-49, applied to Buenaventura (six
+prior passes: 6, 11, 12, 19, 28, 40) — plus a specific carryover: re-check
+whether Manos Visibles' QR/Nequi donation link, flagged broken back in
+pass 12, has been fixed.
+
+### Still not fixed, and now a bigger problem
+Two independent agents dug into this directly. Verdict: not confirmed
+fixed — a commenter from a genuinely established 23-year NGO (Corporación
+Vínculos) reported the QR still fails to scan for Nequi as of roughly a
+day before this check. Worse, at least three different Nequi numbers are
+now circulating under the Manos Visibles name this week (their own
+official one, tied to a specific 25-home rebuilding goal, plus two others
+of unconfirmed origin) — a real impersonation-adjacent risk on top of the
+original broken-link problem. The safer route for donors is Manos
+Visibles' own PSE/credit-card portal (via web.afrus.org, linked from
+linktr.ee/manosvisibles), not any single Nequi number.
+
+### A strong new find: a real pre-existing NGO's Vaki campaign
+Fundación Vanguardia Pacífica — the Buenaventura NGO behind the long-
+running "Manglar Fest" cultural festival, not something spun up for the
+earthquake — has an active, live-donating Vaki campaign, its director
+appearing on camera personally. Found independently by two of the five
+research agents.
+
+### A tragic missing-persons resolution
+Libardo Brochero Gutiérrez, 70, was pulled alive from rubble in Barrio
+Rockefeller after roughly 30 hours trapped, then died of his injuries
+hours later — heavily corroborated (El Tiempo, teleSUR across three
+platforms, and more).
+
+### Road isolation: still unstable, not resolved
+A partial reopening of the Buga-Buenaventura corridor was reported Aug 13
+(with controlled passage at some points), but posts from Aug 14-15
+describe fresh landslides blocking the "vía al mar" again — the road
+situation should be read as unstable, not fixed, going into this round.
+Separately, a Valle del Cauca deputy stated on regional TV that aid still
+isn't reaching Buenaventura's peripheral/rural municipalities specifically
+— a distribution-gap signal distinct from the political-misuse warning a
+government minister gave during a Barrio Lleras visit this same window
+(that visit itself, and a reported robbery of someone personally
+delivering aid, came up this round too, but neither agent captured a real
+post permalink for either — worth a re-check in a future pass rather than
+seeded on a fabricated link).
+
+### New aid points (7)
+Corporación Manglaria (ALBERGUE), two Bogotá-based collection points
+shipping to Buenaventura (Espacio La Barca/Yunta Studio, LaCasita Azul),
+Fundación VIP's taxi-company-backed campaign, the Manos Visibles
+reconstruction-fund update (with the Nequi-confusion caveat spelled out
+in full), Fundación Vanguardia Pacífica's Vaki, and a new diaspora
+GoFundMe for three families' rebuild.
+
+### New community embeds (4)
+The road-isolation update, a Buenaventura-specific misdirected-donation
+report, Libardo Brochero's story, and the peripheral-distribution-gap
+statement.
+
+### Next steps (pass 50)
+Continue round 4: Popayán, Dosquebradas, San José del Palmar, and Pijao
+remain.
