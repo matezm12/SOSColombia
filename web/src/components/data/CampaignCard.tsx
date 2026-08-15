@@ -4,6 +4,7 @@ import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { ExternalLink } from "../ui/ExternalLink";
 import { GoFundMeEmbed } from "./GoFundMeEmbed";
+import { isGoFundMeUrl } from "@/lib/gofundme";
 import {
   CROWDFUNDING_PLATFORM_LABEL,
   VERIFICATION_LABEL,
@@ -52,7 +53,7 @@ export function CampaignCard({ campaign }: { campaign: CampaignWithMunicipios })
         <p className="mt-2 text-xs text-amber-700 dark:text-amber-500">{campaign.notes}</p>
       )}
 
-      {campaign.platform === "GOFUNDME" ? (
+      {campaign.platform === "GOFUNDME" || isGoFundMeUrl(campaign.url) ? (
         // The widget itself shows title/progress/raised-goal/donate button —
         // no need to duplicate that as text here.
         <div className="mt-3">

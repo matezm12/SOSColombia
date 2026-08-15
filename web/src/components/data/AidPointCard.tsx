@@ -3,11 +3,15 @@ import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { ExternalLink } from "../ui/ExternalLink";
 import { SourceLine } from "../ui/SourceLine";
+import { GoFundMeEmbed } from "./GoFundMeEmbed";
+import { isGoFundMeUrl } from "@/lib/gofundme";
 import { AID_STATUS_LABEL } from "@/lib/labels";
 
 type AidPointWithSource = Prisma.AidPointGetPayload<{ include: { source: true } }>;
 
 export function AidPointCard({ point }: { point: AidPointWithSource }) {
+  const link = point.permalink ?? point.source.url;
+
   return (
     <Card>
       <div className="flex items-center justify-between gap-2">
@@ -44,12 +48,20 @@ export function AidPointCard({ point }: { point: AidPointWithSource }) {
         </p>
       )}
 
-      {(point.permalink || point.source.url) && (
-        <p className="mt-2 text-sm">
-          <ExternalLink href={point.permalink ?? point.source.url}>
-            {point.permalink ? "Ver publicación original" : "Ver fuente"}
-          </ExternalLink>
-        </p>
+      {isGoFundMeUrl(link) ? (
+        // The widget itself shows title/progress/raised-goal/donate button —
+        // no need to duplicate that as a plain link (see CampaignCard).
+        <div className="mt-2">
+          <GoFundMeEmbed url={link} />
+        </div>
+      ) : (
+        link && (
+          <p className="mt-2 text-sm">
+            <ExternalLink href={link}>
+              {point.permalink ? "Ver publicación original" : "Ver fuente"}
+            </ExternalLink>
+          </p>
+        )
       )}
 
       <SourceLine
