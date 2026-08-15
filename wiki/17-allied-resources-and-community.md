@@ -2443,3 +2443,62 @@ Continue the third round through the remaining eight cities, keeping the
 same tight ~24h scope. Given how quickly this pass still surfaced a
 confirmed scam and a missing-persons resolution, the tighter window is
 worth keeping rather than reverting to a full re-sweep.
+
+## Pass 33 — third round continues: Cali (2026-08-15)
+
+### The casualty-figure conflict from pass 24 largely resolves
+Pass 24 found three conflicting Cali-specific death tolls (74/96/111) too
+scattered to log confidently. This pass found much stronger convergence:
+Cali's own Centro de Coordinación de Información (CPI), relayed by Semana,
+El País, La FM, Pulzo and Espacio Diario, gives 110 dead / 115 missing /
+1,410 injured as of Aug 14 evening. One same-window Facebook post citing
+the Alcaldía directly gave 104 instead — logged as a separate row rather
+than merged, per this project's discipline. Both figures are now in
+`TollRecord` (pass 33a) — the first Cali-specific toll data logged for this
+project, previously left undocumented specifically because pass 24's
+numbers wouldn't settle.
+
+### A missing-persons story closes, tragically
+The "trillizas Saavedra" case flagged in pass 24 resolved: Isabella
+Saavedra Caicedo's body was recovered the night of August 13 in the
+Edificio María Alvira collapse. Of the five-person family, only Ana María
+(23) survived — sheltered by a fallen door, now recovering from a pelvic
+fracture and, per one outlet, being kept away from news/social media by
+her family while she heals. Corroborated across at least eight independent
+outlets (Caracol, RCN, NTN24, Blu Radio, Telemundo, El País, Portal al
+Día, Córdoba En Línea).
+
+### A new scam vector, direct from the Alcaldía
+Cali authorities warned residents that people are impersonating official
+door-to-door statistical census-takers — a fraud vector distinct from the
+QR-code donation scams already documented. Legitimate municipal teams use
+physical documents only, never QR codes or phone verification.
+
+### The city's official 24-hour donation hub, named
+Mayor Alejandro Eder toured Ciudadela Petronio Álvarez with the president
+and confirmed it's now "Casa Grande de la Solidaridad" — the city's single
+official 24-hour donation and volunteer coordination center. Exact opening
+date is unclear (evidence pointed to anywhere from same-day to 2-3 days
+prior), but this is the first time it was captured by this specific name.
+Separately, the mayor asked the national government to redirect EMCALI's
+(the city utility) COP $2 trillion debt toward reconstruction funding.
+
+### Status checks, no change
+Canchas Panamericanas shelter remains open (~129 people, now with an
+on-site health brigade, and visited by an official Salvadoran humanitarian
+delegation sent by President Bukele). The Casa Mangle Vaki campaign is
+still active, not closed or fully funded.
+
+### New aid points (3)
+Casa Grande de la Solidaridad, plus two new individual-family Vaki
+campaigns (Juan David/Salomón/Valentina — a father and infant son, with the
+baby's mother still missing; and Anita/Mario/Isabella/Juan) — both flagged
+with a dating caveat since evidence on exactly when each was created was
+inconsistent across agents.
+
+### New community embeds (5)
+The items above.
+
+### Next steps (pass 33)
+Continue the third round: Manizales, Armenia, Quibdó, Buenaventura,
+Popayán, Dosquebradas, and San José del Palmar remain.
