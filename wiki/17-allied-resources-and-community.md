@@ -2285,3 +2285,98 @@ was found and confirmed this pass.
 
 ### Next steps (pass 30)
 San José del Palmar remains — the final city in the follow-up round.
+
+## Pass 31 — follow-up round closes: San José del Palmar (2026-08-15)
+
+The epicenter town, and the final city in the second-round follow-up
+sweep. As expected for a small (population ~5,900), remote, thinly-covered
+municipality, this pass found no new physical aid points inside the town
+itself — but it captured something more important: the town's transition
+out of acute post-quake isolation.
+
+### From cut off to reconnected
+The single access road into San José del Palmar, fully blocked by
+landslides since August 10, reopened to one-lane traffic on August 13 per
+Colombia's Transport Ministry — confirmed by the ministry's own account and
+independently by press quoting Transport Minister Elsa Noguera. UNICEF
+España added an important nuance the same window: over 45 separate
+landslides still isolate many surrounding rural communities even with the
+main corridor passable again. Noticias Caracol confirmed the first
+organized aid shipments began arriving in the town around the same time —
+days later than larger cities, consistent with its remote status. The
+Colombian Air Force's own site describes an active air bridge (Ejército
+Nacional delivered 12 tons of aid by air; Chocó received its first
+air-lifted medical delivery), and one unverified but plausible report
+described a specialized neonatal air ambulance evacuating a high-risk
+pregnant woman.
+
+### First-ever town-level toll figures for the epicenter
+A Burbuja Política article (Aug 13) citing the Chocó Governor and the San
+José del Palmar Mayor by name gave the first granular, town-specific
+damage figures on file: ~400 homes affected, at least 20 structures
+collapsed, and — notably — zero confirmed deaths in the urban zone as of
+that date, with rural areas still being verified (not the same as zero
+deaths municipality-wide). Logged as three new `TollRecord` entries, the
+first ever for this municipio specifically (previously only Chocó
+department-level figures existed). National UNGRD figures continued
+climbing in parallel: 288 dead, 202 missing (down sharply from 379 as
+rescue teams reach previously cut-off areas), 145,601 people affected —
+consistently naming San José del Palmar as the epicenter.
+
+### Grassroots response amid "fragmented" state aid
+A teleSUR feature ("el pueblo salva al pueblo") reported Chocó communities
+describing government aid as arriving fragmented, prompting the Proceso de
+Comunidades Negras to open an independent Bogotá collection point for the
+region and Bogotá's mayor to organize his own direct aid route to Chocó.
+The same piece noted the national government limited accepted
+international rescue assistance to only four countries, drawing criticism.
+Chocó-specific figures distinct from the national count: 29 municipios
+affected, 43,000+ people affected, 14 confirmed dead in the department.
+
+### Two scam-adjacent cautions
+A local Cartago-area broadcast warned residents that scammers are
+impersonating ICBF (the national child-welfare institute) to solicit
+donation money. Separately, an Instagram donation appeal for "ASOPERCHO"
+(a real association of Chocó's municipal personerías) was Instagram-flagged
+as AI content, with a commenter reporting a suspicious request for the
+account holder's personal ID to "verify" a transfer — logged as a caution
+rather than a vetted channel.
+
+### New aid points (2)
+A newly-created Vaki campaign for the town's reconstruction (flagged for a
+data conflict — one agent saw $46,464 from 1,827 donors, two others saw
+zero donations on the same page, most likely a browser-session caching
+artifact rather than two different campaigns — verify current totals
+before citing a figure); and the PCN's Bogotá collection point described
+above, seeded here because it explicitly channels aid toward Chocó/the
+epicenter even though its physical point isn't inside the town.
+
+### New community embeds (10)
+The items above, plus national media (Infobae Colombia, and journalist
+María Jimena Duzán's "A Fondo" interview with a local survivor) shifting
+from raw disaster footage toward deeper feature coverage of the town
+itself — a sign the story has moved past the immediate-crisis phase in the
+national conversation, even where the town's own recovery is still early.
+
+### Checked, deliberately not seeded
+Several GoFundMe/Vaki campaigns naming San José del Palmar only as
+epicenter context (not town-specific) were excluded as out of scope. A
+private residential address posted as an informal donation drop-off was
+excluded on privacy/safety grounds, not just unverifiability. Chocó-wide
+school-closure figures (20,000+ students, 38 schools) were noted but not
+seeded here since no San José del Palmar-specific school status was found
+— that gap itself suggests the reconstruction/back-to-school phase hasn't
+reached this town yet.
+
+### This closes the second follow-up round across all nine cities
+Pereira, Cali, Manizales, Armenia, Quibdó, Buenaventura, Popayán,
+Dosquebradas, and San José del Palmar have now each had two full
+multi-platform research passes — the original per-city deep pass (13-22)
+and this freshness-scoped follow-up round (23-31), 31 research passes
+total. The follow-up round's throughline: the response has broadly entered
+a reconstruction/new-phase period (shelter-network expansions, heritage
+and school damage assessments, national reconstruction funds), while
+casualty figures keep updating unevenly city to city, aid-equity and
+scam-caution stories have sharpened rather than faded, and — per the
+user's explicit instruction — the Pereira/Dosquebradas overlap is now
+documented rather than silently absorbed into one city's list.
