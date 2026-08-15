@@ -2136,3 +2136,66 @@ already seeded) were found this pass.
 ### Next steps (pass 28)
 Continue the follow-up round: Popayán, Dosquebradas, and San José del
 Palmar remain.
+
+## Pass 29 — follow-up round: Popayán (2026-08-15)
+
+### The standout find: heritage damage, officially named
+MinCultura published its first official cultural-heritage damage balance
+(via Caracol Radio): 40 nationally-listed Bienes de Interés Cultural
+affected across 7 departments, 12 of 15 historic centers in the quake zone
+damaged — explicitly naming "el sector antiguo de Popayán" among them, plus
+39 damaged religious buildings nationwide. The Culture Minister announced a
+"Red de Profesionales" and an upcoming resolution to speed up heritage
+repairs. This is exactly the heritage-restoration "new phase" signal this
+pass was scoped to look for in a city whose colonial center is nationally
+significant — even though it arrived as a news article rather than a
+social post, it was strong enough to surface directly (logged under
+Caracol Radio's post URL).
+
+### Popayán helping other cities, echoing its own 1983 history
+Two independent, concrete efforts: the city's own Consejo Municipal de
+Juventud recruited volunteer drivers to carry aid to Chocó (fuel and
+lodging covered), and a separate grassroots youth collection reported by
+Noticias Cauca gathered over 7 tonnes of supplies bound for Chocó. An X
+opinion column made the historical throughline explicit: Popayán's 1983
+earthquake is credited with prompting Colombia's 1984 seismic building code
+(Ley 400), a comparison several national outlets are now drawing again.
+
+### Casualty figure update, and a hospital-adjacent human-interest thread
+Proclama del Pacífico relayed Popayán's own official balance: material
+damage but zero deaths or injuries registered in the city itself, distinct
+from the much higher Cauca department-wide toll. Separately, the Hogar San
+Vicente de Paúl elderly-care home's story continued past its earlier SOS:
+Army engineers helped clear over a ton of debris from its collapsed
+bell-tower chapel, which has since reopened for its 60+ residents, though a
+formal structural assessment and full-repair funding are still pending.
+
+### New aid points (3)
+The Gobernación del Cauca's "final stage" Casa de la Moneda medical-supply
+drive; a fresh acopio point opened jointly by the Junta Permanente Pro
+Semana Santa (the organization behind Popayán's UNESCO-listed Holy Week
+processions) and the archdiocesan food bank — a strong heritage-institution
+angle; and a separate Arquidiócesis de Popayán food bank run with the
+regional LeaPaz initiative, with a bank account for those who can't donate
+in person.
+
+### New community embeds (10)
+The items above, plus the Archdiocese's solidarity message to the
+earthquake-affected parish of El Tambo.
+
+### Checked, deliberately not seeded
+No Popayán-specific scam or broken-donation-link reports were found on any
+platform despite dedicated searching. No shelter closures or back-to-school
+content turned up. No Popayán-specific GoFundMe or Vaki campaign exists at
+all (the one Vaki campaign that surfaced targets Cali/Medellín/Chocó/
+Pereira/Manizales, not Popayán, and has raised effectively nothing). A
+Facebook post that looked like a fresh Archdiocese update turned out, on
+inspection, to be about a new bishop's arrival in Tierradentro, unrelated
+to earthquake relief.
+
+### Next steps (pass 29)
+Continue the follow-up round: Dosquebradas and San José del Palmar remain.
+Dosquebradas needs extra care per the user's explicit instruction: cross-
+check every candidate against everything already seeded for Pereira before
+filing it, since the two cities are close enough that residents of one
+routinely seek help in the other.
