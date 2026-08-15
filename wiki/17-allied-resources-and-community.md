@@ -4410,3 +4410,71 @@ Retry Quibdó's four failed angles (X, Instagram, Facebook, TikTok) once
 capacity resets — logged, not abandoned. Then continue round 5:
 Buenaventura, Popayán, Dosquebradas, San José del Palmar, and Pijao
 remain.
+
+## Pass 62
+
+The capacity limit cleared. All four of Quibdó's dropped angles (X,
+Instagram, Facebook, TikTok) completed cleanly on retry, and turned up
+the most consequential finding of round 5 so far.
+
+### A donation channel from pass 18 is now in question
+The hospital's own official account posted an anti-fraud notice naming
+ONE authorized donation account (a specific Banco de Bogotá number) and
+stating explicitly that no other account, phone number, or intermediary
+is authorized. A separate Facebook post independently shows a graphic
+impersonating the hospital, stamped "FALSO" by whoever posted it as a
+warning. Taken together with Facebook's own "AI content" flag on the
+posts this project's pass 18 originally cited for the "vía Fundación
+Empresas Conscientes" channel, there's now real reason to question that
+older channel. It hasn't been deleted — this project never overwrites
+prior records — but it's flagged here and in the new seed script for a
+moderator to weigh against the hospital's current statement before
+approving anything through it. This is the same kind of correction
+Manizales's Homecenter story got in pass 57, except this one involves an
+actual live donation account, not just a rumor.
+
+### The Benavides case reaches the Corte Suprema
+What was a "promised Veeduría Ciudadana" as of pass 49/61 has become a
+formal Corte Suprema investigation, filed by a named complainant
+demanding full banking traceability of the reported $300M+ COP raised.
+Benavides is calling it "matoneo judicial" and says the funds run
+through a foundation structure now under audit. A watchdog organization
+(Red de Veedurías de Colombia) confirmed the investigation independently
+and is preparing its own disciplinary action.
+
+### A second, distinct scam vector
+Separate from both the Benavides matter and the fake hospital flyer:
+singer Jhonny Rivera publicly warned about altered/fake QR codes being
+used to divert earthquake-relief donations. Not Quibdó-exclusive, but
+relevant to anyone donating in the city.
+
+### A hopeful sign on the broken blood bank
+Pass 18 documented Quibdó's hospital as lacking a functional blood bank
+since the quake — its refrigeration unit was broken. This pass caught
+a very fresh (posted within the hour) report that a specialized
+blood-storage refrigerator was just delivered by a private foundation.
+A slightly older post (3 days) still described the blood bank as
+non-functional, so this isn't confirmed resolved yet, but it's the
+first sign of movement on a problem that's been open since the first
+research round on this city.
+
+### New aid points (5)
+The hospital's single authorized donation account, a Gobernación del
+Chocó collection point, a humanitarian logistics hub at a former
+Postobón warehouse, a time-bound church collection drive, and the
+Alcaldía de Quibdó's own reconstruction fund (cash plus hardware-store
+vouchers for rebuilding materials) — distinct from the Diócesis's
+existing food bank.
+
+### New community embeds (8 of 9 — one already on file)
+The hospital equipment appeal, the blood-fridge delivery, a volunteer
+group unloading aid trucks, the fake-flyer scam warning, the Benavides
+Corte Suprema escalation, the watchdog organization's confirmation, the
+QR-code fraud alert, and a still-no-blood-bank report from three days
+prior — plus a Chocó-native creator's widely-shared post on the region
+feeling overlooked next to Manizales, Pereira, and Cali despite being
+closer to the epicenter.
+
+### Next steps (pass 62)
+Continue round 5: Buenaventura, Popayán, Dosquebradas, San José del
+Palmar, and Pijao remain.
