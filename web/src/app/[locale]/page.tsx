@@ -40,10 +40,11 @@ export default async function Home(props: PageProps<"/[locale]">) {
 
   // City-specific projects first (the point of this section — small, local
   // efforts like Ayudas Pereira/Cali Ayuda), then broader national ones, capped
-  // at 4 so the strip stays a highlight, not a second /recursos.
+  // at 6 (two full rows of the 3-col desktop grid) so the strip stays a
+  // highlight, not a second /recursos.
   const homepageResources = [...featuredResources]
     .sort((a, b) => Number(b.municipioId != null) - Number(a.municipioId != null))
-    .slice(0, 4);
+    .slice(0, 6);
 
   const canonicalUrl = `${SITE_URL}${locale === routing.defaultLocale ? "" : `/${locale}`}`;
 
