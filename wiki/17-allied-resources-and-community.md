@@ -3036,3 +3036,64 @@ The items above.
 ### Next steps (pass 40)
 Continue the third round: Popayán, Dosquebradas, and San José del Palmar
 remain.
+
+## Pass 41 — third round continues: Popayán (2026-08-15)
+
+A quieter city than most, as the two prior passes already suggested, but
+this pass still turned up a genuinely strong new find and two new actors
+joining Popayán's ongoing effort to help Chocó.
+
+### A well-corroborated new aid point: an elder-care home in crisis
+Fundación Hogar San Vicente de Paúl de Popayán — a nursing home whose
+chapel and roof collapsed in the quake — surfaced with real institutional
+donation details (NIT, two bank accounts) and was independently
+corroborated across five separate sources: FAMVIN (the international
+Vincentian-family news network), a Colombian Army post about soldiers
+helping clear debris on site, the foundation's own Facebook page, a
+Portafolio.co business registry entry matching the same NIT and address,
+and a Vincentian-affiliated Instagram account. That breadth of independent
+corroboration is why it's included despite tracing to a single primary
+post.
+
+### Casa de la Moneda: extended, not closed
+The medical-supply drive flagged as "final stage" in pass 29 turned out
+to run one more day — the Gobernación del Cauca's own account confirms
+today (Aug 15) is its true final day, still urgently requesting medical
+supplies.
+
+### Two new actors in the Popayán-to-Chocó story
+The Policía Metropolitana de Popayán is organizing its own aid shipment —
+a new institutional actor beyond the youth council and grassroots
+collection already documented. Separately, the Consejo Regional Indígena
+del Cauca (CRIC) sent a "minga humanitaria" — a delegation of councilors,
+indigenous authorities, and the Guardia Indígena — to support communities
+in Chocó directly, a distinct initiative from either of the two already
+on file. The youth council's own collection has since departed (7+
+tonnes, trucks confirmed en route) and remains open until Monday; a
+separate, unverified claim of "35+ tonnes in four trucks" could not be
+pinned to a clean source this pass and is noted rather than logged as
+fact.
+
+### Other signals
+A CTI missing-persons flyer for Francisco Javier Manquillo Tonguino
+(missing since Aug 13 from a Popayán bakery) surfaced — genuinely new,
+though the flyer itself doesn't state an earthquake connection, so it's
+logged with that caveat rather than as a confirmed quake casualty. A
+market fair organized through a Fundación Mundo Mujer congress is giving
+displaced vendors from Cali, Quibdó, Pereira, and Manizales a place to
+sell — a small but genuine economic-recovery signal. A first pet-supply
+collection point appeared (a category not previously found for Popayán),
+alongside a new municipal donation point run by the city's own Culture
+and Tourism Secretariat and a grassroots neighborhood collection point in
+Barrio La Paz.
+
+### New aid points (4)
+Fundación Hogar San Vicente de Paúl, the Culture and Tourism Secretariat's
+collection point, the pet-supply drive, and the Barrio La Paz neighborhood
+point.
+
+### New community embeds (7)
+The items above.
+
+### Next steps (pass 41)
+Continue the third round: Dosquebradas and San José del Palmar remain.
