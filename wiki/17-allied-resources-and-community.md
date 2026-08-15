@@ -3936,3 +3936,67 @@ wide margin.
 
 ### Next steps (pass 53)
 Pijao remains — the final city in round 4.
+
+## Pass 54 — round 4 closes: Pijao, a fifth pass (2026-08-15)
+
+The final city in round 4, and Pijao's fifth overall research pass
+(after the four dedicated deep passes 37, 38, 39, and 44). Explicitly
+scoped as a light status-check rather than another deep dive, given how
+much attention this small town has already received — more than any
+other tracked city. It still surfaced real, contested developments.
+
+### The fire situation is contested within this same round
+A sitting congressman (Miguel Grisales) posted from the fire ground
+today saying the blaze "continues to advance with force" and reaching
+into Génova, with residents suspecting possible arson — he formally
+asked Policía/Fiscalía to investigate and renewed the request for aerial
+firefighting support that still hadn't arrived. A separate same-day
+report claims the fire was already "extinguido." Both are logged rather
+than resolved one way — this project's standing practice when sources
+genuinely disagree. A same-day editorial from La Crónica del Quindío
+gave the most precise figures yet (~200ha Pijao/~30ha Génova) and, via
+the mayor of Génova's own on-record statement, confirms aerial support
+still had not been delivered as of today — sharpening the "probably not
+delivered" finding from earlier passes into an explicit, sourced, still-
+unmet request. The same editorial flags a real structural gap: as of
+today there is no dedicated compensation program for campesino families
+who lost their harvest to the fire.
+
+### A five-pass-standing gap finally resolved
+The livestock/animal-casualty question, checked and confirmed empty
+across four prior passes, has a real answer: the departmental PYBA vet
+brigade treated 30 animals and rescued 6 puppies plus a pregnant dog in
+vereda La Maicena. Outcome is treatment and rescue, not confirmed deaths.
+
+### Still genuinely empty after five passes
+Missing persons and Pijao-specific scam reports remain confirmed empty —
+this is Pijao's most heavily researched city-specific gap, and it
+continues not to produce anything, which is itself a meaningful (if
+negative) finding at this point.
+
+### New aid points (4)
+Sociedad Quindiana de Ornitología + Birding & Herping (found
+independently by two agents), La Cía Coffee, a multi-brand sports-
+community drive outside Quindío (Xportiva/La Rueda), and a rural-Pijao-
+specific collection run by a verified Armenia surgeon with "La Finca de
+Ellas."
+
+### New community embeds (7)
+Both sides of the fire-status contradiction, the Bomberos' own
+not-yet-full-control communiqué, FEDEGAN's new rural/livestock
+engagement, the PYBA animal-rescue resolution, the Crónica del Quindío
+editorial, and a new Udegerd self-report tool for damage assessment.
+
+### This closes the fourth research round across all ten tracked cities
+Pereira, Cali, Manizales, Armenia, Quibdó, Buenaventura, Popayán,
+Dosquebradas, San José del Palmar, and Pijao have each now had a fourth
+round of research on top of the original deep pass, the follow-up round,
+and the third tightly-scoped round — 54 research passes total across the
+whole project. Recurring throughline this round: several cities produced
+real, sourced updates to standing open questions rather than just fresh
+noise — Armenia's first confirmed fatality, Dosquebradas' first toll
+figures and a resolved cross-referral from pass 13/14, San José del
+Palmar's first-ever official municipal social account, and Pijao's
+animal-casualty gap finally closing — a sign that repeated, disciplined
+passes keep surfacing real signal even on cities already researched
+three times over.
