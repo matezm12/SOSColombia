@@ -1404,3 +1404,92 @@ Barrio 12 de Abril — that hadn't surfaced in any prior Buenaventura pass.
 ### Next steps (pass 19)
 Move to the next city — Popayán, Dosquebradas, and San José del Palmar
 remain.
+
+## Pass 20 — deep pass on Popayán (2026-08-14)
+
+Seventh city in the rotation, and the first pass on a MODERADA-severity city
+(Popayán was never on the original red-alert list, with just 1 confirmed
+death). The brief was explicitly calibrated for thinner results and told
+every agent to report empty categories honestly rather than pad them with
+weak candidates — and that's largely what happened: the X agent came back
+with a completely empty result (18 searches, zero real Popayán-specific
+hits), and crowdfunding search confirmed no genuine Popayán-specific
+GoFundMe/Vaki campaign exists. Both are reported as real absences, not
+search failures.
+
+Instagram, Facebook, and TikTok told a different story, though — Popayán
+turned out to have a real, if modest, aid ecosystem, much of it organized
+around sending help *outward* to harder-hit Cali, Chocó, and the Eje
+Cafetero rather than responding to damage within the city itself (consistent
+with its lower severity and single confirmed death).
+
+### Universidad del Cauca confirmed as an organizer
+The brief specifically asked whether the university itself organized a
+response — it did. `#UnicaucaSolidaria` is a real, university-wide campaign:
+the Facultad de Ciencias Humanas y Sociales ran an acopio point corroborated
+by roughly ten other Colombian universities reposting the same campaign
+details, and the Facultad de Ciencias Agrarias ran its own separate point
+under an official numbered circular. Both are seeded as distinct ACOPIO
+entries since they're different offices with different logistics.
+
+### A real address discrepancy, flagged rather than resolved
+An earlier pass logged "Casa de la Moneda" as an acopio point at Carrera 7
+Calle 4 Esquina. This pass found a Facebook post from the Cauca Departmental
+First Lady's office soliciting specific medical supplies from the same-named
+site, but at Carrera 11 con Calle 3. Rather than assume either address is
+right, this is seeded as its own HEALTH entry (a distinct kind of request —
+specific medical items, not general acopio) with the conflict spelled out
+explicitly in `submitterNote` for admin verification before either address
+gets treated as authoritative.
+
+### New aid points (14)
+- **Popayán's first blood-donation point** (Hospital Universitario San José,
+  three rotating locations around Parque Caldas and Hotel San Martín, tied
+  to a 5km charity run).
+- **4 VET points**: Fundación CASA K (corroborated independently across
+  three platforms), Jóvenes Animalistas Popayán, Pet and Pet in a
+  previously-uncovered barrio (La Ximena), and a joint drive between two
+  named veterinary clinics — several explicitly staging donations bound for
+  animals in Cali rather than Popayán itself.
+- **2 monetary channels**: a Nequi account anchored to a named Universidad
+  del Cauca professor with funds routed to the Defensoría del Pueblo, and a
+  30-year-old regional women's-rights organization (Ruta Pacífica de las
+  Mujeres) with a specific address and named account holder.
+- **5 acopio points**: the two university faculty points above, an official
+  Alcaldía de Popayán point at Ciudad Moderna, a shopping-mall donatón, and
+  a mobile "recorrido solidario" that explicitly named several comunas the
+  brief asked about (La Esmeralda, Bello Horizonte, La Paz, and others).
+- **1 HEALTH entry** (Casa de la Moneda address discrepancy, see above).
+- **1 ALBERGUE entry**: a pre-existing elder-care home (Fundación Hogar para
+  Ancianos San Vicente de Paúl) whose roof was damaged by the quake — not a
+  shelter for displaced earthquake victims, which the notes make explicit,
+  since no dedicated displaced-persons shelter was found for Popayán at all.
+
+### New community embeds (16)
+Mostly corroborating the aid points above from official and institutional
+accounts (the hospital, the Alcaldía's Secretaría de Planeación, Universidad
+del Cauca faculties). One exception: an Instagram post about the San Vicente
+de Paúl elder-care home's damage that gives no donation channel of its own,
+kept as human-interest context alongside the Facebook post that does.
+
+### Checked, deliberately not seeded
+- **BLOOD_DONATION beyond the Hospital San José drive, HEALTH brigades,
+  ALBERGUE for displaced families, and missing-persons content** — all
+  searched directly across every platform and came back genuinely empty.
+  One high-engagement "body recovery in Popayán" post was caught by
+  hovering its timestamp: dated February 2026, six months before this
+  earthquake — a useful reminder to verify timestamps on viral posts before
+  trusting them.
+- **A GoFundMe ("Bottled Water for Popayán")** citing a "volcanic eruption"
+  contaminating the water supply — factually inconsistent with the actual
+  tectonic event, anonymous secondhand organizer, $150 of $4,500 raised.
+  Rejected as matching the project's known scam pattern.
+- **A missing-persons compilation post** that surfaced repeatedly in
+  Popayán-adjacent searches — every named case in it turned out to be in
+  Pereira or Cali, not Popayán, on inspection.
+- A bowling-community Vaki campaign with a plausible Cauca connection (bolo
+  is popular regionally) was found but excluded — its only capturable link
+  was a fragment-only lightbox URL that wouldn't render as a real embed.
+
+### Next steps (pass 20)
+Move to the next city — Dosquebradas and San José del Palmar remain.
