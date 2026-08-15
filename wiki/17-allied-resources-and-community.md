@@ -2199,3 +2199,89 @@ Dosquebradas needs extra care per the user's explicit instruction: cross-
 check every candidate against everything already seeded for Pereira before
 filing it, since the two cities are close enough that residents of one
 routinely seek help in the other.
+
+## Pass 30 — follow-up round: Dosquebradas, with explicit Pereira dedup (2026-08-15)
+
+Per the user's instruction, every one of this pass's five research agents
+was given the full list of all 62 already-seeded Pereira aid points and
+required to state explicitly, for every candidate, whether it overlapped
+with something already on file for Pereira — rather than silently filing a
+shared point under only one city.
+
+### The cross-border pattern is real, and now documented
+Two aid points explicitly serve both cities in their own words: Colegio
+María Auxiliadora (physically in Dosquebradas, but its own post says the
+service is "para las personas que viven en Pereira o Dosquebradas") and
+Fundación Porque Juntos Somos Más (an acopio point in Dosquebradas serving
+"los albergues de Pereira y Dosquebradas" jointly). Both are seeded once,
+under Dosquebradas (where their physical point sits), with the cross-city
+service explicitly called out in `submitterNote` so a reviewer can decide
+whether to also surface them under Pereira rather than have that decision
+made silently. A third candidate — a Pereira-branded page ("Pereira
+Denuncia") collecting Nequi donations for a Dosquebradas drop-off address —
+was checked but not seeded: single personal Nequi account, AI-flagged
+image, no institutional backing, the same profile this project has
+excluded throughout. A GoFundMe explicitly for "mi gente en Pereira y
+Dosquebradas" was similarly checked and excluded for being a small,
+anonymous, unverifiable individual appeal.
+
+### A stale aid point caught in the act
+A blood-donation drive (Hemocentro del Otún, with a paired collection point
+at Hospital Santa Mónica in Dosquebradas) is only 2 days old, but its own
+comment thread — 1 day old — reports the Dosquebradas point may no longer
+be accepting donations ("el centro está colapsado"). Logged as a caution
+rather than a clean aid point, exactly the kind of drift this project's
+discipline exists to catch.
+
+### The response has moved into a new phase here too
+An official 90%-of-rural-zone humanitarian aid delivery milestone (with
+residents of specific sectors — El Cofre, Los Pinos, Los Guamos, Comuneros
+— pushing back in the comments that their areas haven't been reached, an
+equity nuance worth keeping); a formal DIGER damage-report survey; a
+controlled demolition of a compromised 4-story building in the Santa Mónica
+sector; a shelter network expanding from 3 to 4 sites (900 → 1,050+
+capacity); and continued curfew/día-sin-carro restrictions extended through
+August 17.
+
+### Casualty and equity signals
+Dosquebradas' own official balance: ~2,000 families affected, one student
+death, three destroyed school sites. A joint Ministry of Education
+statement named that Dosquebradas victim (Fabio Vásquez Botero school)
+alongside a Pereira student, a UTP student, and two Cali university
+students in a single release — genuine cross-city overlap in the official
+messaging itself, not something this project introduced. Separately, an
+inter-municipal solidarity effort emerged: Valledupar and Ibagué joined a
+Fedemunicipios call to fundraise for Dosquebradas specifically at a public
+fashion event. A resident's damnificados-registration complaint (the
+online form crashes on evidence upload, tagging both the Alcaldía and
+UNGRD) suggests a systemic process issue, not a one-off.
+
+### New aid points (8)
+The Cámara de Comercio de Dosquebradas's own acopio point; a CAM Plaza
+collection point tied to the Secretaría de Educación's response; two
+shelter updates (Campestre B's confirmed headcount, and a fourth shelter
+being prepared in La Graciela); the two cross-city points described above;
+a school reconstruction fund (Instituto Pedagógico Horizontes — flagged
+with a payment-transfer caution reported by a commenter); and a live,
+specific GoFundMe (David Londono) funding a cousin's damaged Dosquebradas
+apartment and an aunt's collapsed-roof coffee farm in Marsella.
+
+### New community embeds (13)
+The items above, plus a Portal del Parque structural-collapse update
+(Torre 6 total collapse, Towers 3-5 damaged, full evacuation), an unverified
+resident-rights allegation (a private company attempting unauthorized
+demolition in La Graciela/Miraflores, flagged for human review rather than
+treated as confirmed), a missing-person appeal (flagged as
+Instagram-labeled "AI content," included with an explicit caution), and a
+human-interest note about a well-known singer collecting informal donations
+at her father's house in Dosquebradas.
+
+### Checked, deliberately not seeded
+A national reconstruction fund ("Fondo Milagro," announced by the national
+government) applies to every affected city equally and was deliberately
+excluded as not Dosquebradas-specific, consistent with how this project has
+handled other national-only stories. No Dosquebradas-specific scam alert
+was found and confirmed this pass.
+
+### Next steps (pass 30)
+San José del Palmar remains — the final city in the follow-up round.
