@@ -4478,3 +4478,67 @@ closer to the epicenter.
 ### Next steps (pass 62)
 Continue round 5: Buenaventura, Popayán, Dosquebradas, San José del
 Palmar, and Pijao remain.
+
+## Pass 63
+
+Round 5 continues: Buenaventura, a fifth pass on a city with seven prior
+passes on file. Heavy dedup again — three of the round's five "new"
+leads (the Fundación Vanguardia Pacífica Vaki campaign, LaCasita Azul,
+FOCUSA) turned out to already be seeded, one of them twice over. None
+re-seeded.
+
+### The Manos Visibles impersonation risk gets worse, not better
+Pass 50 flagged this org's QR/Nequi donation link as broken, with "at
+least three" unauthorized Nequi numbers circulating under its name. This
+round confirms the link is still broken — comments as recent as four
+hours before this pass — and the number of unauthorized Nequi numbers in
+circulation has climbed to at least six, spanning multiple accounts,
+including one visibly corrupted link variant. The organization's real,
+legitimate channel hasn't changed: web.afrus.org via linktr.ee/
+manosvisibles (PSE/credit card) — that's the one to steer donors toward,
+not any Nequi number claiming the name. On a more positive note, Manos
+Visibles separately confirmed (via Cambio, a mainstream outlet) it's
+formally launched a named reconstruction fund and reports 25 of a
+100-home recovery goal reached — genuine progress, just not enough to
+resolve the donation-channel confusion around it.
+
+### Two new, distinct scam patterns
+"Buenaventura Renace," a personal Facebook profile under a mismatched
+display name, is soliciting donations to a US Bank of America account
+and a Houston-area Zelle number — a materially different and more
+concerning pattern than the Nequi confusion, since it routes a Colombian
+disaster-relief appeal through hard-to-trace cross-border channels with
+no named backing organization. Separately, a local classifieds account
+warned that people are impersonating a shelter called "Albergue de
+Rita" to solicit money.
+
+### Road corridor: closed again, toll: still murky
+The Buenaventura–Loboguerrero corridor is confirmed closed for a second
+consecutive day (fresh landslide plus a same-day traffic accident),
+continuing the reopen-then-reclose pattern already tracked since pass
+40. No individual post permalink was captured for this, so it's recorded
+here rather than as a database row. Same treatment for the death toll:
+national figures keep climbing, but Buenaventura-specific numbers are
+wildly inconsistent across same-day local sources (one citing 26 dead /
+433 injured, another 10 dead / 174 injured / 3 missing) — not clean
+enough to log as a toll record, so flagged here for a future pass to
+pin down against an official source.
+
+### New aid points (2)
+A transport company's collection point with a concrete address and
+active real-name commenters, and a streamer-run donation warehouse tied
+to two identifiable public figures currently in the city.
+
+### New community embeds (6)
+The Manos Visibles impersonation-risk update (merged with the freshest
+confirmation that the link is still broken), the two new scam warnings,
+a compelling on-the-ground report of houses still collapsing in barrio
+Alberto Lleras Camargo, the Interior Minister's request for donated data
+plans for 2,800 displaced schoolchildren, and a community leader's
+sharply critical characterization of the government response (recorded
+with an explicit caveat that its literal claim — people still under
+rubble — is a rhetorical characterization, not a verified rescue report).
+
+### Next steps (pass 63)
+Continue round 5: Popayán, Dosquebradas, San José del Palmar, and Pijao
+remain.
