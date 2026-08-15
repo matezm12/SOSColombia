@@ -70,7 +70,7 @@ export default async function AyudaPage(props: PageProps<"/[locale]/ayuda">) {
             <h2 className="text-lg font-semibold text-black dark:text-zinc-50">
               {AID_KIND_LABEL[kind] ?? kind}
             </h2>
-            <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="mt-3 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
               {kindPoints?.map((p) => (
                 <div key={p.id}>
                   <Link

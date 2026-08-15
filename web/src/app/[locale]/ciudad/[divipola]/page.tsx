@@ -156,7 +156,7 @@ export default async function CiudadPage(
         )}
 
         <SectionHeading first>{t("cifras")}</SectionHeading>
-        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
           {[...latestByMetric.values()].map((record) => (
             <TollCard key={record.id} record={record} />
           ))}
@@ -185,7 +185,7 @@ export default async function CiudadPage(
         </div>
 
         <SectionHeading>{t("campanasDeRecaudacion")}</SectionHeading>
-        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
           {municipio.campaigns.map((campaign) => (
             <CampaignCard key={campaign.id} campaign={campaign} />
           ))}

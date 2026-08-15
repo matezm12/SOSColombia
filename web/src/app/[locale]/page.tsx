@@ -125,7 +125,7 @@ export default async function Home(props: PageProps<"/[locale]">) {
         </div>
 
         <SectionHeading first>{t("ciudades")}</SectionHeading>
-        <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <ul className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
           {municipios.map((m) => {
             // Prefer the official reported death count; fall back to INMLCF's
             // forensic-confirmed count (e.g. Pereira, which only has the latter

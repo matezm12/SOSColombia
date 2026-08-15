@@ -80,7 +80,7 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
       </Card>
 
       <SectionHeading first>{t("sections.verified")}</SectionHeading>
-      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
         {verified.map((c) => (
           <CampaignCard key={c.id} campaign={c} />
         ))}
@@ -90,7 +90,7 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
       {monetaryPoints.length > 0 && (
         <>
           <SectionHeading>{t("sections.local")}</SectionHeading>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
             {monetaryPoints.map((p) => (
               <div key={p.id}>
                 <p className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-600">
@@ -109,7 +109,7 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
           <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
             {t("sections.individualNote")}
           </p>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
             {individual.map((c) => (
               <CampaignCard key={c.id} campaign={c} />
             ))}
@@ -120,7 +120,7 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
       {flagged.length > 0 && (
         <>
           <SectionHeading>{t("sections.flagged")}</SectionHeading>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
             {flagged.map((c) => (
               <CampaignCard key={c.id} campaign={c} />
             ))}

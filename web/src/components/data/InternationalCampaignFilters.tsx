@@ -138,7 +138,7 @@ export function InternationalCampaignFilters({
       )}
 
       <SectionHeading first>{labels.sectionVerified}</SectionHeading>
-      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
         {verified.map((c) => (
           <CampaignCard key={c.id} campaign={c} />
         ))}
@@ -149,7 +149,7 @@ export function InternationalCampaignFilters({
         <>
           <SectionHeading>{labels.sectionIndividual}</SectionHeading>
           <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">{labels.individualSubtext}</p>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
             {individual.map((c) => (
               <CampaignCard key={c.id} campaign={c} />
             ))}
@@ -160,7 +160,7 @@ export function InternationalCampaignFilters({
       {flagged.length > 0 && (
         <>
           <SectionHeading>{labels.sectionFlagged}</SectionHeading>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
             {flagged.map((c) => (
               <CampaignCard key={c.id} campaign={c} />
             ))}
