@@ -3805,3 +3805,68 @@ channel, and the first lady's national campaign's Popayán visit.
 
 ### Next steps (pass 51)
 Continue round 4: Dosquebradas, San José del Palmar, and Pijao remain.
+
+## Pass 52 — round 4 continues: Dosquebradas, an unusually productive round (2026-08-15)
+
+Same narrow round-4 brief as passes 45-51, applied to Dosquebradas (three
+prior passes: 21, 30, 42), with the standing Pereira cross-check
+re-applied — every finding was explicitly checked against Pereira's full
+current list (69 live + 10 pending), and every agent was required to fill
+in an `overlapsWithPereira` field on every single item rather than skip
+it. No name/address overlap was found; dual-city-serving organizations
+(Fundación Ángela Rosa, the Hemocentro del Otún blood drive) are noted as
+such rather than miscredited to one city.
+
+### A brand-new, well-corroborated shelter
+Albergue Polideportivo del Campestre B — ~120 people/36 families in ~47
+tents — is confirmed independently by the mayor's own account, the
+municipal website, the public utility company Serviciudad, and local news,
+all within a 24-hour window. A fourth shelter at La Graciela (adding 150
+more spaces to the existing ~900-person network) is under construction,
+not yet operational.
+
+### A loop closed from pass 13/14
+David Londoño's GoFundMe was explicitly excluded from Pereira's crowd-
+funding list back in pass 13/14 because its beneficiaries live elsewhere
+— this round reads the live campaign page directly and confirms exactly
+where: a cousin's damaged Dosquebradas apartment, and an aunt's coffee
+farm in Marsella. It belongs here. Found independently by three of five
+research agents, the same as a second new campaign (Claudia Macuil's,
+for her childhood block).
+
+### First toll figures logged for Dosquebradas
+An Alcaldía curfew decree (6pm-6am, Decreto 316) carried the city's first
+concrete damage figures on file: 4,583 damnificado reports, 548 homes
+destroyed, 13 buildings collapsed, 3,600+ properties damaged. Logged as
+new `TollRecord` rows.
+
+### A contradicted blood-donation post
+Hemocentro del Otún's own post says Hospital Santa Mónica accepts blood
+donations 9am-5pm — but community comments two days later say the
+opposite ("no están recibiendo donaciones") and describe the center as
+overwhelmed. Seeded with the contradiction spelled out rather than taken
+at face value.
+
+### New aid points (14)
+2 ALBERGUE (Campestre B, La Graciela under construction), 7 ACOPIO
+(municipal CAM point, Fundación Juntos Somos Más, SO KIUT, Barrio Los
+Pinos, Parroquia San Marcos Evangelista replacing a damaged Pereira
+Cáritas site, the Parque Valher distribution point), 2 MONETARY_DONATION
+institutional channels (Cámara de Comercio, Fundación Ángela Rosa), 1
+BLOOD_DONATION (status contested), 1 VET (time-boxed event), 2 new
+GoFundMe campaigns.
+
+### New toll records (4)
+DAMNIFICADOS_PERSONAS: 4,583; VIVIENDAS_DESTRUIDAS: 548;
+EDIFICIOS_COLAPSADOS: 13; VIVIENDAS_AVERIADAS: 3,600+.
+
+### New community embeds (6)
+A missing-persons resolution (two Argentine tourists found alive), a
+Defensoría del Pueblo review of aid-distribution gaps, a Valledupar
+solidarity donation drive for Dosquebradas, a DIGER structural-assessment
+update, a condemned-building safety notice, and an Albergue Las Violetas
+status update (open spots, a new refrigerator need with a live contact
+number).
+
+### Next steps (pass 52)
+Continue round 4: San José del Palmar and Pijao remain.
