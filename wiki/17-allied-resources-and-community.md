@@ -4542,3 +4542,44 @@ rubble — is a rhetorical characterization, not a verified rescue report).
 ### Next steps (pass 63)
 Continue round 5: Popayán, Dosquebradas, San José del Palmar, and Pijao
 remain.
+
+## Pass 64
+
+Round 5 continues: Popayán, the thinnest-covered tracked city, and this
+round proves the point definitively. All five agents surfaced aid-point
+candidates, and every single one traced back to something already on
+file: Casa de la Moneda (seeded pass 20, updated twice since — this
+round's "closing today" detail is a fact pass 41 already recorded), the
+Hogar San Vicente de Paúl elder-care home (pass 20/29/51), the Hospital
+San José blood-donation drive (pass 20, down to the identical Instagram
+permalink), the Alcaldía's Secretaría General collection point (pass 41
+explicitly logged it as new back then), and the Arquidiócesis/Cámara de
+Comercio food bank (pass 51). Zero new aid points this round — a
+legitimate, honest result after five rounds on a city this size, not a
+gap in the research.
+
+### Crowdfunding: still nothing, five rounds running
+Every agent re-confirmed it independently: no Popayán-specific GoFundMe
+or Vaki campaign has ever existed, across five consecutive research
+rounds. Vaki's own search returns "no encontrada" for the city by name.
+
+### The toll holds at zero
+Popayán city itself continues to report zero confirmed deaths or
+injuries from the earthquake — material and structural damage only —
+unchanged across all five rounds, even as the national toll keeps
+climbing.
+
+### A case closes
+Pablo Rivera Avirama, a Popayán native reported missing at Pereira's
+airport right after the quake, has been confirmed dead; his funeral was
+held roughly two days before this pass. Not counted in Popayán's own
+zero-toll figure since he died outside city limits, but a real
+Popayán-linked loss worth recording.
+
+### New community embeds (2)
+A completed radio-led donation drive (15 tons dispatched to northern
+Valle del Cauca — informational, not an active channel for new donors)
+and Pablo Rivera Avirama's case resolution.
+
+### Next steps (pass 64)
+Continue round 5: Dosquebradas, San José del Palmar, and Pijao remain.
