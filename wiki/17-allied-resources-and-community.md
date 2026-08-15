@@ -4256,3 +4256,43 @@ as an 11th tracked city (compounding earthquake + wildfire crisis,
 confirmed via governor/mayor-level official sources and a named
 reconstruction fund — same bar that justified Pijao), with a dedicated
 research pass to follow.
+
+## Pass 59
+
+Ibagué, Tolima added as an eleventh tracked municipality — the same bar
+Pijao cleared, at the user's request. Ibagué/Tolima had come up in this
+project's research three times before (single-source, ayudaspereira.com
+signals) and was explicitly rejected each time as too thin. This time
+the evidence is different in kind, not just volume: Tolima's governor,
+Adriana Magali Matiz, declared a department-level crisis and announced
+the Fondo Mixto de Reconstrucción del Tolima, explicitly covering both
+earthquake and wildfire losses. The department has 46 municipios en
+alerta roja — second-highest in the country — with 10,000+ hectares
+burned and 29-33 active fires as of Aug 15. Ortega alone reports 800+
+familias damnificadas (mayor on record); San Luis has 5,000 hectares
+burned and 10 homes damaged. National response has mobilized: Army
+Blackhawks, the Fuerza Aeroespacial, and a Bomberos Bogotá brigade
+redirected to Ortega.
+
+Ibagué itself isn't just adjacent to the fire crisis — it has confirmed
+quake-specific damage of its own: structural cracks reported at the
+Palacio de Justicia, multiple landslides in the Cañón del Combeima, and
+ash/smoke cover over the city heavy enough that masks are being
+recommended. As with Pijao, the wildfire wave is not confirmed to be
+earthquake-triggered by any source found (dry season and wind are the
+cited factors) — framed in `alertNote` as a compounding, concurrent
+disaster, not a documented consequence of the quake.
+
+Added: Department row for Tolima (DIVIPOLA `73`) and Municipio row for
+Ibagué (DIVIPOLA `73001`, population 542,046 per 2023 DANE-cited
+figure via Wikipedia, coordinates 4.4378, -75.2006), `severityLabel:
+ALTA`, `redAlert: true`. Two sources on file (Infobae, Caracol Radio).
+No aid points, needs, or toll figures seeded yet — this pass only
+establishes the city itself, matching how Pijao's own base municipio
+script preceded its deeper research passes. A dedicated 5-agent research
+pass (X, Instagram, Facebook, TikTok, crowdfunding) follows next.
+
+### Next steps (pass 59)
+Run Ibagué's dedicated research pass. Then resume round 5: Quibdó,
+Buenaventura, Popayán, Dosquebradas, San José del Palmar, and Pijao
+remain.
