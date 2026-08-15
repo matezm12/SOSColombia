@@ -103,6 +103,14 @@ export const config = {
     // this exclusion the intl middleware rewrites e.g. /md -> /es/md before
     // Next's router sees it, and since /es/md doesn't exist as a route, every
     // /md/* request 404s. This is the same reason "api" is excluded.
-    "/((?!api|md|_next|_vercel|.*\\..*).*)",
+    //
+    // Same bug, same fix, for Next's dynamically-generated metadata image
+    // routes (opengraph-image, twitter-image, icon, apple-icon): they live
+    // at app/opengraph-image.tsx etc. (root level, not under [locale]) and
+    // Next serves them at extension-less URLs like /opengraph-image — no
+    // dot, so the file-extension exclusion below doesn't catch them either.
+    // Without excluding them explicitly here too, every social-media/link
+    // unfurl fetch 404s instead of getting the actual share image.
+    "/((?!api|md|opengraph-image|twitter-image|icon|apple-icon|_next|_vercel|.*\\..*).*)",
   ],
 };
