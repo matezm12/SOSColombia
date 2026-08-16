@@ -4792,3 +4792,70 @@ but healthy dedup as repeat rounds hit their limits in smaller cities
 (Popayán, San José del Palmar, Pijao), and two genuinely new findings
 outside the original ten-city scope — Ibagué/Tolima's addition as an
 11th tracked city, and its own dedicated first research pass.
+
+## Pass 69
+
+Round 6 begins, opened by the user flagging a "huge update today."
+Pereira, first in rotation. The sources bear it out — dateline moved to
+Aug 16, and this pass turned up real, substantive movement rather than
+the thinning returns later rounds sometimes produce.
+
+### A genuinely new official acopio network
+An official 7-point Alcaldía collection network (Consota, Perla del
+Otún, El Remanso, Kennedy, and three "Café"-branded points) surfaced via
+a DANE Colombia government graphic. One agent flagged suspicion it might
+already be on file — checked directly against all five prior Pereira
+rounds' seed history and confirmed genuinely new. All seven seeded with
+full addresses.
+
+### Expofuturo escalates, again
+What was "a sitting senator named" as of pass 55 is now a direct
+allegation that Senator María Irma Noreña — the mayor's wife — "took
+control" of donated aid at the Expofuturo center, conditioning release
+on her authorization. A journalist has publicly called for a
+Procuraduría investigation; none has opened yet, and a counter-post
+urges caution that nothing has actually been proven. Recorded as
+contested, not established fact.
+
+### Three deaths, one contested robbery, one reconstruction push
+A third named victim (Juan Fernando Rodríguez Álvarez) was confirmed
+dead at the same Hotel Dibeni collapse that closed the Juan Felipe
+Giraldo case in pass 55; a Mexican couple (Mario Alberto Zapata Verdier,
+Brenda Eloísa Flores Reyes) remains missing from the same hotel, with
+Mexico's embassy now involved. A new missing-persons case (Frandiney
+Noreña, no relation to the senator) opened. A viral, contested claim
+that fake "Topos" rescuers looted downtown businesses is recorded with
+its own dissenting comment rather than treated as fact. On reconstruction:
+the mayor redirected festival funds to a $500K COP/month rent subsidy
+plus seed capital for informal vendors, the national government is
+studying a rental-price freeze, and the DNP estimates rebuilding Pereira
+could cost over $10 trillion pesos.
+
+### Toll: still not converging
+Pereira-specific death/injury figures ranged from 67 to 94 dead
+depending on source and hour this pass — genuinely inconsistent, not a
+single agent's error. The two most-corroborated numbers (94 dead / 259
+injured, from an X post and La Patria independently) are documented
+here rather than forced into the toll history.
+
+### One exclusion worth naming
+A crowdfunding agent surfaced the Óscar Benavides Corte Suprema fraud
+complaint as if new — it's Chocó/Quibdó's story, already tracked there
+since pass 49, not Pereira-specific. Excluded from this pass.
+
+### New aid points (15)
+The 7-point official acopio network, a community-organized collection
+point in Barrio Providencia, an overwhelmed improvised shelter at Parque
+La Libertad, a business-run collection point, an animal shelter
+displaced from its own building, a veterinary feeder-point network, and
+three new crowdfunding campaigns (two GoFundMe, one Vaki).
+
+### New community embeds (9)
+The Expofuturo escalation, the DNP cost estimate, the Mexican couple's
+case, Frandiney Noreña's case, the third Hotel Dibeni victim, the
+contested Topos looting claim, a survivor's story (no donation channel,
+human interest only), and two reconstruction-fund announcements.
+
+### Next steps (pass 69)
+Continue round 6: Cali, Manizales, Armenia, Quibdó, Buenaventura,
+Popayán, Dosquebradas, San José del Palmar, Pijao, and Ibagué remain.
