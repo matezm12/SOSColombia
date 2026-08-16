@@ -1,8 +1,11 @@
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
-import { ALLIED_CATEGORY_LABEL } from "@/lib/labels";
+import { alliedCategoryLabel } from "@/lib/labels";
 
 // Markdown mirror of the allied-resources directory (src/app/[locale]/recursos/page.tsx).
 // Same filter (status != DEAD), same category grouping/order, as the real page.
+// Bilingual via ?locale=en (default es) — see /md/donar/route.ts for the
+// pattern this follows.
 //
 // Short revalidation window instead of force-dynamic: resources get added/
 // checked over time, not per-second.
@@ -19,7 +22,14 @@ const CATEGORY_ORDER = [
   "OTHER",
 ] as const;
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") === "en" ? "en" : "es";
+  const [t, c] = await Promise.all([
+    getTranslations({ locale, namespace: "recursos" }),
+    getTranslations({ locale, namespace: "mdCommon" }),
+  ]);
+
   const resources = await prisma.alliedResource.findMany({
     where: { status: { not: "DEAD" } },
     include: { municipio: { select: { name: true, divipolaCode: true } } },
@@ -35,32 +45,31 @@ export async function GET() {
     const lines = items.map((r) => {
       const parts: string[] = [`**${r.name}**${r.org ? ` — ${r.org}` : ""}`, r.description];
       if (r.municipio) {
-        parts.push(`Enfoque: [${r.municipio.name}](${SITE_URL}/md/ciudad/${r.municipio.divipolaCode})`);
+        const cityPath = `${SITE_URL}/md/ciudad/${r.municipio.divipolaCode}${locale === "en" ? "?locale=en" : ""}`;
+        parts.push(`${c("enfoque")}: [${r.municipio.name}](${cityPath})`);
       }
-      if (r.notes) parts.push(`Nota: ${r.notes}`);
+      if (r.notes) parts.push(`${c("nota")}: ${r.notes}`);
       parts.push(`[${r.url}](${r.url})`);
       return `- ${parts.join(" · ")}`;
     });
 
-    return `## ${ALLIED_CATEGORY_LABEL[cat] ?? cat}\n\n${lines.join("\n")}`;
+    return `## ${alliedCategoryLabel(cat, locale)}\n\n${lines.join("\n")}`;
   }).filter(Boolean);
 
-  const title = "Recursos y aliados — SOSColombia";
-  const description =
-    "Otros sitios y herramientas independientes construidos para esta emergencia — mapas, directorios de ayuda, plataformas de donación y coordinación de voluntariado.";
+  const path = locale === "en" ? "/en/recursos" : "/recursos";
 
   const markdown = `---
-title: "${title}"
-description: "${description}"
-url: "${SITE_URL}/recursos"
+title: "${t("title")} — SOSColombia"
+description: "${t("lede")}"
+url: "${SITE_URL}${path}"
 last_updated: "${new Date().toISOString()}"
 ---
 
-# Recursos y aliados
+# ${t("title")}
 
-${description}
+${t("lede")}
 
-${sections.length > 0 ? sections.join("\n\n") : "Sin recursos todavía."}
+${sections.length > 0 ? sections.join("\n\n") : t("vacio")}
 `;
 
   return new Response(markdown, {

@@ -1,11 +1,13 @@
+import { getTranslations } from "next-intl/server";
 import { nationalTollRecords, departmentTollRecords, latestByMetric } from "@/lib/queries";
-import { METRIC_LABEL, TIER_LABEL } from "@/lib/labels";
+import { metricLabel, tierLabel } from "@/lib/labels";
 import { formatNumber, formatDate } from "@/lib/format";
 
 // Markdown mirror of the national figures page (src/app/[locale]/cifras/page.tsx).
 // Same two queries (national + department-level TollRecords), same
 // append-only-history framing: every previously published value stays on
-// the record, nothing gets silently overwritten.
+// the record, nothing gets silently overwritten. Bilingual via ?locale=en
+// (default es) — see /md/donar/route.ts for the pattern this follows.
 //
 // Short revalidation window instead of force-dynamic: toll records arrive
 // via cron/moderation, not per-second.
@@ -13,7 +15,14 @@ export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") === "en" ? "en" : "es";
+  const [t, c] = await Promise.all([
+    getTranslations({ locale, namespace: "cifras" }),
+    getTranslations({ locale, namespace: "mdCommon" }),
+  ]);
+
   const [national, byDepartment] = await Promise.all([
     nationalTollRecords(),
     departmentTollRecords(),
@@ -37,8 +46,8 @@ export async function GET() {
 
   const latestLines = latestNational.map((r) => {
     const parts = [
-      `**${METRIC_LABEL[r.metric] ?? r.metric}:** ${formatNumber(r.value)}${r.unit ? ` ${r.unit}` : ""}`,
-      `${r.source.org} (${TIER_LABEL[r.tier] ?? `nivel ${r.tier}`}), ${formatDate(r.asOf)}`,
+      `**${metricLabel(r.metric, locale)}:** ${formatNumber(r.value)}${r.unit ? ` ${r.unit}` : ""}`,
+      `${r.source.org} (${tierLabel(r.tier, locale)}), ${formatDate(r.asOf)}`,
     ];
     if (r.notes) parts.push(r.notes);
     return `- ${parts.join(" — ")}`;
@@ -51,9 +60,9 @@ export async function GET() {
         (r) =>
           `| ${r.department?.name ?? "—"} | ${formatNumber(r.value)} | ${r.source.org} · ${formatDate(r.asOf)} |`,
       );
-    return `### ${METRIC_LABEL[metric] ?? metric}
+    return `### ${metricLabel(metric, locale)}
 
-| Departamento | Valor | Fuente |
+| ${c("departamento")} | ${c("valor")} | ${c("fuente")} |
 | --- | --- | --- |
 ${rows.join("\n")}`;
   });
@@ -65,45 +74,44 @@ ${rows.join("\n")}`;
         (r) =>
           `| ${formatNumber(r.value)}${r.unit ? ` ${r.unit}` : ""} | ${formatDate(r.asOf)} | ${r.source.org} | ${r.notes ?? "—"} |`,
       );
-    return `### ${METRIC_LABEL[metric] ?? metric}
+    return `### ${metricLabel(metric, locale)}
 
-| Valor | Fecha | Fuente | Notas |
+| ${c("valor")} | ${c("fecha")} | ${c("fuente")} | ${c("notas")} |
 | --- | --- | --- | --- |
 ${rows.join("\n")}`;
   });
 
-  const title = "Cifras nacionales — SOSColombia";
-  const description =
-    "Cada cifra queda registrada con su fuente y fecha — nunca se sobrescribe. Valor más reciente de cada indicador, más historial completo.";
+  const path = locale === "en" ? "/en/cifras" : "/cifras";
+  const mdPrefix = locale === "en" ? "?locale=en" : "";
 
   const markdown = `---
-title: "${title}"
-description: "${description}"
-url: "${SITE_URL}/cifras"
+title: "${t("title")} — SOSColombia"
+description: "${t("lede")}"
+url: "${SITE_URL}${path}"
 last_updated: "${new Date().toISOString()}"
 ---
 
-# Cifras nacionales
+# ${t("title")}
 
-${description}
+${t("lede")}
 
-## Últimos valores
+## ${t("ultimosValores")}
 
-${latestLines.length > 0 ? latestLines.join("\n") : "Sin cifras nacionales publicadas todavía."}
+${latestLines.length > 0 ? latestLines.join("\n") : t("sinCifras")}
 
-## Por departamento
+## ${t("porDepartamento")}
 
-${departmentSections.length > 0 ? departmentSections.join("\n\n") : "Sin cifras por departamento publicadas todavía."}
+${departmentSections.length > 0 ? departmentSections.join("\n\n") : t("sinCifras")}
 
-## Historial completo
+## ${t("historialCompleto")}
 
-Los números de un desastre cambian de reporte a reporte — eso no siempre es un error. A continuación, cada valor publicado, no solo el más reciente.
+${t("historialLede")}
 
-${historySections.length > 0 ? historySections.join("\n\n") : "Sin historial disponible todavía."}
+${historySections.length > 0 ? historySections.join("\n\n") : t("sinCifras")}
 
-## Ver más
+## ${c("verMas")}
 
-Para cifras por ciudad, ver [la página de cada ciudad](${SITE_URL}/md).
+${SITE_URL}/md${mdPrefix}
 `;
 
   return new Response(markdown, {

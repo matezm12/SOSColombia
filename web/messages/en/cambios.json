@@ -4,6 +4,15 @@
     "lede": "Every new figure, verified aid point, reviewed campaign, logged discrepancy, and added resource — sorted most recent first. Nothing gets overwritten: what you see here is a direct read of the database, not an editorial summary.",
     "explainer": "Looking for the full dataset instead of a log?",
     "datosLink": "Go to open data →",
-    "empty": "No activity recorded yet."
+    "empty": "No activity recorded yet.",
+    "nacional": "National",
+    "actionNuevaCifra": "New figure",
+    "actionDiscrepanciaRegistrada": "Discrepancy logged",
+    "actionDiscrepanciaResuelta": "Discrepancy resolved",
+    "actionPuntoVerificado": "Aid point verified",
+    "actionCampanaRevisada": "Campaign reviewed",
+    "actionRecursoAgregado": "Resource added",
+    "fuenteLabel": "source",
+    "datoAl": "figure as of"
   }
 }

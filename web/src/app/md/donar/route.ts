@@ -1,10 +1,11 @@
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import type { Prisma } from "@prisma/client";
 import {
-  CROWDFUNDING_PLATFORM_LABEL,
-  VERIFICATION_LABEL,
-  AID_STATUS_LABEL,
-  TIER_LABEL,
+  crowdfundingPlatformLabel,
+  verificationLabel,
+  aidStatusLabel,
+  tierLabel,
 } from "@/lib/labels";
 import { formatCurrency, formatNumber, formatDate } from "@/lib/format";
 
@@ -14,7 +15,13 @@ import { formatCurrency, formatNumber, formatDate } from "@/lib/format";
 // this is the page an LLM answering "how do I donate to Colombia earthquake
 // relief" would want to quote, so it must carry the same warnings verbatim.
 //
-// Short revalidation window instead of force-dynamic — see donar/page.tsx.
+// Bilingual via ?locale=en (default es): reuses the same next-intl message
+// files the real page's chrome pulls from (getTranslations works outside
+// request scope when given an explicit locale, which is what a route
+// handler is). Only page chrome/labels are translated — DB free-text
+// (org names, notes) has no English column and stays as entered, same as
+// every other Story/campaign field on this site that isn't Story's own
+// bilingual titleEs/titleEn-style columns.
 export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
@@ -23,54 +30,67 @@ type CampaignWithMunicipios = Prisma.CrowdfundingCampaignGetPayload<{
   include: { municipios: { select: { name: true; divipolaCode: true } } };
 }>;
 
-function formatCampaign(c: CampaignWithMunicipios): string {
-  const badges = [VERIFICATION_LABEL[c.verificationStatus] ?? c.verificationStatus];
-  if (c.international) badges.push("Internacional");
-  if (c.recurring) badges.push("Mensual");
+type Labels = Awaited<ReturnType<typeof buildLabels>>;
+
+async function buildLabels(locale: string) {
+  const t = await getTranslations({ locale, namespace: "donar" });
+  const c = await getTranslations({ locale, namespace: "mdCommon" });
+  return { t, c };
+}
+
+function formatCampaign(c: CampaignWithMunicipios, locale: string, labels: Labels): string {
+  const badges = [verificationLabel(c.verificationStatus, locale)];
+  if (c.international) badges.push(labels.c("internacional"));
+  if (c.recurring) badges.push(labels.c("mensual"));
 
   const lines = [`### ${c.title} (${badges.join(", ")})`, "", c.orgOrPerson];
 
   if (c.municipios.length > 0) {
     lines.push(
-      `Enfoque: ${c.municipios
+      `${labels.c("enfoque")}: ${c.municipios
         .map((m) => `[${m.name}](${SITE_URL}/md/ciudad/${m.divipolaCode})`)
         .join(", ")}`,
     );
   }
 
-  if (c.notes) lines.push(`Nota: ${c.notes}`);
+  if (c.notes) lines.push(`${labels.c("nota")}: ${c.notes}`);
 
   if (c.goal !== null || c.raised !== null) {
     const parts: string[] = [];
-    if (c.raised !== null) parts.push(`Recaudado: ${formatCurrency(c.raised, c.currency)}`);
-    if (c.goal !== null) parts.push(`Meta: ${formatCurrency(c.goal, c.currency)}`);
-    if (c.donorCount !== null) parts.push(`${formatNumber(c.donorCount)} donantes`);
+    if (c.raised !== null) parts.push(`${labels.c("recaudado")}: ${formatCurrency(c.raised, c.currency)}`);
+    if (c.goal !== null) parts.push(`${labels.c("metaDonacion")}: ${formatCurrency(c.goal, c.currency)}`);
+    if (c.donorCount !== null) parts.push(`${formatNumber(c.donorCount)} ${labels.c("donantes")}`);
     lines.push(parts.join(" · "));
   }
 
-  lines.push(`Plataforma: ${CROWDFUNDING_PLATFORM_LABEL[c.platform] ?? c.platform} — ${c.url}`);
-  lines.push(`Última verificación: ${formatDate(c.lastCheckedAt)}`);
+  lines.push(`${labels.c("plataforma")}: ${crowdfundingPlatformLabel(c.platform, locale)} — ${c.url}`);
+  lines.push(`${labels.c("ultimaVerificacion")}: ${formatDate(c.lastCheckedAt)}`);
 
   return lines.join("\n");
 }
 
 type AidPointWithSource = Prisma.AidPointGetPayload<{ include: { source: true; municipio: true } }>;
 
-function formatMonetaryPoint(p: AidPointWithSource): string {
-  const lines = [`### ${p.name} — ${p.municipio.name} (${AID_STATUS_LABEL[p.status] ?? p.status})`, ""];
-  if (p.address) lines.push(`Dirección: ${p.address}`);
-  if (p.phone) lines.push(`Teléfono: ${p.phone}`);
-  if (p.accessRestriction) lines.push(`Acceso restringido: ${p.accessRestriction}`);
-  if (p.needsText) lines.push(`Necesita: ${p.needsText}`);
+function formatMonetaryPoint(p: AidPointWithSource, locale: string, labels: Labels): string {
+  const lines = [`### ${p.name} — ${p.municipio.name} (${aidStatusLabel(p.status, locale)})`, ""];
+  if (p.address) lines.push(`${labels.c("direccion")}: ${p.address}`);
+  if (p.phone) lines.push(`${labels.c("tel")}: ${p.phone}`);
+  if (p.accessRestriction) lines.push(`${labels.c("accesoRestringido")}: ${p.accessRestriction}`);
+  if (p.needsText) lines.push(`${labels.c("necesita")}: ${p.needsText}`);
   const link = p.permalink ?? p.source.url;
-  if (link) lines.push(`[${p.permalink ? "Ver publicación original" : "Ver fuente"}](${link})`);
+  if (link) lines.push(`[${p.permalink ? labels.c("publicacionOriginal") : labels.c("fuente")}](${link})`);
   lines.push(
-    `Fuente: ${p.source.org} (${TIER_LABEL[p.source.tier] ?? `nivel ${p.source.tier}`}) — verificado ${formatDate(p.lastVerifiedAt)}`,
+    `${labels.c("fuente")}: ${p.source.org} (${tierLabel(p.source.tier, locale)}) — ${formatDate(p.lastVerifiedAt)}`,
   );
   return lines.join("\n");
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") === "en" ? "en" : "es";
+  const labels = await buildLabels(locale);
+  const { t } = labels;
+
   const [campaigns, monetaryPoints] = await Promise.all([
     prisma.crowdfundingCampaign.findMany({
       orderBy: { verificationStatus: "asc" },
@@ -83,52 +103,52 @@ export async function GET() {
     }),
   ]);
 
-  const verified = campaigns.filter((c) => c.verificationStatus === "VERIFIED");
+  const verified = campaigns.filter((camp) => camp.verificationStatus === "VERIFIED");
   const individual = campaigns.filter(
-    (c) => c.verificationStatus === "PLAUSIBLE" || c.verificationStatus === "UNCONFIRMED",
+    (camp) => camp.verificationStatus === "PLAUSIBLE" || camp.verificationStatus === "UNCONFIRMED",
   );
-  const flagged = campaigns.filter((c) => c.verificationStatus === "FLAGGED_SCAM");
+  const flagged = campaigns.filter((camp) => camp.verificationStatus === "FLAGGED_SCAM");
 
-  const title = "Cómo donar — SOSColombia";
-  const description =
-    "Organizaciones y campañas verificadas por este proyecto. Cada una lleva un nivel de confianza — verifica tú mismo antes de donar, especialmente en campañas individuales.";
+  const title = `${t("title")} — SOSColombia`;
+  const description = t("metaDescription");
+  const path = locale === "en" ? "/en/donar" : "/donar";
 
   const markdown = `---
 title: "${title}"
 description: "${description}"
-url: "${SITE_URL}/donar"
+url: "${SITE_URL}${path}"
 last_updated: "${new Date().toISOString()}"
 ---
 
-# Cómo donar
+# ${t("title")}
 
-${description}
+${t("lede")}
 
-## Antes de donar
+## ${t("scamWarning.heading")}
 
-- "SOS Chocó" no es una sola organización — es un lema que usan al menos 5 actores distintos (Manos Visibles, Fundación Plan, FECOER, entre otros). Verifica a cuál organización específica va tu donación antes de confiar en un enlace con ese nombre.
-- Desconfía de: enlaces compartidos solo por WhatsApp/SMS sin otro rastro, perfiles nuevos y anónimos, presión de urgencia, y "listas exclusivas de víctimas".
-- Una recolección de fondos vinculada a un congresista fue señalada públicamente por un exfiscal general por dirigir donaciones a una cuenta bancaria personal — posible recaudación masiva irregular (Código Penal, art. 316). Verifica siempre que el canal de donación sea una cuenta institucional, no personal.
+- ${t("scamWarning.point1")}
+- ${t("scamWarning.point2")}
+- ${t("scamWarning.point3")}
 
-¿Donas desde fuera de Colombia? Los canales locales de esta página requieren cuenta bancaria colombiana para algunos casos. Ver [donaciones internacionales](${SITE_URL}/md/donar/internacional).
+${t("international.text")} [${t("international.cta")}](${SITE_URL}/md/donar/internacional${locale === "en" ? "?locale=en" : ""})
 
-## Organizaciones verificadas
+## ${t("sections.verified")}
 
-${verified.length > 0 ? verified.map(formatCampaign).join("\n\n") : "Ninguna todavía."}
+${verified.length > 0 ? verified.map((camp) => formatCampaign(camp, locale, labels)).join("\n\n") : t("emptyVerified")}
 
-## Canales locales e institucionales
+## ${t("sections.local")}
 
-${monetaryPoints.length > 0 ? monetaryPoints.map(formatMonetaryPoint).join("\n\n") : "Ninguno todavía."}
+${monetaryPoints.length > 0 ? monetaryPoints.map((p) => formatMonetaryPoint(p, locale, labels)).join("\n\n") : t("emptyVerified")}
 
-## Campañas individuales
+## ${t("sections.individual")}
 
-Recaudadores individuales, no instituciones — revisa el nivel de confianza de cada una antes de donar.
+${t("sections.individualNote")}
 
-${individual.length > 0 ? individual.map(formatCampaign).join("\n\n") : "Ninguna todavía."}
+${individual.length > 0 ? individual.map((camp) => formatCampaign(camp, locale, labels)).join("\n\n") : t("emptyVerified")}
 
-## Riesgo de fraude
+## ${t("sections.flagged")}
 
-${flagged.length > 0 ? flagged.map(formatCampaign).join("\n\n") : "Ninguna todavía."}
+${flagged.length > 0 ? flagged.map((camp) => formatCampaign(camp, locale, labels)).join("\n\n") : t("emptyVerified")}
 `;
 
   return new Response(markdown, {

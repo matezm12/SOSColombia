@@ -1,12 +1,18 @@
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 
 // Markdown mirror of the open-data page (src/app/[locale]/datos/page.tsx).
-// Spanish-only, same as every other mirror — see llms.txt.
+// Bilingual via ?locale=en (default es) — see /md/donar/route.ts for the
+// pattern this follows.
 export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") === "en" ? "en" : "es";
+  const t = await getTranslations({ locale, namespace: "datos" });
+
   const [tollRecords, aidPoints, campaigns, reports, contradictions, resources] =
     await Promise.all([
       prisma.tollRecord.count(),
@@ -17,30 +23,28 @@ export async function GET() {
       prisma.alliedResource.count({ where: { status: { not: "DEAD" } } }),
     ]);
 
-  const title = "Datos abiertos — SOSColombia";
-  const description =
-    "Todo el conjunto de datos verificado, listo para descargar y reutilizar. Cada registro lleva su fuente, su fecha y su nivel de confiabilidad, igual que en el resto del sitio.";
+  const path = locale === "en" ? "/en/datos" : "/datos";
 
   const markdown = `---
-title: "${title}"
-description: "${description}"
-url: "${SITE_URL}/datos"
+title: "${t("title")} — SOSColombia"
+description: "${t("lede")}"
+url: "${SITE_URL}${path}"
 last_updated: "${new Date().toISOString()}"
 ---
 
-# Datos abiertos
+# ${t("title")}
 
-${description}
+${t("lede")}
 
-${tollRecords} cifras · ${aidPoints} puntos de ayuda · ${campaigns} campañas · ${reports} informes · ${contradictions} discrepancias · ${resources} recursos aliados
+${t("resumen", { tollRecords, aidPoints, campaigns, reports, contradictions, resources })}
 
-## Descargas
+## ${t("downloadsHeading")}
 
-- Dataset completo (JSON): ${SITE_URL}/api/export
-- Cifras (CSV): ${SITE_URL}/api/export/csv/toll-records
-- Puntos de ayuda (CSV): ${SITE_URL}/api/export/csv/aid-points
+- ${t("distJson")}: ${SITE_URL}/api/export
+- ${t("distCifrasCsv")}: ${SITE_URL}/api/export/csv/toll-records
+- ${t("distAyudaCsv")}: ${SITE_URL}/api/export/csv/aid-points
 
-Uso libre, con atribución. Cada dato ya trae su propia fuente citada — mantenla al reutilizar la información. Ver [metodología completa](${SITE_URL}/metodologia).
+${t("license")} ${locale === "en" ? "See" : "Ver"} [${t("methodologyLink").replace(" →", "")}](${SITE_URL}${locale === "en" ? "/en" : ""}/metodologia).
 `;
 
   return new Response(markdown, {

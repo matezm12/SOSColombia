@@ -1,10 +1,13 @@
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
-import { CONTRADICTION_STATUS_LABEL } from "@/lib/labels";
+import { contradictionStatusLabel } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 
 // Markdown mirror of the methodology page (src/app/[locale]/metodologia/page.tsx):
 // the intro copy plus the open/resolved contradiction registry. Short but
 // valuable for LLM search to understand how to weigh this site's numbers.
+// Bilingual via ?locale=en (default es) — see /md/donar/route.ts for the
+// pattern this follows.
 //
 // Short revalidation window instead of force-dynamic: contradictions get
 // resolved/added over time, not per-second.
@@ -12,65 +15,75 @@ export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 
-function contradictionLines(c: {
-  topic: string;
-  status: string;
-  valueA: string;
-  sourceA: string;
-  valueB: string;
-  sourceB: string;
-  resolutionText: string | null;
-  loggedAt: Date;
-  resolvedAt: Date | null;
-}): string {
+function contradictionLines(
+  c: {
+    topic: string;
+    status: string;
+    valueA: string;
+    sourceA: string;
+    valueB: string;
+    sourceB: string;
+    resolutionText: string | null;
+    loggedAt: Date;
+    resolvedAt: Date | null;
+  },
+  locale: string,
+  md: Awaited<ReturnType<typeof getTranslations>>,
+): string {
   const parts: string[] = [
-    `### ${c.topic} (${CONTRADICTION_STATUS_LABEL[c.status] ?? c.status})`,
-    `- Valor A: ${c.valueA} — ${c.sourceA}`,
-    `- Valor B: ${c.valueB} — ${c.sourceB}`,
+    `### ${c.topic} (${contradictionStatusLabel(c.status, locale)})`,
+    `- ${md("valorA")}: ${c.valueA} — ${c.sourceA}`,
+    `- ${md("valorB")}: ${c.valueB} — ${c.sourceB}`,
   ];
-  if (c.resolutionText) parts.push(`- Resolución: ${c.resolutionText}`);
-  let dateLine = `- Registrada ${formatDate(c.loggedAt)}`;
-  if (c.resolvedAt) dateLine += ` · resuelta ${formatDate(c.resolvedAt)}`;
+  if (c.resolutionText) parts.push(`- ${md("resolucion")}: ${c.resolutionText}`);
+  let dateLine = `- ${md("registrada")} ${formatDate(c.loggedAt)}`;
+  if (c.resolvedAt) dateLine += ` · ${md("resuelta")} ${formatDate(c.resolvedAt)}`;
   parts.push(dateLine);
   return parts.join("\n");
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") === "en" ? "en" : "es";
+  const [t, c] = await Promise.all([
+    getTranslations({ locale, namespace: "metodologia" }),
+    getTranslations({ locale, namespace: "mdCommon" }),
+  ]);
+
   const contradictions = await prisma.contradiction.findMany({
     orderBy: [{ status: "asc" }, { loggedAt: "desc" }],
   });
 
-  const open = contradictions.filter((c) => c.status === "OPEN");
-  const resolved = contradictions.filter((c) => c.status === "RESOLVED");
+  const open = contradictions.filter((cont) => cont.status === "OPEN");
+  const resolved = contradictions.filter((cont) => cont.status === "RESOLVED");
 
-  const title = "Metodología — SOSColombia";
-  const description =
-    "Cómo este sitio maneja cifras que cambian de fuente a fuente: nunca se sobrescribe un número con otro, y las discrepancias entre fuentes confiables se registran en vez de resolverse en silencio.";
+  const path = locale === "en" ? "/en/metodologia" : "/metodologia";
+  const mdSuffix = locale === "en" ? "?locale=en" : "";
 
   const markdown = `---
-title: "${title}"
-description: "${description}"
-url: "${SITE_URL}/metodologia"
+title: "${t("title")} — SOSColombia"
+description: "${t("metaDescription")}"
+url: "${SITE_URL}${path}"
 last_updated: "${new Date().toISOString()}"
 ---
 
-# Metodología
+# ${t("title")}
 
-Las cifras de un desastre cambian de fuente a fuente y de día a día — eso no siempre significa un error. Este sitio nunca sobrescribe un número con otro más nuevo: cada cifra queda registrada con su fuente, su fecha y su nivel de confiabilidad, y se muestra la más reciente sin borrar el historial.
+${t("intro1")}
 
-Cuando dos fuentes confiables no coinciden en un mismo dato, lo registramos como una discrepancia en lugar de elegir una de las dos en silencio. Algunas se resuelven con más información; otras quedan abiertas hasta que exista un dato definitivo.
+${t("intro2")}
 
-## Discrepancias abiertas
+## ${t("discrepanciasAbiertas")}
 
-${open.length > 0 ? open.map(contradictionLines).join("\n\n") : "Sin discrepancias abiertas."}
+${open.length > 0 ? open.map((cont) => contradictionLines(cont, locale, c)).join("\n\n") : (locale === "en" ? "No open discrepancies." : "Sin discrepancias abiertas.")}
 
-## Discrepancias resueltas
+## ${t("discrepanciasResueltas")}
 
-${resolved.length > 0 ? resolved.map(contradictionLines).join("\n\n") : "Sin discrepancias resueltas todavía."}
+${resolved.length > 0 ? resolved.map((cont) => contradictionLines(cont, locale, c)).join("\n\n") : (locale === "en" ? "No resolved discrepancies yet." : "Sin discrepancias resueltas todavía.")}
 
-## Ver más
+## ${c("verMas")}
 
-Historial completo de actividad del sitio: ${SITE_URL}/md/cambios
+${locale === "en" ? "Full site activity log" : "Historial completo de actividad del sitio"}: ${SITE_URL}/md/cambios${mdSuffix}
 `;
 
   return new Response(markdown, {

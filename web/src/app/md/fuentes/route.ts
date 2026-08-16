@@ -1,10 +1,13 @@
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
-import { TIER_LABEL, SOURCE_STATUS_LABEL } from "@/lib/labels";
+import { tierLabel, sourceStatusLabel } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 
 // Markdown mirror of the source registry page (src/app/[locale]/fuentes/page.tsx).
 // Same query (all Sources with derived-record counts), same ordering
-// (tier asc, org asc), same columns as the real table.
+// (tier asc, org asc), same columns as the real table. Bilingual via
+// ?locale=en (default es) — see /md/donar/route.ts for the pattern this
+// follows.
 //
 // Short revalidation window instead of force-dynamic: source status/tier
 // changes occasionally, not per-second.
@@ -12,7 +15,11 @@ export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") === "en" ? "en" : "es";
+  const t = await getTranslations({ locale, namespace: "fuentes" });
+
   const sources = await prisma.source.findMany({
     include: { _count: { select: { tollRecords: true, aidPoints: true } } },
     orderBy: [{ tier: "asc" }, { org: "asc" }],
@@ -20,29 +27,27 @@ export async function GET() {
 
   const rows = sources.map((s) => {
     const org = s.url?.startsWith("http") ? `[${s.org}](${s.url})` : s.org;
-    const tier = TIER_LABEL[s.tier] ?? `nivel ${s.tier}`;
-    const status = SOURCE_STATUS_LABEL[s.status] ?? s.status;
+    const tier = tierLabel(s.tier, locale);
+    const status = sourceStatusLabel(s.status, locale);
     const derived = s._count.tollRecords + s._count.aidPoints;
     const verified = s.lastFetchedAt ? formatDate(s.lastFetchedAt) : "—";
     return `| ${org} | ${tier} | ${status} | ${derived} | ${verified} |`;
   });
 
-  const title = "Fuentes — SOSColombia";
-  const description =
-    "Cada dato en este sitio viene de una fuente citada aquí, con su nivel de confiabilidad. Nivel 1 es la fuente oficial más directa; nivel 6 son redes sociales sin verificar.";
+  const path = locale === "en" ? "/en/fuentes" : "/fuentes";
 
   const markdown = `---
-title: "${title}"
-description: "${description}"
-url: "${SITE_URL}/fuentes"
+title: "${t("title")} — SOSColombia"
+description: "${t("lede")}"
+url: "${SITE_URL}${path}"
 last_updated: "${new Date().toISOString()}"
 ---
 
-# Fuentes
+# ${t("title")}
 
-${description}
+${t("lede")}
 
-| Organización | Nivel | Estado | Datos derivados | Verificada |
+| ${t("table.organizacion")} | ${t("table.nivel")} | ${t("table.estado")} | ${t("table.datosDerivados")} | ${t("table.verificada")} |
 | --- | --- | --- | --- | --- |
 ${rows.length > 0 ? rows.join("\n") : "| — | — | — | — | — |"}
 `;

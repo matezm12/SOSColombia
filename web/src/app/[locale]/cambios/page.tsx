@@ -28,7 +28,7 @@ export async function generateMetadata({
 }
 
 export default async function CambiosPage(props: PageProps<"/[locale]/cambios">) {
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("cambios");
   const entries = await recentActivity();
 
@@ -50,7 +50,7 @@ export default async function CambiosPage(props: PageProps<"/[locale]/cambios">)
       {entries.length > 0 && (
         <ul className="mt-8 divide-y divide-zinc-100 dark:divide-zinc-900">
           {entries.map((entry, i) => {
-            const d = describeEntry(entry);
+            const d = describeEntry(entry, locale, t);
             return (
               <li
                 key={`${entry.type}-${i}`}

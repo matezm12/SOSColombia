@@ -1,11 +1,6 @@
 import { prisma } from "./prisma";
 import { formatDate, formatNumber } from "./format";
-import {
-  METRIC_LABEL,
-  AID_KIND_LABEL,
-  AID_STATUS_LABEL,
-  VERIFICATION_LABEL,
-} from "./labels";
+import { metricLabel, aidKindLabel, aidStatusLabel, verificationLabel } from "./labels";
 
 // Public audit trail: a merged, timestamp-sorted view across every table that
 // carries its own "when did this change" field. There's no dedicated Change
@@ -93,23 +88,32 @@ export async function recentActivity(): Promise<ActivityEntry[]> {
   return entries.slice(0, TOTAL_LIMIT);
 }
 
-/** Plain-text description of one entry -- shared by the page and its markdown mirror. */
-export function describeEntry(entry: ActivityEntry): { action: string; text: string; href: string } {
+/**
+ * Plain-text description of one entry -- shared by the page and its
+ * markdown mirror. `t` is a resolved getTranslations({namespace: "cambios"})
+ * for the caller's locale, passed in rather than fetched here so this stays
+ * synchronous and doesn't re-resolve translations once per entry.
+ */
+export function describeEntry(
+  entry: ActivityEntry,
+  locale: string,
+  t: (key: string) => string,
+): { action: string; text: string; href: string } {
   switch (entry.type) {
     case "TOLL_RECORD": {
       const r = entry.record;
-      const place = r.municipio?.name ?? r.department?.name ?? "Nacional";
-      const label = METRIC_LABEL[r.metric] ?? r.metric;
+      const place = r.municipio?.name ?? r.department?.name ?? t("nacional");
+      const label = metricLabel(r.metric, locale);
       return {
-        action: "Nueva cifra",
-        text: `${label} — ${formatNumber(r.value)}${r.unit ? ` ${r.unit}` : ""} (${place}), fuente ${r.source.org}, dato al ${formatDate(r.asOf)}`,
+        action: t("actionNuevaCifra"),
+        text: `${label} — ${formatNumber(r.value)}${r.unit ? ` ${r.unit}` : ""} (${place}), ${t("fuenteLabel")} ${r.source.org}, ${t("datoAl")} ${formatDate(r.asOf)}`,
         href: r.municipio ? `/ciudad/${r.municipio.divipolaCode}` : "/cifras",
       };
     }
     case "CONTRADICTION": {
       const c = entry.record;
       return {
-        action: c.status === "OPEN" ? "Discrepancia registrada" : "Discrepancia resuelta",
+        action: c.status === "OPEN" ? t("actionDiscrepanciaRegistrada") : t("actionDiscrepanciaResuelta"),
         text: c.topic,
         href: "/metodologia",
       };
@@ -117,23 +121,23 @@ export function describeEntry(entry: ActivityEntry): { action: string; text: str
     case "AID_POINT": {
       const a = entry.record;
       return {
-        action: "Punto de ayuda verificado",
-        text: `${a.name} (${AID_KIND_LABEL[a.kind] ?? a.kind}), ${a.municipio.name} — ${AID_STATUS_LABEL[a.status] ?? a.status}`,
+        action: t("actionPuntoVerificado"),
+        text: `${a.name} (${aidKindLabel(a.kind, locale)}), ${a.municipio.name} — ${aidStatusLabel(a.status, locale)}`,
         href: `/ciudad/${a.municipio.divipolaCode}`,
       };
     }
     case "CAMPAIGN": {
       const c = entry.record;
       return {
-        action: "Campaña revisada",
-        text: `${c.title} (${c.orgOrPerson}) — ${VERIFICATION_LABEL[c.verificationStatus] ?? c.verificationStatus}`,
+        action: t("actionCampanaRevisada"),
+        text: `${c.title} (${c.orgOrPerson}) — ${verificationLabel(c.verificationStatus, locale)}`,
         href: "/donar",
       };
     }
     case "ALLIED_RESOURCE": {
       const r = entry.record;
       return {
-        action: "Recurso agregado",
+        action: t("actionRecursoAgregado"),
         text: `${r.name} — ${r.description}`,
         href: "/recursos",
       };

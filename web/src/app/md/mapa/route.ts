@@ -1,5 +1,6 @@
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
-import { SEVERITY_LABEL } from "@/lib/labels";
+import { severityLabel } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
 
 // Markdown mirror of the map page (src/app/[locale]/mapa/page.tsx). A map is
@@ -7,6 +8,8 @@ import { formatNumber } from "@/lib/format";
 // mirror gives crawlers the same underlying data as a table: coordinates,
 // severity, population, death toll, aid-point count per city, plus the two
 // epicenter readings (SGC/USGS differ slightly, both real pages show both).
+// Bilingual via ?locale=en (default es) — see /md/donar/route.ts for the
+// pattern this follows.
 //
 // Short revalidation window instead of force-dynamic: coordinates get
 // backfilled between deploys, not per-second.
@@ -14,7 +17,15 @@ export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") === "en" ? "en" : "es";
+  const [t, c, home] = await Promise.all([
+    getTranslations({ locale, namespace: "mapa" }),
+    getTranslations({ locale, namespace: "mdCommon" }),
+    getTranslations({ locale, namespace: "home" }),
+  ]);
+
   const [municipios, event] = await Promise.all([
     prisma.municipio.findMany({
       where: { lat: { not: null }, lng: { not: null } },
@@ -34,58 +45,53 @@ export async function GET() {
   const epicenterLines: string[] = [];
   if (event) {
     if (event.epicenterLatSgc != null && event.epicenterLngSgc != null) {
-      epicenterLines.push(
-        `- **Epicentro (SGC):** ${event.epicenterLatSgc}, ${event.epicenterLngSgc}`,
-      );
+      epicenterLines.push(`- **${t("epicentroSgc")}:** ${event.epicenterLatSgc}, ${event.epicenterLngSgc}`);
     }
     if (event.epicenterLatUsgs != null && event.epicenterLngUsgs != null) {
-      epicenterLines.push(
-        `- **Epicentro (USGS):** ${event.epicenterLatUsgs}, ${event.epicenterLngUsgs}`,
-      );
+      epicenterLines.push(`- **${t("epicentroUsgs")}:** ${event.epicenterLatUsgs}, ${event.epicenterLngUsgs}`);
     }
     if (event.magnitudeSgc != null) {
-      epicenterLines.push(`- **Magnitud (SGC):** ${event.magnitudeSgc.toFixed(1)}`);
+      epicenterLines.push(`- **${c("magnitud")} (SGC):** ${event.magnitudeSgc.toFixed(1)}`);
     }
     if (event.magnitudeUsgs != null) {
-      epicenterLines.push(`- **Magnitud (USGS):** ${event.magnitudeUsgs.toFixed(1)}`);
+      epicenterLines.push(`- **${c("magnitud")} (USGS):** ${event.magnitudeUsgs.toFixed(1)}`);
     }
   }
 
   const tableRows = municipios.map((m) => {
-    const severity = m.severityLabel ? SEVERITY_LABEL[m.severityLabel] ?? m.severityLabel : "—";
+    const severity = m.severityLabel ? severityLabel(m.severityLabel, locale) : "—";
     const population = m.populationDane != null ? formatNumber(m.populationDane) : "—";
     const deaths = m.tollRecords[0]?.value != null ? formatNumber(m.tollRecords[0].value) : "—";
     const aidPoints = m._count.aidPoints;
-    return `| [${m.name}](${SITE_URL}/md/ciudad/${m.divipolaCode}) | ${m.divipolaCode} | ${severity} | ${population} | ${deaths} | ${aidPoints} | ${m.lat}, ${m.lng} |`;
+    const cityPath = `${SITE_URL}/md/ciudad/${m.divipolaCode}${locale === "en" ? "?locale=en" : ""}`;
+    return `| [${m.name}](${cityPath}) | ${m.divipolaCode} | ${severity} | ${population} | ${deaths} | ${aidPoints} | ${m.lat}, ${m.lng} |`;
   });
 
-  const title = "Mapa — SOSColombia";
-  const description =
-    "Ubicación de las ciudades con datos verificados y el epicentro del sismo del 10 de agosto de 2026 en Colombia (SGC y USGS).";
+  const path = locale === "en" ? "/en/mapa" : "/mapa";
 
   const markdown = `---
-title: "${title}"
-description: "${description}"
-url: "${SITE_URL}/mapa"
+title: "${t("title")} — SOSColombia"
+description: "${t("lede")}"
+url: "${SITE_URL}${path}"
 last_updated: "${new Date().toISOString()}"
 ---
 
-# Mapa
+# ${t("title")}
 
-Ubicación de las ciudades con datos verificados y el epicentro del sismo (SGC y USGS difieren ligeramente, se muestran ambos).
+${t("lede")}
 
-## Epicentro
+## ${c("epicentro")}
 
-${epicenterLines.length > 0 ? epicenterLines.join("\n") : "Sin datos de epicentro cargados todavía."}
+${epicenterLines.length > 0 ? epicenterLines.join("\n") : t("sinCoordenadas")}
 
-## Ciudades
+## ${home("ciudades")}
 
 ${
   tableRows.length > 0
-    ? `| Ciudad | DIVIPOLA | Severidad | Población (DANE) | Fallecidos reportados | Puntos de ayuda | Coordenadas |
+    ? `| ${c("ciudad")} | DIVIPOLA | ${t("severidad")} | ${c("poblacionDane")} | ${t("fallecidosReportados")} | ${c("puntosDeAyuda")} | ${c("coordenadas")} |
 | --- | --- | --- | --- | --- | --- | --- |
 ${tableRows.join("\n")}`
-    : "Sin coordenadas cargadas todavía."
+    : t("sinCoordenadas")
 }
 `;
 

@@ -1,5 +1,6 @@
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
-import { SOCIAL_PLATFORM_LABEL, SOCIAL_CATEGORY_LABEL } from "@/lib/labels";
+import { SOCIAL_PLATFORM_LABEL, socialCategoryLabel } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 
 // Markdown mirror of the community feed (src/app/[locale]/comunidad/page.tsx).
@@ -7,7 +8,8 @@ import { formatDate } from "@/lib/format";
 // handle, category, and a permalink) -- oembedHtml is a cached embed blob,
 // not prose, so it's left out here and the permalink is the thing a
 // crawler/LLM should follow for the actual content. Same query/take(60)/order
-// as the real page.
+// as the real page. Bilingual via ?locale=en (default es) — see
+// /md/donar/route.ts for the pattern this follows.
 //
 // Short revalidation window instead of force-dynamic: posts land
 // occasionally, not per-second.
@@ -15,7 +17,14 @@ export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") === "en" ? "en" : "es";
+  const [t, c] = await Promise.all([
+    getTranslations({ locale, namespace: "comunidad" }),
+    getTranslations({ locale, namespace: "mdCommon" }),
+  ]);
+
   const posts = await prisma.socialPost.findMany({
     include: { municipio: { select: { name: true, divipolaCode: true } } },
     orderBy: { capturedAt: "desc" },
@@ -24,33 +33,32 @@ export async function GET() {
 
   const lines = posts.map((p) => {
     const parts: string[] = [
-      `**${SOCIAL_CATEGORY_LABEL[p.category] ?? p.category}** — ${SOCIAL_PLATFORM_LABEL[p.platform] ?? p.platform}`,
+      `**${socialCategoryLabel(p.category, locale)}** — ${SOCIAL_PLATFORM_LABEL[p.platform] ?? p.platform}`,
     ];
     if (p.authorHandle) parts.push(p.authorHandle);
     if (p.municipio) {
-      parts.push(`[${p.municipio.name}](${SITE_URL}/md/ciudad/${p.municipio.divipolaCode})`);
+      const cityPath = `${SITE_URL}/md/ciudad/${p.municipio.divipolaCode}${locale === "en" ? "?locale=en" : ""}`;
+      parts.push(`[${p.municipio.name}](${cityPath})`);
     }
-    parts.push(`[ver publicación](${p.permalink})`);
-    parts.push(`Capturado: ${formatDate(p.capturedAt)}`);
+    parts.push(`[${c("verPublicacion")}](${p.permalink})`);
+    parts.push(`${c("capturado")}: ${formatDate(p.capturedAt)}`);
     return `- ${parts.join(" · ")}`;
   });
 
-  const title = "Comunidad — SOSColombia";
-  const description =
-    "Publicaciones de Instagram, X, Facebook y TikTok sobre lugares y necesidades que aún no están en el directorio oficial — revisadas antes de publicarse aquí.";
+  const path = locale === "en" ? "/en/comunidad" : "/comunidad";
 
   const markdown = `---
-title: "${title}"
-description: "${description}"
-url: "${SITE_URL}/comunidad"
+title: "${t("title")} — SOSColombia"
+description: "${t("lede")}"
+url: "${SITE_URL}${path}"
 last_updated: "${new Date().toISOString()}"
 ---
 
-# Comunidad
+# ${t("title")}
 
-${description}
+${t("lede")}
 
-${lines.length > 0 ? lines.join("\n") : "Sin publicaciones todavía."}
+${lines.length > 0 ? lines.join("\n") : t("empty")}
 `;
 
   return new Response(markdown, {

@@ -1,10 +1,13 @@
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
-import { TIER_LABEL } from "@/lib/labels";
+import { tierLabel } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 
 // Markdown mirror of the official-reports page (src/app/[locale]/informes/page.tsx).
 // Same query (all GovReports, most recent first) and same fields as
 // GovReportCard: org, docType, date, tier, summary, keyFigures, url.
+// Bilingual via ?locale=en (default es) — see /md/donar/route.ts for the
+// pattern this follows.
 //
 // Short revalidation window instead of force-dynamic: reports land
 // occasionally, not per-second.
@@ -12,7 +15,14 @@ export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") === "en" ? "en" : "es";
+  const [t, c] = await Promise.all([
+    getTranslations({ locale, namespace: "informes" }),
+    getTranslations({ locale, namespace: "mdCommon" }),
+  ]);
+
   const reports = await prisma.govReport.findMany({ orderBy: { date: "desc" } });
 
   const reportSections = reports.map((r) => {
@@ -24,7 +34,7 @@ export async function GET() {
     const lines = [
       `### ${r.title}`,
       "",
-      `${r.org} · ${r.docType} · ${formatDate(r.date)} · ${TIER_LABEL[r.sourceTier] ?? `nivel ${r.sourceTier}`}`,
+      `${r.org} · ${r.docType} · ${formatDate(r.date)} · ${tierLabel(r.sourceTier, locale)}`,
       "",
       r.summary,
     ];
@@ -40,28 +50,26 @@ export async function GET() {
 
     if (r.url) {
       lines.push("");
-      lines.push(`[Ver documento](${r.url})`);
+      lines.push(`[${c("verDocumento")}](${r.url})`);
     }
 
     return lines.join("\n");
   });
 
-  const title = "Informes oficiales — SOSColombia";
-  const description =
-    "Decretos, balances y comunicados oficiales — registro cronológico, con la fuente y el nivel de confiabilidad de cada uno.";
+  const path = locale === "en" ? "/en/informes" : "/informes";
 
   const markdown = `---
-title: "${title}"
-description: "${description}"
-url: "${SITE_URL}/informes"
+title: "${t("title")} — SOSColombia"
+description: "${t("lede")}"
+url: "${SITE_URL}${path}"
 last_updated: "${new Date().toISOString()}"
 ---
 
-# Informes oficiales
+# ${t("title")}
 
-${description}
+${t("lede")}
 
-${reportSections.length > 0 ? reportSections.join("\n\n") : "Sin informes registrados todavía."}
+${reportSections.length > 0 ? reportSections.join("\n\n") : t("sinInformes")}
 `;
 
   return new Response(markdown, {

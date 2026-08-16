@@ -1,12 +1,22 @@
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
+import { localizedStory } from "@/lib/stories";
 
 // Markdown mirror of the historias index (src/app/[locale]/historias/page.tsx).
-// Spanish-only, same as every other mirror in this pass — see llms.txt.
+// Bilingual via ?locale=en (default es): page chrome comes from the same
+// "historias" message namespace the real page uses, and each story's own
+// title/lede come from its bilingual titleEs/titleEn, ledeEs/ledeEn DB
+// columns via localizedStory() (src/lib/stories.ts) — admin-authored,
+// not machine-translated, same discipline as the real page.
 export const revalidate = 60;
 
 const SITE_URL = "https://www.soscolombia.xyz";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get("locale") === "en" ? "en" : "es";
+  const t = await getTranslations({ locale, namespace: "historias" });
+
   const stories = await prisma.story.findMany({
     where: { status: "PUBLISHED" },
     include: { municipio: { select: { name: true } } },
@@ -14,29 +24,29 @@ export async function GET() {
   });
 
   const lines = stories.map((s) => {
-    const parts: string[] = [`**${s.titleEs}**`];
+    const { title, lede } = localizedStory(s, locale);
+    const parts: string[] = [`**${title}**`];
     if (s.municipio) parts.push(s.municipio.name);
-    parts.push(s.ledeEs);
-    parts.push(`[leer más](${SITE_URL}/md/historias/${s.slug})`);
+    parts.push(lede);
+    const storyPath = `${SITE_URL}/md/historias/${s.slug}${locale === "en" ? "?locale=en" : ""}`;
+    parts.push(`[${locale === "en" ? "read more" : "leer más"}](${storyPath})`);
     return `- ${parts.join(" — ")}`;
   });
 
-  const title = "Historias — SOSColombia";
-  const description =
-    "Relatos más largos detrás de algunas campañas de donación y esfuerzos comunitarios específicos — siempre enlazados a la campaña, publicación o ciudad real en la que se basan.";
+  const path = locale === "en" ? "/en/historias" : "/historias";
 
   const markdown = `---
-title: "${title}"
-description: "${description}"
-url: "${SITE_URL}/historias"
+title: "${t("title")} — SOSColombia"
+description: "${t("metaDescription")}"
+url: "${SITE_URL}${path}"
 last_updated: "${new Date().toISOString()}"
 ---
 
-# Historias
+# ${t("title")}
 
-${description}
+${t("metaDescription")}
 
-${lines.length > 0 ? lines.join("\n") : "Ninguna historia publicada todavía."}
+${lines.length > 0 ? lines.join("\n") : t("vacio")}
 `;
 
   return new Response(markdown, {
