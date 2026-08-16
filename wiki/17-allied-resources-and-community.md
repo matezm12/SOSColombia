@@ -4690,3 +4690,49 @@ Grisales de Quimbaya).
 
 ### Next steps (pass 66)
 Continue round 5: San José del Palmar and Pijao remain.
+
+## Pass 67
+
+Round 5 continues: San José del Palmar, the earthquake's actual
+epicenter but a small, remote town whose news well has thinned
+noticeably across five rounds. This round's five agents converged
+heavily on the same handful of stories — a sign of genuine confirmation
+rather than a gap in coverage.
+
+### Status holds steady, with one contested claim
+The town's own official figures are unchanged from pass 53: still 1
+person missing (active search), still 2 injured / 0 dead, still passable
+on one lane only. One low-engagement resident post claims the road has
+"totally collapsed" again — directly contradicting the more recent,
+more authoritative official communiqué. Recorded as a contested,
+unconfirmed claim rather than either accepted or dismissed.
+
+### A first: this town's own scam report
+Across five research rounds, this is the first scam alert to reach San
+José del Palmar's own community channels specifically — a national ICBF
+impersonation warning (fraudsters posing as the child-welfare agency to
+solicit cash "donations") shared directly into the town's Facebook news
+group.
+
+### Solidarity and a departmental reconstruction plan
+Girardota, Antioquia announced it's "adopting" the town, channeling
+local festival proceeds toward its reconstruction. Separately, the
+president announced a special reconstruction manager and a proposed
+"Plan Marshall" for Chocó — department-wide, not town-specific, but
+explicitly framed around this epicenter.
+
+### New aid points (1)
+A monetary-donation channel (Fundación Serraniagua, via a Cali business
+coordinator) that serves both El Cairo, Valle and San José del Palmar —
+its physical collection point already closed, but the account channel
+remains open.
+
+### New community embeds (5)
+The official Aug 13 damage communiqué, the ICBF scam alert, Girardota's
+solidarity gesture, the Chocó reconstruction-manager announcement, and
+the contested road-status claim. The Valentina Jurado Vaki campaign
+(tracked since pass 22) ticked up to $47,579 from 1,846 donors and is
+now in its final days before an Aug 19 close.
+
+### Next steps (pass 67)
+Continue round 5: Pijao remains — the last city in this round.
