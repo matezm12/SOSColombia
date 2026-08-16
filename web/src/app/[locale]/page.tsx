@@ -109,7 +109,7 @@ export default async function Home(props: PageProps<"/[locale]">) {
             : undefined
         }
       >
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-6 flex flex-wrap items-center gap-3">
           <Link
             href="/ayuda"
             className="rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
@@ -121,6 +121,16 @@ export default async function Home(props: PageProps<"/[locale]">) {
             className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium text-black hover:bg-zinc-50 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900"
           >
             {t("ctaDonar")}
+          </Link>
+          {/* Deliberately lighter weight than the two CTAs above — reading
+              stories is worth surfacing here, but shouldn't visually compete
+              with "find aid"/"donate", the two actions someone arriving
+              right after the earthquake actually needs first. */}
+          <Link
+            href="/historias"
+            className="text-sm font-medium text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:text-black hover:decoration-zinc-500 dark:text-zinc-400 dark:decoration-zinc-700 dark:hover:text-zinc-50 dark:hover:decoration-zinc-400"
+          >
+            {t("ctaHistorias")}
           </Link>
         </div>
 
