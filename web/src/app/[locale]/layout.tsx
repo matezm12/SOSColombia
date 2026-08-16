@@ -5,7 +5,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { buildAlternates, absoluteUrl } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import "../globals.css";
@@ -62,27 +62,18 @@ export async function generateMetadata({
     },
     description: t("description"),
     alternates: buildAlternates("", locale),
-    openGraph: {
-      title: t("title"),
-      description: t("description"),
-      url: absoluteUrl("", locale),
-      siteName: "SOSColombia",
-      locale: locale === "es" ? "es_CO" : "en_US",
-      type: "website",
-      // Explicit, not relying on Next's opengraph-image.tsx file-convention
-      // auto-wiring: that file lives at app/opengraph-image.tsx, one level
-      // above this independent [locale] root layout (see the multi-root-
-      // layout note above), and auto-detection doesn't cross that boundary —
-      // the live page shipped with zero og:image/twitter:image meta tags
-      // until this was added explicitly.
-      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "SOSColombia" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("title"),
-      description: t("description"),
-      images: [`${SITE_URL}/opengraph-image`],
-    },
+    // Explicit, not relying on Next's opengraph-image.tsx file-convention
+    // auto-wiring: that file lives at app/opengraph-image.tsx, one level
+    // above this independent [locale] root layout (see the multi-root-
+    // layout note above), and auto-detection doesn't cross that boundary —
+    // the live page shipped with zero og:image/twitter:image meta tags
+    // until this was added explicitly. Also this is the layout-level
+    // *default* — every page.tsx under [locale] sets its own openGraph via
+    // the same buildOpenGraph()/buildTwitter() helpers (Next's metadata
+    // merging replaces `openGraph` wholesale per segment, not per field), so
+    // this only actually surfaces on routes that don't override it.
+    openGraph: buildOpenGraph({ title: t("title"), description: t("description"), path: "", locale }),
+    twitter: buildTwitter({ title: t("title"), description: t("description"), locale }),
   };
 }
 

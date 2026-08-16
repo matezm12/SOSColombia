@@ -5,7 +5,7 @@ import { recentActivity, describeEntry } from "@/lib/changelog";
 import { formatDate } from "@/lib/format";
 import { PageShell } from "@/components/layout/PageShell";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic -- see donar/page.tsx
 // for why `await props.params` before getTranslations matters here.
@@ -18,7 +18,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "cambios" });
-  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/cambios", locale) };
+  return {
+    title: t("title"),
+    description: t("lede"),
+    alternates: buildAlternates("/cambios", locale),
+    openGraph: buildOpenGraph({ title: t("title"), description: t("lede"), path: "/cambios", locale }),
+    twitter: buildTwitter({ title: t("title"), description: t("lede"), locale }),
+  };
 }
 
 export default async function CambiosPage(props: PageProps<"/[locale]/cambios">) {

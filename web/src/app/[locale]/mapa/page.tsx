@@ -6,7 +6,7 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { bestDeathMetric } from "@/lib/queries";
 import MapaClient from "@/components/map/MapaClientLazy";
 import type { MunicipioMarker, EpicenterPoint } from "@/components/map/MapaClient";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: coordinates get
 // backfilled/updated between deploys, not per-second.
@@ -19,7 +19,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "mapa" });
-  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/mapa", locale) };
+  return {
+    title: t("title"),
+    description: t("lede"),
+    alternates: buildAlternates("/mapa", locale),
+    openGraph: buildOpenGraph({ title: t("title"), description: t("lede"), path: "/mapa", locale }),
+    twitter: buildTwitter({ title: t("title"), description: t("lede"), locale }),
+  };
 }
 
 export default async function MapaPage(props: PageProps<"/[locale]/mapa">) {

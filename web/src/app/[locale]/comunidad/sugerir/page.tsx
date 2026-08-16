@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { submitCommunityPost } from "./actions";
 import { PageShell } from "@/components/layout/PageShell";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: this page is mostly
 // a static form, no need for a DB round trip on every request.
@@ -16,7 +16,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "comunidadSugerir" });
-  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/comunidad/sugerir", locale) };
+  return {
+    title: t("title"),
+    description: t("lede"),
+    alternates: buildAlternates("/comunidad/sugerir", locale),
+    openGraph: buildOpenGraph({ title: t("title"), description: t("lede"), path: "/comunidad/sugerir", locale }),
+    twitter: buildTwitter({ title: t("title"), description: t("lede"), locale }),
+  };
 }
 
 const PLATFORM_OPTIONS = [

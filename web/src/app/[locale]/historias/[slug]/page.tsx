@@ -13,6 +13,7 @@ import { isGoFundMeUrl } from "@/lib/gofundme";
 import { VERIFICATION_LABEL } from "@/lib/labels";
 import { localizedStory, storyHref, resolveStoryImage } from "@/lib/stories";
 import { formatDate } from "@/lib/format";
+import { ogImageUrl } from "@/lib/seo";
 
 export const revalidate = 60;
 
@@ -57,7 +58,7 @@ export async function generateMetadata({
   const { title, lede } = localizedStory(story, locale);
 
   const url = `${SITE_URL}${storyHref(slug, locale)}`;
-  const image = (await resolveStoryImage(story)) ?? `${SITE_URL}/opengraph-image`;
+  const image = (await resolveStoryImage(story)) ?? ogImageUrl(locale);
   const keywords = [
     "terremoto Colombia 2026",
     story.municipio?.name,
@@ -65,7 +66,12 @@ export async function generateMetadata({
   ].filter((k): k is string => Boolean(k));
 
   return {
-    title,
+    // { absolute } skips the root layout's "%s — SOSColombia" title
+    // template — story headlines are already long enough on their own
+    // (up to 87 chars with the suffix, confirmed live), and unlike every
+    // other page's short chrome title, a story's own headline IS the
+    // specific, meaningful part worth keeping intact in search results.
+    title: { absolute: title },
     description: lede,
     keywords,
     alternates: {
@@ -80,6 +86,8 @@ export async function generateMetadata({
       title,
       description: lede,
       url,
+      siteName: "SOSColombia",
+      locale: locale === "en" ? "en_US" : "es_CO",
       type: "article",
       publishedTime: (story.publishedAt ?? story.createdAt).toISOString(),
       modifiedTime: story.updatedAt.toISOString(),
@@ -122,7 +130,7 @@ export default async function StoryDetailPage({
     "@type": "Article",
     headline: title,
     description: lede,
-    image: [resolvedImage ?? `${SITE_URL}/opengraph-image`],
+    image: [resolvedImage ?? ogImageUrl(locale)],
     datePublished: publishedAt,
     dateModified: story.updatedAt.toISOString(),
     inLanguage: locale === "en" ? "en-US" : "es-CO",

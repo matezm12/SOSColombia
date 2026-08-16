@@ -1,6 +1,7 @@
 {
   "metodologia": {
     "title": "Methodology",
+    "metaDescription": "Every figure keeps its source, date, and reliability tier. Numbers are never overwritten — disagreements between sources are logged, not hidden.",
     "intro1": "A disaster's numbers change from source to source and from day to day — that doesn't always mean an error. This site never overwrites a number with a newer one: every number is recorded with its source, its date, and its reliability level, and the most recent one is shown without erasing the history.",
     "intro2": "When two reliable sources disagree on the same data point, we log it as a discrepancy instead of silently picking one. Some are resolved as more information comes in; others stay open until a definitive number exists.",
     "discrepanciasAbiertas": "Open discrepancies",

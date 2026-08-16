@@ -15,7 +15,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
 import { AID_KIND_LABEL } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
-import { buildAlternates, absoluteUrl } from "@/lib/seo";
+import { buildAlternates, absoluteUrl, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: figures update via
 // cron/moderation, not per-second, so a 60s cache keeps things fresh without
@@ -45,13 +45,17 @@ export async function generateMetadata({
   if (!municipio) return {};
 
   const t = await getTranslations({ locale, namespace: "ciudad" });
+  const title = t("metaTitle", { city: municipio.name });
+  const description = t("metaDescription", {
+    city: municipio.name,
+    department: municipio.department.name,
+  });
   return {
-    title: t("metaTitle", { city: municipio.name }),
-    description: t("metaDescription", {
-      city: municipio.name,
-      department: municipio.department.name,
-    }),
+    title,
+    description,
     alternates: buildAlternates(`/ciudad/${divipola}`, locale),
+    openGraph: buildOpenGraph({ title, description, path: `/ciudad/${divipola}`, locale }),
+    twitter: buildTwitter({ title, description, locale }),
   };
 }
 

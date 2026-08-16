@@ -1,6 +1,7 @@
 {
   "donar": {
     "title": "How to donate",
+    "metaDescription": "Verified organizations and campaigns for the Colombia earthquake — each one with its own confidence level.",
     "lede": "Organizations and campaigns verified by this project. Each one carries a confidence level — verify for yourself before donating, especially for individual campaigns.",
     "scamWarning": {
       "heading": "Before you donate",

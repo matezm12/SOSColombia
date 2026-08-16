@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { TIER_LABEL, SOURCE_STATUS_LABEL } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: source status/tier
 // changes occasionally, not per-second.
@@ -19,7 +19,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "fuentes" });
-  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/fuentes", locale) };
+  return {
+    title: t("title"),
+    description: t("lede"),
+    alternates: buildAlternates("/fuentes", locale),
+    openGraph: buildOpenGraph({ title: t("title"), description: t("lede"), path: "/fuentes", locale }),
+    twitter: buildTwitter({ title: t("title"), description: t("lede"), locale }),
+  };
 }
 
 export default async function FuentesPage(props: PageProps<"/[locale]/fuentes">) {

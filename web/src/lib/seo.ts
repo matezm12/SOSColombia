@@ -29,3 +29,70 @@ export function buildAlternates(path: string, locale: string) {
     },
   };
 }
+
+/** Locale-aware generic OG/twitter fallback image — see src/app/api/og/route.tsx. */
+export function ogImageUrl(locale: string): string {
+  return `${SITE_URL}/api/og?locale=${locale === "en" ? "en" : "es"}`;
+}
+
+/**
+ * A page's own `openGraph` metadata. Needed on every page, not just ones
+ * with a unique image: Next's metadata merging is shallow per top-level key
+ * (see generate-metadata.md#merging), so any page that doesn't set its own
+ * `openGraph` object inherits the root layout's whole-sale — including its
+ * generic title/description — even though that page's own <title>/meta
+ * description are already correct. `imageUrl`/`imageAlt` let a page (e.g. a
+ * story) supply its own real photo; otherwise this falls back to the
+ * locale-aware generic card.
+ */
+export function buildOpenGraph({
+  title,
+  description,
+  path,
+  locale,
+  imageUrl,
+  imageAlt,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  locale: string;
+  imageUrl?: string;
+  imageAlt?: string;
+}) {
+  return {
+    title,
+    description,
+    url: absoluteUrl(path, locale),
+    siteName: "SOSColombia",
+    locale: locale === "en" ? "en_US" : "es_CO",
+    type: "website" as const,
+    images: [
+      {
+        url: imageUrl ?? ogImageUrl(locale),
+        width: 1200,
+        height: 630,
+        alt: imageAlt ?? "SOSColombia",
+      },
+    ],
+  };
+}
+
+export function buildTwitter({
+  title,
+  description,
+  locale,
+  imageUrl,
+}: {
+  title: string;
+  description: string;
+  locale: string;
+  imageUrl?: string;
+}) {
+  return {
+    card: "summary_large_image" as const,
+    title,
+    description,
+    images: [imageUrl ?? ogImageUrl(locale)],
+  };
+}

@@ -4,8 +4,9 @@ import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { METRIC_LABEL } from "@/lib/labels";
-import { buildAlternates, absoluteUrl } from "@/lib/seo";
+import { buildAlternates, absoluteUrl, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic -- see donar/page.tsx
 // for why `await props.params` before getTranslations matters here.
@@ -23,7 +24,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "datos" });
-  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/datos", locale) };
+  return {
+    title: t("title"),
+    description: t("metaDescription"),
+    alternates: buildAlternates("/datos", locale),
+    openGraph: buildOpenGraph({ title: t("title"), description: t("metaDescription"), path: "/datos", locale }),
+    twitter: buildTwitter({ title: t("title"), description: t("metaDescription"), locale }),
+  };
 }
 
 export default async function DatosPage(props: PageProps<"/[locale]/datos">) {
@@ -95,7 +102,8 @@ export default async function DatosPage(props: PageProps<"/[locale]/datos">) {
         {t("resumen", { tollRecords, aidPoints, campaigns, reports, contradictions, resources })}
       </p>
 
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <SectionHeading first>{t("downloadsHeading")}</SectionHeading>
+      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Card>
           <p className="font-medium text-black dark:text-zinc-50">{t("jsonTitle")}</p>
           <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{t("jsonDescription")}</p>
@@ -126,7 +134,8 @@ export default async function DatosPage(props: PageProps<"/[locale]/datos">) {
         </Card>
       </div>
 
-      <p className="mt-6 text-sm text-zinc-500 dark:text-zinc-500">{t("license")}</p>
+      <SectionHeading>{t("licenseHeading")}</SectionHeading>
+      <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-500">{t("license")}</p>
       <p className="mt-2 text-sm">
         <Link href="/metodologia" className="text-blue-600 hover:underline dark:text-blue-400">
           {t("methodologyLink")}

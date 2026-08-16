@@ -6,7 +6,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
 import { CommunityFeed } from "@/components/data/CommunityFeed";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: community posts land
 // occasionally, not per-second.
@@ -19,7 +19,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "comunidad" });
-  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/comunidad", locale) };
+  return {
+    title: t("title"),
+    description: t("lede"),
+    alternates: buildAlternates("/comunidad", locale),
+    openGraph: buildOpenGraph({ title: t("title"), description: t("lede"), path: "/comunidad", locale }),
+    twitter: buildTwitter({ title: t("title"), description: t("lede"), locale }),
+  };
 }
 
 export default async function ComunidadPage(props: PageProps<"/[locale]/comunidad">) {

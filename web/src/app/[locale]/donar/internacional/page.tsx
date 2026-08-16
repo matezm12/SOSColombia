@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
 import { InternationalCampaignFilters } from "@/components/data/InternationalCampaignFilters";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic — see donar/page.tsx.
 export const revalidate = 60;
@@ -16,7 +16,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "donarInternacional" });
-  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/donar/internacional", locale) };
+  return {
+    title: t("title"),
+    description: t("lede"),
+    alternates: buildAlternates("/donar/internacional", locale),
+    openGraph: buildOpenGraph({ title: t("title"), description: t("lede"), path: "/donar/internacional", locale }),
+    twitter: buildTwitter({ title: t("title"), description: t("lede"), locale }),
+  };
 }
 
 export default async function DonarInternacionalPage(

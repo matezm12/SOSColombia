@@ -1,6 +1,7 @@
 {
   "datos": {
     "title": "Open data",
+    "metaDescription": "The full verified dataset, ready to download. Every record carries its source, date, and reliability tier.",
     "datasetName": "SOSColombia — open dataset",
     "lede": "The full verified dataset, ready to download and reuse. Every record carries its source, date, and reliability tier, same as the rest of the site.",
     "resumen": "{tollRecords} figures · {aidPoints} aid points · {campaigns} campaigns · {reports} reports · {contradictions} contradictions · {resources} allied resources",
@@ -11,6 +12,8 @@
     "csvDescription": "The two tables easiest to open in a spreadsheet.",
     "downloadCifrasCsv": "Figures (CSV) →",
     "downloadAyudaCsv": "Aid points (CSV) →",
+    "downloadsHeading": "Downloads",
+    "licenseHeading": "License",
     "distJson": "Full dataset (JSON)",
     "distCifrasCsv": "Figures (CSV)",
     "distAyudaCsv": "Aid points (CSV)",

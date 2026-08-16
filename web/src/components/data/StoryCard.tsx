@@ -44,7 +44,7 @@ export async function StoryCard({
       )}
       <div className="flex flex-1 flex-col p-4">
         {story.municipio && (
-          <span className="text-xs font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-600">
+          <span className="text-sm font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-600">
             {story.municipio.name}
           </span>
         )}
@@ -54,7 +54,7 @@ export async function StoryCard({
           </Link>
         </h3>
         <p className="mt-2 flex-1 text-sm text-zinc-700 dark:text-zinc-300">{lede}</p>
-        <p className="mt-3 text-xs text-zinc-400 dark:text-zinc-600">
+        <p className="mt-3 text-sm text-zinc-400 dark:text-zinc-600">
           {story.authorName} · {formatDate(story.publishedAt ?? story.createdAt)}
         </p>
       </div>

@@ -9,7 +9,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
 import { METRIC_LABEL } from "@/lib/labels";
 import { formatNumber, formatDate } from "@/lib/format";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: toll records arrive
 // via cron/moderation, not per-second.
@@ -22,7 +22,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "cifras" });
-  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/cifras", locale) };
+  return {
+    title: t("title"),
+    description: t("lede"),
+    alternates: buildAlternates("/cifras", locale),
+    openGraph: buildOpenGraph({ title: t("title"), description: t("lede"), path: "/cifras", locale }),
+    twitter: buildTwitter({ title: t("title"), description: t("lede"), locale }),
+  };
 }
 
 export default async function CifrasPage(props: PageProps<"/[locale]/cifras">) {

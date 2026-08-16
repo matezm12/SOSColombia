@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { GovReportCard } from "@/components/data/GovReportCard";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: reports land
 // occasionally, not per-second.
@@ -17,7 +17,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "informes" });
-  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/informes", locale) };
+  return {
+    title: t("title"),
+    description: t("lede"),
+    alternates: buildAlternates("/informes", locale),
+    openGraph: buildOpenGraph({ title: t("title"), description: t("lede"), path: "/informes", locale }),
+    twitter: buildTwitter({ title: t("title"), description: t("lede"), locale }),
+  };
 }
 
 export default async function InformesPage(props: PageProps<"/[locale]/informes">) {
