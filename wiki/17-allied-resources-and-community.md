@@ -4583,3 +4583,72 @@ and Pablo Rivera Avirama's case resolution.
 
 ### Next steps (pass 64)
 Continue round 5: Dosquebradas, San José del Palmar, and Pijao remain.
+
+## Pass 65
+
+Round 5 continues: Dosquebradas. This round's five agents found
+dosquebradas.gov.co's own press office newly active, which surfaced a
+lot of real detail — but also caused heavy rediscovery under different
+phrasing: the "Hospital Móvil de Campaña" is the same field hospital
+seeded in pass 42, "Centro Vida Violetas de Frailes" is the same
+shelter as pass 42's "Las Violetas," and both the La Graciela 4th
+shelter and the Plazoleta del CAM acopio point are already on file from
+pass 52. None re-seeded — their fresh operational detail is folded in
+below instead.
+
+### Campestre B is full — the network has grown to absorb it
+The original shelter has reached capacity and stopped taking new
+arrivals as of Aug 14. Families are now routed to Las Violetas, and a
+genuinely new third site — Centro Vida José Argemiro Cárdenas, Bosques
+de la Acuarela — is queued to open once Violetas fills. Combined
+capacity across the three running shelters: ~900. The long-known 4th
+shelter in La Graciela remains under construction, not yet open.
+
+### A serious allegation attached to that same neighborhood
+La Graciela — where the 4th shelter is being built — is also the site
+of a heavily-engaged (15K+ likes) denuncia: families say a named
+contractor is demolishing their earthquake-damaged homes without
+letting them retrieve belongings, allegedly against the regional
+environmental authority's technical recommendations. One-sided and
+unverified, but real enough in local visibility that anyone directing
+donors or volunteers to that area should know about it.
+
+### First-ever city-specific scam reports and death toll
+Across all five research rounds, this is the first pass to surface a
+donation scam targeting Dosquebradas specifically — a homeowner in La
+Capilla found strangers photographing her destroyed house and falsely
+telling people her family was sheltered elsewhere, soliciting Nequi
+donations in her name. A second, less-verified allegation names a
+group in Frailes — the same neighborhood as the real Las Violetas
+shelter — as exploiting confusion with the legitimate site. Also a
+first: a Dosquebradas-specific death toll (10 fallecidos) from a local
+news page, whose adjacent family/shelter figures matched the official
+municipal count closely enough to lend it some credibility — but the
+death figure itself couldn't be confirmed against an official source,
+so it's recorded here, not logged as a toll record.
+
+### An open displacement situation
+At the Portal del Parque residential complex, one tower collapsed
+completely and three more have severe structural damage. The whole
+complex was evacuated, and dozens of families are still waiting for
+authorization to re-enter and retrieve belongings — not a one-time
+rescue story, an ongoing situation.
+
+### New aid points (4)
+The third shelter (Centro Vida José Argemiro Cárdenas), and three new
+crowdfunding campaigns — one clean Vaki campaign, and two GoFundMe
+campaigns carrying an explicit moderator caveat since their titles or
+adjacent text reference "Pereira" even though their addresses and body
+text are Dosquebradas-specific (the standing Pereira/Dosquebradas
+cross-check discipline applied throughout, per pass 21 onward).
+
+### New community embeds (6 of 9 — three already on file)
+UNGRD's tent/blanket delivery, the shelter-network status change, the
+flagged-not-confirmed death toll, the two new scam reports, the La
+Graciela demolition denuncia, the Portal del Parque displacement, and
+two open missing-persons cases (Jairo Aldana, Nicolás Díaz — both
+carrying their own caveats about AI-flagged flyer graphics and
+cross-city location-tag ambiguity).
+
+### Next steps (pass 65)
+Continue round 5: San José del Palmar and Pijao remain.
