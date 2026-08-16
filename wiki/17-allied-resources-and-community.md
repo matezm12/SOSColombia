@@ -5266,3 +5266,54 @@ front despite targeted searching.
 
 ### Next steps (pass 76)
 Continue round 6: San José del Palmar, Pijao, and Ibagué remain.
+
+## Pass 77 (2026-08-16) — San José del Palmar, round 6
+
+Five prior rounds (22, 31, 43, 53, 67) already covered this small,
+remote epicenter town. As expected, this round stayed thin — no
+casualty-figure change, no new physical aid point inside the town
+itself, no fresh scam reports.
+
+### New aid points (1)
+A Cali creator-organized supply truck for the town (@culotauro and
+@elgordomurillo, coordinated with the town's own Alcaldía) resolves
+an open thread from pass 67: back then it was logged only as a social
+post, explicitly flagged as an address-less lead to verify. This
+round found the exact address via the Alcaldía's own repost, so it's
+upgraded to a confirmed aid point.
+
+### Crowdfunding
+The Valentina Jurado Vaki campaign (tracked since pass 22) ticked up
+again — $47,579/1,846 donors → $48,178/1,862 donors — still open,
+with the page itself counting down "3 días antes del cierre el 19 ago
+2026." Not yet closed. Per the standing pattern for this campaign,
+the funding update is noted here rather than re-seeded as a new row;
+round 7 should check right after Aug 19 for the campaign's close and
+final total.
+
+### Unconfirmed, not logged
+- A single small, unverified X account claimed international rescue
+  teams from Chile, the US, and Israel had arrived in the town as
+  part of a wider logistics deployment. None of the other four
+  agents corroborated this despite real effort — flagged here as
+  unconfirmed, not reported as fact.
+- A set of granular figures (525 families/2,625 people affected, 40
+  houses collapsed, 485 damaged) attributed to the Alcaldía's
+  Instagram surfaced via one agent's tool output, but a second
+  agent's direct live-browser visit to the same account couldn't
+  load the post feed at all, and the 40-collapsed-houses figure
+  contradicts a Semana report of "más de 130 viviendas destruidas" —
+  flagged as a likely tool hallucination, not logged.
+
+### Toll status
+Unchanged: 2 injured, 0 dead in the urban zone, 1 person still
+missing, road passable on one lane only. No report this round
+confirmed or refuted the earlier contested "road collapsed again"
+claim. A national UNGRD balance (289 dead / 4,187 injured / 143
+missing) and a rising nationwide aftershock count (293, up from 284
+the day before) both surfaced, but neither is San José del
+Palmar-specific — noted as background only, not logged as a
+TollRecord for this municipio.
+
+### Next steps (pass 77)
+Continue round 6: Pijao and Ibagué remain.
