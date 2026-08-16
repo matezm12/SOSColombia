@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { TollCard } from "@/components/data/TollCard";
 import { AidPointCard } from "@/components/data/AidPointCard";
-import CiudadMapaClient from "@/components/map/CiudadMapaClient";
+import CiudadMapaClient from "@/components/map/CiudadMapaClientLazy";
 import { CampaignCard } from "@/components/data/CampaignCard";
 import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
 import { StoryCard } from "@/components/data/StoryCard";

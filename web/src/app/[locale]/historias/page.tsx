@@ -40,8 +40,8 @@ export default async function HistoriasPage({
   return (
     <PageShell width="wide" backHref="/" title={t("title")} lede={t("lede")}>
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {stories.map((story) => (
-          <StoryCard key={story.id} story={story} locale={locale} />
+        {stories.map((story, index) => (
+          <StoryCard key={story.id} story={story} locale={locale} priority={index === 0} />
         ))}
         {stories.length === 0 && <EmptyState>{t("vacio")}</EmptyState>}
       </div>

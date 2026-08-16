@@ -9,7 +9,19 @@ type StoryWithExtras = Story & {
   campaign?: { platform: string; url: string } | null;
 };
 
-export async function StoryCard({ story, locale }: { story: StoryWithExtras; locale: string }) {
+export async function StoryCard({
+  story,
+  locale,
+  priority = false,
+}: {
+  story: StoryWithExtras;
+  locale: string;
+  // Above-the-fold cards (the first row of /historias) shouldn't carry
+  // loading="lazy" — Lighthouse traced the site's worst LCP (3997ms on
+  // /historias) to exactly this, since the browser had no reason to
+  // prioritize a lazy-loaded image that was already on screen.
+  priority?: boolean;
+}) {
   const { title, lede } = localizedStory(story, locale);
   const image = await resolveStoryImage({
     coverImageUrl: story.coverImageUrl,
@@ -26,7 +38,8 @@ export async function StoryCard({ story, locale }: { story: StoryWithExtras; loc
           src={image}
           alt={title}
           className="aspect-[1200/630] w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
         />
       )}
       <div className="flex flex-1 flex-col p-4">
@@ -35,12 +48,11 @@ export async function StoryCard({ story, locale }: { story: StoryWithExtras; loc
             {story.municipio.name}
           </span>
         )}
-        <Link
-          href={`/historias/${story.slug}`}
-          className="mt-1 font-medium text-black hover:underline dark:text-zinc-50"
-        >
-          {title}
-        </Link>
+        <h3 className="mt-1 text-base font-medium">
+          <Link href={`/historias/${story.slug}`} className="text-black hover:underline dark:text-zinc-50">
+            {title}
+          </Link>
+        </h3>
         <p className="mt-2 flex-1 text-sm text-zinc-700 dark:text-zinc-300">{lede}</p>
         <p className="mt-3 text-xs text-zinc-400 dark:text-zinc-600">
           {story.authorName} · {formatDate(story.publishedAt ?? story.createdAt)}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // GoFundMe's own official widget mechanism (an iframe at
 // `{campaignUrl}/widget/{size}`, resized live via a `gfm-embed-widget-resize`
@@ -24,8 +24,30 @@ export function GoFundMeEmbed({
   size?: "small" | "medium" | "large";
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  // Lazy-gate on scroll position first: this iframe is a real cross-origin
+  // GoFundMe widget, not a lightweight embed, and pages with several
+  // campaigns (/ciudad/[divipola]) were mounting 5+ of these unconditionally
+  // on load regardless of viewport position (confirmed via Lighthouse:
+  // 5MB+ page weight, 0.81 performance score, driven almost entirely by
+  // this). rootMargin gives it a head start so it's ready by the time a
+  // user actually scrolls to it, without loading everything up front.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || visible) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [visible]);
 
   useEffect(() => {
+    if (!visible) return;
     const container = containerRef.current;
     if (!container) return;
 
@@ -58,7 +80,7 @@ export function GoFundMeEmbed({
       window.removeEventListener("message", onResize);
       container.removeChild(iframe);
     };
-  }, [url, size]);
+  }, [url, size, visible]);
 
   return (
     <div

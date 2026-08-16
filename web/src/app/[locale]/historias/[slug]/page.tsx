@@ -84,7 +84,7 @@ export async function generateMetadata({
       publishedTime: (story.publishedAt ?? story.createdAt).toISOString(),
       modifiedTime: story.updatedAt.toISOString(),
       authors: [story.authorName],
-      images: [{ url: image, width: 1200, height: 630 }],
+      images: [{ url: image, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
@@ -158,6 +158,7 @@ export default async function StoryDetailPage({
           src={resolvedImage}
           alt={title}
           className="mt-6 aspect-[1200/630] w-full rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
+          fetchPriority="high"
         />
       )}
 

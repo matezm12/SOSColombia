@@ -75,7 +75,7 @@ export async function generateMetadata({
       // layout note above), and auto-detection doesn't cross that boundary —
       // the live page shipped with zero og:image/twitter:image meta tags
       // until this was added explicitly.
-      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "SOSColombia" }],
     },
     twitter: {
       card: "summary_large_image",

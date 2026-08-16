@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -34,12 +35,17 @@ export async function SiteHeader() {
     <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-8 px-6 py-4">
         <Link href="/" className="shrink-0" aria-label="SOSColombia">
-          {/* eslint-disable-next-line @next/next/no-img-element -- static local asset, no next/image usage elsewhere in the project */}
-          <img
+          {/* Same-origin static asset (unlike StoryCard/AlliedResourceCard's
+              arbitrary externally-hosted images, which can't go through
+              next/image without allowlisting every source domain) — and
+              above-the-fold on every page, so worth the automatic
+              optimization + priority hint. */}
+          <Image
             src="/brand/soscolombia-logo.png"
             alt="SOSColombia"
             width={964}
             height={200}
+            priority
             className="h-7 w-auto"
           />
         </Link>

@@ -4,10 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { bestDeathMetric } from "@/lib/queries";
-import MapaClient, {
-  type MunicipioMarker,
-  type EpicenterPoint,
-} from "@/components/map/MapaClient";
+import MapaClient from "@/components/map/MapaClientLazy";
+import type { MunicipioMarker, EpicenterPoint } from "@/components/map/MapaClient";
 import { buildAlternates } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: coordinates get

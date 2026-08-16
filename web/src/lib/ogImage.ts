@@ -14,6 +14,11 @@ export async function fetchOgImage(pageUrl: string): Promise<string | null> {
         "User-Agent": "Mozilla/5.0 (compatible; SOSColombiaBot/1.0; +https://www.soscolombia.xyz)",
       },
       next: { revalidate: 86400 },
+      // A slow/unresponsive third-party campaign page shouldn't be able to
+      // stall a story page's render — especially now that historias/[slug]
+      // is ISR-cacheable (see generateStaticParams), this only runs cold
+      // once per revalidate window rather than on every request.
+      signal: AbortSignal.timeout(5000),
     });
     if (!res.ok) return null;
     const html = await res.text();

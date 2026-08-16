@@ -39,6 +39,20 @@ function requiredScope(pathname: string): keyof VolunteerScope | "any" | null {
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Route matching is case-sensitive, but crawlers/copy-pasted links/manual
+  // typing aren't -- confirmed live that /MAPA, /HISTORIAS/<slug>,
+  // /Ciudad/76001 etc. all resolved directly with 200 instead of 404ing or
+  // redirecting, a duplicate-content surface alongside the real lowercase
+  // URL. Every real route on this site is lowercase-only, so any uppercase-
+  // containing pathname is unambiguously a duplicate. Runs before both the
+  // admin gate and the intl middleware so it applies uniformly.
+  const lowerPathname = pathname.toLowerCase();
+  if (pathname !== lowerPathname) {
+    const url = request.nextUrl.clone();
+    url.pathname = lowerPathname;
+    return NextResponse.redirect(url, 308);
+  }
+
   if (!pathname.startsWith("/admin")) {
     return intlMiddleware(request);
   }

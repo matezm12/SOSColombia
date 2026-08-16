@@ -63,7 +63,7 @@ export function LanguageSwitcher() {
   const current = isEnglish ? "en" : "es";
 
   return (
-    <div className="flex items-center gap-1" role="group" aria-label="Language / Idioma">
+    <div className="flex items-center gap-2" role="group" aria-label="Language / Idioma">
       {targets.map(({ code, Flag, label, href }) => (
         <a
           key={code}
