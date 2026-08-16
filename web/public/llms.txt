@@ -46,7 +46,7 @@ The full dataset is machine-readable at `/api/export` (JSON: event, toll records
 
 ## Markdown Mirrors
 
-Clean, AI-readable markdown versions of every content page are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS): `/md`, `/md/ayuda`, `/md/cambios`, `/md/cifras`, `/md/ciudad/{divipola-code}`, `/md/comunidad`, `/md/datos`, `/md/donar`, `/md/donar/internacional`, `/md/fuentes`, `/md/historias`, `/md/historias/{slug}`, `/md/informes`, `/md/mapa`, `/md/metodologia`, `/md/recursos`. Spanish-only (default locale), same as the underlying pages' default content. The two submission forms (`/sugerir`, `/comunidad/sugerir`) and their thank-you pages aren't mirrored — they're interactive flows, not content to quote.
+Clean, AI-readable markdown versions of every content page are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS): `/md`, `/md/ayuda`, `/md/cambios`, `/md/cifras`, `/md/ciudad/{divipola-code}`, `/md/comunidad`, `/md/datos`, `/md/donar`, `/md/donar/internacional`, `/md/fuentes`, `/md/historias`, `/md/historias/{slug}`, `/md/informes`, `/md/mapa`, `/md/metodologia`, `/md/recursos`. Spanish (default) or English via `?locale=en` on any of the above (e.g. `/md/ciudad/76001?locale=en`) — page chrome and enum labels translate; free-text DB fields (org names, notes) have no English column and stay as entered. The two submission forms (`/sugerir`, `/comunidad/sugerir`) and their thank-you pages aren't mirrored — they're interactive flows, not content to quote.
 
 ## Key Facts
 
