@@ -10,7 +10,19 @@
  *
  * Only points with a non-null `address` and still-null `lat`/`lng` are
  * attempted. Run once via `npx tsx prisma/geocode-all-cities-aidpoints.ts`,
- * NOT part of the repeatable prisma/seed.ts. Safe to re-run.
+ * NOT part of the repeatable prisma/seed.ts. Safe to re-run --
+ * EXCEPT for one real false-positive class found on a 2026-08-16 re-run:
+ * the duplicate-coordinate revert can't tell "generic city-center fallback
+ * shared by unrelated venues" (a real bad match, correctly reverted) apart
+ * from "two different orgs that genuinely share one building" (e.g. a
+ * Cruz Roja blood bank and "Hemocentro del Café" being the same physical
+ * hemocentro; a whole sports complex's multiple coliseums sharing one
+ * manually-verified landmark coordinate) -- it reverted several legitimate
+ * matches this way, including ones set by a *manual* landmark search, not
+ * even a Nominatim guess. Those had to be restored by hand afterward. If
+ * re-running this after manually assigning a shared coordinate to several
+ * related points on purpose, expect this pass to revert them again --
+ * check the log for REVERTED entries you know are actually correct.
  */
 import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
