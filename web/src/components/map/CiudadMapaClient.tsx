@@ -20,6 +20,34 @@ export type AidPointMarker = {
 const STYLE_LIGHT = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 maplibregl.setWorkerUrl("/maplibre-gl-worker.mjs");
 
+function median(values: number[]): number {
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+}
+
+// Haversine distance in km -- same formula as the geocoding scripts use to
+// reject bad matches, reused here to decide which points count toward the
+// initial camera bounds.
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLng = ((lng2 - lng1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+// A real aid point can legitimately sit far outside a city's dense urban
+// core (e.g. a shelter in a rural corregimiento) -- true and worth having on
+// the map, but letting fitBounds include it zooms the whole view out so far
+// that every tightly-clustered urban marker collapses into a single dot.
+// Every point still gets its own marker regardless; only the *initial
+// camera framing* excludes outliers, computed from the median point rather
+// than the city centroid so it self-adjusts to wherever the actual cluster is.
+const CLUSTER_RADIUS_KM = 8;
+
 function markerColor(kind: string): string {
   if (typeof window === "undefined") return "#3f3f46";
   const token = AID_KIND_COLOR_VAR[kind];
@@ -36,10 +64,13 @@ export default function CiudadMapaClient({ points }: { points: AidPointMarker[] 
   useEffect(() => {
     if (!mapContainer.current || points.length === 0) return;
 
+    const medianLat = median(points.map((p) => p.lat));
+    const medianLng = median(points.map((p) => p.lng));
+
     const map = new maplibregl.Map({
       container: mapContainer.current,
       style: STYLE_LIGHT,
-      center: [points[0].lng, points[0].lat],
+      center: [medianLng, medianLat],
       zoom: 12,
       attributionControl: false,
     });
@@ -49,6 +80,13 @@ export default function CiudadMapaClient({ points }: { points: AidPointMarker[] 
 
     const markers: maplibregl.Marker[] = [];
     const bounds = new maplibregl.LngLatBounds();
+
+    const clusterPoints = points.filter(
+      (p) => haversineKm(medianLat, medianLng, p.lat, p.lng) <= CLUSTER_RADIUS_KM,
+    );
+    // Fall back to every point only if the radius somehow excluded all of
+    // them (shouldn't happen -- the median point always qualifies itself).
+    const boundsPoints = clusterPoints.length > 0 ? clusterPoints : points;
 
     for (const point of points) {
       const el = document.createElement("button");
@@ -77,6 +115,8 @@ export default function CiudadMapaClient({ points }: { points: AidPointMarker[] 
       });
 
       markers.push(new maplibregl.Marker({ element: el }).setLngLat([point.lng, point.lat]).addTo(map));
+    }
+    for (const point of boundsPoints) {
       bounds.extend([point.lng, point.lat]);
     }
 
