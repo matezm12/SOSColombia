@@ -4859,3 +4859,67 @@ human interest only), and two reconstruction-fund announcements.
 ### Next steps (pass 69)
 Continue round 6: Cali, Manizales, Armenia, Quibdó, Buenaventura,
 Popayán, Dosquebradas, San José del Palmar, Pijao, and Ibagué remain.
+
+## Pass 70
+
+Round 6 continues: Cali. Two leads caught and dropped as duplicates —
+the Saavedra family GoFundMe (already on file since pass 15; this
+round's find is only a funding-total update) and a batch of four
+shelter addresses from a single low-confidence Instagram flyer whose
+own comment section had already debunked one of its five original
+locations. Given the safety stakes of a wrong shelter address, none of
+the four were seeded.
+
+### The toll moved — with a contradiction worth keeping visible
+Four independent sources (an official-format "Reporte Oficial #011"
+graphic and three corroborating outlets) converge on 122-123 fallecidos
+/ 111 desaparecidos / 1,485 heridos — missing persons jumping sharply
+from the pass-56 baseline of 77. But a fifth source has the city's own
+Secretario de Gestión del Riesgo, Ricardo Peñuela, reiterating the OLD
+figures (111/77/1,416) the same day. Logged as new toll records on the
+weight of independent corroboration, with the Peñuela contradiction
+recorded here rather than silently resolved either way.
+
+### Two more names from Edificio Ana Pilar
+The building that claimed the Saavedra family also claimed the Vivas
+Jiménez family — a mother, grandmother, and 10-year-old, relatives of a
+well-known sports radio narrator — and its own celador, Víctor Acosta,
+found dead after days of searching that had circulated widely on social
+media. A new detail also surfaced on the Saavedra case itself: the two
+dead sisters were actually triplets, and a maternal uncle died in the
+same collapse — facts beyond what prior rounds had recorded.
+
+### Two new, distinct scam patterns
+Someone found a deceased victim's phone and is impersonating her via
+"her new number" to solicit money from her contacts. Separately, a
+creator discovered a fake missing-person poster using her own name and
+photo, falsely claiming she was a Cali earthquake victim — TikTok's own
+AI-content label corroborates the image was fabricated.
+
+### Reconstruction: a major private donation, subsidies still pending
+Colombia's richest man, Jaime Gilinski, and his wife pledged $150,000
+million COP specifically for rebuilding Cali's hospitals and schools.
+Separately, the national rental-subsidy program now has a target start
+date (the week of Aug 18-21) but isn't flowing yet as of this pass — the
+Housing Minister described the reconstruction budget picture bluntly as
+"nos dejaron la olla pelada" (an empty pot), pointing instead to
+private-sector and international contributions to fill the gap.
+
+### New aid points (5)
+A diaspora-organized Vaki for a damaged clinic, a live-confirmed
+household collection point, a displaced elder-care congregation raising
+funds for relocation, a long-established disaster-relief foundation's
+multi-city walk/festival (Cali named explicitly), and a narrow,
+concrete GoFundMe funding debris-removal machinery costs.
+
+### New community embeds (11 of 12 — one already on file)
+The OIM's trafficking-risk warning, a new police scam-methods alert, the
+Vivas Jiménez family deaths, the Saavedra correction, a rescued survivor
+who later died of her injuries, the phone-impersonation scam, the
+Gilinski donation, Víctor Acosta's case closing, the rent-subsidy
+timeline, the Saavedra family's own fraud warning, and the AI-generated
+fake missing-person poster.
+
+### Next steps (pass 70)
+Continue round 6: Manizales, Armenia, Quibdó, Buenaventura, Popayán,
+Dosquebradas, San José del Palmar, Pijao, and Ibagué remain.
