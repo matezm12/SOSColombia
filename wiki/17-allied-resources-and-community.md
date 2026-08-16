@@ -4923,3 +4923,59 @@ fake missing-person poster.
 ### Next steps (pass 70)
 Continue round 6: Manizales, Armenia, Quibdó, Buenaventura, Popayán,
 Dosquebradas, San José del Palmar, Pijao, and Ibagué remain.
+
+## Pass 71
+
+Round 6 continues: Manizales. Two aid points caught as duplicates —
+Coliseo Menor (on file since pass 34, though the finding that its
+donations ran out after 2,800 food packages and need replenishing is a
+real status update, recorded in the wiki) and the Fondo Solidario
+Comunitario international-wire channel (on file since pass 16). The
+Homecenter story stays unresolved but gets clearer: this round traced
+the underlying incident specifically to a Cali store, reinforcing pass
+57's conclusion that it was never Manizales' story to begin with.
+
+### A first: Manizales finally gets a TollRecord
+Five prior rounds discussed a "6 dead / 211 injured" figure in passing,
+but checking directly against all five prior seed files confirmed it
+was never actually logged. Fixed now, sourced to the Alcaldía's own
+day-6 communiqué — which also gives the city's first housing-damage
+figures: 1,512 homes with total loss, 3,993 with partial damage.
+
+### Two new, distinct scam patterns
+A Manizales-based TikTok creator known as "La Cucuteña" is accused of
+soliciting earthquake donations to a personal account and using part of
+it for her own rent, refusing to show receipts when asked. Separately —
+caught roughly 21 minutes after it was posted — a Facebook post used a
+fabricated "GoFundMe is having platform failures" excuse to redirect
+donors to a personal Nequi account, textbook scam mechanics down to the
+AI-generated image Facebook itself flagged.
+
+### Recovery, with friction
+The rental subsidy (confirmed actually disbursing since pass 57)
+continues via a live intake point at Cruz Roja Caldas. But the mayor has
+had to publicly warn landlords against rent price-gouging in affected
+sectors, with a new complaint hotline — a genuine friction point in the
+recovery, not a smooth continuation. Two unconfirmed but worth-watching
+claims also surfaced: a single comment alleging three rural veredas have
+received zero aid, and an allegation that police obstructed volunteer
+debris-removal work in one sector. Both recorded with explicit caveats,
+not asserted as fact.
+
+### New aid points (9)
+An elder-care home whose own founder is warning about impersonator
+campaigns using its photos (itself a strong authenticity signal), six
+official municipal attention points across the city, a second elder-care
+home fundraising for reconstruction, and one flagged personal-account
+appeal from a family with visible structural damage.
+
+### New community embeds (8)
+The live rental-subsidy intake point, the Concejo's extraordinary
+reconstruction-oversight sessions, the rent price-gouging warning, both
+new scam patterns, both unconfirmed-but-flagged claims (rural veredas,
+police obstruction), and a local outlet's ICBF-impersonation
+clarification.
+
+### Next steps (pass 71)
+Continue round 6: Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas,
+San José del Palmar, Pijao, and Ibagué remain.
