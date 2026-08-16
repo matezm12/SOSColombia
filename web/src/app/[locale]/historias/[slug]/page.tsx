@@ -157,8 +157,8 @@ export default async function StoryDetailPage({
           GoFundMe's widget and Instagram/X/TikTok's own embeds already carry
           the actual image, so there's no separate image-extraction step. */}
       {story.campaign && (story.campaign.platform === "GOFUNDME" || isGoFundMeUrl(story.campaign.url)) && (
-        <div className="mt-6 max-w-sm">
-          <GoFundMeEmbed url={story.campaign.url} />
+        <div className="mt-6 max-w-[480px]">
+          <GoFundMeEmbed url={story.campaign.url} size="large" />
         </div>
       )}
       {story.socialPost && (
