@@ -7,32 +7,48 @@
  * address text mixes the landmark name with directions/cross-streets in a
  * way the query strategies in geocode-all-cities-aidpoints.ts don't handle.
  *
- * Each entry below was independently verified via web search (a real
+ * Every coordinate below was independently verified via web search (a real
  * street address for the landmark, cited from an official/business source)
- * before being geocoded -- not guessed. Two lessons from this pass:
+ * before geocoding via Nominatim -- not guessed. Three lessons from this
+ * pass:
  *
- * 1. Searching Nominatim by the landmark's OWN name (when it's a mapped
- *    OSM feature -- sports_centre, library, etc.) is far more reliable
- *    than constructing a street-address query, which can match a
- *    same-named street in the wrong part of town. Caught one real case:
- *    "Calle 9 #36-60, Cali" for Unidad Deportiva Jaime Aparicio matched a
+ * 1. Searching Nominatim by the landmark's OWN name (when it's a mapped OSM
+ *    feature -- sports_centre, library, etc.) is far more reliable than
+ *    constructing a street-address query, which can match a same-named
+ *    street in the wrong part of town. Caught one real case: "Calle 9
+ *    #36-60, Cali" for Unidad Deportiva Jaime Aparicio matched a
  *    same-numbered street 13km south in a rural district (Pance); searching
  *    "Unidad Deportiva Jaime Aparicio, Cali" directly found the actual
  *    OSM-mapped sports_centre polygon instead.
  *
- * 2. Several points genuinely share ONE real building across different
+ * 2. Nominatim is NOT deterministic for every query -- re-running the exact
+ *    same "Calle 9 37a-01, Cali, Colombia" query on a later day returned a
+ *    match ~3.6km away from the first run's result, both technically within
+ *    the distance-check threshold. This is why this script hardcodes the
+ *    already-verified lat/lng values below instead of re-querying live:
+ *    a script that's "safe to re-run" should not mean "might silently
+ *    drift a working coordinate on every run."
+ *
+ * 3. Several points genuinely share ONE real building across different
  *    orgs/purposes -- a Cruz Roja blood bank and "Hemocentro del Café" are
  *    the same physical hemocentro; a sports complex's separate coliseums
- *    (Mayor/Menor + an animal-welfare refuge run out of one of them) share
- *    one manually-verified landmark point; Popayán's Casa de la Moneda
- *    hosted two separate donation drives. geocode-all-cities-aidpoints.ts's
+ *    share one landmark point; Popayán's Casa de la Moneda hosted two
+ *    separate donation drives. geocode-all-cities-aidpoints.ts's
  *    duplicate-coordinate revert pass can't distinguish this from a bad
  *    generic-fallback match and will revert these if re-run -- restoring
  *    them is folded into this script too so it's reproducible.
  *
+ * Explicitly NOT resolved, left ungeocoded rather than risk a wrong pin:
+ * - Gobernación del Tolima (Ibagué): every Nominatim query variant tried
+ *   (name search, street address) matched "Asamblea Departamental del
+ *   Tolima" instead -- a real but DIFFERENT, adjacent government building.
+ * - Facultad de Ingeniería Civil, Universidad del Cauca (Popayán): real
+ *   confirmed address (Calle 2 Cra 15N, Campus Tulcán) via web search, but
+ *   no Nominatim query variant resolved it.
+ *
  * Run once via `npx tsx prisma/geocode-landmarks-manual.ts`, NOT part of
- * the repeatable prisma/seed.ts. Safe to re-run (each block only touches
- * points still missing coordinates, or explicitly named restores).
+ * the repeatable prisma/seed.ts. Safe to re-run -- every value here is a
+ * fixed, already-verified coordinate, not a live re-query.
  */
 import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
@@ -40,29 +56,6 @@ import 'dotenv/config'
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
 const prisma = new PrismaClient({ adapter })
-
-const NOMINATIM_URL = 'https://nominatim.openstreetmap.org/search'
-const USER_AGENT = 'SOSColombia/1.0 (https://www.soscolombia.xyz; earthquake aid-point mapping)'
-
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
-
-async function geocode(query: string): Promise<{ lat: number; lng: number } | null> {
-  const url = `${NOMINATIM_URL}?q=${encodeURIComponent(query)}&format=json&limit=1&countrycodes=co`
-  const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } })
-  if (!res.ok) return null
-  const results = (await res.json()) as Array<{ lat: string; lon: string }>
-  if (results.length === 0) return null
-  return { lat: parseFloat(results[0].lat), lng: parseFloat(results[0].lon) }
-}
-
-async function applyByIds(ids: string[], lat: number, lng: number, label: string) {
-  for (const id of ids) {
-    await prisma.aidPoint.update({ where: { id }, data: { lat, lng } })
-  }
-  console.log(`Applied ${label} -> ${lat}, ${lng} (${ids.length} point(s))`)
-}
 
 async function applyByNames(names: string[], lat: number, lng: number, label: string) {
   let count = 0
@@ -77,37 +70,27 @@ async function applyByNames(names: string[], lat: number, lng: number, label: st
 }
 
 async function main() {
-  // ── Landmarks geocoded fresh, verified via web search first ───────────
-  const landmarkQueries: Array<{ query: string; ids: string[]; label: string }> = [
-    { query: 'Unidad deportiva Jaime Aparicio, Cali, Colombia', ids: ['cmsthdltf001tjo7kl9dsdv33', 'cmsthdoi2001wjo7kn3wlymxy', 'cmstsw06r004nw07kojrgwgq5'], label: 'Unidad Deportiva Jaime Aparicio (Cali)' },
-    { query: 'Biblioteca Departamental Jorge Garces Borrero, Cali, Colombia', ids: ['cmsthdng3001ujo7k2jig5my6'], label: 'Biblioteca Departamental (Cali)' },
-    { query: 'Estadio Palogrande, Manizales, Colombia', ids: ['cmsrdsnrq0026xw7kkls1xipc', 'cmsrdsntv0027xw7khxh3wjjt', 'cmsthe69v002jjo7kwviztuzy'], label: 'Unidad Deportiva Palogrande (Manizales)' },
-    { query: 'Monserrat Plaza, 56N-30, Transversal 9, Popayan, Colombia', ids: ['cmstsqm8o002nw07ku24p9m90'], label: 'Centro Comercial Monserrat Plaza (Popayán)' },
-    { query: 'Calle 26 Norte 11-21, Armenia, Colombia', ids: ['cmstshvjw0005w07k52fdcj7t'], label: 'Centro de Convenciones del Quindío (Armenia)' },
-    { query: 'Calle 9 37a-01, Cali, Colombia', ids: ['cmstsvmzb004hw07kwltjazt8', 'cmsrpldeh000yeg7kbup8ei26'], label: 'Unidad Deportiva Panamericana (Cali)' },
-    { query: 'Carrera 87 # 4C-33, Cali, Colombia', ids: ['cmstsvpdt004jw07kvateqmu7'], label: 'Iglesia Reyes y Sacerdotes (Cali)' },
-  ]
-
-  for (const item of landmarkQueries) {
-    const result = await geocode(item.query)
-    await sleep(1100)
-    if (!result) {
-      console.log(`NOT FOUND: ${item.label} -- "${item.query}"`)
-      continue
-    }
-    await applyByIds(item.ids, result.lat, result.lng, item.label)
-  }
-
-  // ── Restore legitimate same-building matches the automated duplicate-
-  // revert pass can't tell apart from a bad generic-fallback match ──────
-  const sharedBuildingRestores: Array<{ names: string[]; lat: number; lng: number; label: string }> = [
+  const fixedCoordinates: Array<{ names: string[]; lat: number; lng: number; label: string }> = [
+    { names: ['Albergue Coliseo de Hockey Miguel Calero', 'Albergue y Punto de Acopio - Diamante de Béisbol', 'Módulos de privacidad - Arquitectura para la Gente (Albergue Coliseo de Hockey)'], lat: 3.4237953, lng: -76.5363238, label: 'Unidad Deportiva Jaime Aparicio (Cali)' },
+    { names: ['Albergue Iglesia Avivamiento Cali'], lat: 3.4362817, lng: -76.5394259, label: 'Biblioteca Departamental (Cali)' },
+    { names: ['Coliseo Mayor Jorge Arango Uribe', 'Coliseo Menor Ramón Marín Vargas', 'Unidad de Protección Animal (UPA) - Alcaldía de Manizales'], lat: 5.0570052, lng: -75.4900871, label: 'Unidad Deportiva Palogrande (Manizales)' },
+    { names: ['Donatón Solidario - Centro Comercial Monserrat Plaza'], lat: 2.4850174, lng: -76.5821946, label: 'Centro Comercial Monserrat Plaza (Popayán)' },
+    { names: ['Centro de Convenciones de Armenia - punto central de acopio departamental'], lat: 4.5595601, lng: -75.6485931, label: 'Centro de Convenciones del Quindío (Armenia)' },
+    { names: ['Albergue temporal Canchas Panamericanas (Unidad Deportiva Panamericana)', 'Carpa de primeros auxilios — Secretaría de Salud'], lat: 3.4489157, lng: -76.5338616, label: 'Unidad Deportiva Panamericana (Cali)' },
+    { names: ['Albergue Iglesia Reyes y Sacerdotes'], lat: 3.3786467, lng: -76.5389385, label: 'Iglesia Reyes y Sacerdotes (Cali)' },
+    { names: ['Coliseo del Sur'], lat: 4.5147248, lng: -75.6886471, label: 'Coliseo del Sur (Armenia)' },
+    { names: ['Parroquia San Marcos Evangelista - nuevo punto de acopio Cáritas Pereira'], lat: 4.8372351, lng: -75.6789994, label: 'Parroquia San Marcos Evangelista (Dosquebradas)' },
+    { names: ['Jornada de donación de sangre - ESE Hospital Santa Mónica Dosquebradas'], lat: 4.8243042, lng: -75.6798583, label: 'ESE Hospital Santa Mónica (Dosquebradas)' },
+    { names: ['Polideportivo de La Paz'], lat: 2.476545, lng: -76.5591953, label: 'Polideportivo de La Paz (Popayán)' },
+    { names: ['Punto de acopio Quibdó - oficina de Francisco Vidal (Representante a la Cámara por Chocó)'], lat: 5.6920078, lng: -76.6582377, label: 'Hotel Farallones (Quibdó)' },
+    { names: ['Fundación Porque Juntos Somos Más - centro de acopio'], lat: 4.8201538, lng: -75.6846001, label: 'Hotel Yellow (Dosquebradas)' },
+    // Shared-building restores (see lesson 3 above).
     { names: ['Casa de la Moneda', 'Casa de la Moneda - insumos médicos/salud (Primera Dama del Cauca)'], lat: 2.4441216, lng: -76.6095359, label: 'Casa de la Moneda (Popayán) -- same building, two orgs' },
     { names: ['Hemocentro del Café', 'Cruz Roja — Banco Regional de Sangre (Manizales)'], lat: 5.0654467, lng: -75.4967291, label: 'Hemocentro (Manizales) -- same building, two orgs' },
-    { names: ['Coliseo Mayor Jorge Arango Uribe', 'Coliseo Menor Ramón Marín Vargas', 'Unidad de Protección Animal (UPA) - Alcaldía de Manizales'], lat: 5.0570052, lng: -75.4900871, label: 'Palogrande complex (Manizales)' },
   ]
 
-  for (const r of sharedBuildingRestores) {
-    await applyByNames(r.names, r.lat, r.lng, r.label)
+  for (const c of fixedCoordinates) {
+    await applyByNames(c.names, c.lat, c.lng, c.label)
   }
 }
 
