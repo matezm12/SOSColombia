@@ -9,6 +9,7 @@ import { AidPointCard } from "@/components/data/AidPointCard";
 import CiudadMapaClient from "@/components/map/CiudadMapaClient";
 import { CampaignCard } from "@/components/data/CampaignCard";
 import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
+import { StoryCard } from "@/components/data/StoryCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
@@ -55,7 +56,7 @@ export async function generateMetadata({
 export default async function CiudadPage(
   props: PageProps<"/[locale]/ciudad/[divipola]">
 ) {
-  const { divipola } = await props.params;
+  const { locale, divipola } = await props.params;
   const t = await getTranslations("ciudad");
 
   const municipio = await prisma.municipio.findUnique({
@@ -71,11 +72,18 @@ export default async function CiudadPage(
         orderBy: { kind: "asc" },
       },
       campaigns: {
-        include: { municipios: { select: { name: true, divipolaCode: true } } },
+        include: {
+          municipios: { select: { name: true, divipolaCode: true } },
+          stories: { where: { status: "PUBLISHED" }, select: { slug: true }, take: 1 },
+        },
       },
       resources: {
         where: { status: { not: "DEAD" } },
         orderBy: [{ tier: "asc" }, { name: "asc" }],
+      },
+      stories: {
+        where: { status: "PUBLISHED" },
+        orderBy: { publishedAt: "desc" },
       },
     },
   });
@@ -228,6 +236,17 @@ export default async function CiudadPage(
             </EmptyState>
           )}
         </div>
+
+        {municipio.stories.length > 0 && (
+          <>
+            <SectionHeading>{t("historias")}</SectionHeading>
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {municipio.stories.map((story) => (
+                <StoryCard key={story.id} story={story} locale={locale} />
+              ))}
+            </div>
+          </>
+        )}
       </PageShell>
     </>
   );

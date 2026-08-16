@@ -59,6 +59,7 @@ model Municipio {
   pendingSocialPosts PendingSocialPost[]
   campaigns          CrowdfundingCampaign[]
   resources          AlliedResource[]
+  stories            Story[]
 
   @@index([departmentId])
 }
@@ -296,6 +297,7 @@ model CrowdfundingCampaign {
   notes              String?             // e.g. the Galería Aborigen organizer/foundation-mismatch caveat
   lastCheckedAt      DateTime
   municipios         Municipio[]         // optional stated city focus — never exactly one FK, since real campaigns are genuinely multi-city
+  stories            Story[]
 }
 
 enum CrowdfundingPlatform {
@@ -323,6 +325,7 @@ model SocialPost {
   municipioId String?
   category    SocialPostCategory
   capturedAt  DateTime     @default(now())
+  stories     Story[]
 }
 
 enum SocialPlatform {
@@ -424,4 +427,43 @@ model Volunteer {
   reviewedAidPoints   PendingAidPoint[]
   reviewedSocialPosts PendingSocialPost[]
   reviewedTollRecords PendingTollRecord[]
+}
+
+// ── Historias — long-form editorial writing, distinct from sourced facts ──
+// Unlike TollRecord/AidPoint, a Story isn't append-only (normal edit-in-place
+// is fine, like any CMS post) — what it must do is stay traceable to the
+// real, already-sourced record it expands on via the optional campaign/
+// socialPost/municipio links below, rendered as a "Basado en" citation.
+// Admin-authored only (/admin/historias, isAdmin-gated) — never a public
+// submission queue like PendingAidPoint.
+
+model Story {
+  id            String       @id @default(cuid())
+  slug          String       @unique
+  titleEs       String
+  titleEn       String
+  ledeEs        String       // short 1-2 sentence summary for cards/meta description
+  ledeEn        String
+  bodyEs        String       // plain text, paragraphs separated by blank lines
+  bodyEn        String
+  coverImageUrl String?
+  authorName    String       // free text editorial credit, e.g. "Equipo SOSColombia" — not a Volunteer FK
+  municipio     Municipio?   @relation(fields: [municipioId], references: [id])
+  municipioId   String?
+  campaign      CrowdfundingCampaign? @relation(fields: [campaignId], references: [id])
+  campaignId    String?
+  socialPost    SocialPost?  @relation(fields: [socialPostId], references: [id])
+  socialPostId  String?
+  status        StoryStatus  @default(DRAFT)
+  publishedAt   DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([municipioId])
+}
+
+enum StoryStatus {
+  DRAFT
+  PUBLISHED
 }

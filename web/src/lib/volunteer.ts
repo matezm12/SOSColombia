@@ -80,3 +80,14 @@ export async function requireScope(section: "moderacion" | "comunidad" | "boleti
   if (!volunteer.isAdmin && !flag) return null;
   return volunteer;
 }
+
+/**
+ * Live-checked authorization for admin-only actions (volunteer management,
+ * historias authoring) — throws rather than returning null, since these
+ * actions have no "just do nothing" fallback the way moderation actions do.
+ */
+export async function requireAdmin() {
+  const volunteer = await getCurrentVolunteer();
+  if (!volunteer || !volunteer.isAdmin) throw new Error("Not authorized.");
+  return volunteer;
+}

@@ -23,6 +23,7 @@ export async function SiteHeader() {
     { href: "/donar/internacional", label: t("internacional") },
     { href: "/recursos", label: t("recursos") },
     { href: "/comunidad", label: t("comunidad") },
+    { href: "/historias", label: t("historias") },
     { href: "/informes", label: t("informes") },
     { href: "/fuentes", label: t("fuentes") },
     { href: "/metodologia", label: t("metodologia") },

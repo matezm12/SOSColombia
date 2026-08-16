@@ -39,7 +39,10 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
       // actually real.
       where: { international: false },
       orderBy: { verificationStatus: "asc" },
-      include: { municipios: { select: { name: true, divipolaCode: true } } },
+      include: {
+        municipios: { select: { name: true, divipolaCode: true } },
+        stories: { where: { status: "PUBLISHED" }, select: { slug: true }, take: 1 },
+      },
     }),
     prisma.aidPoint.findMany({
       where: { kind: "MONETARY_DONATION" },

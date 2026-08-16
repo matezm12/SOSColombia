@@ -13,6 +13,7 @@
     "campanasDeRecaudacion": "Fundraising campaigns",
     "sinCampanas": "No fundraising campaign specific to this city yet — see the <link>general donation page</link>.",
     "proyectosLocales": "Local projects and tools",
-    "sinProyectosLocales": "No independent project focused specifically on this city yet — see <link>all projects and tools</link>."
+    "sinProyectosLocales": "No independent project focused specifically on this city yet — see <link>all projects and tools</link>.",
+    "historias": "Stories from this city"
   }
 }

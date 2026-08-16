@@ -14,7 +14,7 @@ import { formatCurrency, formatNumber, formatDate } from "@/lib/format";
 
 type CampaignWithMunicipios = Prisma.CrowdfundingCampaignGetPayload<{
   include: { municipios: { select: { name: true; divipolaCode: true } } };
-}>;
+}> & { stories?: { slug: string }[] };
 
 export function CampaignCard({ campaign }: { campaign: CampaignWithMunicipios }) {
   return (
@@ -58,6 +58,17 @@ export function CampaignCard({ campaign }: { campaign: CampaignWithMunicipios })
 
       {campaign.notes && (
         <p className="mt-2 text-xs text-amber-700 dark:text-amber-500">{campaign.notes}</p>
+      )}
+
+      {campaign.stories && campaign.stories.length > 0 && (
+        <p className="mt-2 text-sm">
+          <Link
+            href={`/historias/${campaign.stories[0].slug}`}
+            className="font-medium underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-500 dark:decoration-zinc-700 dark:hover:decoration-zinc-400"
+          >
+            Leer la historia completa →
+          </Link>
+        </p>
       )}
 
       {campaign.platform === "GOFUNDME" || isGoFundMeUrl(campaign.url) ? (

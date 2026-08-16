@@ -3,13 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { hashPassword } from "@/lib/session";
-import { getCurrentVolunteer } from "@/lib/volunteer";
-
-async function requireAdmin() {
-  const volunteer = await getCurrentVolunteer();
-  if (!volunteer || !volunteer.isAdmin) throw new Error("Not authorized.");
-  return volunteer;
-}
+import { requireAdmin } from "@/lib/volunteer";
 
 export async function createVolunteer(formData: FormData) {
   await requireAdmin();

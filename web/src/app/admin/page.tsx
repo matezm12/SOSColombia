@@ -31,14 +31,24 @@ export default async function AdminHomePage() {
           </Card>
         ))}
         {volunteer.isAdmin && (
-          <Card>
-            <Link
-              href="/admin/volunteers"
-              className="font-medium text-black hover:underline dark:text-zinc-50"
-            >
-              Gestionar voluntarios
-            </Link>
-          </Card>
+          <>
+            <Card>
+              <Link
+                href="/admin/volunteers"
+                className="font-medium text-black hover:underline dark:text-zinc-50"
+              >
+                Gestionar voluntarios
+              </Link>
+            </Card>
+            <Card>
+              <Link
+                href="/admin/historias"
+                className="font-medium text-black hover:underline dark:text-zinc-50"
+              >
+                Historias
+              </Link>
+            </Card>
+          </>
         )}
         {accessibleSections.length === 0 && !volunteer.isAdmin && (
           <p className="text-sm text-zinc-500 dark:text-zinc-500">

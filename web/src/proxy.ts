@@ -32,6 +32,7 @@ function requiredScope(pathname: string): keyof VolunteerScope | "any" | null {
   if (pathname.startsWith("/admin/comunidad")) return "comunidad";
   if (pathname.startsWith("/admin/boletines")) return "boletines";
   if (pathname.startsWith("/admin/volunteers")) return "admin";
+  if (pathname.startsWith("/admin/historias")) return "admin";
   return "any";
 }
 

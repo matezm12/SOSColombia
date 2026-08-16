@@ -27,7 +27,10 @@ export default async function DonarInternacionalPage(
   const campaigns = await prisma.crowdfundingCampaign.findMany({
     where: { international: true },
     orderBy: { verificationStatus: "asc" },
-    include: { municipios: { select: { name: true, divipolaCode: true } } },
+    include: {
+      municipios: { select: { name: true, divipolaCode: true } },
+      stories: { where: { status: "PUBLISHED" }, select: { slug: true }, take: 1 },
+    },
   });
 
   return (
