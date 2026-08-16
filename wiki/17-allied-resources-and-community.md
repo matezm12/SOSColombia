@@ -4652,3 +4652,41 @@ cross-city location-tag ambiguity).
 
 ### Next steps (pass 65)
 Continue round 5: San José del Palmar and Pijao remain.
+
+## Pass 66
+
+At the user's request, completed Ibagué's first deep research pass by
+filling the TikTok angle that hit a session capacity limit back in pass
+60. Confirms the pass-60 gap still stands: no dedicated albergue for
+Ibagué's own displaced residents exists, and no Ibagué-targeted scam or
+missing-persons case was found anywhere on the platform.
+
+### An active, urgent, in-city fire — not the San Luis mutual-aid story
+Separate from Ibagué's already-documented firefighting deployment to
+neighboring San Luis, this pass caught real-time footage of an active
+wildfire inside Ibagué itself, in barrio Picaleña, with an on-screen
+urgent call for firefighter support.
+
+### A reconstruction-safety flag worth watching
+A credible local investigative account (El Olfato) reports new building
+permits in Ibagué are being evaluated under medium seismic-hazard
+parameters, despite a technical study recommending high-hazard
+conditions — partly due to the Falla de Ibagué fault running through
+the city. Not an aid point, but a real development for anyone tracking
+the reconstruction phase here.
+
+### New aid points (1)
+A university collection point (Universidad del Tolima), flagged medium
+confidence since it comes from a resident's personal video rather than
+an official university channel.
+
+### New community embeds (7)
+The Picaleña fire, the San Luis firefighting mutual-aid deployment (an
+official emergency-reporting line included), a rural vereda not
+surfaced in pass 60 (Charco Rico Alto), the seismic-permitting story,
+and two human-interest dispatches from El Olfato (a two-track municipal
+response in El Vergel/Boquerón, and emerging solidarity in barrio
+Grisales de Quimbaya).
+
+### Next steps (pass 66)
+Continue round 5: San José del Palmar and Pijao remain.
