@@ -5485,3 +5485,101 @@ Process Argelia's first dedicated deep-research pass once it
 completes. After that, begin round 7 across all twelve established
 cities in rotation order, continuing to check for round-7-specific
 developments.
+
+## Pass 81 (2026-08-16) — Argelia, Valle del Cauca, first deep pass
+
+Five agents, immediately following pass 79's addition of this city.
+
+### The interception question: no corroboration found
+
+This was the reason the user asked to add and heavily research this
+city — a report that aid meant for Argelia was being intercepted and
+sent elsewhere. All five agents, independently, searching dozens of
+distinct term combinations (desviada, interceptada, robada,
+corrupción, denuncia, acaparamiento, politiquería, clientelismo,
+combined with Argelia/terremoto, in Spanish, across news search, X,
+Instagram, Facebook, and TikTok) found **zero corroboration**. No
+news coverage, official statement, Procuraduría/Contraloría action,
+or even fringe social chatter alleges aid destined for Argelia was
+stolen or redirected. One agent noted that Google's own "Missing:
+[keyword]" annotations confirmed not a single indexed page pairing
+Argelia's earthquake coverage with any theft/diversion term.
+
+What IS real and well-documented, across four independent mainstream
+outlets, is a different story: Argelia is genuinely overshadowed and
+slow to receive aid, not a victim of theft.
+- **Canal Trece** (Aug 11, the earliest dedicated piece): "S.O.S.
+  Norte del Valle: El Cairo, Argelia, El Águila, Ansermanuevo y
+  Roldanillo piden no ser olvidados" — explicit thesis that national
+  attention concentrated on Cali, Pereira, and Manizales while these
+  towns face "aparente aislamiento mediático."
+- **Vanguardia** (Aug 16): rural families near Ansermanuevo and
+  Argelia describe receiving aid only from passing drivers ("una
+  libra de arroz"), with El Cairo's own acting mayor admitting on the
+  record that a rural census hadn't even started as of that date.
+- El País's own subhead on its Argelia coverage: "Este municipio
+  clama por ayudas en el proceso de reconstrucción."
+- The GoFundMe organizer's own appeal states it plainly: "While major
+  rescue efforts focus on metro areas, remote towns like Argelia are
+  neglected."
+
+**Caveat, stated honestly**: every agent hit the same tooling wall —
+X was blocked outright in this session, and Instagram/Facebook
+returned JS-gated empty shells to non-browser fetches. Grassroots
+WhatsApp/Facebook-group-level complaints — exactly the kind of
+content that would carry an unverified rumor like this one — could
+not be directly swept. This is a real, meaningful negative result
+("no evidence found in searchable sources"), not proof the claim is
+false. If the source of the original claim can be narrowed down (a
+screenshot, a specific account, a date), that would allow a far more
+targeted follow-up search.
+
+### The "90% affected" figure: confirmed real
+
+Pass 79 explicitly declined to cite this headline because the only
+trace was an unreachable Google News redirect. This pass found and
+verified the live article: El País (Cali), "Sismo en Argelia, Valle:
+Más del 90% del municipio afectado" (Aug 15), directly quoting Cuerpo
+de Bomberos officer Yulian Giraldo — "el municipio se ha visto
+afectado en un 90%" — independently echoed by a community Instagram
+account using nearly identical language. Not logged as a TollRecord
+(nothing in the schema maps to "% of municipio affected"), but now a
+confirmed, citable fact rather than an open question.
+
+### New toll figures (3)
+- 70+ families (~400 people) affected, with a named barrio —
+  Monserrate — that must be relocated entirely: a 100+ meter fissure
+  runs through homes there and threatens a landslide toward the "La
+  Pista" sector. Named by the mayor, Wilson Vanegas, and confirmed
+  by the governor's own quote.
+- Zero deaths, doubly confirmed by two independent official channels
+  agreeing: the Cuerpo de Bomberos officer's on-record statement to
+  Semana, and the mayor's own separate "parte de tranquilidad"
+  Facebook post.
+- The town's one hospital, out of service without a working
+  generator, corroborated by three independent outlets — the
+  Gobernación later installed an emergency generator.
+
+### New aid points (3)
+Two live, directly-verified GoFundMe campaigns — donor ledgers loaded
+and read firsthand, not just search snippets — and a medium-confidence
+WhatsApp contact for a named volunteer firefighter that circulated
+organically across two independent posts.
+
+Several informal Nequi/DaviPlata donation numbers and out-of-town
+collection points (Buga, Cali) also surfaced but were **not seeded**:
+confidence was too low and control too unverifiable to publish even
+through the moderation queue. Also documented, not seeded: an
+official Gobernación del Valle confirmation that 80+ tons of
+humanitarian aid have already been delivered to Argelia specifically
+through the Unidad para las Víctimas — directly relevant context for
+the interception question, since it shows the official pipeline is
+demonstrably active, but not itself a donor-facing channel.
+
+### Next steps
+Begin round 7 across all thirteen tracked cities in rotation order.
+A future pass on Argelia specifically should retry the interception
+question with working social-media search access, and try to
+disambiguate the housing-damage percentage (reported inconsistently
+across sources as 70%, 80%, or 90%+ depending on whether the metric
+is housing stock specifically or the municipio broadly).
