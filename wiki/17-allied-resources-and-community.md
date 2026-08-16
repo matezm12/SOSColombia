@@ -5139,3 +5139,58 @@ student-led aid convoy, and the CVC flood-risk warning.
 ### Next steps (pass 74)
 Continue round 6: Popayán, Dosquebradas, San José del Palmar, Pijao,
 and Ibagué remain.
+
+## Pass 75 (2026-08-16) — Popayán, round 6
+
+Six prior rounds (passes 9, 11, 20, 29, 41, 51, 64) covered this city,
+and pass 64 found every single candidate a duplicate. That streak
+broke this round: the "huge update" surge reached even the
+thinnest-covered tracked city, surfacing five concrete, verifiable
+acopio points that don't overlap with any of the five already on file.
+
+### New aid points (5)
+- **AAPSA** (Acueducto y Alcantarillado de Popayán), running an
+  in-kind donation drive at its own historic-center address —
+  independently corroborated by all five agents this round, against
+  the utility's own institutional site and two third-party reposts.
+- **Donatón Solidario at Centro Comercial Monserrat Plaza**, a broad
+  supply drive for municipios in northern Cauca, running through
+  today (the last day of a four-day window), posted by the mall's
+  own verified account.
+- **"Nos Movemos por Colombia" at Centro Comercial TerraPlaza**, a
+  donation event happening today, accepting both in-person and
+  remote contributions.
+- **Veterinaria Patitas / Dr. Arbeláez Clínica Veterinaria**, a pet-
+  supply collection tied to an adoption event — medium confidence,
+  its stated deadline has likely already passed.
+- **Centro de Acopio INVÍAS**, run by Popayán's Gestora Social,
+  diagonal to Centro Comercial Campanario — single-sourced (an
+  official EMTEL SA ESP page) so medium confidence. A separate TikTok
+  sighting of a women's-collective drive at the same mall may or may
+  not be the same effort; left unresolved rather than merged or
+  duplicated.
+
+### Toll status
+Unchanged at zero for a sixth straight round. The UNGRD's own Aug 16
+national balance names Chocó, Valle del Cauca, Risaralda, Caldas, and
+Quindío as affected departments — Cauca isn't on it. The one death
+connected to Popayán, Pablo Andrés Rivera Avirama (UNIMAYOR alumnus),
+happened at the Pereira airport, not locally — documented as a human-
+interest story, not a toll change.
+
+### New community embeds (3)
+Pablo Rivera Avirama's death confirmation and Popayán funeral
+(corroborated by five independent sources this round, most yet), the
+Alcaldía's continued debris removal at the already-known Hogar San
+Vicente de Paúl, and Caracol Radio's report that electricity has been
+restored citywide.
+
+Crowdfunding stays a confirmed absence for a sixth consecutive round.
+No new scam or fraud reports this round either — also a sixth
+consecutive null. One repeat sighting (15 tons of radio-collected aid
+dispatched to Valle del Cauca) is the same story pass 64 already
+documented, just reposted by a different page — not re-seeded.
+
+### Next steps (pass 75)
+Continue round 6: Dosquebradas, San José del Palmar, Pijao, and
+Ibagué remain.
