@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { routing } from "@/i18n/routing";
 
 // Deliberately uses plain next/navigation, not next-intl's navigation
 // wrapper: this renders from the root layout (see SiteHeader), which sits
@@ -37,10 +38,18 @@ function FlagUS({ className }: { className?: string }) {
   );
 }
 
+// Strips ANY known locale prefix, not just "/en" — "as-needed" means "/es"
+// is never required, but next-intl still accepts it as a valid alias (e.g.
+// a bookmarked or manually-typed /es/... URL). Stripping only "/en" left
+// a literal "/es" prefix in `bare`, so switching to English from an /es/...
+// URL built "/en/es/..." — a route that doesn't exist.
+const localePrefixPattern = new RegExp(`^/(${routing.locales.join("|")})(?=/|$)`);
+
 export function LanguageSwitcher() {
   const pathname = usePathname();
-  const isEnglish = pathname === "/en" || pathname.startsWith("/en/");
-  const bare = isEnglish ? pathname.slice(3) || "/" : pathname;
+  const localeMatch = pathname.match(localePrefixPattern);
+  const isEnglish = localeMatch?.[1] === "en";
+  const bare = localeMatch ? pathname.slice(localeMatch[0].length) || "/" : pathname;
 
   const targets = [
     { code: "es" as const, Flag: FlagCO, label: "Español", href: bare },
