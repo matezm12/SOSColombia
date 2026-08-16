@@ -1,22 +1,29 @@
 import type { Story } from "@prisma/client";
 import { Link } from "@/i18n/navigation";
 import { Card } from "../ui/Card";
-import { localizedStory } from "@/lib/stories";
+import { localizedStory, resolveStoryImage } from "@/lib/stories";
 import { formatDate } from "@/lib/format";
 
-type StoryWithMunicipio = Story & { municipio?: { name: string } | null };
+type StoryWithExtras = Story & {
+  municipio?: { name: string } | null;
+  campaign?: { platform: string; url: string } | null;
+};
 
-export function StoryCard({ story, locale }: { story: StoryWithMunicipio; locale: string }) {
+export async function StoryCard({ story, locale }: { story: StoryWithExtras; locale: string }) {
   const { title, lede } = localizedStory(story, locale);
+  const image = await resolveStoryImage({
+    coverImageUrl: story.coverImageUrl,
+    campaign: story.campaign ?? null,
+  });
 
   return (
     <Card className="flex flex-col overflow-hidden p-0">
-      {story.coverImageUrl && (
+      {image && (
         // Arbitrary externally-hosted cover images — same reasoning as
         // AlliedResourceCard's og-image handling, can't allowlist every domain.
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={story.coverImageUrl}
+          src={image}
           alt={title}
           className="aspect-[1200/630] w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
           loading="lazy"

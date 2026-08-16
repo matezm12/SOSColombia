@@ -29,7 +29,10 @@ export default async function HistoriasPage({
 
   const stories = await prisma.story.findMany({
     where: { status: "PUBLISHED" },
-    include: { municipio: { select: { name: true } } },
+    include: {
+      municipio: { select: { name: true } },
+      campaign: { select: { platform: true, url: true } },
+    },
     orderBy: { publishedAt: "desc" },
   });
 

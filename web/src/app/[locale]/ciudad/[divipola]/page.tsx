@@ -83,6 +83,7 @@ export default async function CiudadPage(
       },
       stories: {
         where: { status: "PUBLISHED" },
+        include: { campaign: { select: { platform: true, url: true } } },
         orderBy: { publishedAt: "desc" },
       },
     },

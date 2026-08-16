@@ -11,7 +11,7 @@ import { SocialEmbed } from "@/components/data/SocialEmbed";
 import { ShareButton } from "@/components/ui/ShareButton";
 import { isGoFundMeUrl } from "@/lib/gofundme";
 import { VERIFICATION_LABEL } from "@/lib/labels";
-import { localizedStory, storyHref } from "@/lib/stories";
+import { localizedStory, storyHref, resolveStoryImage } from "@/lib/stories";
 import { formatDate } from "@/lib/format";
 
 export const revalidate = 60;
@@ -45,7 +45,7 @@ export async function generateMetadata({
   const { title, lede } = localizedStory(story, locale);
 
   const url = `${SITE_URL}${storyHref(slug, locale)}`;
-  const image = story.coverImageUrl ?? `${SITE_URL}/opengraph-image`;
+  const image = (await resolveStoryImage(story)) ?? `${SITE_URL}/opengraph-image`;
   const keywords = [
     "terremoto Colombia 2026",
     story.municipio?.name,
@@ -96,6 +96,7 @@ export default async function StoryDetailPage({
   const paragraphs = body.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
   const pageUrl = `${SITE_URL}${storyHref(slug, locale)}`;
   const publishedAt = (story.publishedAt ?? story.createdAt).toISOString();
+  const resolvedImage = await resolveStoryImage(story);
 
   // schema.org/Article — grounded only in real fetched fields, same
   // discipline as the Organization/Dataset/City schemas elsewhere on the
@@ -108,7 +109,7 @@ export default async function StoryDetailPage({
     "@type": "Article",
     headline: title,
     description: lede,
-    image: [story.coverImageUrl ?? `${SITE_URL}/opengraph-image`],
+    image: [resolvedImage ?? `${SITE_URL}/opengraph-image`],
     datePublished: publishedAt,
     dateModified: story.updatedAt.toISOString(),
     inLanguage: locale === "en" ? "en-US" : "es-CO",
@@ -138,10 +139,10 @@ export default async function StoryDetailPage({
         <ShareButton href={storyHref(slug, locale)} label={title} />
       </div>
 
-      {story.coverImageUrl && (
+      {resolvedImage && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={story.coverImageUrl}
+          src={resolvedImage}
           alt={title}
           className="mt-6 aspect-[1200/630] w-full rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
         />
