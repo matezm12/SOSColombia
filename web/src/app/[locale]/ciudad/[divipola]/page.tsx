@@ -172,7 +172,7 @@ export default async function CiudadPage(
         <SectionHeading>{t("puntosDeAyuda")}</SectionHeading>
         {geocodedAidPoints.length > 0 && (
           <div className="mt-4">
-            <CiudadMapaClient points={geocodedAidPoints} />
+            <CiudadMapaClient points={geocodedAidPoints} divipolaCode={municipio.divipolaCode} />
           </div>
         )}
         <div className="mt-4 space-y-6">

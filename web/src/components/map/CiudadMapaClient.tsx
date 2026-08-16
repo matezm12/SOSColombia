@@ -57,7 +57,13 @@ function markerColor(kind: string): string {
   return value || "#3f3f46";
 }
 
-export default function CiudadMapaClient({ points }: { points: AidPointMarker[] }) {
+export default function CiudadMapaClient({
+  points,
+  divipolaCode,
+}: {
+  points: AidPointMarker[];
+  divipolaCode: string;
+}) {
   const t = useTranslations("ciudad");
   const mapContainer = useRef<HTMLDivElement | null>(null);
 
@@ -120,17 +126,89 @@ export default function CiudadMapaClient({ points }: { points: AidPointMarker[] 
       bounds.extend([point.lng, point.lat]);
     }
 
+    // Deliberately a plain timer poll rather than an event listener ('load'
+    // or 'styledata'): both were tried for the comuna-layer callback below
+    // and neither reliably fired a second listener registered in the same
+    // tick as this fitBounds one -- 'load' never fired at all in testing,
+    // and 'styledata' stopped firing before isStyleLoaded() actually flipped
+    // true (MapLibre signals the final stretch of readiness through other
+    // events, e.g. 'idle'). Polling isStyleLoaded() directly sidesteps
+    // needing to know which exact event this basemap style ends up relying
+    // on, and is used for both callbacks below for the same reason.
+    const readyCheckIntervals: ReturnType<typeof setInterval>[] = [];
+    function whenStyleReady(cb: () => void) {
+      if (map.isStyleLoaded()) {
+        cb();
+        return;
+      }
+      const interval = setInterval(() => {
+        if (map.isStyleLoaded()) {
+          clearInterval(interval);
+          cb();
+        }
+      }, 150);
+      readyCheckIntervals.push(interval);
+    }
+
     if (!bounds.isEmpty()) {
-      map.once("load", () => {
+      whenStyleReady(() => {
         map.fitBounds(bounds, { padding: 50, maxZoom: 16, duration: 0 });
       });
     }
 
+    // Comuna/barrio boundaries -- only some cities have a source for this so
+    // far (see prisma/convert-pereira-comunas.mjs); fetched client-side and
+    // silently skipped if this city doesn't have a file yet, same "empty
+    // means not published yet" pattern as everywhere else on the site.
+    whenStyleReady(() => {
+      fetch(`/data/comunas-${divipolaCode}.geojson`)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((geojson) => {
+          if (!geojson) return;
+          map.addSource("comunas", {
+            type: "geojson",
+            data: geojson,
+            attribution: "Comunas: Portal Geográfico de Pereira",
+          });
+          map.addLayer({
+            id: "comunas-fill",
+            type: "fill",
+            source: "comunas",
+            paint: { "fill-color": "#71717a", "fill-opacity": 0.06 },
+          });
+          map.addLayer({
+            id: "comunas-line",
+            type: "line",
+            source: "comunas",
+            paint: { "line-color": "#71717a", "line-width": 1, "line-opacity": 0.5 },
+          });
+          map.addLayer({
+            id: "comunas-label",
+            type: "symbol",
+            source: "comunas",
+            layout: {
+              "text-field": ["get", "nombre"],
+              "text-size": 11,
+              "text-font": ["Noto Sans Regular"],
+            },
+            paint: {
+              "text-color": "#52525b",
+              "text-halo-color": "#ffffff",
+              "text-halo-width": 1.2,
+            },
+          });
+        })
+        .catch(() => {
+          // No boundary file for this city yet -- not an error, just not built out.
+        });
+    });
+
     return () => {
+      readyCheckIntervals.forEach(clearInterval);
       markers.forEach((marker) => marker.remove());
       map.remove();
     };
-  }, [points]);
+  }, [points, divipolaCode]);
 
   if (points.length === 0) return null;
 
