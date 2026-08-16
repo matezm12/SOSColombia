@@ -5368,3 +5368,43 @@ seventh consecutive pass — expected, not a gap.
 Continue round 6: Ibagué remains, closing out the round. Then begin
 Round 6 coverage of Argelia, Valle del Cauca (see the dedicated
 addition entry once its base municipio pass lands).
+
+## Pass 79 (2026-08-16) — adds Argelia, Valle del Cauca
+
+Added as a twelfth tracked municipality, per an explicit user request.
+The user had heard that little relief is reaching this town, and that
+aid meant for it might be getting diverted elsewhere — this pass adds
+the base Municipio record on verified structural-damage grounds; the
+diversion/interception claim is **not corroborated by any source
+found so far** and is deliberately left out of the public-facing
+alert note. It's an open question for the dedicated research pass to
+actively hunt down, not something to assert as fact on a bare claim.
+
+### Why CRÍTICA
+Two fully-verified El País (Cali) articles: an Aug 13 piece covering
+Valle governor Dilian Francisca Toro's personal visit to Argelia — she
+confirmed an entire sector of the town must be relocated, 70+ families
+are displaced, and the municipal hospital was affected badly enough to
+need an emergency generator; and an Aug 16 department-wide roundup in
+which Valle's Risk Management Secretary Francisco Tenorio names
+Argelia directly among the region's hardest-hit municipios ("En El
+Cairo colapsó el 80% del casco urbano... También tenemos el caso de
+Ulloa, Toro, Alcalá, Argelia, Ansermanuevo, Roldanillo, Zarzal,
+Trujillo y hasta Buenaventura"), in the same report documenting 6,000+
+homes lost departmentally. A separately-seen headline claiming "más
+del 90% del municipio afectado" could not be traced to a live,
+fetchable article — deliberately not cited or used to justify severity
+here, and flagged for a future pass to confirm or drop.
+
+### Basics
+DIVIPOLA code 76054 (department 76, Valle del Cauca), population
+5,397 (2018 DANE census), coordinates 4.7261, -76.1217 — all
+cross-verified across Spanish Wikipedia, Wikidata, and
+citypopulation.de, which independently agree on the code.
+
+### Next steps (pass 79)
+Finish Round 6 with Ibagué. Then run a full dedicated 5-agent research
+pass on Argelia (matching the deep-pass pattern used for Pijao and
+Ibagué when they were added) — aid points, needs, toll figures, and
+above all, actively hunting for any real evidence one way or the
+other on the aid-interception/diversion claim.
