@@ -5583,3 +5583,94 @@ question with working social-media search access, and try to
 disambiguate the housing-damage percentage (reported inconsistently
 across sources as 70%, 80%, or 90%+ depending on whether the metric
 is housing stock specifically or the municipio broadly).
+
+## Pass 82 (2026-08-16) — Argelia, second deep pass + solidarity hunt
+
+Per an explicit user request: dig further into Argelia itself, and
+specifically hunt for other cities/towns organizing aid for it.
+
+### Headline result: the padrino is Pamplona, confirmed
+
+Argelia's official sponsor municipio under Fedemunicipios' Plan
+Padrino entre Alcaldes is **Pamplona, Norte de Santander** (alcalde
+Klaus Faber Mogollón) — this resolves pass 81's headline-only lead.
+Confirmed directly by fetching Pamplona's own official Instagram reel
+(@alcaldiadepamplona), which announces "Solidaridad por Argelia" and
+lists accepted donation items (sealed non-perishables with 3+ months
+before expiry, hygiene supplies, construction materials, pet food).
+Cross-referenced against Fedemunicipios' own live tracking database
+and coverage from El País, Diario Occidente, and Emisora Nueva Época.
+Status as of this pass: "en proceso" — no shipment confirmed
+delivered yet. The same mayor is simultaneously co-padrino of
+neighboring El Cairo, splitting Pamplona's capacity across two towns.
+One minor, single-commenter complaint under Pamplona's own post
+accused its mayor of not personally contributing funds — this is
+about Pamplona's own mayor, not about Argelia's aid being diverted,
+and isn't treated as evidence toward the interception question.
+
+### New aid points (3)
+Two newly-verified GoFundMe campaigns explicitly naming Argelia: one
+from an individual with grandparents' family land there, one from a
+Salento (Quindío)-based family/volunteer group personally delivering
+supplies to Argelia and three neighboring norte-del-Valle towns.
+Plus the Pamplona padrino channel itself.
+
+### A caution on verification — three leads checked and NOT seeded
+Research surfaced several other candidate Cali-based collection
+points said to serve Argelia. Before writing any to the database,
+each was checked directly:
+- **Surtifamiliar's "Caravana por la Vida" drive** — checked directly.
+  The supermarket's own post names its destination as "Buenaventura y
+  otros municipios del norte," not Argelia specifically. The
+  Argelia-specific address that surfaced came only from a reposting
+  account, not from Surtifamiliar itself. Excluded — same "must name
+  Argelia specifically" bar this project already applies to Palmira's
+  diocesan campaign, which has the identical problem.
+- **An influencer's home-address collection point** ("Vamos a
+  Pueblear") — checked directly; nothing matching the claimed
+  campaign appeared in the account's current visible content. May
+  have lived only in expired Stories. Not seeded without independent
+  confirmation.
+- **The Alcaldía de Cali's official redistribution point**, claimed
+  (via a search snippet only) to have delivered 146 kg of aid to
+  Argelia specifically — could not be independently verified beyond
+  that snippet despite a direct attempt. Not seeded.
+
+### A genuine solidarity story, not seeded but worth telling
+**Bruselas**, a corregimiento of Pitalito, Huila — a full department
+away from Valle del Cauca — saw community leaders organize a truck
+that physically delivered mercados, agua, and kits básicos to
+Argelia, independently covered by two separate Pitalito news outlets.
+A one-time completed delivery rather than an ongoing channel, so not
+an aid point, but a real, corroborated act of solidarity worth
+recording. Similarly, Cali Informa (414K+ Facebook followers) has
+been personally trucking donations to Argelia while running an
+ongoing public call for donations — real, but with no fixed drop-off
+address of its own to seed as a distinct point.
+
+Tuluá and Cartago outlets both gave Argelia sustained, sympathetic
+coverage, but neither has an organized, addressed collection drive
+specific to Argelia as of this pass — their contribution so far is
+attention, not aid infrastructure.
+
+### Interception question: still nothing
+No corroboration found again this round. The only adjacent material
+was a single vague, unattributed Instagram comment about "personas
+inescrupulosas" — no named target, no specific incident. Conclusion
+unchanged from pass 81: this remains an access/attention-gap story,
+not a diversion story.
+
+### Other confirmations, not separately logged
+Reconstruction has formally begun: the governor named Argelia (with
+El Cairo) among the first municipios where roof repairs ("poner
+techos") would start. A 21-inch pipeline serving seven towns
+including Argelia was repaired and water service restored Aug 12,
+10pm. A general (not Argelia-specific) Policía Nacional warning about
+post-earthquake donation scams was reported Aug 16 — impersonated
+relief-org leaders, hijacked WhatsApp/social accounts, personal bank
+accounts collecting "donations." The two GoFundMe campaigns already
+on file were reconfirmed still active and growing.
+
+### Next steps
+Begin round 7 across all thirteen tracked cities in rotation order,
+now including Argelia.
