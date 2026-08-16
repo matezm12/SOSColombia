@@ -2,6 +2,7 @@
   "fuentes": {
     "title": "Sources",
     "lede": "Every data point on this site comes from a source cited here, with its reliability tier. Tier 1 is the most direct official source; tier 6 is unverified social media.",
+    "nivelesHeading": "Reliability tiers",
     "table": {
       "organizacion": "Organization",
       "nivel": "Tier",

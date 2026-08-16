@@ -46,9 +46,23 @@ export default async function MetodologiaPage(props: PageProps<"/[locale]/metodo
         <p>{t("intro2")}</p>
       </div>
 
+      <SectionHeading first>{t("quienesHeading")}</SectionHeading>
+      <div className="mt-4 space-y-3 text-zinc-600 dark:text-zinc-400">
+        <p>{t("quienesTexto")}</p>
+        <p>
+          {t.rich("nivelesTexto", {
+            link: (chunks) => (
+              <Link href="/fuentes" className="text-blue-600 hover:underline dark:text-blue-400">
+                {chunks}
+              </Link>
+            ),
+          })}
+        </p>
+      </div>
+
       {open.length > 0 && (
         <>
-          <SectionHeading first>{t("discrepanciasAbiertas")}</SectionHeading>
+          <SectionHeading>{t("discrepanciasAbiertas")}</SectionHeading>
           <div className="mt-4 space-y-4">
             {open.map((c) => (
               <ContradictionCard key={c.id} contradiction={c} locale={locale} />
@@ -59,7 +73,7 @@ export default async function MetodologiaPage(props: PageProps<"/[locale]/metodo
 
       {resolved.length > 0 && (
         <>
-          <SectionHeading first={open.length === 0}>{t("discrepanciasResueltas")}</SectionHeading>
+          <SectionHeading>{t("discrepanciasResueltas")}</SectionHeading>
           <div className="mt-4 space-y-4">
             {resolved.map((c) => (
               <ContradictionCard key={c.id} contradiction={c} locale={locale} />

@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Badge } from "@/components/ui/Badge";
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { tierLabel, sourceStatusLabel } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
@@ -44,7 +45,19 @@ export default async function FuentesPage(props: PageProps<"/[locale]/fuentes">)
       title={t("title")}
       lede={t("lede")}
     >
-      <div className="mt-6 overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
+      <SectionHeading first>{t("nivelesHeading")}</SectionHeading>
+      <ul className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {[1, 2, 3, 4, 5, 6].map((tier) => (
+          <li key={tier} className="flex items-center gap-2">
+            <Badge variant="tier" value={tier}>
+              {tier}
+            </Badge>
+            <span className="text-sm text-zinc-600 dark:text-zinc-400">{tierLabel(tier, locale)}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-8 overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-zinc-200 text-left text-xs uppercase tracking-wide text-zinc-500 dark:border-zinc-800">

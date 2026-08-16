@@ -2,6 +2,7 @@
   "fuentes": {
     "title": "Fuentes",
     "lede": "Cada dato en este sitio viene de una fuente citada aquí, con su nivel de confiabilidad. Nivel 1 es la fuente oficial más directa; nivel 6 son redes sociales sin verificar.",
+    "nivelesHeading": "Niveles de confiabilidad",
     "table": {
       "organizacion": "Organización",
       "nivel": "Nivel",
