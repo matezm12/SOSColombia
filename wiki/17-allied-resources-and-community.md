@@ -5194,3 +5194,75 @@ documented, just reposted by a different page — not re-seeded.
 ### Next steps (pass 75)
 Continue round 6: Dosquebradas, San José del Palmar, Pijao, and
 Ibagué remain.
+
+## Pass 76 (2026-08-16) — Dosquebradas, round 6
+
+Five prior rounds (21, 30, 42, 52, 65) already covered this city.
+
+### Shelter roster: status update, not new sites
+The official Alcaldía Instagram account confirmed all four shelters
+in the network are now operational. Two of them were previously
+tracked as unfinished: the "4th shelter under construction" seeded in
+pass 52 as "Albergue en construcción — La Graciela" is open, at the
+sports field in barrio Minuto de Dios, confirmed capacity 150 — same
+entity, richer detail, not re-seeded. And pass 65's Centro Vida José
+Argemiro Cárdenas, previously queued to open once Las Violetas
+filled, is now confirmed active alongside it.
+
+### New aid points (1)
+A community-run acopio at the Sindicato de Trabajadores de La Rosa
+union hall in barrio Guadalupe — independently found by two of the
+five agents this round, both citing the identical street address and
+coordinator.
+
+### New community embeds (1)
+UNGRD (the national disaster agency) delivered 70 tents and 210
+blankets directly to the Dosquebradas municipal government —
+identically worded across at least five Facebook reposts plus the
+official UNGRD account on X.
+
+### Flagged but unseedable
+Two real, dated stories surfaced without a verifiable social-platform
+permalink (X fetches returned HTTP 402 all round; only news-site URLs
+were reachable), so per the standing rule they're documented here
+rather than forced into the database as fake permalinks:
+- **La Graciela demolition controversy.** A contractor (named in
+  reporting as Juan Manuel Estrada, tied to Constructora Núcleo)
+  brought heavy machinery to demolish quake-damaged homes in La
+  Graciela without letting residents retrieve belongings, allegedly
+  to collect an equipment-rental fee. A CARDER (regional environmental
+  authority) official who objected was filmed being told she had no
+  jurisdiction. An attorney filed a formal complaint; a Puesto de
+  Mando Unificado meeting sided with CARDER and banned heavy machinery
+  there in favor of lighter equipment. Reported independently by
+  Semana and Pulzo, both citing an Aug 13 incident that broke into
+  national coverage on Aug 16. Worth a human double-check: "La
+  Graciela" is the same neighborhood name as the shelter above — the
+  reporting doesn't establish whether the demolition zone and the
+  shelter site are the same physical spot or just share a name.
+- **A named in-city quake death.** Roger David Ramírez Quiroz, a
+  17-year-old student, died when a wall collapsed at Colegio Fabio
+  Vásquez Botero during the earthquake itself — one of three schools
+  the city's Education Secretary has since confirmed need full
+  reconstruction (the other two are Popular Diocesano and Bernardo
+  López Pérez; two more have repairable damage). This is the first
+  named, address-specific Dosquebradas death found across all six
+  rounds, distinct from the still-uncorroborated round-5 "10
+  fallecidos" city-wide figure.
+
+### Toll status
+No fresh confirmation or contradiction of round 5's uncorroborated
+"10 fallecidos" figure. Two earlier, single-source counts turned up
+instead — a municipal PMU count of "at least 7" and a same-day
+rescue-ops count of 8, both dated Aug 11 — showing the toll was still
+fluctuating in the first 24-48 hours. Neither meets the corroboration
+bar alone, and neither is more recent than round 5's figure, so
+nothing is logged as a TollRecord this round; all three numbers stay
+in this note as unresolved context for a future pass.
+
+Crowdfunding (including the David Londoño campaign) and scam reports
+both stay a confirmed null this round — no updates found on either
+front despite targeted searching.
+
+### Next steps (pass 76)
+Continue round 6: San José del Palmar, Pijao, and Ibagué remain.
