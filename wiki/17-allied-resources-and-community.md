@@ -4979,3 +4979,49 @@ clarification.
 ### Next steps (pass 71)
 Continue round 6: Armenia, Quibdó, Buenaventura, Popayán, Dosquebradas,
 San José del Palmar, Pijao, and Ibagué remain.
+
+## Pass 72
+
+Round 6 continues: Armenia. Heaviest dedup of the round so far — of
+roughly a dozen aid-point candidates the five agents surfaced, all but
+two were already on file: Coliseo del Sur, Auditorio Ancízar López
+(CAM), the Diócesis's Banco de Alimentos, Centro de Convenciones de
+Armenia (pass 17), Fundación Oki Doki (pass 26), the Karol Sofia Perdomo
+Muñoz GoFundMe (pass 48), and Fundación Daniella Sarmiento C. — seeded
+just last round, pass 58. One more, the Sociedad Quindiana de
+Ornitología campaign, is the identical post already seeded under Pijao
+— a genuinely dual-city effort, not double-counted here.
+
+### A five-round-old lead, finally resolved
+Fundación Tizu, an elder-care home, has sat in this project's notes
+since pass 17 as an unverified name on a carousel — "a lead for a future
+pass," never checked. This round finally verified it: a concrete
+address, phone number, 33 residents, three of them oxygen-dependent.
+
+### The department's toll gets an official upgrade — still not Armenia's
+The "tres fallecidos en el Quindío" figure that pass 58 flagged as an
+unconfirmed rumor is now backed by the Gobernación's own 8th emergency
+bulletin — a real official document, not a rumor anymore. But it's still
+explicitly department-wide, not broken out by municipality, so it still
+isn't logged as Armenia's toll. The closest thing to an Armenia-specific
+death confirmation is a woman whose fatal fall and subsequent death both
+occurred inside the city — documented here without over-asserting the
+department's own framing, which never quite labels her "Armenia's."
+
+### The missing-persons case gets a lead, not a resolution
+Cristian Camilo Arango Marín's case (open and contested since pass 48)
+gets a fresh Aug 15 repost from his mother, still listing him missing —
+plus two independent commenters claiming a sighting near the bus
+terminal. A real lead, not a resolution; the contradiction with the
+crowdsourced "found" tracker stands unresolved.
+
+### New aid points (2)
+Fundación Tizu, and a second acopio point at Superautos del Quindío.
+
+### New community embeds (3)
+The closest-to-Armenia-specific death, the department toll's official
+upgrade, and the missing-persons sighting lead.
+
+### Next steps (pass 72)
+Continue round 6: Quibdó, Buenaventura, Popayán, Dosquebradas, San José
+del Palmar, Pijao, and Ibagué remain.
