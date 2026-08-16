@@ -53,15 +53,20 @@ const STATIC_ROUTES: Array<{
   { path: "/recursos", priority: 0.7, changeFrequency: "weekly" },
   { path: "/comunidad", priority: 0.7, changeFrequency: "weekly" },
   { path: "/comunidad/sugerir", priority: 0.7, changeFrequency: "weekly" },
+  { path: "/historias", priority: 0.7, changeFrequency: "weekly" },
   { path: "/sugerir", priority: 0.7, changeFrequency: "weekly" },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Municipio has no updatedAt/lastModified column in prisma/schema.prisma,
   // so per-city entries omit lastModified rather than faking a date.
-  const municipios = await prisma.municipio.findMany({
-    select: { divipolaCode: true },
-  });
+  const [municipios, stories] = await Promise.all([
+    prisma.municipio.findMany({ select: { divipolaCode: true } }),
+    prisma.story.findMany({
+      where: { status: "PUBLISHED" },
+      select: { slug: true, updatedAt: true },
+    }),
+  ]);
 
   return [
     ...STATIC_ROUTES.map((route) =>
@@ -74,6 +79,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       entry(`/ciudad/${m.divipolaCode}`, {
         priority: 0.6,
         changeFrequency: "weekly",
+      }),
+    ),
+    ...stories.map((s) =>
+      entry(`/historias/${s.slug}`, {
+        priority: 0.6,
+        changeFrequency: "monthly",
+        lastModified: s.updatedAt,
       }),
     ),
   ];

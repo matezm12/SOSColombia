@@ -15,7 +15,16 @@ export const revalidate = 60;
 const SITE_URL = "https://www.soscolombia.xyz";
 
 export async function GET() {
-  const [event, tollRecords, aidPoints, campaigns, govReports, contradictions, alliedResources] =
+  const [
+    event,
+    tollRecords,
+    aidPoints,
+    campaigns,
+    govReports,
+    contradictions,
+    alliedResources,
+    stories,
+  ] =
     await Promise.all([
       prisma.event.findFirst({ orderBy: { createdAt: "asc" } }),
       prisma.tollRecord.findMany({
@@ -44,6 +53,18 @@ export async function GET() {
         include: { municipio: { select: { name: true, divipolaCode: true } } },
         orderBy: [{ tier: "asc" }, { name: "asc" }],
       }),
+      // Editorial content, not a sourced fact table like the rest of this
+      // export -- included for completeness, each row still names its own
+      // source campaign/post/city via the *Id fields when present.
+      prisma.story.findMany({
+        where: { status: "PUBLISHED" },
+        include: {
+          municipio: { select: { name: true, divipolaCode: true } },
+          campaign: { select: { title: true, url: true } },
+          socialPost: { select: { permalink: true } },
+        },
+        orderBy: { publishedAt: "desc" },
+      }),
     ]);
 
   const body = {
@@ -58,6 +79,7 @@ export async function GET() {
     govReports,
     contradictions,
     alliedResources,
+    stories,
   };
 
   return new Response(JSON.stringify(body, null, 2), {

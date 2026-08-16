@@ -34,6 +34,7 @@ The core discipline: every figure carries its source, a source-quality tier (1 =
 - `/sugerir` — form to suggest an aid point (goes to moderation, not published directly)
 - `/comunidad` — verified social-media posts (aid requests, official updates) by city
 - `/recursos` — links to other independent trackers, directories, and donation platforms built by other people for this event
+- `/historias` — long-form editorial pieces expanding on specific crowdfunding campaigns and community posts, each explicitly linked back to the real campaign/post/city it's based on; admin-authored, bilingual (es/en) at the database level, not machine-translated
 - `/datos` — open data export: full dataset as JSON, plus CSV for toll records and aid points
 - `/cambios` — public activity feed: every new figure, verified aid point, reviewed campaign, logged discrepancy, and added resource, most recent first
 
@@ -45,7 +46,7 @@ The full dataset is machine-readable at `/api/export` (JSON: event, toll records
 
 ## Markdown Mirrors
 
-Clean, AI-readable markdown versions of every content page are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS): `/md`, `/md/ayuda`, `/md/cambios`, `/md/cifras`, `/md/ciudad/{divipola-code}`, `/md/comunidad`, `/md/donar`, `/md/donar/internacional`, `/md/fuentes`, `/md/informes`, `/md/mapa`, `/md/metodologia`, `/md/recursos`. Spanish-only (default locale), same as the underlying pages' default content. The two submission forms (`/sugerir`, `/comunidad/sugerir`) and their thank-you pages aren't mirrored — they're interactive flows, not content to quote.
+Clean, AI-readable markdown versions of every content page are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS): `/md`, `/md/ayuda`, `/md/cambios`, `/md/cifras`, `/md/ciudad/{divipola-code}`, `/md/comunidad`, `/md/donar`, `/md/donar/internacional`, `/md/fuentes`, `/md/historias`, `/md/historias/{slug}`, `/md/informes`, `/md/mapa`, `/md/metodologia`, `/md/recursos`. Spanish-only (default locale), same as the underlying pages' default content. The two submission forms (`/sugerir`, `/comunidad/sugerir`) and their thank-you pages aren't mirrored — they're interactive flows, not content to quote.
 
 ## Key Facts
 
