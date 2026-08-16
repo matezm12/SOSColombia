@@ -5408,3 +5408,80 @@ pass on Argelia (matching the deep-pass pattern used for Pijao and
 Ibagué when they were added) — aid points, needs, toll figures, and
 above all, actively hunting for any real evidence one way or the
 other on the aid-interception/diversion claim.
+
+## Pass 80 (2026-08-16) — Ibagué, round 6
+
+Ibagué's third overall research pass (after 59/municipio-add,
+60/deep, 66/tiktok-retry), and the last city needed to close out
+round 6 across all twelve tracked cities.
+
+### New aid points (2)
+- Universidad del Tolima's Sede Centro campus, an active
+  student-run collection point since Aug 13.
+- La Sierra Clínica Veterinaria de Especialistas — Ibagué's first
+  VET-category aid point, collecting supplies for animals affected
+  by the regional wildfires (San Luis, Payandé). Found independently
+  by two agents citing the same article, with matching detail down to
+  the five named veterinarians.
+
+Not seeded: a private citizen's home in barrio Santa Ana collecting
+baby and pregnancy supplies — real and verifiable, but the goods are
+personally driven out to Pereira and the Eje Cafetero rather than
+serving Ibagué's own displaced residents, so it falls outside this
+city's aid-point scope.
+
+### First-ever Ibagué toll record
+More than 200 official educational institutions shifted to virtual
+classes pending structural evaluation — a direct mayoral quote that
+maps cleanly onto CENTROS_EDUCATIVOS_AFECTADOS, unlike the same
+article's other figure (350+ buildings *inspected*, up sharply from
+the ~32 previously on file) — that's a process count, not a damage
+count, so per the discipline set in pass 60 it stays in this note
+rather than becoming a TollRecord. Also from this round: 8 hikers
+were rescued unharmed after landslides closed access to Termales El
+Rancho in Cañón del Combeima (Aug 14-15) — no casualties, so no toll
+entry, but a real, dated event.
+
+### Wildfire status: likely contained, not confirmed
+Ibagué and barrio Picaleña are conspicuously absent from three
+independent same-day Tolima active-fire lists this round — a signal,
+not a confirmed statement, that the in-city fire flagged in pass 66
+has been brought under control. No source explicitly declares it
+extinguished or contained, so this stays an inference here rather
+than a status change in the database. A future pass should try to
+get an explicit statement from Ibagué's Bomberos or Alcaldía.
+
+### Other real developments, not cleanly seedable
+- Employees at Ibagué's Palacio de Justicia reportedly fear for their
+  safety over visible cracks in the building (Caracol Radio, Aug 15) —
+  distinct from the already-known "lower seismic standards for new
+  permits" concern; this is about an existing government building.
+- Residents of Conjunto Verao (barrio Departamental) remain displaced
+  and are still waiting on an overdue structural-pathology inspection,
+  as of Aug 13 — a named, concrete instance inside the already-known
+  aggregate "48 families evacuated" figure, not a new count.
+- Cortolima's director publicly pushed (Aug 12) for seismic
+  microzonification data, national monitoring equipment for the
+  Ibagué fault, and a full technical review of the city.
+- Ibagué has a new permanent Secretary of Environment and Risk
+  Management, Jorge Humberto Leal, sworn in Aug 15.
+
+No dedicated shelter for Ibagué's own displaced residents was found,
+and no Ibagué-targeted scam or missing-persons case turned up —
+unchanged from pass 66.
+
+## Round 6 complete
+
+All twelve tracked cities (Pereira, Cali, Manizales, Armenia, Quibdó,
+Buenaventura, Popayán, Dosquebradas, San José del Palmar, Pijao,
+Ibagué) have now had a sixth research round, spanning passes 69
+through 80. Argelia, Valle del Cauca joined the tracker mid-round
+(pass 79) as a thirteenth-pass-pending addition — its first dedicated
+deep-research pass follows separately rather than as part of this
+round's count.
+
+### Next steps
+Process Argelia's first dedicated deep-research pass once it
+completes. After that, begin round 7 across all twelve established
+cities in rotation order, continuing to check for round-7-specific
+developments.
