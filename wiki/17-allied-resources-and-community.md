@@ -5025,3 +5025,57 @@ upgrade, and the missing-persons sighting lead.
 ### Next steps (pass 72)
 Continue round 6: Quibdó, Buenaventura, Popayán, Dosquebradas, San José
 del Palmar, Pijao, and Ibagué remain.
+
+## Pass 73
+
+Round 6 continues: Quibdó. A DANE Colombia government graphic listing "7
+puntos de acopio" looked like a major new find at first glance — direct
+verification against all six prior passes showed four of the seven were
+already on file (Gobernación del Chocó and the Postobón warehouse from
+pass 62; REDDHHPAC and the Terpel Cabí station from pass 18), and the
+Diócesis's food bank and Pastoral Social accounts re-surfaced with
+matching NIT and account numbers from pass 18 too. Only three of the
+graphic's seven points survived dedup as genuinely new.
+
+### A first: Quibdó finally gets a TollRecord
+Six prior passes never actually logged a Quibdó-specific toll figure —
+pass 61's notes discussed roughly 13 dead from press convergence, but it
+was never written to the database. Fixed now, sourced to a consolidated
+capital-cities report from Asocapitales's director: 9 dead, 119
+injured, 9 missing, plus the city's first housing-damage figures. The
+new figure reads lower than the informally-discussed 13 — not a direct
+database contradiction since nothing was logged before, but worth a
+future pass reconciling.
+
+### The blood-bank saga, still open since pass 18
+Video evidence shows a replacement refrigeration unit physically
+arriving at the hospital — but a same-day post says the existing
+equipment is still failing and unrepairable, and El Colombiano's
+"still not functional" coverage was still circulating the same day.
+Arrived, not confirmed restored.
+
+### A compounding crisis: the only shelter flooded
+Quibdó's sole shelter, the Coliseo de Boxeo, flooded during storms on
+top of the earthquake damage and had to be evacuated again — reported
+independently by three outlets (an investigative outlet, a local news
+page, and El Espectador's own account), which also documented
+neighbors organizing their own mutual-aid system in the meantime.
+
+### New aid points (10)
+Three genuinely new points from the DANE graphic, a departmental lab's
+supply request, a Cali-based relay brigade sending aid to Quibdó, the
+First Lady's national "Colombia, un solo corazón" campaign point, and
+four crowdfunding/monetary channels carrying explicit caution notes —
+two small personal appeals and two donation numbers corroborated only
+by TikTok creators, not by any institutional or government source.
+
+### New community embeds (6)
+The flooded shelter, the blood-bank refrigerator's partial update,
+Óscar Benavides's public response to the Corte Suprema investigation
+(still unresolved, collection now over $700M COP), a reconstruction-
+phase report from Zona Minera, 40 homes evacuated in Las Terrazas, and
+a humanitarian aid truck arriving from Pasto.
+
+### Next steps (pass 73)
+Continue round 6: Buenaventura, Popayán, Dosquebradas, San José del
+Palmar, Pijao, and Ibagué remain.
