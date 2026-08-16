@@ -48,6 +48,14 @@
   --color-contradiction-open: #9a3412; /* was #d97706, see status-full */
   --color-contradiction-resolved: #15803d; /* was #16a34a, see status-active */
 
+  /* AidPointKind (city aid-point map markers, src/components/map/aidKindMarkers.ts) */
+  --color-aidkind-albergue: #1d4ed8;
+  --color-aidkind-acopio: #a16207;
+  --color-aidkind-health: #0e7490;
+  --color-aidkind-vet: #4d7c0f;
+  --color-aidkind-blood_donation: #dc2626;
+  --color-aidkind-monetary_donation: #6d28d9;
+
   /* Brand */
   --color-brand: #dc2626;
 }
@@ -83,6 +91,13 @@
   --color-contradiction-open: var(--color-contradiction-open);
   --color-contradiction-resolved: var(--color-contradiction-resolved);
 
+  --color-aidkind-albergue: var(--color-aidkind-albergue);
+  --color-aidkind-acopio: var(--color-aidkind-acopio);
+  --color-aidkind-health: var(--color-aidkind-health);
+  --color-aidkind-vet: var(--color-aidkind-vet);
+  --color-aidkind-blood_donation: var(--color-aidkind-blood_donation);
+  --color-aidkind-monetary_donation: var(--color-aidkind-monetary_donation);
+
   --color-brand: var(--color-brand);
 }
 
@@ -117,6 +132,14 @@
 
   --color-contradiction-open: #f59e0b;
   --color-contradiction-resolved: #22c55e;
+
+  /* AidPointKind — brighter/desaturated for near-black, same pattern as above */
+  --color-aidkind-albergue: #60a5fa;
+  --color-aidkind-acopio: #eab308;
+  --color-aidkind-health: #22d3ee;
+  --color-aidkind-vet: #a3e635;
+  --color-aidkind-blood_donation: #f87171;
+  --color-aidkind-monetary_donation: #a78bfa;
 
   --color-brand: #f87171;
 }

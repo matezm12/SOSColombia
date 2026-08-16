@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { TollCard } from "@/components/data/TollCard";
 import { AidPointCard } from "@/components/data/AidPointCard";
+import CiudadMapaClient from "@/components/map/CiudadMapaClient";
 import { CampaignCard } from "@/components/data/CampaignCard";
 import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -88,6 +89,9 @@ export default async function CiudadPage(
   }
 
   const aidByKind = Object.groupBy(municipio.aidPoints, (a) => a.kind);
+  const geocodedAidPoints = municipio.aidPoints
+    .filter((a) => a.lat != null && a.lng != null)
+    .map((a) => ({ id: a.id, name: a.name, kind: a.kind, lat: a.lat as number, lng: a.lng as number }));
 
   // Structured data for the municipio being shown — only real, fetched fields.
   // lat/lng are nullable in the DB (Municipio.lat / Municipio.lng), so the geo
@@ -166,6 +170,11 @@ export default async function CiudadPage(
         </div>
 
         <SectionHeading>{t("puntosDeAyuda")}</SectionHeading>
+        {geocodedAidPoints.length > 0 && (
+          <div className="mt-4">
+            <CiudadMapaClient points={geocodedAidPoints} />
+          </div>
+        )}
         <div className="mt-4 space-y-6">
           {Object.entries(aidByKind).map(([kind, points]) => (
             <div key={kind}>
