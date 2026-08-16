@@ -3,15 +3,28 @@
 import { useState } from "react";
 import { ShareIcon, CheckIcon } from "./icons";
 
-// Small top-right corner button on cards that don't have their own page —
-// campaigns/resources are list items on /donar/internacional and /recursos,
-// not separate routes, so "share this one" means a deep link to its anchor
-// on the page it lives on, not a URL of its own.
-export function ShareButton({ anchorId, label }: { anchorId: string; label: string }) {
+// Small top-right corner button. Most cards using this don't have their own
+// page — campaigns/resources are list items on /donar/internacional and
+// /recursos, not separate routes, so "share this one" means a deep link to
+// its anchor on the page it lives on (anchorId). Stories DO have their own
+// route (/historias/[slug]), so pass href instead to share that URL
+// directly rather than an anchor fragment on whatever page the button
+// happens to render on.
+export function ShareButton({
+  anchorId,
+  href,
+  label,
+}: {
+  anchorId?: string;
+  href?: string;
+  label: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   async function handleShare() {
-    const url = `${window.location.origin}${window.location.pathname}#${anchorId}`;
+    const url = href
+      ? `${window.location.origin}${href}`
+      : `${window.location.origin}${window.location.pathname}${anchorId ? `#${anchorId}` : ""}`;
 
     if (typeof navigator.share === "function") {
       try {
