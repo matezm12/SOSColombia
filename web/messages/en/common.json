@@ -35,7 +35,11 @@
     "ayudaAnimales": "Looking for help for pets or animals? Filter <link>veterinary aid points</link>.",
     "proyectosDestacados": "Featured projects",
     "proyectosDestacadosLede": "Independent, mostly small/one-person tools built by other people to help — some focused on a single city, others nationwide.",
-    "verTodosLosRecursos": "See all independent projects and tools →"
+    "verTodosLosRecursos": "See all independent projects and tools →",
+    "orgDescriptionBase": "SOSColombia is an independent volunteer project that centralizes and verifies public data on natural disasters in Colombia.",
+    "orgDescriptionEvent": "It's currently tracking the magnitude {magnitude} (SGC) earthquake that occurred on {date}.",
+    "orgDescriptionMunicipios": "It gathers official figures, aid points, and verified donation campaigns for {count} affected municipios.",
+    "orgDisambiguating": "SOSColombia is an independent volunteer project that aggregates and verifies public data from official sources; it is not a registered NGO or a government entity."
   },
   "footer": {
     "descripcion": "Independent project tracking verified data on Colombia's August 10, 2026 earthquake.",

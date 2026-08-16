@@ -5,6 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ALLIED_CATEGORY_LABEL } from "@/lib/labels";
+import { buildAlternates } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: resources get added/
 // checked over time, not per-second.
@@ -17,7 +18,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "recursos" });
-  return { title: t("title"), description: t("lede") };
+  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/recursos", locale) };
 }
 
 const CATEGORY_ORDER = [

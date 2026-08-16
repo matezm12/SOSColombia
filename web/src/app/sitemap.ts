@@ -4,8 +4,10 @@ import { prisma } from "@/lib/prisma";
 const SITE_URL = "https://www.soscolombia.xyz";
 
 // es is unprefixed (localePrefix: "as-needed" in src/i18n/routing.ts), en is
-// under /en. Every entry gets both, plus an alternates.languages map so
-// crawlers see the es/en pair as translations of each other, not duplicates.
+// under /en. Each path gets its own <loc> per locale (not just an alternate
+// hung off the es entry) so both locales are first-class discovery targets
+// and the hreflang annotation is reciprocal — each entry's alternates map
+// includes an x-default pointing at the es (unprefixed) URL.
 function entry(
   path: string,
   opts: {
@@ -13,19 +15,22 @@ function entry(
     changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
     lastModified?: Date;
   },
-): MetadataRoute.Sitemap[number] {
-  return {
-    url: `${SITE_URL}${path}`,
+): MetadataRoute.Sitemap[number][] {
+  const languages = {
+    es: `${SITE_URL}${path}`,
+    en: `${SITE_URL}/en${path}`,
+    "x-default": `${SITE_URL}${path}`,
+  };
+  const base = {
     changeFrequency: opts.changeFrequency,
     priority: opts.priority,
     ...(opts.lastModified ? { lastModified: opts.lastModified } : {}),
-    alternates: {
-      languages: {
-        es: `${SITE_URL}${path}`,
-        en: `${SITE_URL}/en${path}`,
-      },
-    },
+    alternates: { languages },
   };
+  return [
+    { ...base, url: languages.es },
+    { ...base, url: languages.en },
+  ];
 }
 
 // Every indexable route under src/app/[locale]/, one entry per page.tsx.
@@ -55,6 +60,8 @@ const STATIC_ROUTES: Array<{
   { path: "/comunidad/sugerir", priority: 0.7, changeFrequency: "weekly" },
   { path: "/historias", priority: 0.7, changeFrequency: "weekly" },
   { path: "/sugerir", priority: 0.7, changeFrequency: "weekly" },
+  { path: "/datos", priority: 0.6, changeFrequency: "weekly" },
+  { path: "/cambios", priority: 0.6, changeFrequency: "daily" },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -69,19 +76,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]);
 
   return [
-    ...STATIC_ROUTES.map((route) =>
+    ...STATIC_ROUTES.flatMap((route) =>
       entry(route.path, {
         priority: route.priority,
         changeFrequency: route.changeFrequency,
       }),
     ),
-    ...municipios.map((m) =>
+    ...municipios.flatMap((m) =>
       entry(`/ciudad/${m.divipolaCode}`, {
         priority: 0.6,
         changeFrequency: "weekly",
       }),
     ),
-    ...stories.map((s) =>
+    ...stories.flatMap((s) =>
       entry(`/historias/${s.slug}`, {
         priority: 0.6,
         changeFrequency: "monthly",

@@ -21,6 +21,18 @@ export const revalidate = 60;
 // one (same pattern as [locale]/page.tsx and ciudad/[divipola]/page.tsx).
 const SITE_URL = "https://www.soscolombia.xyz";
 
+// Required for this dynamic segment to be ISR-cacheable — without it,
+// `revalidate` above has no effect and every request hits the origin cold
+// (X-Vercel-Cache: MISS on every hit, confirmed live). Mirrors
+// ciudad/[divipola]/page.tsx's own generateStaticParams.
+export async function generateStaticParams() {
+  const stories = await prisma.story.findMany({
+    where: { status: "PUBLISHED" },
+    select: { slug: true },
+  });
+  return stories.map((s) => ({ slug: s.slug }));
+}
+
 async function getStory(slug: string) {
   return prisma.story.findFirst({
     where: { slug, status: "PUBLISHED" },
@@ -61,6 +73,7 @@ export async function generateMetadata({
       languages: {
         es: `${SITE_URL}${storyHref(slug, "es")}`,
         en: `${SITE_URL}${storyHref(slug, "en")}`,
+        "x-default": `${SITE_URL}${storyHref(slug, "es")}`,
       },
     },
     openGraph: {

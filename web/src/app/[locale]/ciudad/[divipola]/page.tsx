@@ -15,6 +15,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
 import { AID_KIND_LABEL } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
+import { buildAlternates, absoluteUrl } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: figures update via
 // cron/moderation, not per-second, so a 60s cache keeps things fresh without
@@ -50,6 +51,7 @@ export async function generateMetadata({
       city: municipio.name,
       department: municipio.department.name,
     }),
+    alternates: buildAlternates(`/ciudad/${divipola}`, locale),
   };
 }
 
@@ -109,6 +111,7 @@ export default async function CiudadPage(
     "@context": "https://schema.org",
     "@type": "City",
     name: municipio.name,
+    url: absoluteUrl(`/ciudad/${municipio.divipolaCode}`, locale),
     identifier: municipio.divipolaCode,
     address: {
       "@type": "PostalAddress",

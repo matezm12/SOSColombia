@@ -35,7 +35,11 @@
     "ayudaAnimales": "¿Buscas ayuda para mascotas o animales? Filtra <link>los puntos veterinarios</link>.",
     "proyectosDestacados": "Proyectos destacados",
     "proyectosDestacadosLede": "Herramientas independientes, en su mayoría pequeñas o de una sola persona, construidas por otras personas para ayudar — algunas enfocadas en una ciudad, otras a nivel nacional.",
-    "verTodosLosRecursos": "Ver todos los proyectos y herramientas independientes →"
+    "verTodosLosRecursos": "Ver todos los proyectos y herramientas independientes →",
+    "orgDescriptionBase": "SOSColombia es un proyecto independiente de voluntariado que centraliza y verifica datos públicos sobre desastres naturales en Colombia.",
+    "orgDescriptionEvent": "Actualmente hace seguimiento al terremoto de magnitud {magnitude} (SGC) ocurrido el {date}.",
+    "orgDescriptionMunicipios": "Reúne cifras oficiales, puntos de ayuda y campañas de donación verificadas para {count} municipios afectados.",
+    "orgDisambiguating": "SOSColombia es un proyecto de voluntariado independiente que agrega y verifica datos públicos de fuentes oficiales; no es una ONG registrada ni una entidad gubernamental."
   },
   "footer": {
     "descripcion": "Proyecto independiente de datos verificados sobre el terremoto de Colombia del 10 de agosto de 2026.",

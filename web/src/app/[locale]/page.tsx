@@ -54,18 +54,17 @@ export default async function Home(props: PageProps<"/[locale]">) {
   // Grounded only in data actually fetched above — degrades gracefully
   // (shorter sentence) rather than inventing an event or a municipio count
   // when either query comes back empty.
-  const orgDescriptionParts = [
-    "SOSColombia es un proyecto independiente de voluntariado que centraliza y verifica datos públicos sobre desastres naturales en Colombia.",
-  ];
+  const orgDescriptionParts = [t("orgDescriptionBase")];
   if (event?.magnitudeSgc != null && event.occurredAt) {
     orgDescriptionParts.push(
-      `Actualmente hace seguimiento al terremoto de magnitud ${event.magnitudeSgc.toFixed(1)} (SGC) ocurrido el ${event.occurredAt.toISOString().slice(0, 10)}.`
+      t("orgDescriptionEvent", {
+        magnitude: event.magnitudeSgc.toFixed(1),
+        date: event.occurredAt.toISOString().slice(0, 10),
+      })
     );
   }
   if (municipios.length > 0) {
-    orgDescriptionParts.push(
-      `Reúne cifras oficiales, puntos de ayuda y campañas de donación verificadas para ${municipios.length} municipios afectados.`
-    );
+    orgDescriptionParts.push(t("orgDescriptionMunicipios", { count: municipios.length }));
   }
 
   // schema.org/Organization — deliberately the generic "Organization" type
@@ -78,9 +77,9 @@ export default async function Home(props: PageProps<"/[locale]">) {
     "@type": "Organization",
     name: "SOSColombia",
     url: SITE_URL,
+    logo: { "@type": "ImageObject", url: `${SITE_URL}/opengraph-image` },
     description: orgDescriptionParts.join(" "),
-    disambiguatingDescription:
-      "SOSColombia es un proyecto de voluntariado independiente que agrega y verifica datos públicos de fuentes oficiales; no es una ONG registrada ni una entidad gubernamental.",
+    disambiguatingDescription: t("orgDisambiguating"),
   };
 
   const websiteSchema = {

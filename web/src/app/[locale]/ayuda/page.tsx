@@ -6,6 +6,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { AidPointCard } from "@/components/data/AidPointCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { AID_KIND_LABEL } from "@/lib/labels";
+import { buildAlternates } from "@/lib/seo";
 
 // Deliberately NOT converted to ISR like its sibling pages: the `?tipo=`
 // filter reads searchParams, which forces real per-request dynamic rendering
@@ -21,7 +22,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "ayuda" });
-  return { title: t("title"), description: t("lede") };
+  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/ayuda", locale) };
 }
 
 const KINDS = ["ALBERGUE", "ACOPIO", "HEALTH", "VET", "BLOOD_DONATION", "MONETARY_DONATION"] as const;

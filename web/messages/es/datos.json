@@ -1,6 +1,7 @@
 {
   "datos": {
     "title": "Datos abiertos",
+    "datasetName": "SOSColombia — dataset abierto",
     "lede": "Todo el conjunto de datos verificado, listo para descargar y reutilizar. Cada registro lleva su fuente, su fecha y su nivel de confiabilidad, igual que en el resto del sitio.",
     "resumen": "{tollRecords} cifras · {aidPoints} puntos de ayuda · {campaigns} campañas · {reports} informes · {contradictions} discrepancias · {resources} recursos aliados",
     "jsonTitle": "JSON completo",
@@ -10,6 +11,9 @@
     "csvDescription": "Las dos tablas más fáciles de abrir en una hoja de cálculo.",
     "downloadCifrasCsv": "Cifras (CSV) →",
     "downloadAyudaCsv": "Puntos de ayuda (CSV) →",
+    "distJson": "Dataset completo (JSON)",
+    "distCifrasCsv": "Cifras (CSV)",
+    "distAyudaCsv": "Puntos de ayuda (CSV)",
     "license": "Uso libre, con atribución. Cada dato ya trae su propia fuente citada — mantenla al reutilizar la información.",
     "methodologyLink": "Leer la metodología completa →"
   }

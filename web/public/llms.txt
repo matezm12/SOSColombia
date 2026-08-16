@@ -46,7 +46,7 @@ The full dataset is machine-readable at `/api/export` (JSON: event, toll records
 
 ## Markdown Mirrors
 
-Clean, AI-readable markdown versions of every content page are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS): `/md`, `/md/ayuda`, `/md/cambios`, `/md/cifras`, `/md/ciudad/{divipola-code}`, `/md/comunidad`, `/md/donar`, `/md/donar/internacional`, `/md/fuentes`, `/md/historias`, `/md/historias/{slug}`, `/md/informes`, `/md/mapa`, `/md/metodologia`, `/md/recursos`. Spanish-only (default locale), same as the underlying pages' default content. The two submission forms (`/sugerir`, `/comunidad/sugerir`) and their thank-you pages aren't mirrored — they're interactive flows, not content to quote.
+Clean, AI-readable markdown versions of every content page are served at `/md/{page-path}` (plain text, `Content-Type: text/markdown`, no HTML/CSS/JS): `/md`, `/md/ayuda`, `/md/cambios`, `/md/cifras`, `/md/ciudad/{divipola-code}`, `/md/comunidad`, `/md/datos`, `/md/donar`, `/md/donar/internacional`, `/md/fuentes`, `/md/historias`, `/md/historias/{slug}`, `/md/informes`, `/md/mapa`, `/md/metodologia`, `/md/recursos`. Spanish-only (default locale), same as the underlying pages' default content. The two submission forms (`/sugerir`, `/comunidad/sugerir`) and their thank-you pages aren't mirrored — they're interactive flows, not content to quote.
 
 ## Key Facts
 
@@ -54,7 +54,7 @@ Clean, AI-readable markdown versions of every content page are served at `/md/{p
 - Magnitude 7.4, reported consistently by both the Servicio Geológico Colombiano (SGC) and USGS.
 - Epicenter near San José del Palmar, Chocó — SGC reads 4.99, -76.29; USGS reads 4.8436, -76.2422 (the two agencies' readings differ slightly and both are shown).
 - Depth: SGC ~103 km (revised upward across several bulletins), USGS ~110.3 km — logged as an open, unresolved discrepancy.
-- 7 municipios are tracked in depth; a national UNGRD report separately cites 403 municipios and 14 departments affected overall.
+- 11 municipios are tracked in depth (across 7 departments); a national UNGRD report separately cites 403 municipios and 14 departments affected overall.
 - Reported death toll moved from 239 (UNGRD, Aug 12) to 241 (OCHA Flash Update 004, Aug 12) to 265 (UNGRD, Aug 13); forensic confirmation (INMLCF) separately logged 230 bodies received / 205 identified as of Aug 12 — these are different metrics, not corrections of each other.
 - Presidential Decreto 1171 declared a national state of disaster the night of August 11, 2026.
 - San José del Palmar, the literal epicenter, had zero confirmed deaths as of the last recorded figure.

@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { StoryCard } from "@/components/data/StoryCard";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { buildAlternates } from "@/lib/seo";
 
 // Stories get added/edited occasionally, not per-second — matches the
 // revalidate convention already used by recursos/ciudad, not force-dynamic.
@@ -16,7 +17,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "historias" });
-  return { title: t("title"), description: t("lede") };
+  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/historias", locale) };
 }
 
 export default async function HistoriasPage({

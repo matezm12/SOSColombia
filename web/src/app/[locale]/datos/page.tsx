@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
 import { METRIC_LABEL } from "@/lib/labels";
+import { buildAlternates, absoluteUrl } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic -- see donar/page.tsx
 // for why `await props.params` before getTranslations matters here.
@@ -22,11 +23,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "datos" });
-  return { title: t("title"), description: t("lede") };
+  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/datos", locale) };
 }
 
 export default async function DatosPage(props: PageProps<"/[locale]/datos">) {
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("datos");
 
   const [tollRecords, aidPoints, campaigns, reports, contradictions, resources] =
@@ -47,33 +48,37 @@ export default async function DatosPage(props: PageProps<"/[locale]/datos">) {
   const datasetSchema = {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    name: "SOSColombia — dataset abierto",
+    name: t("datasetName"),
     description: t("lede"),
-    url: `${SITE_URL}/datos`,
+    url: absoluteUrl("/datos", locale),
     isAccessibleForFree: true,
-    license: "Uso libre con atribución -- cada registro conserva su fuente original citada.",
+    license: t("license"),
     creator: {
       "@type": "Organization",
       name: "SOSColombia",
       url: SITE_URL,
     },
+    // variableMeasured stays Spanish-only for now: METRIC_LABEL (src/lib/labels.ts)
+    // has no English variant yet, and every other on-page use of these labels
+    // (cifras, TollCard) is Spanish-only too — translating this one spot alone
+    // would make the schema disagree with the page's own visible text.
     variableMeasured: Object.values(METRIC_LABEL),
     distribution: [
       {
         "@type": "DataDownload",
-        name: "Dataset completo (JSON)",
+        name: t("distJson"),
         encodingFormat: "application/json",
         contentUrl: `${SITE_URL}/api/export`,
       },
       {
         "@type": "DataDownload",
-        name: "Cifras (CSV)",
+        name: t("distCifrasCsv"),
         encodingFormat: "text/csv",
         contentUrl: `${SITE_URL}/api/export/csv/toll-records`,
       },
       {
         "@type": "DataDownload",
-        name: "Puntos de ayuda (CSV)",
+        name: t("distAyudaCsv"),
         encodingFormat: "text/csv",
         contentUrl: `${SITE_URL}/api/export/csv/aid-points`,
       },

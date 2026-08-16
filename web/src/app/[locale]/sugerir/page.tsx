@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { submitAidPoint } from "./actions";
 import { PageShell } from "@/components/layout/PageShell";
+import { buildAlternates } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: the municipio list
 // changes rarely, and this avoids a DB round trip on every request.
@@ -15,7 +16,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "sugerir" });
-  return { title: t("title"), description: t("lede") };
+  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/sugerir", locale) };
 }
 
 export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">) {

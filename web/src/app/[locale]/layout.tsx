@@ -5,6 +5,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { buildAlternates, absoluteUrl } from "@/lib/seo";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import "../globals.css";
@@ -52,7 +53,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
-  const path = locale === routing.defaultLocale ? "" : `/${locale}`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -61,18 +61,11 @@ export async function generateMetadata({
       template: "%s — SOSColombia",
     },
     description: t("description"),
-    alternates: {
-      canonical: `${SITE_URL}${path}`,
-      languages: {
-        es: SITE_URL,
-        en: `${SITE_URL}/en`,
-        "x-default": SITE_URL,
-      },
-    },
+    alternates: buildAlternates("", locale),
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: `${SITE_URL}${path}`,
+      url: absoluteUrl("", locale),
       siteName: "SOSColombia",
       locale: locale === "es" ? "es_CO" : "en_US",
       type: "website",

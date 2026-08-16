@@ -6,6 +6,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { ContradictionCard } from "@/components/data/ContradictionCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { buildAlternates } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: contradictions get
 // resolved/added over time, not per-second.
@@ -18,7 +19,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metodologia" });
-  return { title: t("title"), description: t("intro1") };
+  return { title: t("title"), description: t("intro1"), alternates: buildAlternates("/metodologia", locale) };
 }
 
 export default async function MetodologiaPage(props: PageProps<"/[locale]/metodologia">) {

@@ -8,6 +8,7 @@ import { CampaignCard } from "@/components/data/CampaignCard";
 import { AidPointCard } from "@/components/data/AidPointCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { buildAlternates } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: donation status/raised
 // amounts don't change second-to-second, and this keeps a traffic spike from
@@ -21,7 +22,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "donar" });
-  return { title: t("title"), description: t("lede") };
+  return { title: t("title"), description: t("lede"), alternates: buildAlternates("/donar", locale) };
 }
 
 export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
