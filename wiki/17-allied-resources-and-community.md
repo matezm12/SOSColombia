@@ -5079,3 +5079,63 @@ a humanitarian aid truck arriving from Pasto.
 ### Next steps (pass 73)
 Continue round 6: Buenaventura, Popayán, Dosquebradas, San José del
 Palmar, Pijao, and Ibagué remain.
+
+## Pass 74
+
+Round 6 continues: Buenaventura. Pass 63's notes had flagged Manos
+Visibles' "Fondo de Reconstrucción S.O.S. Pacífico" fund as real but
+un-seedable — no agent could capture a working permalink at the time.
+This round three different agents did, so it's formally in the database
+for the first time.
+
+### The Nequi impersonation risk: still open, despite one agent's read
+One agent tested afrus.org's payment form directly and read that as
+confirmation the "broken link" had been fixed. But afrus.org was
+already the known-good legitimate channel before this pass — the actual
+question (is the impersonated Nequi/QR side fixed?) is answered
+differently by the other three agents: no, the org appears to be
+quietly abandoning that channel for the pre-existing web link rather
+than repairing it. Treating this as still unresolved.
+
+### A first: Buenaventura gets a TollRecord, with a visible conflict
+Eight prior passes never logged a Buenaventura-specific toll figure.
+Fixed now — but two same-day numbers didn't agree: 16 dead/258 injured
+(three independent outlets, three of five agents) versus 26 dead/433
+injured (one local outlet, one agent). Logged the more broadly-
+corroborated figure and kept the outlier visible in the notes rather
+than picking silently.
+
+### A new hazard, unrelated to the earthquake's structural damage
+Rising sea levels are forcing evacuations in the coastal hamlets of
+Juanchaco and Ladrilleros — flagged as a risk by a local citizen-
+journalist days earlier, now materialized and confirmed by national
+outlets. A separate post cites CVC river-basin risk mapping warning of
+compounding flood exposure along the Dagua, Calima, and San Juan
+watersheds.
+
+### The real story behind a known scam
+Pass 63 flagged "Albergue de Rita" as an impersonation risk. This round
+found what looks like the genuine underlying situation: a real,
+identifiable volunteer organizing debris cleanup for a shelter housing
+54 rescued puppies — with no payment channel requested at all.
+Documented specifically so donors can tell the real thing from anyone
+soliciting money using the same name.
+
+### New aid points (6)
+Manos Visibles' reconstruction fund (finally seedable), a new health-
+brigade foundation (with its religious/political affiliation flagged
+for donor awareness), two out-of-city collection points relaying goods
+to Buenaventura (Bogotá, and a diaspora drive in Valencia, Spain), a
+lower-confidence personal collection point, and the real story behind
+the Doña Rita shelter.
+
+### New community embeds (7)
+The presidential visit, the Juanchaco/Ladrilleros flooding, the
+road corridor closing again, a controversial ministerial comment on
+rebuilding speed (paired with a new official materials-donation
+channel via UNGRD), an unconfirmed aid-withholding allegation, a
+student-led aid convoy, and the CVC flood-risk warning.
+
+### Next steps (pass 74)
+Continue round 6: Popayán, Dosquebradas, San José del Palmar, Pijao,
+and Ibagué remain.
