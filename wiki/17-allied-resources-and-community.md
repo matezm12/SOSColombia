@@ -4736,3 +4736,59 @@ now in its final days before an Aug 19 close.
 
 ### Next steps (pass 67)
 Continue round 5: Pijao remains — the last city in this round.
+
+## Pass 68
+
+Pijao's sixth research pass, and the final city in round 5. Heavy
+dedup: three of this round's four "new" aid-point leads — the MMQ
+"Pijao Nos Necesita" Nequi drive, the Sociedad Quindiana de Ornitología
+campaign, and Pijao Trail's farm-visit solidarity effort — all turned
+out to already be seeded across passes 37c, 54, and 38b respectively.
+Re-confirmed, not re-seeded.
+
+### The contested wildfire status, finally resolved
+Pass 54 left the fire's status genuinely split — a congressman saying
+it "continues to advance with force," a separate report claiming it was
+extinguished. Neither was quite right. The original zone (veredas
+Sinabrio and La Maicena) saw a real partial-containment win around Aug
+13, but a separate front in vereda El Jardín stayed active, and by Aug
+14 the whole complex had reignited and spread across the municipal line
+into Génova: ~200 hectares in Pijao, ~30 in Génova, one unoccupied house
+destroyed, crews reduced to garden hoses because fire trucks can't
+reach the terrain. A sitting congressman posting from the fire ground
+the morning of this pass (Aug 15) confirms it's still not out — this is
+now a two-municipality emergency, worst around Aug 13-14 but not
+resolved.
+
+### One genuinely new animal-welfare responder
+Fundación SOS Internacional launched a specialized animal-rescue unit
+("ARCA") distinct from the same foundation's human-medical brigade
+already on file — 27 pets and 3 wildlife animals treated in its first
+intervention, coordinated with municipal Gestoras Sociales.
+
+### Six consecutive null results, and that's fine
+Missing persons and Pijao-specific scam reports have now been checked
+six times running and remain genuinely empty — an expected, honest
+result for a town this size, not a coverage gap.
+
+### New aid points (1)
+Fundación SOS Internacional's ARCA animal-rescue unit.
+
+### New community embeds (3 of 6 attempted — three already on file)
+A congressman's on-the-ground confirmation the fire is still burning,
+formal Army deployment to the firefighting effort, the mayor's partial-
+containment announcement (with the caveat about El Jardín), the most
+detailed field report of the round (La Crónica del Quindío), the
+volunteer fire brigade's own "not yet total control" communiqué, and a
+volunteer's first-hand account of being forced back by smoke.
+
+### Round 5 complete
+All ten originally-tracked cities plus Ibagué have now had a fifth (or,
+for Ibagué, a first complete) research pass. Recurring themes across the
+round: donation-channel impersonation risk showing up independently in
+multiple cities (Manos Visibles in Buenaventura, the hospital-flyer
+scam in Quibdó, ICBF impersonation reaching San José del Palmar), heavy
+but healthy dedup as repeat rounds hit their limits in smaller cities
+(Popayán, San José del Palmar, Pijao), and two genuinely new findings
+outside the original ten-city scope — Ibagué/Tolima's addition as an
+11th tracked city, and its own dedicated first research pass.
