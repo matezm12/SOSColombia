@@ -30,7 +30,7 @@ export async function generateMetadata({
 
 export default async function ComunidadPage(props: PageProps<"/[locale]/comunidad">) {
   // See donar/page.tsx for why this await matters for static rendering.
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("comunidad");
   const posts = await prisma.socialPost.findMany({
     include: { municipio: { select: { name: true, divipolaCode: true } } },
@@ -66,6 +66,7 @@ export default async function ComunidadPage(props: PageProps<"/[locale]/comunida
           posts={posts}
           allLabel={t("filterAll")}
           emptyFilteredLabel={t("emptyFiltered")}
+          locale={locale}
         />
       )}
     </PageShell>

@@ -160,6 +160,7 @@ export default async function Home(props: PageProps<"/[locale]">) {
                       : t("fallecidosReportados")
                   }
                   alertNote={m.alertNote}
+                  locale={locale}
                 />
               </li>
             );
@@ -193,7 +194,7 @@ export default async function Home(props: PageProps<"/[locale]">) {
             </p>
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {homepageResources.map((r) => (
-                <AlliedResourceCard key={r.id} resource={r} />
+                <AlliedResourceCard key={r.id} resource={r} locale={locale} />
               ))}
             </div>
             <p className="mt-3 text-sm">

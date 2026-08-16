@@ -30,7 +30,7 @@ export async function generateMetadata({
 
 export default async function MetodologiaPage(props: PageProps<"/[locale]/metodologia">) {
   // See donar/page.tsx for why this await matters for static rendering.
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("metodologia");
   const contradictions = await prisma.contradiction.findMany({
     orderBy: [{ status: "asc" }, { loggedAt: "desc" }],
@@ -51,7 +51,7 @@ export default async function MetodologiaPage(props: PageProps<"/[locale]/metodo
           <SectionHeading first>{t("discrepanciasAbiertas")}</SectionHeading>
           <div className="mt-4 space-y-4">
             {open.map((c) => (
-              <ContradictionCard key={c.id} contradiction={c} />
+              <ContradictionCard key={c.id} contradiction={c} locale={locale} />
             ))}
           </div>
         </>
@@ -62,7 +62,7 @@ export default async function MetodologiaPage(props: PageProps<"/[locale]/metodo
           <SectionHeading first={open.length === 0}>{t("discrepanciasResueltas")}</SectionHeading>
           <div className="mt-4 space-y-4">
             {resolved.map((c) => (
-              <ContradictionCard key={c.id} contradiction={c} />
+              <ContradictionCard key={c.id} contradiction={c} locale={locale} />
             ))}
           </div>
         </>

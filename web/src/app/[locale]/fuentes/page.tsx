@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Badge } from "@/components/ui/Badge";
 import { ExternalLink } from "@/components/ui/ExternalLink";
-import { TIER_LABEL, SOURCE_STATUS_LABEL } from "@/lib/labels";
+import { tierLabel, sourceStatusLabel } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
@@ -30,7 +30,7 @@ export async function generateMetadata({
 
 export default async function FuentesPage(props: PageProps<"/[locale]/fuentes">) {
   // See donar/page.tsx for why this await matters for static rendering.
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("fuentes");
   const sources = await prisma.source.findMany({
     include: { _count: { select: { tollRecords: true, aidPoints: true } } },
@@ -66,10 +66,10 @@ export default async function FuentesPage(props: PageProps<"/[locale]/fuentes">)
                   )}
                 </td>
                 <td className="px-4 py-2">
-                  <Badge variant="tier" value={s.tier}>{TIER_LABEL[s.tier] ?? `nivel ${s.tier}`}</Badge>
+                  <Badge variant="tier" value={s.tier}>{tierLabel(s.tier, locale)}</Badge>
                 </td>
                 <td className="px-4 py-2 text-zinc-600 dark:text-zinc-400">
-                  {SOURCE_STATUS_LABEL[s.status] ?? s.status}
+                  {sourceStatusLabel(s.status, locale)}
                 </td>
                 <td className="px-4 py-2 text-zinc-500 dark:text-zinc-500">
                   {s._count.tollRecords + s._count.aidPoints} {t("registros")}

@@ -13,10 +13,12 @@ export function CommunityFeed({
   posts,
   allLabel,
   emptyFilteredLabel,
+  locale,
 }: {
   posts: PostWithMunicipio[];
   allLabel: string;
   emptyFilteredLabel: string;
+  locale: string;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
 
@@ -44,7 +46,7 @@ export function CommunityFeed({
     return (
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {posts.map((p) => (
-          <CommunityPostCard key={p.id} post={p} />
+          <CommunityPostCard key={p.id} post={p} locale={locale} />
         ))}
       </div>
     );
@@ -82,7 +84,7 @@ export function CommunityFeed({
 
       <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
         {filtered.map((p) => (
-          <CommunityPostCard key={p.id} post={p} />
+          <CommunityPostCard key={p.id} post={p} locale={locale} />
         ))}
         {filtered.length === 0 && <EmptyState>{emptyFilteredLabel}</EmptyState>}
       </div>

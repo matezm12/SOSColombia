@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { ALLIED_CATEGORY_LABEL } from "@/lib/labels";
+import { alliedCategoryLabel } from "@/lib/labels";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic: resources get added/
@@ -38,7 +38,7 @@ const CATEGORY_ORDER = [
 
 export default async function RecursosPage(props: PageProps<"/[locale]/recursos">) {
   // See donar/page.tsx for why this await matters for static rendering.
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("recursos");
   const resources = await prisma.alliedResource.findMany({
     where: { status: { not: "DEAD" } },
@@ -62,11 +62,11 @@ export default async function RecursosPage(props: PageProps<"/[locale]/recursos"
           return (
             <div key={cat}>
               <h2 className="text-lg font-semibold text-black dark:text-zinc-50">
-                {ALLIED_CATEGORY_LABEL[cat]}
+                {alliedCategoryLabel(cat, locale)}
               </h2>
               <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {items.map((r) => (
-                  <AlliedResourceCard key={r.id} resource={r} />
+                  <AlliedResourceCard key={r.id} resource={r} locale={locale} />
                 ))}
               </div>
             </div>

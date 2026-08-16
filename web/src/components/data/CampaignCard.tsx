@@ -7,8 +7,8 @@ import { ShareButton } from "../ui/ShareButton";
 import { GoFundMeEmbed } from "./GoFundMeEmbed";
 import { isGoFundMeUrl } from "@/lib/gofundme";
 import {
-  CROWDFUNDING_PLATFORM_LABEL,
-  VERIFICATION_LABEL,
+  crowdfundingPlatformLabel,
+  verificationLabel,
 } from "@/lib/labels";
 import { formatCurrency, formatNumber, formatDate } from "@/lib/format";
 
@@ -16,7 +16,13 @@ type CampaignWithMunicipios = Prisma.CrowdfundingCampaignGetPayload<{
   include: { municipios: { select: { name: true; divipolaCode: true } } };
 }> & { stories?: { slug: string }[] };
 
-export function CampaignCard({ campaign }: { campaign: CampaignWithMunicipios }) {
+export function CampaignCard({
+  campaign,
+  locale,
+}: {
+  campaign: CampaignWithMunicipios;
+  locale: string;
+}) {
   return (
     <Card id={campaign.id} className="relative">
       <ShareButton anchorId={campaign.id} label={campaign.title} />
@@ -33,7 +39,7 @@ export function CampaignCard({ campaign }: { campaign: CampaignWithMunicipios })
           )}
           {campaign.recurring && <Badge variant="neutral">Mensual</Badge>}
           <Badge variant="verification" value={campaign.verificationStatus}>
-            {VERIFICATION_LABEL[campaign.verificationStatus] ?? campaign.verificationStatus}
+            {verificationLabel(campaign.verificationStatus, locale)}
           </Badge>
         </div>
       </div>
@@ -94,7 +100,7 @@ export function CampaignCard({ campaign }: { campaign: CampaignWithMunicipios })
           )}
           <p className="mt-2 text-sm">
             <ExternalLink href={campaign.url}>
-              Ver en {CROWDFUNDING_PLATFORM_LABEL[campaign.platform] ?? campaign.platform}
+              Ver en {crowdfundingPlatformLabel(campaign.platform, locale)}
             </ExternalLink>
           </p>
         </>

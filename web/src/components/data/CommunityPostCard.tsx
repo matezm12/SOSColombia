@@ -4,15 +4,15 @@ import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { ShareButton } from "../ui/ShareButton";
 import { SocialEmbed } from "./SocialEmbed";
-import { SOCIAL_CATEGORY_LABEL, SOCIAL_PLATFORM_LABEL } from "@/lib/labels";
+import { SOCIAL_PLATFORM_LABEL, socialCategoryLabel } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 
 type PostWithMunicipio = Prisma.SocialPostGetPayload<{
   include: { municipio: { select: { name: true; divipolaCode: true } } };
 }>;
 
-export function CommunityPostCard({ post }: { post: PostWithMunicipio }) {
-  const label = `${SOCIAL_CATEGORY_LABEL[post.category] ?? post.category} — ${SOCIAL_PLATFORM_LABEL[post.platform] ?? post.platform}`;
+export function CommunityPostCard({ post, locale }: { post: PostWithMunicipio; locale: string }) {
+  const label = `${socialCategoryLabel(post.category, locale)} — ${SOCIAL_PLATFORM_LABEL[post.platform] ?? post.platform}`;
 
   return (
     <Card id={post.id} className="relative">
@@ -22,7 +22,7 @@ export function CommunityPostCard({ post }: { post: PostWithMunicipio }) {
           {SOCIAL_PLATFORM_LABEL[post.platform] ?? post.platform}
           {post.authorHandle && <span className="text-zinc-400 dark:text-zinc-600"> · {post.authorHandle}</span>}
         </span>
-        <Badge variant="neutral">{SOCIAL_CATEGORY_LABEL[post.category] ?? post.category}</Badge>
+        <Badge variant="neutral">{socialCategoryLabel(post.category, locale)}</Badge>
       </div>
 
       {post.municipio && (

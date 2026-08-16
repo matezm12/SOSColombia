@@ -36,7 +36,7 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
   // directly) is what lets this route qualify for static rendering + ISR --
   // without it, next-intl resolves the locale through a path Next treats as
   // a Dynamic API, forcing the whole route to server-render on every request.
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("donar");
   const [campaigns, monetaryPoints] = await Promise.all([
     prisma.crowdfundingCampaign.findMany({
@@ -92,7 +92,7 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
       <SectionHeading first>{t("sections.verified")}</SectionHeading>
       <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
         {verified.map((c) => (
-          <CampaignCard key={c.id} campaign={c} />
+          <CampaignCard key={c.id} campaign={c} locale={locale} />
         ))}
         {verified.length === 0 && <EmptyState>{t("emptyVerified")}</EmptyState>}
       </div>
@@ -106,7 +106,7 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
                 <p className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-600">
                   {p.municipio.name}
                 </p>
-                <AidPointCard point={p} />
+                <AidPointCard point={p} locale={locale} />
               </div>
             ))}
           </div>
@@ -121,7 +121,7 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
           </p>
           <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
             {individual.map((c) => (
-              <CampaignCard key={c.id} campaign={c} />
+              <CampaignCard key={c.id} campaign={c} locale={locale} />
             ))}
           </div>
         </>
@@ -132,7 +132,7 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
           <SectionHeading>{t("sections.flagged")}</SectionHeading>
           <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
             {flagged.map((c) => (
-              <CampaignCard key={c.id} campaign={c} />
+              <CampaignCard key={c.id} campaign={c} locale={locale} />
             ))}
           </div>
         </>

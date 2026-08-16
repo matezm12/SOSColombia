@@ -3,10 +3,10 @@ import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { ExternalLink } from "../ui/ExternalLink";
 import { ShareButton } from "../ui/ShareButton";
-import { TIER_LABEL } from "@/lib/labels";
+import { tierLabel } from "@/lib/labels";
 import { formatDate } from "@/lib/format";
 
-export function GovReportCard({ report }: { report: GovReport }) {
+export function GovReportCard({ report, locale }: { report: GovReport; locale: string }) {
   const keyFigures =
     report.keyFigures && typeof report.keyFigures === "object" && !Array.isArray(report.keyFigures)
       ? (report.keyFigures as Record<string, unknown>)
@@ -18,7 +18,7 @@ export function GovReportCard({ report }: { report: GovReport }) {
       <div className="flex items-center justify-between gap-2 pr-8">
         <span className="font-medium text-black dark:text-zinc-50">{report.title}</span>
         <Badge variant="tier" value={report.sourceTier}>
-          {TIER_LABEL[report.sourceTier] ?? `nivel ${report.sourceTier}`}
+          {tierLabel(report.sourceTier, locale)}
         </Badge>
       </div>
       <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">

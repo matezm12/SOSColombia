@@ -10,7 +10,7 @@ import { GoFundMeEmbed } from "@/components/data/GoFundMeEmbed";
 import { SocialEmbed } from "@/components/data/SocialEmbed";
 import { ShareButton } from "@/components/ui/ShareButton";
 import { isGoFundMeUrl } from "@/lib/gofundme";
-import { VERIFICATION_LABEL } from "@/lib/labels";
+import { verificationLabel } from "@/lib/labels";
 import { localizedStory, storyHref, resolveStoryImage } from "@/lib/stories";
 import { formatDate } from "@/lib/format";
 import { ogImageUrl } from "@/lib/seo";
@@ -201,7 +201,7 @@ export default async function StoryDetailPage({
                   <ExternalLink href={story.campaign.url}>{t("verCampana")}</ExternalLink>
                 </span>
                 <Badge variant="verification" value={story.campaign.verificationStatus}>
-                  {VERIFICATION_LABEL[story.campaign.verificationStatus] ?? story.campaign.verificationStatus}
+                  {verificationLabel(story.campaign.verificationStatus, locale)}
                 </Badge>
               </li>
             )}

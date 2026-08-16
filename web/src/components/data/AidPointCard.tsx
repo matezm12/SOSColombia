@@ -6,11 +6,11 @@ import { SourceLine } from "../ui/SourceLine";
 import { ShareButton } from "../ui/ShareButton";
 import { GoFundMeEmbed } from "./GoFundMeEmbed";
 import { isGoFundMeUrl } from "@/lib/gofundme";
-import { AID_STATUS_LABEL } from "@/lib/labels";
+import { aidStatusLabel } from "@/lib/labels";
 
 type AidPointWithSource = Prisma.AidPointGetPayload<{ include: { source: true } }>;
 
-export function AidPointCard({ point }: { point: AidPointWithSource }) {
+export function AidPointCard({ point, locale }: { point: AidPointWithSource; locale: string }) {
   const link = point.permalink ?? point.source.url;
 
   return (
@@ -19,7 +19,7 @@ export function AidPointCard({ point }: { point: AidPointWithSource }) {
       <div className="flex items-center justify-between gap-2 pr-8">
         <span className="font-medium text-black dark:text-zinc-50">{point.name}</span>
         <Badge variant="status" value={point.status}>
-          {AID_STATUS_LABEL[point.status] ?? point.status}
+          {aidStatusLabel(point.status, locale)}
         </Badge>
       </div>
 
@@ -70,6 +70,7 @@ export function AidPointCard({ point }: { point: AidPointWithSource }) {
         org={point.source.org}
         tier={point.source.tier}
         date={point.lastVerifiedAt}
+        locale={locale}
       />
     </Card>
   );

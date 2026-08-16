@@ -13,7 +13,7 @@ import { StoryCard } from "@/components/data/StoryCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
-import { AID_KIND_LABEL } from "@/lib/labels";
+import { aidKindLabel } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
 import { buildAlternates, absoluteUrl, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
@@ -178,7 +178,7 @@ export default async function CiudadPage(
         <SectionHeading first>{t("cifras")}</SectionHeading>
         <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
           {[...latestByMetric.values()].map((record) => (
-            <TollCard key={record.id} record={record} />
+            <TollCard key={record.id} record={record} locale={locale} />
           ))}
           {latestByMetric.size === 0 && (
             <EmptyState>{t("sinCifras")}</EmptyState>
@@ -194,11 +194,11 @@ export default async function CiudadPage(
         <div className="mt-4 space-y-6">
           {Object.entries(aidByKind).map(([kind, points]) => (
             <div key={kind}>
-              <SubsectionHeading>{AID_KIND_LABEL[kind] ?? kind}</SubsectionHeading>
+              <SubsectionHeading>{aidKindLabel(kind, locale)}</SubsectionHeading>
               <ul className="mt-2 space-y-2">
                 {points?.map((point) => (
                   <li key={point.id}>
-                    <AidPointCard point={point} />
+                    <AidPointCard point={point} locale={locale} />
                   </li>
                 ))}
               </ul>
@@ -212,7 +212,7 @@ export default async function CiudadPage(
         <SectionHeading>{t("campanasDeRecaudacion")}</SectionHeading>
         <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
           {municipio.campaigns.map((campaign) => (
-            <CampaignCard key={campaign.id} campaign={campaign} />
+            <CampaignCard key={campaign.id} campaign={campaign} locale={locale} />
           ))}
           {municipio.campaigns.length === 0 && (
             <EmptyState>
@@ -230,7 +230,7 @@ export default async function CiudadPage(
         <SectionHeading>{t("proyectosLocales")}</SectionHeading>
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {municipio.resources.map((resource) => (
-            <AlliedResourceCard key={resource.id} resource={resource} />
+            <AlliedResourceCard key={resource.id} resource={resource} locale={locale} />
           ))}
           {municipio.resources.length === 0 && (
             <EmptyState>

@@ -1,6 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import { Badge } from "../ui/Badge";
-import { SEVERITY_LABEL } from "@/lib/labels";
+import { severityLabel as severityLabelFor } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
 
 export function CityCard({
@@ -11,6 +11,7 @@ export function CityCard({
   deathValue,
   deathLabel,
   alertNote,
+  locale,
 }: {
   name: string;
   divipolaCode: string;
@@ -19,6 +20,7 @@ export function CityCard({
   deathValue?: number;
   deathLabel?: string;
   alertNote?: string | null;
+  locale: string;
 }) {
   return (
     <Link
@@ -29,7 +31,7 @@ export function CityCard({
         <span className="font-medium text-black dark:text-zinc-50">{name}</span>
         {severityLabel && (
           <Badge variant="severity" value={severityLabel}>
-            {SEVERITY_LABEL[severityLabel] ?? severityLabel}
+            {severityLabelFor(severityLabel, locale)}
           </Badge>
         )}
       </div>

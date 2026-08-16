@@ -7,7 +7,7 @@ import { TollCard } from "@/components/data/TollCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
-import { METRIC_LABEL } from "@/lib/labels";
+import { metricLabel } from "@/lib/labels";
 import { formatNumber, formatDate } from "@/lib/format";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
@@ -33,7 +33,7 @@ export async function generateMetadata({
 
 export default async function CifrasPage(props: PageProps<"/[locale]/cifras">) {
   // See donar/page.tsx for why this await matters for static rendering.
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("cifras");
   const [national, byDepartment] = await Promise.all([
     nationalTollRecords(),
@@ -69,7 +69,7 @@ export default async function CifrasPage(props: PageProps<"/[locale]/cifras">) {
       <SectionHeading first>{t("ultimosValores")}</SectionHeading>
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {latestNational.map((r) => (
-          <TollCard key={r.id} record={r} />
+          <TollCard key={r.id} record={r} locale={locale} />
         ))}
         {latestNational.length === 0 && (
           <EmptyState>{t("sinCifras")}</EmptyState>
@@ -81,7 +81,7 @@ export default async function CifrasPage(props: PageProps<"/[locale]/cifras">) {
           <SectionHeading>{t("porDepartamento")}</SectionHeading>
           {[...departmentsByMetric.entries()].map(([metric, records]) => (
             <div key={metric} className="mt-4">
-              <SubsectionHeading>{METRIC_LABEL[metric] ?? metric}</SubsectionHeading>
+              <SubsectionHeading>{metricLabel(metric, locale)}</SubsectionHeading>
               <div className="mt-2 overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
                 <table className="w-full text-sm">
                   <tbody>
@@ -118,7 +118,7 @@ export default async function CifrasPage(props: PageProps<"/[locale]/cifras">) {
       <div className="mt-4 space-y-6">
         {[...historyByMetric.entries()].map(([metric, records]) => (
           <div key={metric}>
-            <SubsectionHeading>{METRIC_LABEL[metric] ?? metric}</SubsectionHeading>
+            <SubsectionHeading>{metricLabel(metric, locale)}</SubsectionHeading>
             <div className="mt-2 overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800">
               <table className="w-full text-sm">
                 <tbody>

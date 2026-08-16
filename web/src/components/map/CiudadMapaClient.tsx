@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { AID_KIND_LABEL } from "@/lib/labels";
+import { aidKindLabel } from "@/lib/labels";
 import { AID_KIND_COLOR_VAR, AID_KIND_ICON_SVG } from "./aidKindMarkers";
 
 export type AidPointMarker = {
@@ -65,6 +65,7 @@ export default function CiudadMapaClient({
   divipolaCode: string;
 }) {
   const t = useTranslations("ciudad");
+  const locale = useLocale();
   const mapContainer = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -97,7 +98,7 @@ export default function CiudadMapaClient({
     for (const point of points) {
       const el = document.createElement("button");
       el.type = "button";
-      el.setAttribute("aria-label", `${point.name} (${AID_KIND_LABEL[point.kind] ?? point.kind})`);
+      el.setAttribute("aria-label", `${point.name} (${aidKindLabel(point.kind, locale)})`);
       el.style.width = "26px";
       el.style.height = "26px";
       el.style.borderRadius = "9999px";
@@ -208,7 +209,7 @@ export default function CiudadMapaClient({
       markers.forEach((marker) => marker.remove());
       map.remove();
     };
-  }, [points, divipolaCode]);
+  }, [points, divipolaCode, locale]);
 
   if (points.length === 0) return null;
 
@@ -229,7 +230,7 @@ export default function CiudadMapaClient({
                 className="inline-block h-2.5 w-2.5 rounded-full border border-white"
                 style={{ background: `var(${AID_KIND_COLOR_VAR[kind]})` }}
               />
-              {AID_KIND_LABEL[kind] ?? kind}
+              {aidKindLabel(kind, locale)}
             </li>
           ))}
         </ul>

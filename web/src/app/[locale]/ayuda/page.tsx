@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { AidPointCard } from "@/components/data/AidPointCard";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { AID_KIND_LABEL } from "@/lib/labels";
+import { aidKindLabel } from "@/lib/labels";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Deliberately NOT converted to ISR like its sibling pages: the `?tipo=`
@@ -34,6 +34,7 @@ export async function generateMetadata({
 const KINDS = ["ALBERGUE", "ACOPIO", "HEALTH", "VET", "BLOOD_DONATION", "MONETARY_DONATION"] as const;
 
 export default async function AyudaPage(props: PageProps<"/[locale]/ayuda">) {
+  const { locale } = await props.params;
   const searchParams = await props.searchParams;
   const kindFilter = typeof searchParams.tipo === "string" ? searchParams.tipo : null;
   const t = await getTranslations("ayuda");
@@ -66,7 +67,7 @@ export default async function AyudaPage(props: PageProps<"/[locale]/ayuda">) {
             href={`/ayuda?tipo=${k}`}
             className={`rounded-full px-3 py-1 text-sm ${kindFilter === k ? "bg-black text-white dark:bg-white dark:text-black" : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"}`}
           >
-            {AID_KIND_LABEL[k]}
+            {aidKindLabel(k, locale)}
           </Link>
         ))}
       </div>
@@ -75,7 +76,7 @@ export default async function AyudaPage(props: PageProps<"/[locale]/ayuda">) {
         {Object.entries(grouped).map(([kind, kindPoints]) => (
           <div key={kind}>
             <h2 className="text-lg font-semibold text-black dark:text-zinc-50">
-              {AID_KIND_LABEL[kind] ?? kind}
+              {aidKindLabel(kind, locale)}
             </h2>
             <div className="mt-3 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
               {kindPoints?.map((p) => (
@@ -86,7 +87,7 @@ export default async function AyudaPage(props: PageProps<"/[locale]/ayuda">) {
                   >
                     {p.municipio.name}
                   </Link>
-                  <AidPointCard point={p} />
+                  <AidPointCard point={p} locale={locale} />
                 </div>
               ))}
             </div>

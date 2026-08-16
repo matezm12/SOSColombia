@@ -29,7 +29,7 @@ export default async function DonarInternacionalPage(
   props: PageProps<"/[locale]/donar/internacional">
 ) {
   // See donar/page.tsx for why this await matters for static rendering.
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("donarInternacional");
   const campaigns = await prisma.crowdfundingCampaign.findMany({
     where: { international: true },
@@ -60,6 +60,7 @@ export default async function DonarInternacionalPage(
 
       <InternationalCampaignFilters
         campaigns={campaigns}
+        locale={locale}
         labels={{
           typeLabel: t("filters.typeLabel"),
           cityLabel: t("filters.cityLabel"),

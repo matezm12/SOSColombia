@@ -4,13 +4,19 @@ import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { ExternalLink } from "../ui/ExternalLink";
 import { ShareButton } from "../ui/ShareButton";
-import { ALLIED_CATEGORY_LABEL, SOURCE_STATUS_LABEL, TIER_LABEL } from "@/lib/labels";
+import { alliedCategoryLabel, sourceStatusLabel, tierLabel } from "@/lib/labels";
 
 type ResourceWithOptionalMunicipio = AlliedResource & {
   municipio?: { name: string; divipolaCode: string } | null;
 };
 
-export function AlliedResourceCard({ resource }: { resource: ResourceWithOptionalMunicipio }) {
+export function AlliedResourceCard({
+  resource,
+  locale,
+}: {
+  resource: ResourceWithOptionalMunicipio;
+  locale: string;
+}) {
   return (
     <Card id={resource.id} className="relative flex h-full flex-col overflow-hidden p-0">
       <ShareButton anchorId={resource.id} label={resource.name} />
@@ -34,7 +40,7 @@ export function AlliedResourceCard({ resource }: { resource: ResourceWithOptiona
         <div className={`flex flex-col items-start gap-1.5 ${resource.ogImageUrl ? "" : "pr-8"}`}>
           <span className="font-medium text-black dark:text-zinc-50">{resource.name}</span>
           <Badge variant="tier" value={resource.tier}>
-            {TIER_LABEL[resource.tier] ?? `nivel ${resource.tier}`}
+            {tierLabel(resource.tier, locale)}
           </Badge>
         </div>
         {resource.org && (
@@ -60,12 +66,12 @@ export function AlliedResourceCard({ resource }: { resource: ResourceWithOptiona
         </p>
 
         <div className="mt-3 flex flex-wrap items-center gap-1.5">
-          <Badge variant="neutral">{ALLIED_CATEGORY_LABEL[resource.category] ?? resource.category}</Badge>
+          <Badge variant="neutral">{alliedCategoryLabel(resource.category, locale)}</Badge>
           {resource.hostingNoCustomDomain && (
             <Badge variant="neutral">Sin dominio propio</Badge>
           )}
           {resource.status !== "LIVE" && (
-            <Badge variant="neutral">{SOURCE_STATUS_LABEL[resource.status] ?? resource.status}</Badge>
+            <Badge variant="neutral">{sourceStatusLabel(resource.status, locale)}</Badge>
           )}
         </div>
 

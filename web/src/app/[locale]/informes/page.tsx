@@ -28,7 +28,7 @@ export async function generateMetadata({
 
 export default async function InformesPage(props: PageProps<"/[locale]/informes">) {
   // See donar/page.tsx for why this await matters for static rendering.
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("informes");
   const reports = await prisma.govReport.findMany({ orderBy: { date: "desc" } });
 
@@ -36,7 +36,7 @@ export default async function InformesPage(props: PageProps<"/[locale]/informes"
     <PageShell backHref="/" title={t("title")} lede={t("lede")}>
       <div className="mt-6 space-y-4">
         {reports.map((r) => (
-          <GovReportCard key={r.id} report={r} />
+          <GovReportCard key={r.id} report={r} locale={locale} />
         ))}
         {reports.length === 0 && <EmptyState>{t("sinInformes")}</EmptyState>}
       </div>

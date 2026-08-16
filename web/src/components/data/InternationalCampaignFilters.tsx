@@ -5,7 +5,7 @@ import type { Prisma } from "@prisma/client";
 import { CampaignCard } from "./CampaignCard";
 import { SectionHeading } from "../ui/SectionHeading";
 import { EmptyState } from "../ui/EmptyState";
-import { CROWDFUNDING_PLATFORM_LABEL } from "@/lib/labels";
+import { crowdfundingPlatformLabel } from "@/lib/labels";
 
 type CampaignWithMunicipios = Prisma.CrowdfundingCampaignGetPayload<{
   include: { municipios: { select: { name: true; divipolaCode: true } } };
@@ -40,8 +40,10 @@ function FilterPill({
 export function InternationalCampaignFilters({
   campaigns,
   labels,
+  locale,
 }: {
   campaigns: CampaignWithMunicipios[];
+  locale: string;
   labels: {
     typeLabel: string;
     cityLabel: string;
@@ -112,7 +114,7 @@ export function InternationalCampaignFilters({
             </FilterPill>
             {platforms.map(([p, count]) => (
               <FilterPill key={p} active={platform === p} onClick={() => setPlatform(p)}>
-                {CROWDFUNDING_PLATFORM_LABEL[p] ?? p} ({count})
+                {crowdfundingPlatformLabel(p, locale)} ({count})
               </FilterPill>
             ))}
           </div>
@@ -140,7 +142,7 @@ export function InternationalCampaignFilters({
       <SectionHeading first>{labels.sectionVerified}</SectionHeading>
       <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
         {verified.map((c) => (
-          <CampaignCard key={c.id} campaign={c} />
+          <CampaignCard key={c.id} campaign={c} locale={locale} />
         ))}
         {verified.length === 0 && <EmptyState>{filtered.length === 0 && campaigns.length > 0 ? labels.emptyFiltered : labels.emptyVerified}</EmptyState>}
       </div>
@@ -151,7 +153,7 @@ export function InternationalCampaignFilters({
           <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">{labels.individualSubtext}</p>
           <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
             {individual.map((c) => (
-              <CampaignCard key={c.id} campaign={c} />
+              <CampaignCard key={c.id} campaign={c} locale={locale} />
             ))}
           </div>
         </>
@@ -162,7 +164,7 @@ export function InternationalCampaignFilters({
           <SectionHeading>{labels.sectionFlagged}</SectionHeading>
           <div className="mt-4 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
             {flagged.map((c) => (
-              <CampaignCard key={c.id} campaign={c} />
+              <CampaignCard key={c.id} campaign={c} locale={locale} />
             ))}
           </div>
         </>

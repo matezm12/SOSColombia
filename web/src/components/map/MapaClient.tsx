@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { SEVERITY_LABEL } from "@/lib/labels";
+import { SEVERITY_LABEL, severityLabel } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
 import { CloseIcon } from "@/components/ui/icons";
 
@@ -80,6 +80,7 @@ export default function MapaClient({
   epicenter: EpicenterPoint | null;
 }) {
   const t = useTranslations("mapa");
+  const locale = useLocale();
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const [selected, setSelected] = useState<MunicipioMarker | null>(null);
 
@@ -180,13 +181,13 @@ export default function MapaClient({
       <div className="absolute left-4 top-4 z-10 rounded-lg border border-zinc-200 bg-white/95 p-3 text-xs shadow-sm dark:border-zinc-800 dark:bg-zinc-950/95">
         <p className="font-medium text-zinc-700 dark:text-zinc-300">{t("severidad")}</p>
         <ul className="mt-1.5 space-y-1">
-          {Object.entries(SEVERITY_LABEL).map(([key, label]) => (
+          {Object.keys(SEVERITY_LABEL).map((key) => (
             <li key={key} className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
               <span
                 className="inline-block h-2.5 w-2.5 rounded-full border border-white"
                 style={{ background: `var(--color-severity-${key.toLowerCase()})` }}
               />
-              {label}
+              {severityLabel(key, locale)}
             </li>
           ))}
           <li className="mt-1 flex items-center gap-1.5 border-t border-zinc-100 pt-1 text-zinc-600 dark:border-zinc-900 dark:text-zinc-400">
@@ -209,7 +210,7 @@ export default function MapaClient({
               </p>
               {selected.severityLabel && (
                 <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-500">
-                  {t("severidad")}: {SEVERITY_LABEL[selected.severityLabel] ?? selected.severityLabel}
+                  {t("severidad")}: {severityLabel(selected.severityLabel, locale)}
                 </p>
               )}
             </div>

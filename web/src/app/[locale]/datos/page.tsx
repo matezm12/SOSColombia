@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { METRIC_LABEL } from "@/lib/labels";
+import { METRIC_LABEL, metricLabel } from "@/lib/labels";
 import { buildAlternates, absoluteUrl, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
 // Short revalidation window instead of force-dynamic -- see donar/page.tsx
@@ -65,11 +65,7 @@ export default async function DatosPage(props: PageProps<"/[locale]/datos">) {
       name: "SOSColombia",
       url: SITE_URL,
     },
-    // variableMeasured stays Spanish-only for now: METRIC_LABEL (src/lib/labels.ts)
-    // has no English variant yet, and every other on-page use of these labels
-    // (cifras, TollCard) is Spanish-only too — translating this one spot alone
-    // would make the schema disagree with the page's own visible text.
-    variableMeasured: Object.values(METRIC_LABEL),
+    variableMeasured: Object.keys(METRIC_LABEL).map((key) => metricLabel(key, locale)),
     distribution: [
       {
         "@type": "DataDownload",
