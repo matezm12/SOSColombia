@@ -34,6 +34,25 @@ function isComplete(fields: ReturnType<typeof readStoryFields>): boolean {
   );
 }
 
+/**
+ * A story linked to a campaign/city needs those pages' 60s ISR cache
+ * (donar, donar/internacional, ciudad/[divipola]) invalidated immediately
+ * too, not just /historias — otherwise the "Leer la historia completa"
+ * link and the city's "Historias de esta ciudad" section can lag up to a
+ * minute behind the story actually going live.
+ */
+async function revalidateStoryLinks(municipioId: string | null) {
+  revalidatePath("/donar");
+  revalidatePath("/donar/internacional");
+  if (municipioId) {
+    const municipio = await prisma.municipio.findUnique({
+      where: { id: municipioId },
+      select: { divipolaCode: true },
+    });
+    if (municipio) revalidatePath(`/ciudad/${municipio.divipolaCode}`);
+  }
+}
+
 export async function createStory(formData: FormData) {
   await requireAdmin();
 
@@ -55,6 +74,7 @@ export async function createStory(formData: FormData) {
 
   revalidatePath("/admin/historias");
   revalidatePath("/historias");
+  await revalidateStoryLinks(fields.municipioId);
   redirect("/admin/historias");
 }
 
@@ -88,6 +108,7 @@ export async function updateStory(formData: FormData) {
   revalidatePath("/admin/historias");
   revalidatePath("/historias");
   revalidatePath(`/historias/${fields.slug}`);
+  await revalidateStoryLinks(fields.municipioId);
   redirect("/admin/historias");
 }
 
@@ -97,8 +118,12 @@ export async function deleteStory(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   if (!id) return;
 
+  const existing = await prisma.story.findUnique({ where: { id } });
+  if (!existing) return;
+
   await prisma.story.delete({ where: { id } });
 
   revalidatePath("/admin/historias");
   revalidatePath("/historias");
+  await revalidateStoryLinks(existing.municipioId);
 }
