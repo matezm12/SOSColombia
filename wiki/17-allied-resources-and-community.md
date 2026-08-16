@@ -5317,3 +5317,54 @@ TollRecord for this municipio.
 
 ### Next steps (pass 77)
 Continue round 6: Pijao and Ibagué remain.
+
+## Pass 78 (2026-08-16) — Pijao, round 6
+
+Six prior passes (37, 38, 39, 44, 54, 68) already covered this dual
+earthquake-and-wildfire city. All five research agents converged
+independently on the same source this round — unusually strong
+corroboration for a small town.
+
+### Toll update
+The Alcaldía's own updated damage count now stands at 217 viviendas
+afectadas (114 urbanas, 103 rurales, algunas inhabitables) — a real
+escalation from the pass 38a baseline (73 predios afectados, 7
+colapsados, as of Aug 12) after four more days of assessment, not a
+contradiction. The source doesn't break out how many of the 217 are
+total collapse versus partial damage, so it's logged as a combined
+total under VIVIENDAS_AVERIADAS — a future pass should tighten this
+if an official breakdown appears.
+
+### New aid points (2)
+Both run directly by the Alcaldía itself, a first for this city —
+prior points were all NGO or private drives:
+- A construction-materials collection point (Secretaría de Gobierno)
+  tied to the 217-home damage count, also distributing everyday
+  relief items per an official flyer.
+- A bank-transfer key (@GLP760) for fire-relief monetary donations,
+  distinct from the already-known MMQ Nequi drive.
+
+### Wildfire status: still not extinguished
+Unchanged from pass 68 — the Pijao/Génova complex remains active, not
+contained. New detail this round: Rep. Miguel Grisales posted from
+the fire ground on Aug 15 saying it "sigue avanzando con fuerza,"
+requesting AERIAL firefighting support because ground crews still
+can't reach the terrain. He also relayed a serious claim from local
+residents that the fires may have been deliberately set, and formally
+asked Policía/Fiscalía to investigate — recorded here as an
+allegation under investigation, not an established fact. The known
+mutual-aid roster expanded too: fire corps from Caicedonia and now
+Buenavista are working the complex alongside Pijao's own and CRQ
+(the regional environmental authority). A new compounding hazard also
+surfaced — Pijao is now also dealing with windstorms ("fuertes
+vendavales") on top of the quake and fire, and the fire is now
+confirmed damaging café, plátano, limón, and aguacate crops in
+Génova.
+
+Missing persons and Pijao-specific scam reports remain empty for a
+seventh consecutive pass — expected, not a gap.
+
+### Next steps (pass 78)
+Continue round 6: Ibagué remains, closing out the round. Then begin
+Round 6 coverage of Argelia, Valle del Cauca (see the dedicated
+addition entry once its base municipio pass lands).
