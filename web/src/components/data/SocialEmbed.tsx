@@ -77,6 +77,29 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   });
 }
 
+// Instagram/X/TikTok's process functions all re-scan the WHOLE document for
+// unprocessed blockquotes, not just the one that just mounted — so when a
+// page has many embeds of the same platform (comunidad's feed, a busy city
+// page), every instance calling process() independently the moment it mounts
+// fires off a burst of redundant, near-simultaneous calls. That burst is a
+// real, observed contributor to Instagram's anonymous-embed rate limiting
+// hitting mid-session. Collapse same-platform requests arriving within one
+// tick into a single trailing call instead.
+const pendingProcess = new Map<string, ReturnType<typeof setTimeout>>();
+const PROCESS_DEBOUNCE_MS = 400;
+
+function scheduleProcess(platform: string, run: () => void) {
+  const existing = pendingProcess.get(platform);
+  if (existing) clearTimeout(existing);
+  pendingProcess.set(
+    platform,
+    setTimeout(() => {
+      pendingProcess.delete(platform);
+      run();
+    }, PROCESS_DEBOUNCE_MS),
+  );
+}
+
 type Status = "loading" | "ready" | "error";
 
 export function SocialEmbed({
@@ -88,10 +111,42 @@ export function SocialEmbed({
   permalink: string;
   locale?: string;
 }) {
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [status, setStatus] = useState<Status>("loading");
+  const [inView, setInView] = useState(false);
+
+  // Defer starting any network/script work until the card is actually about
+  // to be visible. Community/city pages can carry a dozen+ embeds on one
+  // page load — loading and processing every widget immediately, including
+  // ones far below the fold, is both wasted work and exactly the kind of
+  // burst of anonymous requests that trips Instagram's rate limiting.
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+    observer.observe(wrapper);
+    // Safety net, not the primary path: if intersection never fires for any
+    // reason (an unusual browser/embedding context, observer support
+    // quirks), don't leave the card stuck on a spinner forever - fall back
+    // to loading it anyway after a few seconds.
+    const fallback = setTimeout(() => setInView(true), 3000);
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallback);
+    };
+  }, []);
 
   useEffect(() => {
+    if (!inView) return;
     let cancelled = false;
     let pollTimer: ReturnType<typeof setTimeout> | undefined;
     // No explicit setStatus("loading") here — `status` already initializes
@@ -192,15 +247,15 @@ export function SocialEmbed({
       }
       if (cancelled) return;
 
-      if (platform === "INSTAGRAM") window.instgrm?.Embeds?.process?.();
-      if (platform === "X") window.twttr?.widgets?.load?.(container);
+      if (platform === "INSTAGRAM") scheduleProcess("INSTAGRAM", () => window.instgrm?.Embeds?.process?.());
+      if (platform === "X") scheduleProcess("X", () => window.twttr?.widgets?.load?.());
       // Wrong assumption in an earlier version of this file: TikTok's
       // embed.js does NOT self-process blockquotes added to the DOM after
       // its own initial load — confirmed live, a fresh blockquote just sits
       // there forever (no id, no iframe) until `render()` is called
       // explicitly. It only auto-scans once, at script-load time, same
       // category of thing as Instagram/X needing an explicit process call.
-      if (platform === "TIKTOK") window.tiktokEmbed?.lib?.render?.();
+      if (platform === "TIKTOK") scheduleProcess("TIKTOK", () => window.tiktokEmbed?.lib?.render?.());
 
       // None of the three scripts expose a "this specific blockquote is
       // done" callback — they rewrite the DOM asynchronously on their own
@@ -231,9 +286,11 @@ export function SocialEmbed({
       // observed taking meaningfully longer than the other two platforms'
       // — confirmed live, the exact same permalink rendered fine on one
       // load and still hadn't resized by 8s on another. Give it more room
-      // before giving up; X/TikTok stay on the tighter budget.
+      // before giving up; X/TikTok stay on the tighter budget. The
+      // PROCESS_DEBOUNCE_MS delay before process() even fires is on top of
+      // this, so the deadline is measured from here, not from mount.
       const pollTimeoutMs = platform === "INSTAGRAM" ? 20000 : EMBED_TIMEOUT_MS;
-      const deadline = Date.now() + pollTimeoutMs;
+      const deadline = Date.now() + PROCESS_DEBOUNCE_MS + pollTimeoutMs;
       const poll = () => {
         if (cancelled) return;
         if (isRendered()) {
@@ -254,10 +311,10 @@ export function SocialEmbed({
       cancelled = true;
       if (pollTimer) clearTimeout(pollTimer);
     };
-  }, [platform, permalink]);
+  }, [inView, platform, permalink]);
 
   return (
-    <div className="min-h-[120px]">
+    <div ref={wrapperRef} className="min-h-[120px]">
       {status === "loading" && (
         <div className="flex min-h-[120px] items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-700">
           <div className="h-5 w-5 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-600 dark:border-zinc-700 dark:border-t-zinc-300" />
