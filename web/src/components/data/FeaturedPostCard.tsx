@@ -46,7 +46,7 @@ export function FeaturedPostCard({
       )}
 
       <div className="mt-3">
-        <SocialEmbed platform={post.platform} permalink={post.permalink} locale={locale} />
+        <SocialEmbed platform={post.platform} permalink={post.permalink} locale={locale} cachedOembed={post.oembedHtml} />
       </div>
     </Card>
   );

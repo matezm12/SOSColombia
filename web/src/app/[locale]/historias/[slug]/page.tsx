@@ -42,7 +42,7 @@ async function getStory(slug: string) {
       campaign: {
         select: { title: true, orgOrPerson: true, url: true, platform: true, verificationStatus: true },
       },
-      socialPost: { select: { permalink: true, platform: true } },
+      socialPost: { select: { permalink: true, platform: true, oembedHtml: true } },
     },
   });
 }
@@ -186,7 +186,11 @@ export default async function StoryDetailPage({
       )}
       {story.socialPost && (
         <div className="mt-6">
-          <SocialEmbed platform={story.socialPost.platform} permalink={story.socialPost.permalink} />
+          <SocialEmbed
+            platform={story.socialPost.platform}
+            permalink={story.socialPost.permalink}
+            cachedOembed={story.socialPost.oembedHtml}
+          />
         </div>
       )}
 

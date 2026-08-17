@@ -5,10 +5,16 @@ import { ExternalLinkIcon } from "../ui/icons";
 
 // Renders a public social post from just its permalink, no API keys/tokens —
 // same reasoning as GoFundMeEmbed.tsx: use each platform's own public
-// client-side widget script instead of a server-side oEmbed call. This
-// matters specifically for Instagram/Facebook, where Meta's oEmbed *API*
-// requires an app-review access token, but the public embed.js/plugin
-// mechanism works for any public post with zero auth.
+// client-side widget script instead of a server-side oEmbed call, for
+// X/TikTok/Facebook. Instagram is the exception (see `cachedOembed` below):
+// its anonymous embed.js widget throttles hard under real traffic, so
+// Instagram posts render from a pre-fetched oEmbed snapshot instead of
+// live-resolving client-side. That snapshot comes from Meta's official
+// `graph.facebook.com/instagram_oembed` endpoint, called with a free
+// app-id|client-token for a private rate-limit pool — confirmed live that
+// the tokenless path shares ONE global pool across every unauthenticated
+// caller and hits "Application request limit reached" almost immediately
+// under any real volume. See prisma/backfill-oembed-instagram.ts.
 declare global {
   interface Window {
     instgrm?: { Embeds?: { process?: () => void } };
@@ -88,6 +94,33 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
 const pendingProcess = new Map<string, ReturnType<typeof setTimeout>>();
 const PROCESS_DEBOUNCE_MS = 400;
 
+// Circuit breaker for Instagram specifically — X/TikTok/FB don't hit this.
+// Once Meta's anon embed.js throttles a session, it fails for every IG post
+// on the page at once (embed.js falls back to an iframe at bare
+// instagram.com, which XFO blocks) and stays throttled for the rest of the
+// session. Retrying each subsequent IG embed just burns the 20s poll timeout
+// and adds another identical console error for a request that's going to
+// fail anyway. Trip once, skip straight to the fallback card after that.
+// ponytail: sessionStorage flag never expires within the tab session — if
+// Meta's throttle window is shorter than the session, add a timestamp+TTL.
+const IG_THROTTLED_KEY = "sos-ig-embed-throttled";
+
+function isInstagramThrottled(): boolean {
+  try {
+    return sessionStorage.getItem(IG_THROTTLED_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function markInstagramThrottled(): void {
+  try {
+    sessionStorage.setItem(IG_THROTTLED_KEY, "1");
+  } catch {
+    // sessionStorage unavailable (private mode, etc) — just skip persisting.
+  }
+}
+
 function scheduleProcess(platform: string, run: () => void) {
   const existing = pendingProcess.get(platform);
   if (existing) clearTimeout(existing);
@@ -102,19 +135,46 @@ function scheduleProcess(platform: string, run: () => void) {
 
 type Status = "loading" | "ready" | "error";
 
+// Shape we store in SocialPost.oembedHtml for Instagram posts: the raw JSON
+// response from graph.facebook.com/instagram_oembed (see
+// scripts/backfill-oembed.ts), stringified as-is rather than picked apart
+// into separate columns — it's a snapshot of an external API response, not
+// modeled data, so there's nothing to normalize.
+function parseCachedOembed(raw: string | null | undefined): { thumbnailUrl: string; authorName?: string; title?: string } | null {
+  if (!raw) return null;
+  try {
+    const data = JSON.parse(raw);
+    if (typeof data.thumbnail_url !== "string") return null;
+    return {
+      thumbnailUrl: data.thumbnail_url,
+      authorName: typeof data.author_name === "string" ? data.author_name : undefined,
+      title: typeof data.title === "string" ? data.title : undefined,
+    };
+  } catch {
+    return null;
+  }
+}
+
 export function SocialEmbed({
   platform,
   permalink,
   locale = "es",
+  cachedOembed,
 }: {
   platform: "X" | "INSTAGRAM" | "FACEBOOK" | "TIKTOK";
   permalink: string;
   locale?: string;
+  // Pre-fetched oEmbed snapshot (Instagram only — see parseCachedOembed).
+  // When present, renders a static thumbnail card instead of attempting a
+  // live client-side embed at all, sidestepping Instagram's anon-embed
+  // throttling entirely rather than racing it.
+  cachedOembed?: string | null;
 }) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [status, setStatus] = useState<Status>("loading");
   const [inView, setInView] = useState(false);
+  const snapshot = platform === "INSTAGRAM" ? parseCachedOembed(cachedOembed) : null;
 
   // Defer starting any network/script work until the card is actually about
   // to be visible. Community/city pages can carry a dozen+ embeds on one
@@ -122,6 +182,7 @@ export function SocialEmbed({
   // ones far below the fold, is both wasted work and exactly the kind of
   // burst of anonymous requests that trips Instagram's rate limiting.
   useEffect(() => {
+    if (snapshot) return;
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
     const observer = new IntersectionObserver(
@@ -158,6 +219,11 @@ export function SocialEmbed({
       const container = containerRef.current;
       if (!container) return;
       container.innerHTML = "";
+
+      if (platform === "INSTAGRAM" && isInstagramThrottled()) {
+        setStatus("error");
+        return;
+      }
 
       if (platform === "FACEBOOK") {
         // Facebook's Page Plugin iframe is public and needs no app ID for a
@@ -298,6 +364,7 @@ export function SocialEmbed({
           return;
         }
         if (Date.now() > deadline) {
+          if (platform === "INSTAGRAM") markInstagramThrottled();
           setStatus("error");
           return;
         }
@@ -312,6 +379,23 @@ export function SocialEmbed({
       if (pollTimer) clearTimeout(pollTimer);
     };
   }, [inView, platform, permalink]);
+
+  if (snapshot) {
+    return (
+      <a
+        href={permalink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element -- external, unoptimizable Instagram CDN thumbnail */}
+        <img src={snapshot.thumbnailUrl} alt={snapshot.title ?? ""} className="w-full" loading="lazy" />
+        {snapshot.authorName && (
+          <p className="p-2 text-xs text-zinc-500 dark:text-zinc-500">@{snapshot.authorName}</p>
+        )}
+      </a>
+    );
+  }
 
   return (
     <div ref={wrapperRef} className="min-h-[120px]">
