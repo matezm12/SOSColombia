@@ -5785,3 +5785,58 @@ running — process its results once complete (more acopio points,
 verification that no local damage was missed, community posts,
 crowdfunding). After that, begin round 7 across all fourteen tracked
 cities in rotation order.
+
+## Pass 86 (2026-08-17) — Medellín's first deep pass, and a correction
+
+### Correcting pass 85: Medellín did feel real, minor effects
+Pass 85 assumed zero local impact. This pass found — and directly
+verified firsthand against the source, not just an agent's report —
+the Alcaldía de Medellín's own account: after 600+ technical building
+inspections, 16 homes were temporarily evacuated (Carlos E. Restrepo,
+buildings from the early 1970s, and Laureles), and roughly 250 of the
+city's 421 public school campuses reported some damage, mostly minor.
+Mayor Federico Gutiérrez explicitly stated no building required
+demolition and the city "no presenta riesgo estructural." No deaths
+or injuries have been reported. Real, sourced, minor incidental
+impact — not the "Medellín is a disaster zone" scenario, but not
+zero either. `severityLabel` moves from null to **LEVE** (the lowest
+tier) to reflect this honestly; the hub role remains the dominant
+story and is otherwise unchanged. Logged as two toll records: 16
+viviendas averiadas, 250 centros educativos afectados.
+
+Separately — **not about Medellín, not entered**: Antioquia's own
+DAGRAN risk agency is inspecting real, confirmed damage (290 homes,
+54 schools, 13 churches per one source) across roughly 26 unnamed
+municipios in the department's Suroeste/Oriente subregions, bordering
+the Chocó/Caldas/Risaralda epicenter zone — geographically distinct
+from Medellín itself (Valle de Aburrá). Flagged as a lead for a
+future pass to identify and potentially track those specific
+municipios.
+
+### New aid points (10)
+The best-corroborated of a much longer list this pass surfaced,
+mostly from official Alcaldía press releases plus Infobae, Blu Radio,
+Telemedellín, and El Colombiano: the city's official multi-site
+acopio network (179 tons and $1.813M COP collected to date), the
+Corporación Presentes monetary channel (boosted by an Aug 15 benefit
+concert that alone raised $6,000M COP + 31 tons in a single day), a
+football club's stadium-store collection point, an airport-community
+convoy explicitly bound for Cartago/Valle del Cauca, a shopping
+mall's collection point, and Universidad EAFIT's internal $1,000M COP
+emergency fund for its own ~800 students from affected regions. Also
+seeded: the four Movilizatorio-directory points flagged but not yet
+entered in pass 85 (Colegio Padre Manyanet, Cola del Zorro, La Kombi,
+Politécnico Gran Colombiano).
+
+### New community embeds (3)
+178 tons collected (El Colombiano), the benefit concert's results
+(Enfoque Cinco) — and a serious one: an aid truck from that same
+concert was attacked with gunfire on the Bolombolo–Ciudad Bolívar
+corridor en route to Chocó, over 10 rounds hitting the lead truck,
+both drivers escaping unharmed. Verified directly (35K reactions) and
+independently corroborated by at least five other regional Facebook
+pages — a real security risk for Medellín-origin aid convoys, worth
+watching in future passes.
+
+### Next steps
+Begin round 7 across all fourteen tracked cities in rotation order.
