@@ -1,0 +1,17 @@
+{
+  "eliminarDatos": {
+    "title": "Eliminación de datos",
+    "metaDescription": "Cómo pedir que eliminemos los datos personales que hayas enviado a SOSColombia.",
+    "intro": "Si enviaste un nombre, teléfono, dirección u otro dato de contacto a través de un formulario de este sitio («Sugerir un punto de ayuda» o «Sugerir una publicación») y quieres que lo eliminemos, aquí te explicamos cómo.",
+    "queHeading": "Qué puedes pedir que eliminemos",
+    "queTexto": "Cualquier dato de contacto (correo o teléfono) o información personal que hayas enviado en un formulario del sitio. El sitio no crea cuentas de usuario público, así que no hay un perfil que borrar — solo el dato puntual que enviaste.",
+    "comoHeading": "Cómo solicitarlo",
+    "comoTexto": "Como el sitio no tiene inicio de sesión para el público, no podemos verificar tu identidad automáticamente — un moderador revisa cada solicitud a mano. Escríbenos por Instagram o abre un issue en GitHub (enlaces al pie de cada página) e incluye:",
+    "comoItem1": "Qué enviaste (por ejemplo, el nombre del punto de ayuda o el enlace de la publicación sugerida).",
+    "comoItem2": "Aproximadamente cuándo lo enviaste.",
+    "comoItem3": "El dato de contacto que quieres que eliminemos, para poder ubicarlo.",
+    "tiempoHeading": "Qué haremos y en cuánto tiempo",
+    "tiempoTexto": "Confirmaremos la eliminación en un plazo máximo de 30 días. Si el dato ya fue parte de un punto de ayuda o publicación aprobada y pública, eliminaremos el dato de contacto asociado — el contenido público ya verificado (por ejemplo, la existencia de un punto de acopio) puede conservarse si sigue siendo información de interés público, sin ningún dato personal tuyo asociado.",
+    "legalTexto": "Esta solicitud se atiende conforme a la Ley 1581 de 2012 (Ley de Protección de Datos Personales / Habeas Data) de Colombia."
+  }
+}

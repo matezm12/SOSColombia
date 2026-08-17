@@ -1,0 +1,22 @@
+{
+  "privacidad": {
+    "title": "Privacy policy",
+    "metaDescription": "What data SOSColombia collects, how it's used, and how to reach us about privacy.",
+    "lastUpdated": "Last updated: August 17, 2026",
+    "intro1": "SOSColombia is an independent, non-profit project verifying and publishing public information about the August 10, 2026 Colombia earthquake. No account or login is required to browse the site.",
+    "intro2": "We never sell personal data to anyone, and never use it for advertising.",
+    "recopilamosHeading": "What we collect",
+    "recopilamosIntro": "We only collect personal data when someone voluntarily submits it through the site's forms:",
+    "recopilamosItem1": "\"Suggest an aid point\": the point's name and address, phone, type of aid, extra context, and, optionally, a contact detail (email or phone) so the submitter can be reached about the request.",
+    "recopilamosItem2": "\"Suggest a post\" (community): the post's link, extra context, and, optionally, a contact detail from the submitter.",
+    "recopilamosItem3": "The submitter's contact detail is never shown publicly — it's used only internally if a moderator needs to clarify something before publishing the submission.",
+    "recopilamosItem4": "Aggregated, anonymous usage analytics (Vercel Analytics), to understand which pages get visited — it doesn't identify individuals or build personal profiles.",
+    "tercerosHeading": "Third-party content",
+    "tercerosTexto": "Some pages show public posts from Instagram, X, TikTok, and Facebook, cited as sources. For Instagram, the site pre-fetches a thumbnail via Meta's public oEmbed API (graph.facebook.com) — that request only sends the post's public link, no personal data about the site visitor. Viewing an embedded post from another platform is subject to that platform's own privacy policy.",
+    "conservacionHeading": "Data retention and deletion",
+    "conservacionTexto": "Contact details submitted through a form are kept while the submission is pending review, and for a reasonable time after in case something needs clarifying. You can ask us to delete any personal data you submitted — see how on the",
+    "conservacionLink": "data deletion page",
+    "contactoHeading": "Contact",
+    "contactoTexto": "For questions about this policy, reach us on Instagram or open a GitHub issue on the repository — both links are in every page's footer."
+  }
+}

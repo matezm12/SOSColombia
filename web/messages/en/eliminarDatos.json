@@ -1,0 +1,17 @@
+{
+  "eliminarDatos": {
+    "title": "Data deletion",
+    "metaDescription": "How to ask SOSColombia to delete personal data you submitted.",
+    "intro": "If you submitted a name, phone number, address, or other contact detail through a form on this site (\"Suggest an aid point\" or \"Suggest a post\") and want it deleted, here's how.",
+    "queHeading": "What you can ask us to delete",
+    "queTexto": "Any contact detail (email or phone) or personal information you submitted through a site form. The site doesn't create public user accounts, so there's no profile to delete — just the specific data you sent in.",
+    "comoHeading": "How to request it",
+    "comoTexto": "Since the site has no public login, we can't verify your identity automatically — a moderator reviews each request by hand. Reach us on Instagram or open a GitHub issue (links in every page's footer) and include:",
+    "comoItem1": "What you submitted (e.g. the aid point's name, or the link of the suggested post).",
+    "comoItem2": "Roughly when you submitted it.",
+    "comoItem3": "The contact detail you want deleted, so we can locate it.",
+    "tiempoHeading": "What happens next, and how long it takes",
+    "tiempoTexto": "We'll confirm the deletion within 30 days at most. If the data was already part of an approved, public aid point or post, we'll remove the associated contact detail — the already-verified public content (e.g. that a collection point exists) may stay up if it's still of public interest, with no personal data of yours attached to it.",
+    "legalTexto": "Requests are handled under Colombia's Ley 1581 de 2012 (Personal Data Protection Law / Habeas Data)."
+  }
+}

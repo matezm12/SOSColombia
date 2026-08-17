@@ -13,6 +13,14 @@ export async function SiteFooter() {
     { href: "/sugerir", label: t("sugerirPunto") },
   ];
 
+  // Kept out of FOOTER_LINKS deliberately — legal/compliance links, not site
+  // navigation. A separate, visually quieter row below the main footer keeps
+  // that distinction obvious instead of burying them among content links.
+  const LEGAL_LINKS = [
+    { href: "/privacidad", label: t("privacidad") },
+    { href: "/eliminar-datos", label: t("eliminarDatos") },
+  ];
+
   return (
     <footer className="border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-black">
       <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10 text-sm text-zinc-500 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
@@ -61,6 +69,15 @@ export async function SiteFooter() {
             </svg>
           </a>
         </nav>
+      </div>
+      <div className="border-t border-zinc-100 dark:border-zinc-900">
+        <div className="mx-auto flex max-w-5xl flex-wrap gap-x-4 gap-y-1 px-6 py-4 text-xs text-zinc-400 dark:text-zinc-600">
+          {LEGAL_LINKS.map((link) => (
+            <Link key={link.href} href={link.href} className="hover:text-zinc-600 dark:hover:text-zinc-400">
+              {link.label}
+            </Link>
+          ))}
+        </div>
       </div>
     </footer>
   );

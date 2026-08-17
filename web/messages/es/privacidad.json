@@ -1,0 +1,22 @@
+{
+  "privacidad": {
+    "title": "Política de privacidad",
+    "metaDescription": "Qué datos recopila SOSColombia, cómo se usan y cómo contactarnos por temas de privacidad.",
+    "lastUpdated": "Última actualización: 17 de agosto de 2026",
+    "intro1": "SOSColombia es un proyecto independiente, sin ánimo de lucro, que verifica y publica información pública sobre la emergencia del terremoto del 10 de agosto de 2026. No requiere cuenta ni inicio de sesión para consultar el sitio.",
+    "intro2": "No vendemos datos personales a nadie, ni los usamos con fines publicitarios.",
+    "recopilamosHeading": "Qué datos recopilamos",
+    "recopilamosIntro": "Solo recopilamos datos personales cuando alguien los envía voluntariamente a través de los formularios del sitio:",
+    "recopilamosItem1": "«Sugerir un punto de ayuda»: nombre y dirección del punto, teléfono, tipo de ayuda, contexto adicional y, opcionalmente, un dato de contacto (correo o teléfono) del remitente para hacer seguimiento a la solicitud.",
+    "recopilamosItem2": "«Sugerir una publicación» (comunidad): el enlace a la publicación, contexto adicional y, opcionalmente, un dato de contacto del remitente.",
+    "recopilamosItem3": "El dato de contacto del remitente nunca se muestra públicamente — se usa solo internamente si un moderador necesita aclarar algo antes de publicar la sugerencia.",
+    "recopilamosItem4": "Analítica de uso agregada y anónima (Vercel Analytics), para entender qué páginas se visitan más — no identifica personas ni usa perfiles individuales.",
+    "tercerosHeading": "Contenido de terceros",
+    "tercerosTexto": "Algunas páginas muestran publicaciones públicas de Instagram, X, TikTok y Facebook citadas como fuente. Para Instagram, el sitio consulta previamente la API pública de oEmbed de Meta (graph.facebook.com) para obtener una miniatura de la publicación — esa consulta solo envía el enlace público de la publicación, ningún dato personal de quien visita el sitio. Al ver una publicación embebida de otra plataforma, esa plataforma puede aplicar su propia política de privacidad.",
+    "conservacionHeading": "Conservación y eliminación de datos",
+    "conservacionTexto": "Los datos de contacto enviados en un formulario se conservan mientras la sugerencia esté pendiente de revisión y un tiempo razonable después, solo por si hace falta aclarar algo. Puedes pedir que eliminemos cualquier dato personal que hayas enviado — mira cómo en la",
+    "conservacionLink": "página de eliminación de datos",
+    "contactoHeading": "Contacto",
+    "contactoTexto": "Para preguntas sobre esta política, escríbenos por Instagram o abre un issue en el repositorio de GitHub — ambos enlaces están al pie de cada página."
+  }
+}
