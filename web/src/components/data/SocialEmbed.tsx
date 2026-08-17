@@ -198,19 +198,21 @@ export function SocialEmbed({
 
       // None of the three scripts expose a "this specific blockquote is
       // done" callback — they rewrite the DOM asynchronously on their own
-      // schedule. A generic "any <iframe> inside the container" check risks
-      // a false positive if some other iframe ever ends up in this
-      // container; scope it to the platform's own iframe instead. Instagram
-      // additionally sets data-instgrm-rendered="true" on success, checked
-      // first, but that alone isn't relied on exclusively — an
-      // instagram.com iframe having appeared is treated as success too, so
-      // a real, rendered embed is never misclassified as failed.
+      // schedule, and "an iframe exists" isn't enough of a signal on its
+      // own: confirmed live that Instagram still creates the iframe for a
+      // permalink it can't actually embed (e.g. embedding disabled on that
+      // post) — the iframe points at Instagram's own "Sorry, this page
+      // isn't available" error page and never grows past ~2px tall. A
+      // successful embed always gets an explicit non-trivial height set on
+      // it (checked against a real render: ~600-750px). Require both the
+      // iframe and real height, not just presence.
       const isRendered = () => {
         const current = containerRef.current;
         if (!current) return false;
         if (platform === "INSTAGRAM") {
           if (current.querySelector("blockquote")?.getAttribute("data-instgrm-rendered") === "true") return true;
-          return !!current.querySelector('iframe[src*="instagram.com"]');
+          const iframe = current.querySelector('iframe[src*="instagram.com"]');
+          return !!iframe && iframe.getBoundingClientRect().height > 50;
         }
         if (platform === "X") {
           return !!current.querySelector('iframe[id^="twitter-widget"]');
