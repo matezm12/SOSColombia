@@ -5674,3 +5674,37 @@ on file were reconfirmed still active and growing.
 ### Next steps
 Begin round 7 across all thirteen tracked cities in rotation order,
 now including Argelia.
+
+## Pass 83 (2026-08-17) — Ibagué, one user-submitted resource
+
+A single find, shared directly with the user and passed along for
+research and entry — not a research-pass sweep.
+
+**INTECS** (Instituto Nacional de Técnicas), a real technical
+institute with campuses in Ibagué and Honda (Tolima, confirmed via
+its own Instagram), organized a student/staff-run acopio for people
+and animals affected by wildfires in the Tolima veredas/municipios of
+Valle de San Juan, San Luis, Coello, and Payandé — collecting at its
+Ibagué "sede principal" Aug 18-19. Entered as both a PendingAidPoint
+and a PendingSocialPost, per the user's explicit request to review
+and approve later rather than auto-publish. One caution carried into
+the pending note: Instagram's own "AI content" label appears on the
+source post — flagged for the reviewer, not treated as evidence
+against the institute or the drive being real.
+
+**Also researched, not entered**: a second resource the user was
+given — a "Red de Mujeres Kambirí" volunteer callout (aid-unloading
+at an address near Carabantú, plus a request for help at Centro
+Comercial Tranvía Plaza) — traced the org (Red Nacional de Mujeres
+Afrocolombianas Kambirí, redkambiri.org) and both addresses, but both
+resolve to **Medellín**, not any of this project's thirteen tracked
+cities, and no citable permalink was found for the specific callout
+text itself (not visible in the account's public post grid — likely
+a Story or a forward). Flagged back to the user rather than entered
+speculatively.
+
+### Next steps
+Get the user's read on the Kambirí resource (source link if
+available, and whether it's meant to tie to Quibdó/Chocó relief
+specifically) before deciding whether/how to enter it. Otherwise,
+begin round 7 across all thirteen tracked cities.
