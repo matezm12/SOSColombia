@@ -1,0 +1,26 @@
+{
+  "terminos": {
+    "title": "Términos de servicio",
+    "metaDescription": "Condiciones de uso de SOSColombia: naturaleza del proyecto, contribuciones de la comunidad y límites de responsabilidad.",
+    "lastUpdated": "Última actualización: 17 de agosto de 2026",
+    "intro1": "SOSColombia es un proyecto independiente y voluntario que agrega y verifica información pública sobre la emergencia del terremoto del 10 de agosto de 2026. No es una entidad registrada, ONG ni entidad gubernamental — ver más en la",
+    "introLink": "página de metodología",
+    "intro2": "Al usar este sitio aceptas estos términos.",
+    "precisionHeading": "Precisión de la información",
+    "precisionTexto": "La información se publica en la medida de lo posible según lo que reportan las fuentes citadas en cada dato, sin garantía de exactitud o vigencia total — las cifras de una emergencia cambian rápido y a veces las fuentes oficiales se contradicen entre sí (ver discrepancias documentadas en metodología). Antes de tomar una decisión importante, verifica siempre con la fuente original citada.",
+    "contribucionesHeading": "Contribuciones de la comunidad",
+    "contribucionesTexto": "Cualquiera puede sugerir un punto de ayuda o una publicación a través de los formularios del sitio. Cada sugerencia pasa por revisión de un moderador voluntario antes de publicarse, y puede editarse, rechazarse o eliminarse a criterio del equipo — por ejemplo, si no se puede verificar o si ya no está vigente. Enviar una sugerencia no da derecho a compensación alguna, y quien la envía es responsable de que la información sea veraz.",
+    "datosHeading": "Datos abiertos",
+    "datosTexto": "Los datos verificados y publicados en el sitio son de uso libre con atribución. Ver la",
+    "datosLink": "página de datos abiertos",
+    "datosTexto2": "para las condiciones exactas y los formatos de descarga.",
+    "tercerosHeading": "Contenido y enlaces de terceros",
+    "tercerosTexto": "El sitio cita y embebe publicaciones públicas de otras plataformas (Instagram, X, TikTok, Facebook) y enlaza a campañas de recolección de fondos y sitios de terceros. Citarlos no implica respaldo de SOSColombia sobre ese contenido, y el uso de esas plataformas o sitios está sujeto a sus propios términos.",
+    "responsabilidadHeading": "Límite de responsabilidad",
+    "responsabilidadTexto": "El sitio se ofrece «tal cual», sin garantía de ningún tipo. SOSColombia no se hace responsable por decisiones tomadas con base en la información aquí publicada, ni por el contenido de sitios o campañas de terceros enlazados.",
+    "cambiosHeading": "Cambios a estos términos",
+    "cambiosTexto": "Estos términos pueden actualizarse a medida que evoluciona la emergencia o el proyecto — la fecha de última actualización queda siempre indicada arriba.",
+    "contactoHeading": "Contacto",
+    "contactoTexto": "Para preguntas sobre estos términos, escríbenos por Instagram o abre un issue en el repositorio de GitHub — ambos enlaces están al pie de cada página."
+  }
+}

@@ -17,6 +17,7 @@ export async function SiteFooter() {
   // navigation. A separate, visually quieter row below the main footer keeps
   // that distinction obvious instead of burying them among content links.
   const LEGAL_LINKS = [
+    { href: "/terminos", label: t("terminos") },
     { href: "/privacidad", label: t("privacidad") },
     { href: "/eliminar-datos", label: t("eliminarDatos") },
   ];

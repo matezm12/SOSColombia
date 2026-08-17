@@ -1,0 +1,26 @@
+{
+  "terminos": {
+    "title": "Terms of service",
+    "metaDescription": "SOSColombia's terms of use: what the project is, community contributions, and limits of liability.",
+    "lastUpdated": "Last updated: August 17, 2026",
+    "intro1": "SOSColombia is an independent, volunteer-run project that aggregates and verifies public information about the August 10, 2026 earthquake emergency. It is not a registered entity, NGO, or government body — see more on the",
+    "introLink": "methodology page",
+    "intro2": "By using this site, you accept these terms.",
+    "precisionHeading": "Accuracy of information",
+    "precisionTexto": "Information is published on a best-effort basis according to what the sources cited alongside each figure report, with no guarantee of full accuracy or currency — emergency figures change fast, and official sources sometimes contradict each other (see documented discrepancies on the methodology page). Always verify with the original cited source before acting on anything important.",
+    "contribucionesHeading": "Community contributions",
+    "contribucionesTexto": "Anyone can suggest an aid point or a post through the site's forms. Every submission goes through review by a volunteer moderator before publishing, and may be edited, rejected, or removed at the team's discretion — for example, if it can't be verified or is no longer current. Submitting a suggestion doesn't entitle you to any compensation, and whoever submits it is responsible for the information being accurate.",
+    "datosHeading": "Open data",
+    "datosTexto": "Verified data published on the site is free to use with attribution. See the",
+    "datosLink": "open data page",
+    "datosTexto2": "for exact terms and download formats.",
+    "tercerosHeading": "Third-party content and links",
+    "tercerosTexto": "The site cites and embeds public posts from other platforms (Instagram, X, TikTok, Facebook) and links to fundraising campaigns and third-party sites. Citing them doesn't imply SOSColombia's endorsement of that content, and using those platforms or sites is subject to their own terms.",
+    "responsabilidadHeading": "Limitation of liability",
+    "responsabilidadTexto": "The site is provided \"as is,\" with no warranty of any kind. SOSColombia is not liable for decisions made based on information published here, nor for the content of linked third-party sites or campaigns.",
+    "cambiosHeading": "Changes to these terms",
+    "cambiosTexto": "These terms may be updated as the emergency or the project evolves — the last-updated date above always reflects the current version.",
+    "contactoHeading": "Contact",
+    "contactoTexto": "For questions about these terms, reach us on Instagram or open a GitHub issue on the repository — both links are in every page's footer."
+  }
+}
