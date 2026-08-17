@@ -13,6 +13,7 @@ declare global {
   interface Window {
     instgrm?: { Embeds?: { process?: () => void } };
     twttr?: { widgets?: { load?: (el?: HTMLElement) => void } };
+    tiktokEmbed?: { lib?: { render?: () => void } };
   }
 }
 
@@ -193,8 +194,13 @@ export function SocialEmbed({
 
       if (platform === "INSTAGRAM") window.instgrm?.Embeds?.process?.();
       if (platform === "X") window.twttr?.widgets?.load?.(container);
-      // TikTok's embed.js self-processes any .tiktok-embed blockquote already
-      // in the DOM on load/mutation — no explicit process call needed.
+      // Wrong assumption in an earlier version of this file: TikTok's
+      // embed.js does NOT self-process blockquotes added to the DOM after
+      // its own initial load — confirmed live, a fresh blockquote just sits
+      // there forever (no id, no iframe) until `render()` is called
+      // explicitly. It only auto-scans once, at script-load time, same
+      // category of thing as Instagram/X needing an explicit process call.
+      if (platform === "TIKTOK") window.tiktokEmbed?.lib?.render?.();
 
       // None of the three scripts expose a "this specific blockquote is
       // done" callback — they rewrite the DOM asynchronously on their own
