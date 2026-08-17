@@ -63,3 +63,23 @@ export async function rejectCommunityPost(formData: FormData) {
 
   revalidatePath("/admin/comunidad");
 }
+
+export async function setSocialPostFeatured(formData: FormData) {
+  const volunteer = await requireScope("comunidad");
+  if (!volunteer) return;
+
+  const id = String(formData.get("id") ?? "");
+  if (!id) return;
+
+  const featured = formData.get("featured") === "true";
+  const note = String(formData.get("featuredNote") ?? "").trim().slice(0, 160);
+
+  await prisma.socialPost.update({
+    where: { id },
+    data: { featured, featuredNote: featured ? note || null : null },
+  });
+
+  revalidatePath("/admin/comunidad");
+  revalidatePath("/[locale]/ciudad/[divipola]", "page");
+  revalidatePath("/[locale]/ciudad/[divipola]/[vereda]", "page");
+}

@@ -280,6 +280,16 @@ export const SOCIAL_PLATFORM_LABEL: Record<string, string> = {
   TIKTOK: "TikTok",
 };
 
+// Platform-tinted tile background for the compact FeaturedPostCard, which has
+// no real thumbnail to show (SocialPost carries no image data — see
+// featuredNote's comment in schema.prisma).
+export const SOCIAL_PLATFORM_TILE_CLASS: Record<string, string> = {
+  X: "bg-zinc-900 text-zinc-50 dark:bg-zinc-800",
+  INSTAGRAM: "bg-pink-100 text-pink-800 dark:bg-pink-950 dark:text-pink-200",
+  FACEBOOK: "bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200",
+  TIKTOK: "bg-teal-100 text-teal-900 dark:bg-teal-950 dark:text-teal-100",
+};
+
 export const SOCIAL_CATEGORY_LABEL: Record<string, string> = {
   AID_POINT: "Punto de ayuda",
   NEED: "Necesidad puntual",

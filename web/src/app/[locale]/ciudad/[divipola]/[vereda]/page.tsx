@@ -6,8 +6,10 @@ import { PageShell } from "@/components/layout/PageShell";
 import { AidPointCard } from "@/components/data/AidPointCard";
 import { CampaignCard } from "@/components/data/CampaignCard";
 import { CommunityPostCard } from "@/components/data/CommunityPostCard";
+import { FeaturedPostsRow } from "@/components/data/FeaturedPostsRow";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { pickFeaturedPosts } from "@/lib/featuredPosts";
 import { veredaKindLabel } from "@/lib/labels";
 import { buildAlternates, absoluteUrl, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
@@ -76,6 +78,10 @@ export default async function VeredaPage(
   const vereda = await getVereda(divipola, veredaSlug);
   if (!vereda) notFound();
 
+  const featuredPosts = pickFeaturedPosts(vereda.socialPosts);
+  const featuredIds = new Set(featuredPosts.map((p) => p.id));
+  const restPosts = vereda.socialPosts.filter((p) => !featuredIds.has(p.id));
+
   const placeSchema = {
     "@context": "https://schema.org",
     "@type": "Place",
@@ -113,6 +119,18 @@ export default async function VeredaPage(
           )}
         </div>
 
+        {featuredPosts.length > 0 && (
+          <>
+            <SectionHeading>{t("destacados")}</SectionHeading>
+            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">{t("destacadosLede")}</p>
+            <FeaturedPostsRow
+              posts={featuredPosts}
+              locale={locale}
+              verPublicacionLabel={t("verPublicacion")}
+            />
+          </>
+        )}
+
         {vereda.campaigns.length > 0 && (
           <>
             <SectionHeading>{t("comoDonar")}</SectionHeading>
@@ -124,11 +142,11 @@ export default async function VeredaPage(
           </>
         )}
 
-        {vereda.socialPosts.length > 0 && (
+        {restPosts.length > 0 && (
           <>
             <SectionHeading>{t("comunidad")}</SectionHeading>
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {vereda.socialPosts.map((post) => (
+              {restPosts.map((post) => (
                 <CommunityPostCard key={post.id} post={post} locale={locale} />
               ))}
             </div>

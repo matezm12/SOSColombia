@@ -371,8 +371,13 @@ model SocialPost {
   vereda      Vereda?      @relation(fields: [veredaId], references: [id])
   veredaId    String?      // resolved from PendingSocialPost.placeName at /admin/comunidad approval time, same pattern as AidPoint.veredaId
   category    SocialPostCategory
+  featured     Boolean  @default(false) // hand-curated: surfaced in the highlighted-posts row on city/vereda pages
+  featuredNote String?  // short curated snippet shown on the compact featured card — untranslated, same pattern as Municipio.alertNote
   capturedAt  DateTime     @default(now())
   stories     Story[]
+
+  @@index([municipioId])
+  @@index([veredaId])
 }
 
 enum SocialPlatform {

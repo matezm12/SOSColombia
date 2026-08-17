@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { approveCommunityPost, rejectCommunityPost } from "./actions";
+import { approveCommunityPost, rejectCommunityPost, setSocialPostFeatured } from "./actions";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
 import { ExternalLink } from "@/components/ui/ExternalLink";
@@ -13,7 +13,7 @@ import { formatDateTime } from "@/lib/format";
 export const dynamic = "force-dynamic";
 
 export default async function ComunidadModeracionPage() {
-  const [pending, reviewed] = await Promise.all([
+  const [pending, reviewed, live] = await Promise.all([
     prisma.pendingSocialPost.findMany({
       where: { status: "PENDING" },
       include: { municipio: true },
@@ -24,6 +24,16 @@ export default async function ComunidadModeracionPage() {
       include: { municipio: true, reviewedByVolunteer: { select: { name: true } } },
       orderBy: { reviewedAt: "desc" },
       take: 20,
+    }),
+    // A separate live-SocialPost query, not a join off `reviewed` above:
+    // PendingSocialPost.promotedSocialPostId is a plain String (not a
+    // @relation), so Prisma can't include through it, and `reviewed` only
+    // ever holds the last 20 items anyway — wrong scope for "feature a post
+    // someone notices later".
+    prisma.socialPost.findMany({
+      include: { municipio: { select: { name: true } }, vereda: { select: { name: true } } },
+      orderBy: [{ featured: "desc" }, { capturedAt: "desc" }],
+      take: 30,
     }),
   ]);
 
@@ -120,6 +130,67 @@ export default async function ComunidadModeracionPage() {
           </div>
         </>
       )}
+
+      <SectionHeading>Publicaciones en vivo ({live.length})</SectionHeading>
+      <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
+        Destaca publicaciones para la fila de destacados en la página de cada
+        ciudad/vereda. La nota es opcional y solo se muestra si la
+        publicación está destacada.
+      </p>
+      <div className="mt-4 space-y-2">
+        {live.map((p) => (
+          <div
+            key={p.id}
+            className={`rounded-lg border px-4 py-2.5 text-sm ${
+              p.featured
+                ? "border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950/30"
+                : "border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950"
+            }`}
+          >
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="text-zinc-700 dark:text-zinc-300">
+                <ExternalLink href={p.permalink}>{p.permalink}</ExternalLink>
+              </span>
+              <span className="shrink-0 rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+                {SOCIAL_PLATFORM_LABEL[p.platform] ?? p.platform} · {SOCIAL_CATEGORY_LABEL[p.category] ?? p.category}
+                {p.municipio && ` · ${p.municipio.name}`}
+                {p.vereda && ` · ${p.vereda.name}`}
+              </span>
+            </div>
+            <p className="mt-1 text-xs text-zinc-400 dark:text-zinc-600">
+              Capturado {formatDateTime(p.capturedAt)}
+              {p.featured && (
+                <span className="ml-2 font-medium text-emerald-600 dark:text-emerald-400">
+                  Destacada
+                </span>
+              )}
+            </p>
+            <form action={setSocialPostFeatured} className="mt-2 flex flex-wrap items-center gap-2">
+              <input type="hidden" name="id" value={p.id} />
+              <input type="hidden" name="featured" value={String(!p.featured)} />
+              <input
+                type="text"
+                name="featuredNote"
+                defaultValue={p.featuredNote ?? ""}
+                maxLength={160}
+                placeholder="Cita corta (opcional)"
+                className="min-w-0 flex-1 rounded-md border border-zinc-300 px-2 py-1 text-sm dark:border-zinc-700 dark:bg-zinc-900"
+              />
+              <button
+                type="submit"
+                className={
+                  p.featured
+                    ? "shrink-0 rounded-md bg-zinc-200 px-3 py-1.5 text-sm font-medium text-zinc-800 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700"
+                    : "shrink-0 rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-700"
+                }
+              >
+                {p.featured ? "Quitar de destacados" : "Destacar"}
+              </button>
+            </form>
+          </div>
+        ))}
+        {live.length === 0 && <EmptyState>No hay publicaciones aprobadas todavía.</EmptyState>}
+      </div>
     </PageShell>
   );
 }

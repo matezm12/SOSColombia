@@ -10,9 +10,11 @@ import CiudadMapaClient from "@/components/map/CiudadMapaClientLazy";
 import { CampaignCard } from "@/components/data/CampaignCard";
 import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
 import { StoryCard } from "@/components/data/StoryCard";
+import { FeaturedPostsRow } from "@/components/data/FeaturedPostsRow";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
+import { featuredPostsForCity } from "@/lib/featuredPosts";
 import { aidKindLabel, veredaKindLabel } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
 import { buildAlternates, absoluteUrl, buildOpenGraph, buildTwitter } from "@/lib/seo";
@@ -65,39 +67,42 @@ export default async function CiudadPage(
   const { locale, divipola } = await props.params;
   const t = await getTranslations("ciudad");
 
-  const municipio = await prisma.municipio.findUnique({
-    where: { divipolaCode: divipola },
-    include: {
-      department: true,
-      tollRecords: {
-        include: { source: true },
-        orderBy: [{ metric: "asc" }, { asOf: "desc" }],
-      },
-      aidPoints: {
-        include: { source: true, vereda: true },
-        orderBy: { kind: "asc" },
-      },
-      veredas: {
-        include: { _count: { select: { aidPoints: true } } },
-        orderBy: { name: "asc" },
-      },
-      campaigns: {
-        include: {
-          municipios: { select: { name: true, divipolaCode: true } },
-          stories: { where: { status: "PUBLISHED" }, select: { slug: true }, take: 1 },
+  const [municipio, featuredPosts] = await Promise.all([
+    prisma.municipio.findUnique({
+      where: { divipolaCode: divipola },
+      include: {
+        department: true,
+        tollRecords: {
+          include: { source: true },
+          orderBy: [{ metric: "asc" }, { asOf: "desc" }],
+        },
+        aidPoints: {
+          include: { source: true, vereda: true },
+          orderBy: { kind: "asc" },
+        },
+        veredas: {
+          include: { _count: { select: { aidPoints: true } } },
+          orderBy: { name: "asc" },
+        },
+        campaigns: {
+          include: {
+            municipios: { select: { name: true, divipolaCode: true } },
+            stories: { where: { status: "PUBLISHED" }, select: { slug: true }, take: 1 },
+          },
+        },
+        resources: {
+          where: { status: { not: "DEAD" } },
+          orderBy: [{ tier: "asc" }, { name: "asc" }],
+        },
+        stories: {
+          where: { status: "PUBLISHED" },
+          include: { campaign: { select: { platform: true, url: true } } },
+          orderBy: { publishedAt: "desc" },
         },
       },
-      resources: {
-        where: { status: { not: "DEAD" } },
-        orderBy: [{ tier: "asc" }, { name: "asc" }],
-      },
-      stories: {
-        where: { status: "PUBLISHED" },
-        include: { campaign: { select: { platform: true, url: true } } },
-        orderBy: { publishedAt: "desc" },
-      },
-    },
-  });
+    }),
+    featuredPostsForCity(divipola),
+  ]);
 
   if (!municipio) notFound();
 
@@ -188,6 +193,18 @@ export default async function CiudadPage(
             <EmptyState>{t("sinCifras")}</EmptyState>
           )}
         </div>
+
+        {featuredPosts.length > 0 && (
+          <>
+            <SectionHeading>{t("destacados")}</SectionHeading>
+            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">{t("destacadosLede")}</p>
+            <FeaturedPostsRow
+              posts={featuredPosts}
+              locale={locale}
+              verPublicacionLabel={t("verPublicacion")}
+            />
+          </>
+        )}
 
         {municipio.veredas.length > 0 && (
           <>
