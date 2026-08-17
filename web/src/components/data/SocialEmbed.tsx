@@ -221,7 +221,13 @@ export function SocialEmbed({
         return !!current.querySelector("iframe");
       };
 
-      const deadline = Date.now() + EMBED_TIMEOUT_MS;
+      // Instagram's own resize step (what isRendered() waits on) has been
+      // observed taking meaningfully longer than the other two platforms'
+      // — confirmed live, the exact same permalink rendered fine on one
+      // load and still hadn't resized by 8s on another. Give it more room
+      // before giving up; X/TikTok stay on the tighter budget.
+      const pollTimeoutMs = platform === "INSTAGRAM" ? 20000 : EMBED_TIMEOUT_MS;
+      const deadline = Date.now() + pollTimeoutMs;
       const poll = () => {
         if (cancelled) return;
         if (isRendered()) {
