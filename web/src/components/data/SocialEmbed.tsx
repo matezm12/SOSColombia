@@ -198,17 +198,19 @@ export function SocialEmbed({
 
       // None of the three scripts expose a "this specific blockquote is
       // done" callback — they rewrite the DOM asynchronously on their own
-      // schedule. A generic "any <iframe> inside the container" check is a
-      // false-positive trap: confirmed live that Instagram's script can
-      // leave a container in a state with an iframe present yet
-      // data-instgrm-rendered still null (the real content never finished
-      // loading) — the container looked "ready" while showing nothing. Use
-      // each platform's own documented completion signal instead.
+      // schedule. A generic "any <iframe> inside the container" check risks
+      // a false positive if some other iframe ever ends up in this
+      // container; scope it to the platform's own iframe instead. Instagram
+      // additionally sets data-instgrm-rendered="true" on success, checked
+      // first, but that alone isn't relied on exclusively — an
+      // instagram.com iframe having appeared is treated as success too, so
+      // a real, rendered embed is never misclassified as failed.
       const isRendered = () => {
         const current = containerRef.current;
         if (!current) return false;
         if (platform === "INSTAGRAM") {
-          return current.querySelector("blockquote")?.getAttribute("data-instgrm-rendered") === "true";
+          if (current.querySelector("blockquote")?.getAttribute("data-instgrm-rendered") === "true") return true;
+          return !!current.querySelector('iframe[src*="instagram.com"]');
         }
         if (platform === "X") {
           return !!current.querySelector('iframe[id^="twitter-widget"]');

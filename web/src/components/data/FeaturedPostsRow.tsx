@@ -15,9 +15,9 @@ import type { FeaturedPost } from "@/lib/featuredPosts";
 // blank gap under any shorter embed. `items-start` lets each card sit at
 // its own natural height instead.
 //
-// A single post also gets its own single-column layout rather than sitting
-// in one half of a 2-col grid — a lone card stretched to 50% width (with an
-// empty gap beside it) read as oddly sized/flat compared to a full row.
+// Grid stays two columns regardless of post count — same pattern as
+// CommunityFeed. A lone post sits in the first cell at its normal card
+// width, not stretched to span the whole row.
 export function FeaturedPostsRow({
   posts,
   locale,
@@ -27,10 +27,8 @@ export function FeaturedPostsRow({
 }) {
   if (posts.length === 0) return null;
 
-  const gridClass = posts.length === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2";
-
   return (
-    <div className={`mt-4 grid items-start gap-4 ${gridClass}`}>
+    <div className="mt-4 grid items-start gap-4 grid-cols-1 sm:grid-cols-2">
       {posts.map((post) => (
         <FeaturedPostCard key={post.id} post={post} locale={locale} />
       ))}
