@@ -5708,3 +5708,40 @@ Get the user's read on the Kambirí resource (source link if
 available, and whether it's meant to tie to Quibdó/Chocó relief
 specifically) before deciding whether/how to enter it. Otherwise,
 begin round 7 across all thirteen tracked cities.
+
+## Pass 84 (2026-08-17) — Kambirí resolved: three Medellín acopio
+## points, attached to Buenaventura
+
+A deeper crawl (Google, Instagram, and a purpose-built donation
+directory) resolved pass 83's open question. Confirmed three real,
+currently-active Medellín acopio points, all independently verified
+in Movilizatorio's "Directorio Ayudas Colombia" (a curated directory
+built specifically for this earthquake): **Red de Mujeres Kambirí**
+(Calle 58 #41-64), **Centro Comercial Tranvía Plaza** (Cra 40 #48-95,
+Local 323), and **Colectivo AfroUdeA** (Universidad de Antioquia,
+Bloque 9) — addresses matching the text the user was sent almost
+exactly. All three entered as pending aid points.
+
+**Not added: Medellín as a tracked city.** The user's instinct was to
+add Medellín with its own severity assessment, but nothing in this
+project's research — six-plus rounds, plus this pass's own fresh
+search — has ever placed Medellín/Antioquia among the affected
+departments. Medellín is playing a donor/staging role here, the same
+role Pamplona plays for Argelia or Cali/Buga/Salento/Pitalito played
+as Argelia collection points — none of those were added as tracked
+disaster cities either. These three points are attached to
+**Buenaventura** instead, per that established pattern.
+
+**Beneficiary, sourced two ways**: a Fundación Juntos Se Puede
+Instagram post naming the Tranvía Plaza point explicitly ("cargue de
+ayudas para su traslado hacia Buenaventura"), corroborating the
+addresses independently confirmed in the Movilizatorio directory.
+Some adjacent posts frame the same Medellín corridor as feeding
+Chocó/Pacific relief more broadly rather than Buenaventura
+specifically — Kambirí's own Afro-Colombian, Pacific-coast identity
+fits either reading. Buenaventura was chosen because it's the one
+point with a direct, dated quote naming it; flagged in each pending
+entry's note so a moderator with better information can correct it.
+
+### Next steps
+Begin round 7 across all thirteen tracked cities in rotation order.
