@@ -92,9 +92,6 @@ export function SocialEmbed({
   const [status, setStatus] = useState<Status>("loading");
 
   useEffect(() => {
-    // TEMP diagnostic — tracing why some SocialEmbed instances never even
-    // append their blockquote. Remove once resolved.
-    console.log("[SocialEmbed] effect fired", platform, permalink, !!containerRef.current);
     let cancelled = false;
     let pollTimer: ReturnType<typeof setTimeout> | undefined;
     // No explicit setStatus("loading") here — `status` already initializes
@@ -104,7 +101,6 @@ export function SocialEmbed({
 
     async function render() {
       const container = containerRef.current;
-      console.log("[SocialEmbed] render() called", platform, !!container);
       if (!container) return;
       container.innerHTML = "";
 
