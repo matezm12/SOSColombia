@@ -5745,3 +5745,43 @@ entry's note so a moderator with better information can correct it.
 
 ### Next steps
 Begin round 7 across all thirteen tracked cities in rotation order.
+
+## Pass 85 (2026-08-17) — adds Medellín, Antioquia (14th tracked city)
+
+Per an explicit, repeated user instruction: track Medellín "as equal
+as the other cities" — its own page, its own hub of points and
+resources, its own dedicated research pass.
+
+### What makes this addition different
+Nothing in this project's research — six-plus rounds across every
+other city, plus two dedicated passes chasing this exact lead — has
+ever placed Medellín/Antioquia among the affected departments (Chocó,
+Valle del Cauca, Risaralda, Caldas, Quindío, Tolima only). Medellín
+wasn't struck by the Aug 10 quake. It's added here honestly as a
+**donor/logistics hub city** — not a disaster site — per the user's
+explicit direction to track it fully regardless. Two things are
+deliberately not faked to make it "look like" the other cities:
+`severityLabel` stays null (nothing happened here to rate) and
+`redAlert` stays false. The alertNote states its hub role plainly. If
+a future pass ever finds real local damage, this should be revisited.
+
+### Re-homed
+The three Medellín acopio points from pass 84 (Red de Mujeres
+Kambirí, Centro Comercial Tranvía Plaza, Colectivo AfroUdeA) moved
+from Buenaventura (their likely destination) to Medellín (their
+actual physical location), now that Medellín is trackable — more
+consistent with how every other city's aid points work. Each entry's
+needsText still states the Buenaventura/Pacific destination.
+
+### Basics
+DIVIPOLA 05001, department Antioquia ('05', already existed in the
+DB), population 2,427,129 (2018 DANE census), coordinates 6.2502,
+-75.5676 — cross-verified across Spanish Wikipedia and
+citypopulation.de, both agreeing on the code.
+
+### Next steps
+A dedicated 5-agent deep-research pass on Medellín's hub role is
+running — process its results once complete (more acopio points,
+verification that no local damage was missed, community posts,
+crowdfunding). After that, begin round 7 across all fourteen tracked
+cities in rotation order.
