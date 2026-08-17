@@ -1,2 +1,15 @@
 # Claude Code session/tooling state — not project content
 .claude/
+
+# Video/content-generation workspace — used to produce marketing content and
+# raw footage for the platform, not part of the app itself. Never push.
+.agents/
+.venv-transcribe/
+skills-lock.json
+videos/
+carousel-1-visuals/
+carousel-1-visuals.rar
+claude-for-oss-application.txt
+instagram-story-text*.txt
+linkedin-post-text.txt
+social-media-posts.txt
