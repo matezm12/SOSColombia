@@ -64,6 +64,14 @@ export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">)
             </select>
           </Field>
 
+          <Field label={t("fields.vereda")}>
+            <input
+              name="veredaName"
+              placeholder={t("placeholders.vereda")}
+              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+            />
+          </Field>
+
           <Field label={t("fields.tipo")}>
             <select
               name="kind"

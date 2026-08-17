@@ -17,6 +17,7 @@ export async function submitAidPoint(formData: FormData) {
   await prisma.pendingAidPoint.create({
     data: {
       municipioId,
+      veredaName: emptyToNull(formData.get("veredaName")),
       kind: kind as never,
       name,
       address: emptyToNull(formData.get("address")),

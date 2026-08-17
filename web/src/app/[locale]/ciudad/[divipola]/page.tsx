@@ -13,7 +13,7 @@ import { StoryCard } from "@/components/data/StoryCard";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SubsectionHeading } from "@/components/ui/SubsectionHeading";
-import { aidKindLabel } from "@/lib/labels";
+import { aidKindLabel, veredaKindLabel } from "@/lib/labels";
 import { formatNumber } from "@/lib/format";
 import { buildAlternates, absoluteUrl, buildOpenGraph, buildTwitter } from "@/lib/seo";
 
@@ -74,8 +74,12 @@ export default async function CiudadPage(
         orderBy: [{ metric: "asc" }, { asOf: "desc" }],
       },
       aidPoints: {
-        include: { source: true },
+        include: { source: true, vereda: true },
         orderBy: { kind: "asc" },
+      },
+      veredas: {
+        include: { _count: { select: { aidPoints: true } } },
+        orderBy: { name: "asc" },
       },
       campaigns: {
         include: {
@@ -184,6 +188,32 @@ export default async function CiudadPage(
             <EmptyState>{t("sinCifras")}</EmptyState>
           )}
         </div>
+
+        {municipio.veredas.length > 0 && (
+          <>
+            <SectionHeading>{t("veredas")}</SectionHeading>
+            <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">{t("veredasLede")}</p>
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {municipio.veredas.map((vereda) => (
+                <Link
+                  key={vereda.id}
+                  href={`/ciudad/${municipio.divipolaCode}/${vereda.slug}`}
+                  className="block rounded-lg border border-zinc-200 bg-white p-4 hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium text-black dark:text-zinc-50">{vereda.name}</span>
+                    <span className="shrink-0 rounded-md bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+                      {veredaKindLabel(vereda.kind, locale)}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">
+                    {t("veredaPuntos", { count: vereda._count.aidPoints })}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </>
+        )}
 
         <SectionHeading>{t("puntosDeAyuda")}</SectionHeading>
         {geocodedAidPoints.length > 0 && (

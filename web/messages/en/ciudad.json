@@ -7,6 +7,9 @@
     "subtituloPoblacion": " · {population} inhabitants (DANE)",
     "cifras": "Numbers",
     "sinCifras": "No numbers published yet for this city.",
+    "veredas": "Veredas and rural areas",
+    "veredasLede": "Rural hamlets and corregimientos of this city with their own aid points — each one has its own page.",
+    "veredaPuntos": "{count, plural, =0 {No aid points yet} one {# aid point} other {# aid points}}",
     "puntosDeAyuda": "Aid points",
     "sinPuntosDeAyuda": "No confirmed aid points yet for this city.",
     "tipoDeAyuda": "Aid type",
@@ -14,6 +17,12 @@
     "sinCampanas": "No fundraising campaign specific to this city yet — see the <link>general donation page</link>.",
     "proyectosLocales": "Local projects and tools",
     "sinProyectosLocales": "No independent project focused specifically on this city yet — see <link>all projects and tools</link>.",
-    "historias": "Stories from this city"
+    "historias": "Stories from this city",
+    "volverCiudad": "Back to {city}",
+    "metaTitleVereda": "{vereda}, {city} — Earthquake",
+    "metaDescriptionVereda": "Aid points, donations, and community in the {vereda} vereda, {city}.",
+    "sinPuntosDeAyudaVereda": "No confirmed aid points yet for this vereda.",
+    "comoDonar": "How to donate",
+    "comunidad": "Community"
   }
 }

@@ -4,6 +4,7 @@
     "lede": "¿Conoces un albergue, centro de acopio, o punto de ayuda que no está en el sitio? Cuéntanos. Cada sugerencia se revisa antes de publicarse — no aparece automáticamente.",
     "fields": {
       "ciudad": "Ciudad *",
+      "vereda": "Vereda o corregimiento (si aplica)",
       "tipo": "Tipo de punto *",
       "nombre": "Nombre del lugar *",
       "direccion": "Dirección",
@@ -15,6 +16,7 @@
     },
     "placeholders": {
       "nombre": "Ej: Coliseo Municipal",
+      "vereda": "Ej: Vereda La Maicena",
       "direccion": "Si la sabes",
       "necesita": "Ej: colchonetas, agua, pañales",
       "fuente": "https://...",

@@ -7,6 +7,9 @@
     "subtituloPoblacion": " · {population} habitantes (DANE)",
     "cifras": "Cifras",
     "sinCifras": "Sin cifras publicadas todavía para esta ciudad.",
+    "veredas": "Veredas y zonas rurales",
+    "veredasLede": "Veredas y corregimientos de esta ciudad con puntos de ayuda propios — cada uno tiene su propia página.",
+    "veredaPuntos": "{count, plural, =0 {Sin puntos de ayuda todavía} one {# punto de ayuda} other {# puntos de ayuda}}",
     "puntosDeAyuda": "Puntos de ayuda",
     "sinPuntosDeAyuda": "Sin puntos de ayuda confirmados todavía para esta ciudad.",
     "tipoDeAyuda": "Tipo de ayuda",
@@ -14,6 +17,12 @@
     "sinCampanas": "Ninguna campaña de recaudación específica para esta ciudad todavía — mira las <link>campañas generales</link>.",
     "proyectosLocales": "Proyectos y herramientas locales",
     "sinProyectosLocales": "Ningún proyecto independiente enfocado específicamente en esta ciudad todavía — mira <link>todos los proyectos y herramientas</link>.",
-    "historias": "Historias de esta ciudad"
+    "historias": "Historias de esta ciudad",
+    "volverCiudad": "Volver a {city}",
+    "metaTitleVereda": "{vereda}, {city} — Terremoto",
+    "metaDescriptionVereda": "Puntos de ayuda, donaciones y comunidad en la vereda {vereda}, {city}.",
+    "sinPuntosDeAyudaVereda": "Sin puntos de ayuda confirmados todavía para esta vereda.",
+    "comoDonar": "Cómo donar",
+    "comunidad": "Comunidad"
   }
 }

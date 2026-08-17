@@ -7,6 +7,7 @@ import {
   tierLabel,
   crowdfundingPlatformLabel,
   verificationLabel,
+  veredaKindLabel,
 } from "@/lib/labels";
 import { formatCurrency, formatDate, formatNumber } from "@/lib/format";
 
@@ -57,6 +58,10 @@ export async function GET(
       },
       campaigns: {
         include: { municipios: { select: { name: true, divipolaCode: true } } },
+      },
+      veredas: {
+        include: { _count: { select: { aidPoints: true } } },
+        orderBy: { name: "asc" },
       },
     },
   });
@@ -115,6 +120,12 @@ export async function GET(
     return `- ${parts.join(" · ")}`;
   });
 
+  const veredaPath = (slug: string) =>
+    `${SITE_URL}/md/ciudad/${municipio.divipolaCode}/${slug}${locale === "en" ? "?locale=en" : ""}`;
+  const veredaLines = municipio.veredas.map(
+    (v) => `- [${v.name}](${veredaPath(v.slug)}) — ${veredaKindLabel(v.kind, locale)}, ${v._count.aidPoints}`,
+  );
+
   const populationLine = municipio.populationDane
     ? ` · ${formatNumber(municipio.populationDane)} ${c("poblacionDane")}`
     : "";
@@ -137,7 +148,7 @@ ${municipio.department.name} · DIVIPOLA ${municipio.divipolaCode}${populationLi
 ## ${t("cifras")}
 
 ${tollLines.length > 0 ? tollLines.join("\n") : t("sinCifras")}
-
+${veredaLines.length > 0 ? `\n## ${t("veredas")}\n\n${veredaLines.join("\n")}\n` : ""}
 ## ${t("puntosDeAyuda")}
 
 ${aidSections.length > 0 ? aidSections.join("\n\n") : t("sinPuntosDeAyuda")}

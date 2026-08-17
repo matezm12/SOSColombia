@@ -8,7 +8,7 @@ import { GoFundMeEmbed } from "./GoFundMeEmbed";
 import { isGoFundMeUrl } from "@/lib/gofundme";
 import { aidStatusLabel } from "@/lib/labels";
 
-type AidPointWithSource = Prisma.AidPointGetPayload<{ include: { source: true } }>;
+type AidPointWithSource = Prisma.AidPointGetPayload<{ include: { source: true; vereda: true } }>;
 
 export function AidPointCard({ point, locale }: { point: AidPointWithSource; locale: string }) {
   const link = point.permalink ?? point.source.url;
@@ -18,9 +18,12 @@ export function AidPointCard({ point, locale }: { point: AidPointWithSource; loc
       <ShareButton anchorId={point.id} label={point.name} />
       <div className="flex items-center justify-between gap-2 pr-8">
         <span className="font-medium text-black dark:text-zinc-50">{point.name}</span>
-        <Badge variant="status" value={point.status}>
-          {aidStatusLabel(point.status, locale)}
-        </Badge>
+        <div className="flex shrink-0 items-center gap-1.5">
+          {point.vereda && <Badge variant="neutral">{point.vereda.name}</Badge>}
+          <Badge variant="status" value={point.status}>
+            {aidStatusLabel(point.status, locale)}
+          </Badge>
+        </div>
       </div>
 
       {point.address && (

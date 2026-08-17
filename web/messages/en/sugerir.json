@@ -4,6 +4,7 @@
     "lede": "Do you know of a shelter, donation collection center, or aid point that isn't on the site? Tell us. Every suggestion is reviewed before it's published — it doesn't appear automatically.",
     "fields": {
       "ciudad": "City *",
+      "vereda": "Vereda or corregimiento (if applicable)",
       "tipo": "Type of point *",
       "nombre": "Place name *",
       "direccion": "Address",
@@ -15,6 +16,7 @@
     },
     "placeholders": {
       "nombre": "E.g.: Municipal Coliseum",
+      "vereda": "E.g.: Vereda La Maicena",
       "direccion": "If you know it",
       "necesita": "E.g.: mattresses, water, diapers",
       "fuente": "https://...",

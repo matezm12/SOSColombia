@@ -16,7 +16,7 @@ export default async function ModeracionPage() {
   const [pending, reviewed] = await Promise.all([
     prisma.pendingAidPoint.findMany({
       where: { status: "PENDING" },
-      include: { municipio: true },
+      include: { municipio: { include: { veredas: { orderBy: { name: "asc" } } } } },
       orderBy: { createdAt: "asc" },
     }),
     prisma.pendingAidPoint.findMany({
@@ -61,6 +61,11 @@ export default async function ModeracionPage() {
                 Necesita: {p.needsText}
               </p>
             )}
+            {p.veredaName && (
+              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                Vereda/corregimiento indicado: <strong>{p.veredaName}</strong>
+              </p>
+            )}
             {p.sourceUrl && (
               <p className="mt-1 text-sm">
                 <ExternalLink href={p.sourceUrl}>Fuente</ExternalLink>
@@ -74,26 +79,43 @@ export default async function ModeracionPage() {
             <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-600">
               Enviado {formatDateTime(p.createdAt)}
             </p>
-            <div className="mt-3 flex gap-2">
-              <form action={approveSubmission}>
-                <input type="hidden" name="id" value={p.id} />
-                <button
-                  type="submit"
-                  className="rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-700"
-                >
-                  Aprobar
-                </button>
-              </form>
-              <form action={rejectSubmission}>
-                <input type="hidden" name="id" value={p.id} />
-                <button
-                  type="submit"
-                  className="rounded-md bg-zinc-200 px-3 py-1.5 text-sm font-medium text-zinc-800 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700"
-                >
-                  Rechazar
-                </button>
-              </form>
-            </div>
+            <form action={approveSubmission} className="mt-3 flex flex-wrap items-center gap-2">
+              <input type="hidden" name="id" value={p.id} />
+              <select
+                name="veredaId"
+                defaultValue=""
+                className="rounded-md border border-zinc-300 bg-white px-2 py-1.5 text-xs dark:border-zinc-700 dark:bg-zinc-950"
+              >
+                <option value="">Sin vereda</option>
+                {p.municipio.veredas.map((v) => (
+                  <option key={v.id} value={v.id}>
+                    {v.name}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="text"
+                name="veredaNameNew"
+                placeholder="...o crear vereda nueva"
+                defaultValue={p.veredaName ?? ""}
+                className="w-40 rounded-md border border-zinc-300 bg-white px-2 py-1.5 text-xs dark:border-zinc-700 dark:bg-zinc-950"
+              />
+              <button
+                type="submit"
+                className="rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-700"
+              >
+                Aprobar
+              </button>
+            </form>
+            <form action={rejectSubmission} className="mt-2">
+              <input type="hidden" name="id" value={p.id} />
+              <button
+                type="submit"
+                className="rounded-md bg-zinc-200 px-3 py-1.5 text-sm font-medium text-zinc-800 hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700"
+              >
+                Rechazar
+              </button>
+            </form>
           </Card>
         ))}
         {pending.length === 0 && <EmptyState>No hay sugerencias pendientes.</EmptyState>}

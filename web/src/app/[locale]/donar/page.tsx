@@ -53,7 +53,7 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
     }),
     prisma.aidPoint.findMany({
       where: { kind: "MONETARY_DONATION" },
-      include: { source: true, municipio: true },
+      include: { source: true, municipio: true, vereda: true },
       orderBy: { name: "asc" },
     }),
   ]);

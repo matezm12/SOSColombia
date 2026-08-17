@@ -109,6 +109,22 @@ export function aidKindLabel(key: string | null | undefined, locale: string): st
   return key ? pick(AID_KIND_LABEL, AID_KIND_LABEL_EN, key, locale) : "";
 }
 
+export const VEREDA_KIND_LABEL: Record<string, string> = {
+  VEREDA: "Vereda",
+  CORREGIMIENTO: "Corregimiento",
+  CENTRO_POBLADO: "Centro poblado",
+};
+
+const VEREDA_KIND_LABEL_EN: Record<string, string> = {
+  VEREDA: "Rural hamlet (vereda)",
+  CORREGIMIENTO: "Corregimiento",
+  CENTRO_POBLADO: "Populated center",
+};
+
+export function veredaKindLabel(key: string | null | undefined, locale: string): string {
+  return key ? pick(VEREDA_KIND_LABEL, VEREDA_KIND_LABEL_EN, key, locale) : "";
+}
+
 export const AID_STATUS_LABEL: Record<string, string> = {
   ACTIVE: "Activo",
   FULL: "Al límite de capacidad",

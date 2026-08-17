@@ -41,7 +41,7 @@ export default async function AyudaPage(props: PageProps<"/[locale]/ayuda">) {
 
   const points = await prisma.aidPoint.findMany({
     where: kindFilter ? { kind: kindFilter as never } : undefined,
-    include: { source: true, municipio: true },
+    include: { source: true, municipio: true, vereda: true },
     orderBy: [{ kind: "asc" }, { municipio: { name: "asc" } }],
   });
 

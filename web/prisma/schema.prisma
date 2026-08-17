@@ -60,6 +60,7 @@ model Municipio {
   campaigns          CrowdfundingCampaign[]
   resources          AlliedResource[]
   stories            Story[]
+  veredas            Vereda[]
 
   @@index([departmentId])
 }
@@ -69,6 +70,44 @@ enum SeverityLabel {
   ALTA
   MODERADA
   LEVE
+}
+
+// Rural sub-municipal hamlet/corregimiento. Deliberately thin: no
+// severityLabel or populationDane, because no source publishes either at
+// this granularity -- both would only ever be guesses. `codigoVereda` is
+// nullable (unlike Municipio.divipolaCode) because DANE/IGAC's "Veredas de
+// Colombia" layer is explicitly a *nivel de referencia*, not an official
+// DIVIPOLA level -- coverage is incomplete, so a community-reported vereda
+// not in that layer still gets a row, with codigoVereda null and `notes`
+// explaining why. `sourceId` is required (stricter than Municipio) -- no
+// vereda can exist without a citation.
+model Vereda {
+  id           String     @id @default(cuid())
+  municipio    Municipio  @relation(fields: [municipioId], references: [id])
+  municipioId  String
+  name         String
+  slug         String     // kebab-case of name, unique WITHIN the municipio — route param for /ciudad/[divipola]/[vereda]
+  codigoVereda String?    @unique // 8-digit DANE/IGAC vereda reference code, when it exists
+  kind         VeredaKind @default(VEREDA)
+  lat          Float?
+  lng          Float?
+  source       Source     @relation(fields: [sourceId], references: [id])
+  sourceId     String
+  notes        String?    // e.g. "not present in the DANE reference layer; name as reported by the Alcaldía" — honest-marking, not a blocker
+  createdAt    DateTime   @default(now())
+
+  aidPoints    AidPoint[]
+  socialPosts  SocialPost[]
+  campaigns    CrowdfundingCampaign[]
+
+  @@unique([municipioId, slug])
+  @@index([municipioId])
+}
+
+enum VeredaKind {
+  VEREDA
+  CORREGIMIENTO
+  CENTRO_POBLADO
 }
 
 // ── Toll data — append-only, never overwritten ──────────────────────────
@@ -148,6 +187,8 @@ model AidPoint {
   id                 String       @id @default(cuid())
   municipio          Municipio    @relation(fields: [municipioId], references: [id])
   municipioId        String
+  vereda             Vereda?      @relation(fields: [veredaId], references: [id])
+  veredaId           String?      // set at /admin/moderacion approval time when the submitter named a vereda/corregimiento
   kind               AidPointKind
   name               String
   address            String?      // many confirmed sources are venue-name-only, no street address
@@ -163,6 +204,7 @@ model AidPoint {
   lastVerifiedAt     DateTime
 
   @@index([municipioId, kind])
+  @@index([veredaId])
 }
 
 enum AidPointKind {
@@ -190,6 +232,7 @@ model PendingAidPoint {
   id                 String            @id @default(cuid())
   municipio          Municipio         @relation(fields: [municipioId], references: [id])
   municipioId        String
+  veredaName         String?           // as typed by the submitter; resolved to a real Vereda at /admin/moderacion, not a FK here — that resolution IS the moderation step
   kind               AidPointKind
   name               String
   address            String?
@@ -250,6 +293,7 @@ model Source {
 
   tollRecords   TollRecord[]
   aidPoints     AidPoint[]
+  veredas       Vereda[]
 }
 
 enum SourceStatus {
@@ -297,6 +341,7 @@ model CrowdfundingCampaign {
   notes              String?             // e.g. the Galería Aborigen organizer/foundation-mismatch caveat
   lastCheckedAt      DateTime
   municipios         Municipio[]         // optional stated city focus — never exactly one FK, since real campaigns are genuinely multi-city
+  veredas            Vereda[]            // optional — set when a campaign's own wiki entry names a specific vereda, mirrors `municipios`
   stories            Story[]
 }
 
@@ -323,6 +368,8 @@ model SocialPost {
   oembedHtml  String?      // cached
   municipio   Municipio?   @relation(fields: [municipioId], references: [id])
   municipioId String?
+  vereda      Vereda?      @relation(fields: [veredaId], references: [id])
+  veredaId    String?      // resolved from PendingSocialPost.placeName at /admin/comunidad approval time, same pattern as AidPoint.veredaId
   category    SocialPostCategory
   capturedAt  DateTime     @default(now())
   stories     Story[]

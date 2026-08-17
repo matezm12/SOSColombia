@@ -5,6 +5,18 @@ import { prisma } from "@/lib/prisma";
 import { upsertSource } from "@/lib/sources";
 import { requireScope } from "@/lib/volunteer";
 
+// Matches prisma/seed-veredas-pass1.ts's slugify — same normalization, so a
+// vereda created here and one created by a future seed pass never diverge
+// into two different slugs for the same real name.
+function slugify(name: string) {
+  return name
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
 export async function approveSubmission(formData: FormData) {
   const volunteer = await requireScope("moderacion");
   if (!volunteer) return;
@@ -29,9 +41,23 @@ export async function approveSubmission(formData: FormData) {
     tier: isAutomated ? 1 : 4,
   });
 
+  const veredaId = String(formData.get("veredaId") ?? "");
+  const veredaNameNew = String(formData.get("veredaNameNew") ?? "").trim();
+  let resolvedVeredaId: string | undefined = veredaId || undefined;
+  if (!resolvedVeredaId && veredaNameNew) {
+    const slug = slugify(veredaNameNew);
+    const vereda = await prisma.vereda.upsert({
+      where: { municipioId_slug: { municipioId: pending.municipioId, slug } },
+      update: {},
+      create: { municipioId: pending.municipioId, name: veredaNameNew, slug, sourceId: source.id },
+    });
+    resolvedVeredaId = vereda.id;
+  }
+
   const aidPoint = await prisma.aidPoint.create({
     data: {
       municipioId: pending.municipioId,
+      veredaId: resolvedVeredaId,
       kind: pending.kind,
       name: pending.name,
       address: pending.address,
