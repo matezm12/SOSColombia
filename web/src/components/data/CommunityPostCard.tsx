@@ -35,7 +35,7 @@ export function CommunityPostCard({ post, locale }: { post: PostWithMunicipio; l
       )}
 
       <div className="mt-3">
-        <SocialEmbed platform={post.platform} permalink={post.permalink} />
+        <SocialEmbed platform={post.platform} permalink={post.permalink} locale={locale} />
       </div>
 
       <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-600">

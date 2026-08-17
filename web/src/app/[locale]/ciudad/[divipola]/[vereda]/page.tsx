@@ -141,7 +141,7 @@ export default async function VeredaPage(
         {restPosts.length > 0 && (
           <>
             <SectionHeading>{t("comunidad")}</SectionHeading>
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="mt-4 grid items-start gap-4 grid-cols-1 sm:grid-cols-2">
               {restPosts.map((post) => (
                 <CommunityPostCard key={post.id} post={post} locale={locale} />
               ))}

@@ -44,7 +44,7 @@ export function CommunityFeed({
 
   if (cities.length === 0) {
     return (
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="mt-8 grid items-start gap-4 grid-cols-1 sm:grid-cols-2">
         {posts.map((p) => (
           <CommunityPostCard key={p.id} post={p} locale={locale} />
         ))}
@@ -82,7 +82,7 @@ export function CommunityFeed({
         ))}
       </div>
 
-      <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="mt-4 grid items-start gap-4 grid-cols-1 sm:grid-cols-2">
         {filtered.map((p) => (
           <CommunityPostCard key={p.id} post={p} locale={locale} />
         ))}

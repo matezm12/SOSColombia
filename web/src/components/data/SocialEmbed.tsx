@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ExternalLinkIcon } from "../ui/icons";
 
 // Renders a public social post from just its permalink, no API keys/tokens —
 // same reasoning as GoFundMeEmbed.tsx: use each platform's own public
@@ -21,47 +22,94 @@ const SCRIPTS: Record<string, string> = {
   TIKTOK: "https://www.tiktok.com/embed.js",
 };
 
+// How long we wait for a widget script to load AND for it to actually turn
+// our placeholder blockquote into a real embed before giving up. Widget
+// scripts are commonly blocked outright by ad blockers/privacy extensions
+// (platform.twitter.com/widgets.js especially) — without this, a blocked
+// script left the old version hanging forever on an empty box.
+const EMBED_TIMEOUT_MS = 8000;
+
+// Module-level cache, one promise per script src, shared by every SocialEmbed
+// instance on the page. The previous version detected an in-flight script via
+// a DOM query + 'load' listener, which had a real race: two instances
+// mounting before the first script tag committed to the DOM could each
+// insert their own duplicate <script>. A plain in-memory cache is both
+// simpler and removes the race entirely.
+const scriptPromises = new Map<string, Promise<void>>();
+
 function loadScriptOnce(src: string): Promise<void> {
-  return new Promise((resolve) => {
-    const existing = document.querySelector(`script[src="${src}"]`);
-    if (existing) {
-      existing.addEventListener("load", () => resolve(), { once: true });
-      if (existing.getAttribute("data-loaded") === "true") resolve();
-      return;
-    }
+  const cached = scriptPromises.get(src);
+  if (cached) return cached;
+
+  const promise = new Promise<void>((resolve, reject) => {
     const script = document.createElement("script");
     script.src = src;
     script.async = true;
-    script.addEventListener("load", () => {
-      script.setAttribute("data-loaded", "true");
-      resolve();
-    });
+    script.addEventListener("load", () => resolve(), { once: true });
+    script.addEventListener(
+      "error",
+      () => reject(new Error(`Failed to load ${src}`)),
+      { once: true },
+    );
     document.body.appendChild(script);
   });
+  // A failed load shouldn't poison every future mount — let the next
+  // instance retry instead of caching a permanently-rejected promise.
+  promise.catch(() => scriptPromises.delete(src));
+  scriptPromises.set(src, promise);
+  return promise;
 }
+
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error("timeout")), ms);
+    promise.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (err) => {
+        clearTimeout(timer);
+        reject(err);
+      },
+    );
+  });
+}
+
+type Status = "loading" | "ready" | "error";
 
 export function SocialEmbed({
   platform,
   permalink,
+  locale = "es",
 }: {
   platform: "X" | "INSTAGRAM" | "FACEBOOK" | "TIKTOK";
   permalink: string;
+  locale?: string;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [status, setStatus] = useState<Status>("loading");
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
     let cancelled = false;
+    let pollTimer: ReturnType<typeof setTimeout> | undefined;
+    // No explicit setStatus("loading") here — `status` already initializes
+    // to "loading", and each instance is mounted once per post (keyed by
+    // post.id upstream), so platform/permalink never actually change under
+    // an already-mounted instance in this codebase's usage.
 
     async function render() {
+      const container = containerRef.current;
       if (!container) return;
       container.innerHTML = "";
 
       if (platform === "FACEBOOK") {
         // Facebook's Page Plugin iframe is public and needs no app ID for a
-        // basic post embed, unlike its oEmbed *API*.
+        // basic post embed, unlike its oEmbed *API*. Cross-origin iframes
+        // fire 'load' even when Facebook itself renders an internal error
+        // page inside — we can't see through that — but 'error' plus a
+        // timeout still catches the common failure mode (the iframe request
+        // itself gets blocked by an extension or never returns).
         const iframe = document.createElement("iframe");
         iframe.src = `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(permalink)}&show_text=true&width=500`;
         iframe.width = "100%";
@@ -71,7 +119,27 @@ export function SocialEmbed({
         iframe.setAttribute("scrolling", "no");
         iframe.setAttribute("frameborder", "0");
         iframe.setAttribute("allowfullscreen", "true");
+        let settled = false;
+        iframe.addEventListener(
+          "load",
+          () => {
+            settled = true;
+            if (!cancelled) setStatus("ready");
+          },
+          { once: true },
+        );
+        iframe.addEventListener(
+          "error",
+          () => {
+            settled = true;
+            if (!cancelled) setStatus("error");
+          },
+          { once: true },
+        );
         container.appendChild(iframe);
+        pollTimer = setTimeout(() => {
+          if (!settled && !cancelled) setStatus("error");
+        }, EMBED_TIMEOUT_MS);
         return;
       }
 
@@ -110,26 +178,99 @@ export function SocialEmbed({
       container.appendChild(blockquote);
 
       const scriptSrc = SCRIPTS[platform];
-      if (!scriptSrc) return;
-      await loadScriptOnce(scriptSrc);
+      if (!scriptSrc) {
+        setStatus("error");
+        return;
+      }
+
+      try {
+        await withTimeout(loadScriptOnce(scriptSrc), EMBED_TIMEOUT_MS);
+      } catch {
+        if (!cancelled) setStatus("error");
+        return;
+      }
       if (cancelled) return;
 
       if (platform === "INSTAGRAM") window.instgrm?.Embeds?.process?.();
       if (platform === "X") window.twttr?.widgets?.load?.(container);
       // TikTok's embed.js self-processes any .tiktok-embed blockquote already
       // in the DOM on load/mutation — no explicit process call needed.
+
+      // None of the three scripts expose a "this specific blockquote is
+      // done" callback — they rewrite the DOM asynchronously on their own
+      // schedule. A generic "any <iframe> inside the container" check is a
+      // false-positive trap: confirmed live that Instagram's script can
+      // leave a container in a state with an iframe present yet
+      // data-instgrm-rendered still null (the real content never finished
+      // loading) — the container looked "ready" while showing nothing. Use
+      // each platform's own documented completion signal instead.
+      const isRendered = () => {
+        const current = containerRef.current;
+        if (!current) return false;
+        if (platform === "INSTAGRAM") {
+          return current.querySelector("blockquote")?.getAttribute("data-instgrm-rendered") === "true";
+        }
+        if (platform === "X") {
+          return !!current.querySelector('iframe[id^="twitter-widget"]');
+        }
+        // TikTok gives no equivalent rendered-flag; fall back to iframe presence.
+        return !!current.querySelector("iframe");
+      };
+
+      const deadline = Date.now() + EMBED_TIMEOUT_MS;
+      const poll = () => {
+        if (cancelled) return;
+        if (isRendered()) {
+          setStatus("ready");
+          return;
+        }
+        if (Date.now() > deadline) {
+          setStatus("error");
+          return;
+        }
+        pollTimer = setTimeout(poll, 300);
+      };
+      poll();
     }
 
     render();
     return () => {
       cancelled = true;
+      if (pollTimer) clearTimeout(pollTimer);
     };
   }, [platform, permalink]);
 
   return (
-    <div
-      ref={containerRef}
-      className="min-h-[120px] overflow-x-auto rounded-lg border border-zinc-200 p-1 dark:border-zinc-700"
-    />
+    <div className="min-h-[120px]">
+      {status === "loading" && (
+        <div className="flex min-h-[120px] items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-700">
+          <div className="h-5 w-5 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-600 dark:border-zinc-700 dark:border-t-zinc-300" />
+        </div>
+      )}
+      {status === "error" && (
+        <div className="flex min-h-[120px] flex-col items-center justify-center gap-2 rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-center dark:border-zinc-700 dark:bg-zinc-900">
+          <p className="text-xs text-zinc-500 dark:text-zinc-500">
+            {locale === "en" ? "This post couldn't be loaded here." : "No se pudo cargar esta publicación aquí."}
+          </p>
+          <a
+            href={permalink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-sm text-blue-600 underline decoration-blue-600/30 underline-offset-2 hover:decoration-blue-600 dark:text-blue-400 dark:decoration-blue-400/30 dark:hover:decoration-blue-400"
+          >
+            {locale === "en" ? "View original" : "Ver publicación original"}
+            <ExternalLinkIcon className="h-3 w-3" />
+          </a>
+        </div>
+      )}
+      <div
+        ref={containerRef}
+        className={
+          status === "ready"
+            ? "overflow-x-auto rounded-lg border border-zinc-200 p-1 dark:border-zinc-700"
+            : "hidden"
+        }
+      />
+    </div>
   );
 }
