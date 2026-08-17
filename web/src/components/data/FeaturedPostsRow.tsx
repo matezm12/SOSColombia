@@ -1,38 +1,24 @@
 import { FeaturedPostCard } from "./FeaturedPostCard";
 import type { FeaturedPost } from "@/lib/featuredPosts";
 
-// Column count keyed by post count, not a flat responsive class — with only
-// 2-3 slots filled (common: not every city has 4 posts to draw from), a
-// hardcoded lg:grid-cols-4 leaves a dead gap next to the last card.
-const GRID_CLASS: Record<number, string> = {
-  1: "grid-cols-1 sm:grid-cols-2",
-  2: "grid-cols-1 sm:grid-cols-2",
-  3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
-  4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
-};
-
+// Full playable embeds are wide (Instagram/X/TikTok widgets all want real
+// width to render well), so this stays capped at 2 columns — same grid
+// CommunityFeed/CommunityPostCard already use — rather than stretching to
+// 3-4 across. With up to FEATURED_POST_SLOTS (4) cards, that reads as two
+// rows of two on desktop, one column on mobile.
 export function FeaturedPostsRow({
   posts,
   locale,
-  verPublicacionLabel,
 }: {
   posts: FeaturedPost[];
   locale: string;
-  verPublicacionLabel: string;
 }) {
   if (posts.length === 0) return null;
 
-  const gridClass = GRID_CLASS[posts.length] ?? GRID_CLASS[4];
-
   return (
-    <div className={`mt-4 grid items-start gap-3 ${gridClass}`}>
+    <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
       {posts.map((post) => (
-        <FeaturedPostCard
-          key={post.id}
-          post={post}
-          locale={locale}
-          verPublicacionLabel={verPublicacionLabel}
-        />
+        <FeaturedPostCard key={post.id} post={post} locale={locale} />
       ))}
     </div>
   );

@@ -198,11 +198,7 @@ export default async function CiudadPage(
           <>
             <SectionHeading>{t("destacados")}</SectionHeading>
             <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-500">{t("destacadosLede")}</p>
-            <FeaturedPostsRow
-              posts={featuredPosts}
-              locale={locale}
-              verPublicacionLabel={t("verPublicacion")}
-            />
+            <FeaturedPostsRow posts={featuredPosts} locale={locale} />
           </>
         )}
 
