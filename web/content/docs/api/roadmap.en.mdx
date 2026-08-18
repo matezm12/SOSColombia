@@ -1,0 +1,29 @@
+---
+title: API roadmap
+description: The plan for a full public API for SOSColombia, beyond today's export.
+---
+
+import { Callout } from "fumadocs-ui/components/callout";
+
+<Callout type="warn" title="Not built yet">
+  This page describes an intention, not a feature available today. What
+  exists right now is [the data export](/en/docs/api) -- an unauthenticated
+  `GET` that returns the whole dataset. This page stays here as a reference
+  for where it's headed, so anyone building against today's export knows
+  what to expect later.
+</Callout>
+
+The current export solves "download the whole dataset at once," but it doesn't solve what "Site B" would actually need to build something sustained on top of SOSColombia: asking only for what changed, filtering by city without downloading the whole country, or relying on a stable way to access the data that doesn't break every time the site changes internally.
+
+## What would change
+
+- **Versioning** (`/api/v1/...`) — so adding a field or changing an endpoint doesn't break someone already integrated against an earlier version.
+- **Filtering and pagination** — request just one city's aid points, or figures for a single metric, instead of downloading the entire file every time.
+- **API-key authentication** — the current export would stay public and keyless (that's intentional, see [Data & API](/en/docs/api)); an API with more query capability needs a way to identify, and if necessary throttle, usage per consumer.
+- **Interactive documentation** — an [OpenAPI](https://www.openapis.org/) spec describing every endpoint, and a reference page where a real query can be tried straight from the browser, not just read about.
+
+## Why it isn't built yet
+
+Building a versioned, documented API before there's a second real consumer is speculative work — the risk is designing against imagined needs instead of real ones. The current export already covers the real use case that exists today (someone wants the full dataset), and stays the recommended way to access the data until this is built.
+
+If you're building something against `/api/export` today and hitting a specific limitation, that's real, useful information — worth knowing about before this page becomes more than a plan.

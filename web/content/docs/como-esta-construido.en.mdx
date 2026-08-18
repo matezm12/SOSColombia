@@ -1,0 +1,81 @@
+---
+title: How it's built
+description: Technical stack, data model, moderation, automated jobs, and the Instagram thumbnail pipeline behind SOSColombia.
+---
+
+import { Callout } from "fumadocs-ui/components/callout";
+
+## Stack
+
+Next.js 16 (App Router) · Prisma 7 (`@prisma/adapter-pg`) · Postgres (Supabase) · Tailwind CSS v4 · next-intl (es/en). Deployed on Vercel, with [MapLibre GL](https://maplibre.org/) for the map (no per-call API billing, unlike Mapbox).
+
+The repository has two parts: `wiki/` is the research dataset in markdown (the source of truth for phase 1), and `web/` is the production app that loads that data into Postgres and serves it.
+
+## Data model
+
+Four design rules came directly out of phase-1 research, before a single line of application code was written — each one avoided a real problem already seen in the data:
+
+- **Figures are never overwritten.** Every death toll, displaced-persons count, etc. is a row with a `value`, `source`, `trust tier`, and `date`, not a field that gets updated. Real reports changed from one day to the next (displaced families: 24,324 -> 30,324 -> 25,872, all legitimate figures from different reports) — a "latest wins" schema would have silently erased that history. The site shows the most recent figure by default, but the full record is always one click away.
+- **Acopio (collection point) != Albergue (shelter).** An aid point has a type (shelter, collection point, health, veterinary, blood donation, monetary donation) — a donation drop-off point and a shelter where people actually sleep are never the same record, even when they share the same venue (happened at least twice, in Manizales and Pereira).
+- **DIVIPOLA is the geographic key**, not the city name as text. City names caused real ambiguity during research (Armenia vs. Calarcá, "Unidad Básica" in Popayán) — DIVIPOLA avoids that problem at the data layer.
+- **The source's trust tier travels with every figure**, not just in research notes — it's shown on the site (a label next to the figure) so anyone can tell an official figure apart from one reported by the community that hasn't been verified yet. The tiers, highest trust first:
+
+  1. SGC (seismic facts)
+  2. UNGRD (casualties and damage — primary source)
+  3. DANE / DNP (demographic and economic context)
+  4. Gobernación / Alcaldía (local official channels)
+  5. Red Cross / Civil Defense (operational detail)
+  6. Verified media (cross-checking or gap-filling only, never the sole source)
+  7. Social media (a signal to verify, never cited as fact without independent verification)
+
+Contradictions between sources are also a first-class piece of data, not an error to hide: when two trustworthy sources give different figures, both stay on record and visible on `/metodologia` (Spanish) until resolved.
+
+## How the data stays current
+
+Different sources change at different speeds, so there isn't one mechanism — there are four, each following one shared discipline: **detect, never silently write a figure a human hasn't seen**, with one deliberate exception.
+
+| Tier | Sources | Mechanism | Frequency |
+|---|---|---|---|
+| 1 — clean APIs | USGS seismic API | Automated job, no review — the only exception to the rule above, because it's a clean numeric comparison against an authoritative source, not text interpretation | Daily |
+| 2 — structured but no API | UNGRD, OCHA, INMLCF bulletins | Detects a new bulletin and stages it in the moderation queue (`/admin/boletines`) for someone to read the actual bulletin and fill in the figure | Daily |
+| 3 — social / hyperlocal | Municipal press pages, community reports | The hardest tier — no API, inconsistent format, and it's exactly the data that changes fastest ("the shelter is now full"). Combines an automated sweep of official press pages with a public suggestion form — both feed the same moderation queue | Automated sweep: daily. Community submissions: real-time, moderated before publishing |
+| 4 — third-party aggregators | mapadelterremoto.com | Checks a third-party site for aid points we're missing; only alerts, never writes directly | Weekly |
+
+<Callout title="The moderation queue is what holds this together">
+  Any data that doesn't come from a clean API (tier 1) goes through a
+  review queue before it publishes — whether it's an automated detection
+  or a community submission. This is what keeps the "every figure has a
+  source" discipline intact after launch, instead of degrading into
+  unverified noise.
+</Callout>
+
+### The 4 automated jobs (`api/cron/*`, Vercel Cron)
+
+- **`usgs`** — daily. The one exception to "never auto-write": corrects the event's magnitude/depth/epicenter when USGS's API disagrees with what's on file. It has already corrected a real value in production (depth: 110.3 km -> 110.285 km).
+- **`bulletins`** — daily. Detects a new numbered bulletin from INMLCF or a new OCHA Flash Update page; never interprets the figures in the bulletin itself.
+- **`gov-news-check`** — daily. Scans municipal press pages for shelter/collection-point mentions and death-toll mentions, only when the context is the earthquake.
+- **`aggregator-check`** — weekly. Cross-checks a third-party map for aid points we're missing; alerts separately if an entire city suddenly stops matching anything (a sign the third-party site changed its format, not that there really are no points).
+
+## Moderation (`/admin/*`)
+
+Per-volunteer accounts, not a single shared password — each person has permissions scoped by section:
+
+- `/admin/moderacion` — queue of suggested aid points
+- `/admin/comunidad` — queue of suggested social posts
+- `/admin/boletines` — detected bulletins, waiting for someone to read the source and fill in the figure
+- `/admin/historias` — long-form editorial posts
+- `/admin/volunteers` — account management
+
+## Instagram thumbnails
+
+Instagram's live embed widget throttles hard under real traffic (confirmed in production), and Meta's official oEmbed API requires an app-review process this project doesn't have. So Instagram posts render from a **pre-captured thumbnail** instead of a live embed — X, TikTok, and Facebook don't have this problem and still embed live.
+
+A Python script (using [Scrapling](https://github.com/D4Vinci/Scrapling), a stealth browser) captures the real photo and alt text for each post, and runs daily via GitHub Actions — independent of Vercel, since a serverless function can't run a real browser.
+
+## Search
+
+Cmd+K (or `/`) opens a command-palette-style search over `/api/search` — results grouped by city, vereda, aid point, story, campaign, allied resource, and official report. It deliberately excludes individual figures (better discovered from a city page), contradictions, and community posts (not yet verified).
+
+## Open data
+
+All of SOSColombia's data is publicly accessible. See [Data & API](/en/docs/api) to export it as JSON or CSV.

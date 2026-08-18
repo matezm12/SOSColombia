@@ -106,14 +106,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: s.updatedAt,
       }),
     ),
-    // Docs (/docs/**) are Spanish-only for now (see source.config.ts), so
-    // unlike every other route above these get one <loc> with no /en
-    // alternate — that page doesn't exist yet, and hreflang-ing to a 404 is
-    // worse than omitting it. Revisit once English docs ship.
-    ...docsSource.getPages().map((page) => ({
-      url: `${SITE_URL}${page.url}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    })),
+    // Docs (/docs/**) are fully bilingual (see lib/source.ts) with the same
+    // locale-agnostic path on both sides (es unprefixed, en at /en/docs/**),
+    // so these reuse entry() exactly like every static route above.
+    ...docsSource
+      .getPages("es")
+      .flatMap((page) =>
+        entry(`/docs${page.slugs.length ? `/${page.slugs.join("/")}` : ""}`, {
+          priority: 0.5,
+          changeFrequency: "monthly",
+        }),
+      ),
   ];
 }

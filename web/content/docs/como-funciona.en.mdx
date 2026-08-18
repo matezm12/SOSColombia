@@ -1,0 +1,72 @@
+---
+title: How it works
+description: Where SOSColombia's data comes from, how to navigate the site, and frequently asked questions.
+---
+
+import { Callout } from "fumadocs-ui/components/callout";
+import { Cards, Card } from "fumadocs-ui/components/card";
+
+SOSColombia centralizes and verifies public data about the August 10, 2026 earthquake — it doesn't produce its own figures, it cross-checks them against official sources (UNGRD, Medicina Legal, SGC, DANE) and community reports, and always shows where each piece of data came from.
+
+<Callout type="info" title="We are not an official entity">
+  SOSColombia is an independent, volunteer-run project — not a registered
+  NGO, not a Colombian government entity, and not affiliated with UNGRD or
+  any media outlet. See the [full methodology](/metodologia) (Spanish).
+</Callout>
+
+## Navigating the site
+
+The site is organized from general to specific:
+
+1. **[Home](/en)** — an overview of the event (magnitude, epicenter) and the list of affected cities.
+2. **City page** (`/en/ciudad/[code]`) — local figures, that city's aid points, and its veredas or corregimientos.
+3. **Vereda page** — when a rural area has its own data, it's broken out separately from the municipal seat.
+4. **[Aid points](/en/ayuda)** — the full directory, filterable by type (shelter, collection point, health, veterinary, blood donation, monetary donation) for anyone searching across every city at once, not just their own.
+5. **[How to donate](/en/donar)** — verified campaigns and organizations, each with a trust level. See also [international donations](/en/donar/internacional) if you're donating from outside Colombia.
+6. **[Community](/en/comunidad)** — social-media posts about places or needs not yet in the official directory, reviewed before publishing.
+7. **Search (Cmd+K or `/`)** — the fastest way to jump straight to a city, aid point, story, or report without navigating the menu.
+
+<Cards>
+  <Card title="Aid points" description="The full directory, filterable by type." href="/en/ayuda" />
+  <Card title="How to donate" description="Verified organizations and campaigns." href="/en/donar" />
+  <Card title="Map" description="Every aid point and the epicenter, geolocated." href="/en/mapa" />
+  <Card title="Community" description="Social-media posts, reviewed before publishing." href="/en/comunidad" />
+</Cards>
+
+## How the data is verified
+
+Every figure and every aid point carries its source and its date. When two official sources disagree, both figures stay on record — one is never silently chosen over the other. The full discipline behind that is in [methodology](/metodologia) (Spanish); the technical side (automated jobs, moderation) is in [How it's built](/en/docs/como-esta-construido).
+
+## Frequently asked questions
+
+### Are the site's figures official?
+
+They come from official sources (UNGRD, Medicina Legal/INMLCF, SGC, DANE) and humanitarian reports (OCHA, Red Cross), but SOSColombia itself is not an official entity — it's the one collecting, cross-checking, and citing them. Every figure on the site shows its exact source.
+
+### Why are there sometimes two different figures for the same thing?
+
+Because there really are, in reality. For example, "reported deaths" (UNGRD/OCHA, an administrative count) and "confirmed deaths" (Medicina Legal, a forensic intake count) are different processes and can disagree for a while — showing only one would hide that real difference. See [methodology](/metodologia) for open and resolved discrepancies.
+
+### I know of an aid point that isn't on the site. How do I add it?
+
+Use the [suggest a point](/en/sugerir) form. It isn't published automatically — a volunteer checks each submission against its source before it appears in the directory.
+
+### I saw a social-media post about an aid point or a specific need. Does that count as a source?
+
+Yes, and that's exactly what the [community](/en/comunidad) section is for — share the post's link there. Social media is the lowest trust level (level 7 of 7), so these posts are shown separately from the verified directory, never mixed in with it.
+
+### How do I know if a donation campaign is safe?
+
+Every campaign on [/en/donar](/en/donar) carries an explicit trust level, and the page has a dedicated fraud-warning section — for example, that "SOS Chocó" isn't a single organization but a slogan used by at least 5 different actors. Read it before donating, especially for individual campaigns.
+
+### Can I use SOSColombia's data in another project?
+
+Yes — the whole dataset is openly accessible. See [Data & API](/en/docs/api) to download it as JSON or CSV.
+
+### I found an error or outdated data. How do I report it?
+
+Use the same [suggest a point](/en/sugerir) form for aid points, or share a link to a more recent source through [community](/en/comunidad) if it's about a figure. A volunteer reviews it before anything changes on the public site.
+
+### Who maintains this?
+
+A small team of volunteers, with no funding or institutional affiliation. See [methodology](/metodologia) (Spanish) for more on who we are and how we work.

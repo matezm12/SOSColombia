@@ -1,0 +1,51 @@
+---
+title: Data & API
+description: How to download SOSColombia's full dataset as JSON or CSV -- no authentication, no usage limits.
+---
+
+import { Callout } from "fumadocs-ui/components/callout";
+
+The full published SOSColombia dataset can be downloaded as JSON or CSV, no authentication or API key required. This is an open data export, not a full API yet — see the [roadmap](/en/docs/api/roadmap) for the plan toward a real public API, with versioning and authentication.
+
+<Callout type="info" title="What's left out">
+  Only already-published, verified data is exported. Anything still in the
+  moderation queue (unreviewed aid-point suggestions or bulletins) never
+  shows up in the export — the exact same distinction as on the public
+  site.
+</Callout>
+
+## `GET /api/export`
+
+The full dataset in a single JSON file.
+
+```bash
+curl https://www.soscolombia.xyz/api/export
+```
+
+Includes:
+
+- `event` — magnitude, epicenter, depth (SGC/USGS)
+- `tollRecords` — every figure, each with its metric, value, source, trust tier, and date — never overwritten, full history
+- `aidPoints` — every published aid point, with its municipio and source
+- `crowdfundingCampaigns` — donation campaigns with their verification status
+- `govReports` — registered official reports
+- `contradictions` — discrepancies between sources, open and resolved
+- `alliedResources` — independent third-party projects and tools
+- `stories` — published editorial stories
+
+Every record carries its own cited source (`sourceOrg`, `sourceUrl`, or the full `source` object, depending on the table) — same as on the site, no data appears without its origin.
+
+The response is cached for 60 seconds (`Cache-Control: public, max-age=60, stale-while-revalidate=300`), so there's no need to throttle your own polling beyond what's reasonable.
+
+## CSV per table
+
+The two most naturally tabular datasets are also available as CSV, ready to open in a spreadsheet:
+
+- `GET /api/export/csv/toll-records` — figures, one row per record
+- `GET /api/export/csv/aid-points` — aid points, one row per point
+
+## License
+
+Free to use, with attribution. The site's code is MIT; the data is a compilation of cited public sources — each record already carries its own source, keep it when reusing the information. See [methodology](/metodologia) (Spanish) for the full detail on how each piece of data is verified.
+
+You can also browse the dataset from the browser at [/en/datos](/en/datos) without touching the API directly.
