@@ -1,2 +1,2 @@
-scrapling==0.4.14
+scrapling[fetchers]==0.4.14
 psycopg2-binary==2.9.10
