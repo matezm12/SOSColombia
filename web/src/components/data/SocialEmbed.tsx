@@ -7,24 +7,24 @@ import { ExternalLinkIcon } from "../ui/icons";
 // same reasoning as GoFundMeEmbed.tsx: use each platform's own public
 // client-side widget script instead of a server-side oEmbed call, for
 // X/TikTok/Facebook. Instagram is the exception (see `cachedOembed` below):
-// its anonymous embed.js widget throttles hard under real traffic, so
-// Instagram posts render from a pre-fetched oEmbed snapshot instead of
-// live-resolving client-side. That snapshot comes from Meta's official
-// `graph.facebook.com/instagram_oembed` endpoint, called with a free
-// app-id|client-token for a private rate-limit pool — confirmed live that
-// the tokenless path shares ONE global pool across every unauthenticated
-// caller and hits "Application request limit reached" almost immediately
-// under any real volume. See prisma/backfill-oembed-instagram.ts.
+// its anonymous embed.js widget throttles hard under real traffic (confirmed
+// live — the exact bug that started this design), and neither Meta's own
+// oEmbed API (gated behind App Review we don't have) nor a third-party
+// wrapper (Iframely — confirmed live it just re-wraps the same throttled
+// embed.js under the hood) gets around that. So Instagram never attempts a
+// live client-side embed at all anymore: it renders a pre-scraped thumbnail
+// snapshot (see scripts/thumbnails/backfill.py, which scrapes each post's
+// public og:image/og:title once and caches it — daily via
+// .github/workflows/thumbnails.yml) or, until that catches a new post, a
+// plain "View original" link. See `cachedOembed` below.
 declare global {
   interface Window {
-    instgrm?: { Embeds?: { process?: () => void } };
     twttr?: { widgets?: { load?: (el?: HTMLElement) => void } };
     tiktokEmbed?: { lib?: { render?: () => void } };
   }
 }
 
 const SCRIPTS: Record<string, string> = {
-  INSTAGRAM: "https://www.instagram.com/embed.js",
   X: "https://platform.twitter.com/widgets.js",
   TIKTOK: "https://www.tiktok.com/embed.js",
 };
@@ -83,43 +83,14 @@ function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   });
 }
 
-// Instagram/X/TikTok's process functions all re-scan the WHOLE document for
+// X/TikTok's process functions both re-scan the WHOLE document for
 // unprocessed blockquotes, not just the one that just mounted — so when a
-// page has many embeds of the same platform (comunidad's feed, a busy city
-// page), every instance calling process() independently the moment it mounts
-// fires off a burst of redundant, near-simultaneous calls. That burst is a
-// real, observed contributor to Instagram's anonymous-embed rate limiting
-// hitting mid-session. Collapse same-platform requests arriving within one
-// tick into a single trailing call instead.
+// page has many embeds of the same platform, every instance calling
+// process() independently the moment it mounts fires off a burst of
+// redundant, near-simultaneous calls. Collapse same-platform requests
+// arriving within one tick into a single trailing call instead.
 const pendingProcess = new Map<string, ReturnType<typeof setTimeout>>();
 const PROCESS_DEBOUNCE_MS = 400;
-
-// Circuit breaker for Instagram specifically — X/TikTok/FB don't hit this.
-// Once Meta's anon embed.js throttles a session, it fails for every IG post
-// on the page at once (embed.js falls back to an iframe at bare
-// instagram.com, which XFO blocks) and stays throttled for the rest of the
-// session. Retrying each subsequent IG embed just burns the 20s poll timeout
-// and adds another identical console error for a request that's going to
-// fail anyway. Trip once, skip straight to the fallback card after that.
-// ponytail: sessionStorage flag never expires within the tab session — if
-// Meta's throttle window is shorter than the session, add a timestamp+TTL.
-const IG_THROTTLED_KEY = "sos-ig-embed-throttled";
-
-function isInstagramThrottled(): boolean {
-  try {
-    return sessionStorage.getItem(IG_THROTTLED_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
-
-function markInstagramThrottled(): void {
-  try {
-    sessionStorage.setItem(IG_THROTTLED_KEY, "1");
-  } catch {
-    // sessionStorage unavailable (private mode, etc) — just skip persisting.
-  }
-}
 
 function scheduleProcess(platform: string, run: () => void) {
   const existing = pendingProcess.get(platform);
@@ -135,19 +106,17 @@ function scheduleProcess(platform: string, run: () => void) {
 
 type Status = "loading" | "ready" | "error";
 
-// Shape we store in SocialPost.oembedHtml for Instagram posts: the raw JSON
-// response from graph.facebook.com/instagram_oembed (see
-// scripts/backfill-oembed.ts), stringified as-is rather than picked apart
-// into separate columns — it's a snapshot of an external API response, not
-// modeled data, so there's nothing to normalize.
-function parseCachedOembed(raw: string | null | undefined): { thumbnailUrl: string; authorName?: string; title?: string } | null {
+// Shape we store in SocialPost.oembedHtml for Instagram posts: raw
+// {thumbnail_url, title} scraped by scripts/thumbnails/backfill.py,
+// stringified as-is rather than picked apart into separate columns — it's a
+// snapshot of scraped data, not modeled data, so there's nothing to normalize.
+function parseCachedThumbnail(raw: string | null | undefined): { thumbnailUrl: string; title?: string } | null {
   if (!raw) return null;
   try {
     const data = JSON.parse(raw);
     if (typeof data.thumbnail_url !== "string") return null;
     return {
       thumbnailUrl: data.thumbnail_url,
-      authorName: typeof data.author_name === "string" ? data.author_name : undefined,
       title: typeof data.title === "string" ? data.title : undefined,
     };
   } catch {
@@ -164,25 +133,25 @@ export function SocialEmbed({
   platform: "X" | "INSTAGRAM" | "FACEBOOK" | "TIKTOK";
   permalink: string;
   locale?: string;
-  // Pre-fetched oEmbed snapshot (Instagram only — see parseCachedOembed).
-  // When present, renders a static thumbnail card instead of attempting a
-  // live client-side embed at all, sidestepping Instagram's anon-embed
-  // throttling entirely rather than racing it.
+  // Scraped thumbnail snapshot (Instagram only — see parseCachedThumbnail).
+  // Instagram never attempts a live client-side embed regardless of whether
+  // this is set — see the file header comment for why. When set, renders a
+  // static photo card; when not (not yet scraped), renders the same "View
+  // original" link the error state below shows, immediately, no attempt.
   cachedOembed?: string | null;
 }) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [status, setStatus] = useState<Status>("loading");
   const [inView, setInView] = useState(false);
-  const snapshot = platform === "INSTAGRAM" ? parseCachedOembed(cachedOembed) : null;
+  const thumbnail = platform === "INSTAGRAM" ? parseCachedThumbnail(cachedOembed) : null;
 
   // Defer starting any network/script work until the card is actually about
   // to be visible. Community/city pages can carry a dozen+ embeds on one
   // page load — loading and processing every widget immediately, including
-  // ones far below the fold, is both wasted work and exactly the kind of
-  // burst of anonymous requests that trips Instagram's rate limiting.
+  // ones far below the fold, is wasted work for anything off-screen.
   useEffect(() => {
-    if (snapshot) return;
+    if (platform === "INSTAGRAM") return;
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
     const observer = new IntersectionObserver(
@@ -204,7 +173,10 @@ export function SocialEmbed({
       observer.disconnect();
       clearTimeout(fallback);
     };
-  }, []);
+    // platform is stable for the lifetime of a mounted instance (see the
+    // second effect's comment) — listed for lint correctness, not because
+    // it's expected to change and re-run this.
+  }, [platform]);
 
   useEffect(() => {
     if (!inView) return;
@@ -219,11 +191,6 @@ export function SocialEmbed({
       const container = containerRef.current;
       if (!container) return;
       container.innerHTML = "";
-
-      if (platform === "INSTAGRAM" && isInstagramThrottled()) {
-        setStatus("error");
-        return;
-      }
 
       if (platform === "FACEBOOK") {
         // Facebook's Page Plugin iframe is public and needs no app ID for a
@@ -266,11 +233,7 @@ export function SocialEmbed({
       }
 
       const blockquote = document.createElement("blockquote");
-      if (platform === "INSTAGRAM") {
-        blockquote.className = "instagram-media";
-        blockquote.setAttribute("data-instgrm-permalink", permalink);
-        blockquote.setAttribute("data-instgrm-version", "14");
-      } else if (platform === "X") {
+      if (platform === "X") {
         blockquote.className = "twitter-tweet";
         const a = document.createElement("a");
         a.href = permalink;
@@ -313,34 +276,24 @@ export function SocialEmbed({
       }
       if (cancelled) return;
 
-      if (platform === "INSTAGRAM") scheduleProcess("INSTAGRAM", () => window.instgrm?.Embeds?.process?.());
       if (platform === "X") scheduleProcess("X", () => window.twttr?.widgets?.load?.());
       // Wrong assumption in an earlier version of this file: TikTok's
       // embed.js does NOT self-process blockquotes added to the DOM after
       // its own initial load — confirmed live, a fresh blockquote just sits
       // there forever (no id, no iframe) until `render()` is called
       // explicitly. It only auto-scans once, at script-load time, same
-      // category of thing as Instagram/X needing an explicit process call.
+      // category of thing as X needing an explicit process call.
       if (platform === "TIKTOK") scheduleProcess("TIKTOK", () => window.tiktokEmbed?.lib?.render?.());
 
       // None of the three scripts expose a "this specific blockquote is
       // done" callback — they rewrite the DOM asynchronously on their own
       // schedule, and "an iframe exists" isn't enough of a signal on its
-      // own: confirmed live that Instagram still creates the iframe for a
-      // permalink it can't actually embed (e.g. embedding disabled on that
-      // post) — the iframe points at Instagram's own "Sorry, this page
-      // isn't available" error page and never grows past ~2px tall. A
-      // successful embed always gets an explicit non-trivial height set on
-      // it (checked against a real render: ~600-750px). Require both the
-      // iframe and real height, not just presence.
+      // own — a successful embed always gets an explicit non-trivial height
+      // set on it, so require both the iframe and real height, not just
+      // presence.
       const isRendered = () => {
         const current = containerRef.current;
         if (!current) return false;
-        if (platform === "INSTAGRAM") {
-          if (current.querySelector("blockquote")?.getAttribute("data-instgrm-rendered") === "true") return true;
-          const iframe = current.querySelector('iframe[src*="instagram.com"]');
-          return !!iframe && iframe.getBoundingClientRect().height > 50;
-        }
         if (platform === "X") {
           return !!current.querySelector('iframe[id^="twitter-widget"]');
         }
@@ -348,15 +301,7 @@ export function SocialEmbed({
         return !!current.querySelector("iframe");
       };
 
-      // Instagram's own resize step (what isRendered() waits on) has been
-      // observed taking meaningfully longer than the other two platforms'
-      // — confirmed live, the exact same permalink rendered fine on one
-      // load and still hadn't resized by 8s on another. Give it more room
-      // before giving up; X/TikTok stay on the tighter budget. The
-      // PROCESS_DEBOUNCE_MS delay before process() even fires is on top of
-      // this, so the deadline is measured from here, not from mount.
-      const pollTimeoutMs = platform === "INSTAGRAM" ? 20000 : EMBED_TIMEOUT_MS;
-      const deadline = Date.now() + PROCESS_DEBOUNCE_MS + pollTimeoutMs;
+      const deadline = Date.now() + PROCESS_DEBOUNCE_MS + EMBED_TIMEOUT_MS;
       const poll = () => {
         if (cancelled) return;
         if (isRendered()) {
@@ -364,7 +309,6 @@ export function SocialEmbed({
           return;
         }
         if (Date.now() > deadline) {
-          if (platform === "INSTAGRAM") markInstagramThrottled();
           setStatus("error");
           return;
         }
@@ -380,21 +324,24 @@ export function SocialEmbed({
     };
   }, [inView, platform, permalink]);
 
-  if (snapshot) {
-    return (
-      <a
-        href={permalink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element -- external, unoptimizable Instagram CDN thumbnail */}
-        <img src={snapshot.thumbnailUrl} alt={snapshot.title ?? ""} className="w-full" loading="lazy" />
-        {snapshot.authorName && (
-          <p className="p-2 text-xs text-zinc-500 dark:text-zinc-500">@{snapshot.authorName}</p>
-        )}
-      </a>
-    );
+  if (platform === "INSTAGRAM") {
+    if (thumbnail) {
+      return (
+        <a
+          href={permalink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- external, unoptimizable Instagram CDN thumbnail */}
+          <img src={thumbnail.thumbnailUrl} alt={thumbnail.title ?? ""} className="w-full" loading="lazy" />
+        </a>
+      );
+    }
+    // Not yet scraped — see scripts/thumbnails/backfill.py. Never attempts
+    // a live embed for Instagram, so this is the immediate, only state
+    // until the next daily run catches it, not a timeout/error outcome.
+    return <FallbackCard permalink={permalink} locale={locale} />;
   }
 
   return (
@@ -404,22 +351,7 @@ export function SocialEmbed({
           <div className="h-5 w-5 animate-spin rounded-full border-2 border-zinc-300 border-t-zinc-600 dark:border-zinc-700 dark:border-t-zinc-300" />
         </div>
       )}
-      {status === "error" && (
-        <div className="flex min-h-[120px] flex-col items-center justify-center gap-2 rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-center dark:border-zinc-700 dark:bg-zinc-900">
-          <p className="text-xs text-zinc-500 dark:text-zinc-500">
-            {locale === "en" ? "This post couldn't be loaded here." : "No se pudo cargar esta publicación aquí."}
-          </p>
-          <a
-            href={permalink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-blue-600 underline decoration-blue-600/30 underline-offset-2 hover:decoration-blue-600 dark:text-blue-400 dark:decoration-blue-400/30 dark:hover:decoration-blue-400"
-          >
-            {locale === "en" ? "View original" : "Ver publicación original"}
-            <ExternalLinkIcon className="h-3 w-3" />
-          </a>
-        </div>
-      )}
+      {status === "error" && <FallbackCard permalink={permalink} locale={locale} />}
       <div
         ref={containerRef}
         className={
@@ -428,6 +360,25 @@ export function SocialEmbed({
             : "hidden"
         }
       />
+    </div>
+  );
+}
+
+function FallbackCard({ permalink, locale }: { permalink: string; locale: string }) {
+  return (
+    <div className="flex min-h-[120px] flex-col items-center justify-center gap-2 rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-center dark:border-zinc-700 dark:bg-zinc-900">
+      <p className="text-xs text-zinc-500 dark:text-zinc-500">
+        {locale === "en" ? "This post couldn't be loaded here." : "No se pudo cargar esta publicación aquí."}
+      </p>
+      <a
+        href={permalink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1 text-sm text-blue-600 underline decoration-blue-600/30 underline-offset-2 hover:decoration-blue-600 dark:text-blue-400 dark:decoration-blue-400/30 dark:hover:decoration-blue-400"
+      >
+        {locale === "en" ? "View original" : "Ver publicación original"}
+        <ExternalLinkIcon className="h-3 w-3" />
+      </a>
     </div>
   );
 }

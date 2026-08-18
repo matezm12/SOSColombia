@@ -13,3 +13,7 @@ claude-for-oss-application.txt
 instagram-story-text*.txt
 linkedin-post-text.txt
 social-media-posts.txt
+
+# Python artifacts — scripts/thumbnails/ is this repo's only Python code
+__pycache__/
+*.pyc

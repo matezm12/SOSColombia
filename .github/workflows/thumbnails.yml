@@ -1,0 +1,31 @@
+name: Instagram thumbnail backfill
+
+# Runs independently of Vercel on purpose -- Scrapling needs Python and a
+# real browser binary, neither available in Vercel's Node.js serverless
+# functions. This is the only place this script runs; nothing on the live
+# site ever calls Scrapling directly. See scripts/thumbnails/backfill.py.
+on:
+  schedule:
+    # 09:00 UTC = low-traffic early morning in Colombia (UTC-5).
+    - cron: "0 9 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r scripts/thumbnails/requirements.txt
+          scrapling install
+
+      - name: Backfill thumbnails
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python scripts/thumbnails/backfill.py
