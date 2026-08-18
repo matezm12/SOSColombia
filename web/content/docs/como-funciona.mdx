@@ -1,0 +1,72 @@
+---
+title: Cómo funciona
+description: De dónde salen los datos de SOSColombia, cómo navegar el sitio, y preguntas frecuentes.
+---
+
+import { Callout } from "fumadocs-ui/components/callout";
+import { Cards, Card } from "fumadocs-ui/components/card";
+
+SOSColombia centraliza y verifica datos públicos sobre el terremoto del 10 de agosto de 2026 — no genera cifras propias, las contrasta contra fuentes oficiales (UNGRD, Medicina Legal, SGC, DANE) y comunitarias, y muestra siempre de dónde viene cada dato.
+
+<Callout type="info" title="No somos una entidad oficial">
+  SOSColombia es un proyecto independiente de voluntariado — no es una ONG
+  registrada ni una entidad del gobierno colombiano, ni está afiliado a
+  UNGRD ni a ningún medio de comunicación. Ver [metodología completa](/metodologia).
+</Callout>
+
+## El recorrido por el sitio
+
+El sitio está organizado de lo general a lo específico:
+
+1. **[Inicio](/)** — resumen del evento (magnitud, epicentro) y la lista de ciudades afectadas.
+2. **Página de ciudad** (`/ciudad/[código]`) — cifras locales, puntos de ayuda de esa ciudad, y sus veredas o corregimientos.
+3. **Página de vereda** — cuando una zona rural tiene datos propios, se desglosa aparte de la cabecera municipal.
+4. **[Puntos de ayuda](/ayuda)** — el directorio completo, con filtro por tipo (albergue, centro de acopio, salud, veterinaria, donación de sangre, donación monetaria) para quien busca en todas las ciudades a la vez, no solo la suya.
+5. **[Cómo donar](/donar)** — campañas y organizaciones verificadas, cada una con su nivel de confianza. Ver también [donaciones internacionales](/donar/internacional) si donas desde fuera de Colombia.
+6. **[Comunidad](/comunidad)** — publicaciones de redes sociales sobre lugares o necesidades que todavía no están en el directorio oficial, revisadas antes de publicarse.
+7. **Buscar (Cmd+K o `/`)** — el atajo más rápido para saltar directo a una ciudad, un punto de ayuda, una historia o un informe, sin navegar por el menú.
+
+<Cards>
+  <Card title="Puntos de ayuda" description="Directorio completo, filtrable por tipo." href="/ayuda" />
+  <Card title="Cómo donar" description="Organizaciones y campañas verificadas." href="/donar" />
+  <Card title="Mapa" description="Todos los puntos de ayuda y el epicentro, geolocalizados." href="/mapa" />
+  <Card title="Comunidad" description="Publicaciones de redes sociales, revisadas antes de publicarse." href="/comunidad" />
+</Cards>
+
+## Cómo se verifican los datos
+
+Cada cifra y cada punto de ayuda trae su fuente y su fecha. Cuando dos fuentes oficiales no coinciden, ambas cifras quedan registradas — nunca se elige una en silencio. El detalle completo de esa disciplina está en [metodología](/metodologia); la parte técnica (jobs automáticos, moderación) está en [Cómo está construido](/docs/como-esta-construido).
+
+## Preguntas frecuentes
+
+### ¿Las cifras del sitio son oficiales?
+
+Vienen de fuentes oficiales (UNGRD, Medicina Legal/INMLCF, SGC, DANE) y de reportes humanitarios (OCHA, Cruz Roja), pero SOSColombia en sí mismo no es una entidad oficial — es quien las recopila, contrasta y cita. Cada cifra en el sitio muestra su fuente exacta.
+
+### ¿Por qué a veces hay dos cifras distintas para lo mismo?
+
+Porque las hay en la realidad. Por ejemplo, "muertes reportadas" (UNGRD/OCHA, un conteo administrativo) y "muertes confirmadas" (Medicina Legal, un conteo forense) son procesos distintos y pueden no coincidir por un tiempo — mostrar solo una escondería esa diferencia real. Ver [metodología](/metodologia) para las discrepancias abiertas y resueltas.
+
+### Conozco un punto de ayuda que no está en el sitio. ¿Cómo lo agrego?
+
+Con el formulario de [sugerir un punto](/sugerir). No se publica automáticamente: un voluntario revisa cada sugerencia contra su fuente antes de que aparezca en el directorio.
+
+### Vi una publicación en redes sobre un punto de ayuda o una necesidad. ¿Sirve como fuente?
+
+Sí, y es justo lo que la sección de [comunidad](/comunidad) está pensada para capturar — comparte el enlace del post ahí. Redes sociales es el nivel de confiabilidad más bajo (nivel 7 de 7), así que estas publicaciones se muestran aparte del directorio verificado, no mezcladas con él.
+
+### ¿Cómo sé si una campaña de donación es segura?
+
+Cada campaña en [/donar](/donar) lleva un nivel de confianza explícito, y la página tiene una sección específica de advertencias de fraude — por ejemplo, que "SOS Chocó" no es una sola organización sino un lema usado por al menos 5 actores distintos. Léela antes de donar, especialmente en campañas individuales.
+
+### ¿Puedo usar los datos de SOSColombia en otro proyecto?
+
+Sí — todo el dataset es de acceso abierto. Ver [Datos y API](/docs/api) para descargar en JSON o CSV.
+
+### Encontré un error o un dato desactualizado. ¿Cómo lo reporto?
+
+Usa el mismo formulario de [sugerir un punto](/sugerir) para puntos de ayuda, o comparte el enlace de una fuente más reciente a través de [comunidad](/comunidad) si es sobre una cifra. Un voluntario lo revisa antes de que cambie nada en el sitio público.
+
+### ¿Quién mantiene esto?
+
+Un equipo pequeño de voluntarios, sin financiamiento ni afiliación institucional. Ver [metodología](/metodologia) para más detalle sobre quiénes somos y cómo trabajamos.
