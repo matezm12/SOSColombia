@@ -50,15 +50,23 @@ def scrape_thumbnail(permalink: str) -> str | None:
         permalink, headless=True, timeout=FETCH_TIMEOUT_MS, network_idle=False
     )
 
-    images = page.css('meta[property="og:image"]::attr(content)')
-    if not images:
+    # Deliberately NOT the `::attr(content)` pseudo-selector form -- confirmed
+    # live it silently returns raw Selector objects instead of strings for
+    # most posts when StealthyFetcher.fetch() is called repeatedly in a loop
+    # within one process (fine in a single one-off call, broke ~154/154 times
+    # in the real backfill run). `.attrib.get()` on the element itself is the
+    # form already proven reliable across a loop.
+    og_image_tags = page.css('meta[property="og:image"]')
+    if not og_image_tags:
         return None
-    thumbnail_url = images[0]
+    thumbnail_url = og_image_tags[0].attrib.get("content")
+    if not thumbnail_url:
+        return None
 
-    titles = page.css('meta[property="og:title"]::attr(content)')
-    title = titles[0] if titles else None
+    og_title_tags = page.css('meta[property="og:title"]')
+    title = og_title_tags[0].attrib.get("content") if og_title_tags else None
 
-    return json.dumps({"thumbnail_url": thumbnail_url, "title": title})
+    return json.dumps({"thumbnail_url": str(thumbnail_url), "title": str(title) if title else None})
 
 
 def main() -> None:
