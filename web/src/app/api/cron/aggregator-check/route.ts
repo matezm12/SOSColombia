@@ -52,6 +52,15 @@ interface MunicipioGapCheck {
   status?: number;
   error?: string;
   gaps: Array<{ kind: "ACOPIO" | "ALBERGUE"; theirCount: number; ourCount: number }>;
+  // Sum of BOTH labels' raw counts, independent of whether either produced a
+  // gap -- "no gaps" and "the label string stopped matching anything because
+  // mapadelterremoto's markup changed" both look identical as `gaps: []`.
+  // Summed across every successfully-fetched municipio in GET() below: all
+  // of them landing on exactly zero is a real markup-broke signal (a page
+  // update genuinely showing zero across every single city we track,
+  // simultaneously, is implausible) in a way one city legitimately having
+  // zero acopio points isn't.
+  theirTotal: number;
 }
 
 async function checkMunicipio(
@@ -69,7 +78,7 @@ async function checkMunicipio(
     });
     if (!res.ok) {
       await upsertSource({ url, org: `mapadelterremoto.com — ${name}`, tier: 4, status: "NEEDS_RECHECK" });
-      return { municipio: name, slug, url, ok: false, status: res.status, gaps: [] };
+      return { municipio: name, slug, url, ok: false, status: res.status, gaps: [], theirTotal: 0 };
     }
     html = await res.text();
   } catch (err) {
@@ -81,22 +90,25 @@ async function checkMunicipio(
       ok: false,
       error: err instanceof Error ? err.message : String(err),
       gaps: [],
+      theirTotal: 0,
     };
   }
 
   await upsertSource({ url, org: `mapadelterremoto.com — ${name}`, tier: 4, status: "LIVE" });
 
   const gaps: MunicipioGapCheck["gaps"] = [];
+  let theirTotal = 0;
 
   for (const [label, kind] of Object.entries(LABEL_TO_KIND)) {
     const theirCount = html.split(label).length - 1;
+    theirTotal += theirCount;
     const ourCount = await prisma.aidPoint.count({ where: { municipioId, kind } });
     if (theirCount > ourCount) {
       gaps.push({ kind, theirCount, ourCount });
     }
   }
 
-  return { municipio: name, slug, url, ok: true, gaps };
+  return { municipio: name, slug, url, ok: true, gaps, theirTotal };
 }
 
 export async function GET(request: NextRequest) {
@@ -109,6 +121,21 @@ export async function GET(request: NextRequest) {
   const results = await Promise.all(
     municipios.map((m) => checkMunicipio(m.id, m.name)),
   );
+
+  const succeeded = results.filter((r) => r.ok);
+  const extractionLikelyBroken = succeeded.length > 0 && succeeded.every((r) => r.theirTotal === 0);
+
+  if (extractionLikelyBroken) {
+    await notifyOps(
+      "SOSColombia: aggregator-check found zero matches everywhere — likely broken",
+      `<p>The mapadelterremoto.com label-count check found ${succeeded.length} page(s) fetched successfully,
+       but every single one matched zero "Punto de ayuda o acopio" / "Albergue o punto de atención" labels.</p>
+       <p>Every tracked city showing zero simultaneously is implausible for a live aggregator during an active
+       emergency — this almost certainly means mapadelterremoto.com changed its markup and the exact label
+       strings this route matches on no longer appear anywhere. Check a page manually and update
+       LABEL_TO_KIND in api/cron/aggregator-check/route.ts if so.</p>`,
+    );
+  }
 
   const withGaps = results.filter((r) => r.gaps.length > 0);
 
@@ -129,5 +156,5 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  return NextResponse.json({ checked: true, results });
+  return NextResponse.json({ checked: true, extractionLikelyBroken, results });
 }

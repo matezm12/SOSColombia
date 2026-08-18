@@ -21,12 +21,16 @@ const INMLCF_NEWS_URL = "https://www.medicinalegal.gov.co/web/guest/noticias";
 const RELIEFWEB_005_URL =
   "https://reliefweb.int/report/colombia/colombia-flash-update-005-actualizacion-afectaciones-por-terremoto-en-colombia";
 
-// Last known numbered bulletins on file as of this route's writing — see
-// wiki/03-death-toll.md (INMLCF Comunicado Oficial No. 06, 2026-08-12) and
-// wiki/05-gov-reports.md (OCHA Flash Update 004). Bump these once a real
-// human-reviewed cycle confirms a newer bulletin, per the architecture doc's
-// tier-2 "needs a human glance before publish early on" note.
-const LAST_KNOWN_INMLCF_COMUNICADO = 6;
+// Last known numbered bulletin on file — see wiki/03-death-toll.md (INMLCF
+// Comunicado Oficial No. 08, 2026-08-13 19:00, reviewed 2026-08-14). Bump
+// this once a real human-reviewed cycle confirms a newer bulletin, per the
+// architecture doc's tier-2 "needs a human glance before publish early on"
+// note. This was stale at 6 for several days while 07 and 08 were already
+// reviewed and on file — if this route ever gets a clean fetch from
+// medicinalegal.gov.co (currently blocked from Vercel, see checkInmlcf's
+// try/catch), a stale value here re-stages an already-handled bulletin
+// every single day instead of a genuinely new one.
+const LAST_KNOWN_INMLCF_COMUNICADO = 8;
 
 // wiki/06-sources.md documents that medicinalegal.gov.co and reliefweb.int both reject
 // plain server-side fetch()/curl-style requests here (the project previously saw a TLS
@@ -119,12 +123,17 @@ async function checkReliefWebFlashUpdate005(): Promise<ReliefWebCheckResult> {
   }
 }
 
-// Only creates a stub if no still-PENDING one already exists for this exact
-// sourceUrl — otherwise a daily cron would pile up a fresh duplicate every day
-// nobody's gotten around to reviewing it yet.
+// Dedups on {sourceUrl, submitterNote} together, not sourceUrl + PENDING status
+// alone — matches gov-news-check.ts's already-established reasoning: checking
+// only PENDING meant a moderator's rejection of a false positive (e.g. "No. 7
+// detected" turning out to be already reflected) got silently re-staged the
+// very next day, since the rejected row's status was no longer PENDING. Content
+// is still distinct per genuinely new finding (the message embeds the detected
+// bulletin number), so a real newer bulletin after an old one was resolved
+// still stages correctly — this only blocks re-staging the *exact same* claim.
 async function dedupeAndStage(sourceUrl: string, sourceOrg: string, submitterNote: string) {
   const existing = await prisma.pendingTollRecord.findFirst({
-    where: { sourceUrl, status: "PENDING" },
+    where: { sourceUrl, submitterNote },
   });
   if (existing) return existing;
 
