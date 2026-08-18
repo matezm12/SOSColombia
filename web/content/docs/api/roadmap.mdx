@@ -1,0 +1,29 @@
+---
+title: Roadmap de la API
+description: El plan para una API pública completa de SOSColombia, más allá de la exportación actual.
+---
+
+import { Callout } from "fumadocs-ui/components/callout";
+
+<Callout type="warn" title="Todavía no construido">
+  Esta página describe una intención, no una funcionalidad disponible hoy.
+  Lo que existe ahora mismo es [la exportación de datos](/docs/api) — un
+  `GET` sin autenticación que devuelve todo el dataset. Esta página queda
+  como referencia de hacia dónde va, para que cualquiera que construya algo
+  hoy contra la exportación actual sepa qué esperar más adelante.
+</Callout>
+
+La exportación actual resuelve "descargar todo el dataset de una vez", pero no resuelve lo que "Sitio B" necesitaría para construir algo encima de SOSColombia de forma sostenida: pedir solo lo que cambió, filtrar por ciudad sin descargar el país entero, o depender de una forma estable de acceder a los datos que no se rompa cada vez que el sitio cambia internamente.
+
+## Lo que cambiaría
+
+- **Versionado** (`/api/v1/...`) — para que agregar un campo o cambiar un endpoint no rompa a quien ya está integrado contra una versión anterior.
+- **Filtros y paginación** — pedir solo los puntos de ayuda de una ciudad, o las cifras de una métrica específica, en vez de descargar el archivo completo cada vez.
+- **Autenticación por llave de API** — la exportación actual seguiría siendo pública y sin llave (es intencionalmente así, ver [Datos y API](/docs/api)); una API con más capacidad de consulta necesita poder identificar y, si hace falta, limitar el volumen de uso por consumidor.
+- **Documentación interactiva** — una especificación [OpenAPI](https://www.openapis.org/) que describa cada endpoint, y una página de referencia donde se pueda probar una consulta real desde el navegador, no solo leerla.
+
+## Por qué no está construido todavía
+
+Construir una API versionada y documentada antes de tener un segundo consumidor real es trabajo especulativo — el riesgo es diseñar contra necesidades imaginadas en vez de reales. La exportación actual ya cubre el caso de uso real que existe hoy (alguien quiere el dataset completo), y sigue siendo la forma recomendada de acceder a los datos mientras esto no esté construido.
+
+Si estás construyendo algo contra `/api/export` hoy y una limitación específica te está bloqueando, esa es información real y útil — vale la pena que se sepa antes de que esta página se convierta en algo más que un plan.

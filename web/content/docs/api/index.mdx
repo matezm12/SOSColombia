@@ -1,0 +1,51 @@
+---
+title: Datos y API
+description: Cómo descargar el dataset completo de SOSColombia en JSON o CSV — sin autenticación, sin límites de uso.
+---
+
+import { Callout } from "fumadocs-ui/components/callout";
+
+Todo el dataset publicado de SOSColombia se puede descargar en JSON o CSV, sin autenticación ni llave de API. Esto es una exportación de datos abierta, no una API completa todavía — ver el [roadmap](/docs/api/roadmap) para el plan de una API pública real, con versionado y autenticación.
+
+<Callout type="info" title="Qué queda afuera">
+  Solo se exportan datos ya publicados y verificados. Lo que está en la cola
+  de moderación (sugerencias de puntos de ayuda o boletines aún sin revisar)
+  nunca aparece en el export — es exactamente la misma distinción que en el
+  sitio público.
+</Callout>
+
+## `GET /api/export`
+
+El dataset completo en un solo archivo JSON.
+
+```bash
+curl https://www.soscolombia.xyz/api/export
+```
+
+Incluye:
+
+- `event` — magnitud, epicentro, profundidad (SGC/USGS)
+- `tollRecords` — todas las cifras, cada una con su métrica, valor, fuente, nivel de confiabilidad y fecha — nunca sobrescritas, historial completo
+- `aidPoints` — todos los puntos de ayuda publicados, con su municipio y fuente
+- `crowdfundingCampaigns` — campañas de donación con su estado de verificación
+- `govReports` — informes oficiales registrados
+- `contradictions` — discrepancias entre fuentes, abiertas y resueltas
+- `alliedResources` — proyectos y herramientas independientes de terceros
+- `stories` — historias editoriales publicadas
+
+Cada registro trae su propia fuente citada (`sourceOrg`, `sourceUrl` o el objeto `source` completo, según la tabla) — igual que en el sitio, ningún dato aparece sin su origen.
+
+La respuesta se cachea 60 segundos (`Cache-Control: public, max-age=60, stale-while-revalidate=300`), así que no hay necesidad de limitar tu propia frecuencia de consulta más allá de lo razonable.
+
+## CSV por tabla
+
+Las dos tablas más naturalmente tabulares también están disponibles como CSV, listas para abrir en una hoja de cálculo:
+
+- `GET /api/export/csv/toll-records` — cifras, una fila por registro
+- `GET /api/export/csv/aid-points` — puntos de ayuda, una fila por punto
+
+## Licencia
+
+Uso libre, con atribución. El código del sitio es MIT; los datos son una recopilación de fuentes públicas citadas — cada registro ya trae su propia fuente, mantenla al reutilizar la información. Ver [metodología](/metodologia) para el detalle completo de cómo se verifica cada dato.
+
+También podés explorar el dataset desde el navegador en [/datos](/datos), sin tocar la API directamente.
