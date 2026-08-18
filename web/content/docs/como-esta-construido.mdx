@@ -1,0 +1,81 @@
+---
+title: Cómo está construido
+description: Stack técnico, modelo de datos, moderación, jobs automáticos y el pipeline de miniaturas de Instagram de SOSColombia.
+---
+
+import { Callout } from "fumadocs-ui/components/callout";
+
+## Stack
+
+Next.js 16 (App Router) · Prisma 7 (`@prisma/adapter-pg`) · Postgres (Supabase) · Tailwind CSS v4 · next-intl (es/en). Desplegado en Vercel, con [MapLibre GL](https://maplibre.org/) para el mapa (sin costo por llamadas a API, a diferencia de Mapbox).
+
+El repositorio tiene dos partes: `wiki/` es el dataset de investigación en markdown (la fuente de verdad de la fase 1), y `web/` es la aplicación en producción que carga esos datos en Postgres y los sirve.
+
+## Modelo de datos
+
+Cuatro reglas de diseño vienen directo de la investigación de la fase 1, antes de escribir una sola línea de código de la aplicación — cada una evitó un problema real que ya habíamos visto en los datos:
+
+- **Las cifras nunca se sobrescriben.** Cada dato de muertes, personas damnificadas, etc. es una fila con `valor`, `fuente`, `nivel de confiabilidad` y `fecha`, no un campo que se actualiza. Los reportes reales cambiaron de un día a otro (familias damnificadas: 24.324 → 30.324 → 25.872, todos números legítimos de distintos reportes) — un esquema "el último gana" habría borrado ese historial en silencio. El sitio muestra la cifra más reciente por defecto, pero el registro completo siempre está a un clic.
+- **Acopio ≠ Albergue.** Un punto de ayuda tiene un tipo (`albergue`, `acopio`, `salud`, `veterinario`, `donación de sangre`, `donación monetaria`) — un punto de recolección de donaciones y un albergue donde la gente realmente duerme nunca son el mismo registro, aunque compartan el mismo lugar (pasó al menos dos veces, en Manizales y Pereira).
+- **DIVIPOLA es la llave geográfica**, no el nombre de la ciudad como texto. Los nombres de ciudad generaron ambigüedad real durante la investigación (Armenia vs. Calarcá, "Unidad Básica" en Popayán) — DIVIPOLA evita ese problema a nivel de datos.
+- **El nivel de confiabilidad de la fuente viaja con cada dato**, no solo en las notas de investigación — se muestra en el sitio (una etiqueta junto a la cifra) para que cualquiera pueda distinguir una cifra oficial de una reportada por la comunidad sin verificar todavía. Los niveles, de mayor a menor confiabilidad:
+
+  1. SGC (hechos sísmicos)
+  2. UNGRD (víctimas y daños — fuente principal)
+  3. DANE / DNP (contexto demográfico y económico)
+  4. Gobernación / Alcaldía (canales oficiales locales)
+  5. Cruz Roja / Defensa Civil (detalle operativo)
+  6. Medios verificados (solo para cruzar o llenar vacíos, nunca como única fuente)
+  7. Redes sociales (solo como señal a verificar, nunca como hecho citado sin verificación independiente)
+
+Las contradicciones entre fuentes también son un dato de primera clase, no un error que se esconde: cuando dos fuentes confiables dan cifras distintas, ambas quedan registradas y visibles en `/metodologia` hasta que se resuelvan.
+
+## Cómo se mantienen los datos actualizados
+
+Distintas fuentes cambian a ritmos distintos, así que no hay un solo mecanismo — hay cuatro, cada uno con una disciplina común: **detectar, nunca escribir una cifra en silencio sin que una persona la haya visto**, con una única excepción deliberada.
+
+| Nivel | Fuentes | Mecanismo | Frecuencia |
+|---|---|---|---|
+| 1 — APIs con datos limpios | API sísmica de USGS | Job automático, sin revisión — la única excepción a la regla de arriba, porque es una comparación numérica limpia contra una fuente autoritativa, no una interpretación de texto | Diaria |
+| 2 — estructurado pero sin API | Boletines UNGRD, OCHA, INMLCF | Detecta un boletín nuevo y lo deja pendiente en la cola de moderación (`/admin/boletines`) para que una persona lea el boletín real y complete la cifra | Diaria |
+| 3 — social / hiperlocal | Páginas de prensa municipal, reportes de la comunidad | El nivel más difícil — sin API, formato variable, y es justo el dato que cambia más rápido ("el albergue ya está lleno"). Combina un rastreo automático de páginas de prensa oficiales con un formulario público de sugerencias — ambos caen en la misma cola de moderación | Rastreo automático: diario. Sugerencias de la comunidad: en tiempo real, moderadas antes de publicarse |
+| 4 — agregadores externos | mapadelterremoto.com | Revisa un sitio de terceros para detectar puntos de ayuda que no tenemos registrados; solo alerta, nunca escribe directamente | Semanal |
+
+<Callout title="La cola de moderación es la pieza que sostiene todo esto">
+  Cualquier dato que no venga de una API limpia (nivel 1) pasa por una cola de
+  revisión antes de publicarse — ya sea una detección automática o una
+  sugerencia de la comunidad. Esto es lo que mantiene la disciplina de
+  "toda cifra tiene fuente" después del lanzamiento, en vez de degradarse en
+  ruido sin verificar.
+</Callout>
+
+### Los 4 jobs automáticos (`api/cron/*`, Vercel Cron)
+
+- **`usgs`** — diario. La única excepción a "nunca auto-escribir": corrige magnitud/profundidad/epicentro del evento cuando la API de USGS no coincide con lo registrado. Ya corrigió un dato real en producción (profundidad: 110.3 km → 110.285 km).
+- **`bulletins`** — diario. Detecta un boletín numerado nuevo de INMLCF o una página nueva de OCHA Flash Update; nunca interpreta las cifras del boletín.
+- **`gov-news-check`** — diario. Revisa páginas de prensa municipal buscando menciones de albergues/acopios y de cifras de muertes, solo cuando el contexto es del terremoto.
+- **`aggregator-check`** — semanal. Compara contra un mapa de terceros para detectar puntos de ayuda que nos faltan; avisa por separado si de repente una ciudad completa deja de coincidir en nada (señal de que el sitio de terceros cambió su formato, no de que realmente no hay puntos).
+
+## Moderación (`/admin/*`)
+
+Cuentas por voluntario, no una sola contraseña compartida — cada persona tiene permisos por sección:
+
+- `/admin/moderacion` — cola de puntos de ayuda sugeridos
+- `/admin/comunidad` — cola de publicaciones sociales sugeridas
+- `/admin/boletines` — boletines detectados, esperando que alguien lea la fuente y complete la cifra
+- `/admin/historias` — publicaciones editoriales largas
+- `/admin/volunteers` — administración de cuentas
+
+## Miniaturas de Instagram
+
+El widget de embeds en vivo de Instagram se satura con tráfico real (confirmado en producción), y la API oficial de oEmbed de Meta necesita una revisión de aplicación que este proyecto no tiene. Por eso las publicaciones de Instagram se muestran desde una **miniatura pre-capturada** en vez de un embed en vivo — X, TikTok y Facebook no tienen este problema y siguen embebiéndose en vivo.
+
+Un script en Python (usando [Scrapling](https://github.com/D4Vinci/Scrapling), un navegador con protección anti-bot) captura la foto real y el texto alternativo de cada publicación, y corre a diario mediante GitHub Actions — independiente de Vercel, porque una función serverless no puede correr un navegador real.
+
+## Búsqueda
+
+Cmd+K (o `/`) abre un buscador tipo paleta de comandos sobre `/api/search` — resultados agrupados por ciudad, vereda, punto de ayuda, historia, campaña, recurso aliado e informe oficial. Deliberadamente no incluye cifras individuales (mejor descubrirlas desde una ciudad), contradicciones, ni publicaciones comunitarias (sin verificar todavía).
+
+## Datos abiertos
+
+Todos los datos de SOSColombia son de acceso público. Ver [Datos y API](/docs/api) para exportar la información en JSON o CSV.

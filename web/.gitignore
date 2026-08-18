@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# fumadocs (generated from source.config.ts, see postinstall script)
+/.source/
+
 # production
 /build
 

@@ -92,6 +92,11 @@ export const config = {
     // Next's router sees it, and since /es/md doesn't exist as a route, every
     // /md/* request 404s. This is the same reason "api" is excluded.
     //
+    // "docs" is the same bug, same fix, for the Fumadocs-powered docs section
+    // (src/app/docs/**, Spanish-only): it's also a sibling root layout
+    // outside [locale] (see docs/layout.tsx's comment), so /docs would 308 to
+    // /es/docs and 404 without this exclusion.
+    //
     // Same bug, same fix, for Next's dynamically-generated metadata image
     // routes (opengraph-image, twitter-image, icon, apple-icon): they live
     // at app/opengraph-image.tsx etc. (root level, not under [locale]) and
@@ -99,6 +104,6 @@ export const config = {
     // dot, so the file-extension exclusion below doesn't catch them either.
     // Without excluding them explicitly here too, every social-media/link
     // unfurl fetch 404s instead of getting the actual share image.
-    "/((?!api|md|opengraph-image|twitter-image|icon|apple-icon|_next|_vercel|.*\\..*).*)",
+    "/((?!api|md|docs|opengraph-image|twitter-image|icon|apple-icon|_next|_vercel|.*\\..*).*)",
   ],
 };

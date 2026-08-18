@@ -1,0 +1,28 @@
+---
+title: Documentación de SOSColombia
+description: Cómo funciona SOSColombia, cómo está construido el sitio, y cómo usar sus datos abiertos.
+---
+
+import { Card, Cards } from "fumadocs-ui/components/card";
+
+SOSColombia es un proyecto independiente y voluntario que centraliza información verificada sobre el terremoto del 10 de agosto de 2026 en Colombia: cifras oficiales, directorios de puntos de ayuda por ciudad y vereda, campañas de donación verificadas, y publicaciones comunitarias moderadas.
+
+Esta documentación tiene dos públicos: si sos una persona visitante del sitio, **Cómo funciona** te explica de dónde salen los datos y cómo navegar; si sos desarrollador, investigador, o querés reutilizar los datos, **Cómo está construido** y **Datos y API** cubren el stack técnico y cómo exportar información.
+
+<Cards>
+  <Card
+    title="Cómo funciona"
+    description="El flujo ciudad → vereda → puntos de ayuda → campañas → comunidad, y preguntas frecuentes."
+    href="/docs/como-funciona"
+  />
+  <Card
+    title="Cómo está construido"
+    description="Stack técnico, modelo de datos, moderación, jobs automáticos y el pipeline de miniaturas de Instagram."
+    href="/docs/como-esta-construido"
+  />
+  <Card
+    title="Datos y API"
+    description="Exportación abierta de datos (/api/export) hoy, y el plan para una API pública completa."
+    href="/docs/api"
+  />
+</Cards>
