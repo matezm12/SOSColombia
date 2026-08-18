@@ -8,6 +8,8 @@ import { routing } from "@/i18n/routing";
 // outside the [locale] segment's NextIntlClientProvider, so no next-intl
 // client hook (useLocale, useTranslations, next-intl's usePathname) has
 // context to read from here. Plain usePathname() has no such dependency.
+// (Search.tsx has the same constraint but only needs the locale flag, not
+// the stripped path this needs too -- see i18n/useLocaleFromPathname.ts.)
 //
 // Flags are inline SVGs, not Unicode flag emoji (🇨🇴/🇺🇸): Windows has no
 // system font that renders the regional-indicator-pair emoji as an actual

@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { Search } from "@/components/layout/Search";
 
 // Server component; mobile menu uses a native <details>/<summary>
 // disclosure. ThemeToggle and LanguageSwitcher are the client islands.
@@ -67,12 +68,14 @@ export async function SiteHeader() {
             >
               {t("sugerirPunto")}
             </Link>
+            <Search />
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
         </nav>
 
         <div className="flex items-center gap-2 xl:hidden">
+          <Search />
           <LanguageSwitcher />
           <ThemeToggle />
           <details className="relative">
