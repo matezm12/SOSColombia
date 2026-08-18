@@ -1,4 +1,24 @@
 /**
+ * DEPRECATED — kept only as a historical reference, do not run this.
+ *
+ * Superseded by scripts/thumbnails/backfill.py (repo root), which scrapes
+ * each post's real page directly via Scrapling's stealth browser instead of
+ * calling Meta's oEmbed API at all. Two things this script's own comments
+ * below got wrong or that changed after it was written, confirmed live:
+ *   1. The tokenless pool isn't a usable path at any real volume — it hit
+ *      "Application request limit reached" almost immediately on a batch of
+ *      ~150 posts, contradicting the "no App Review needed" assumption below.
+ *   2. Even with a registered app's own token, Meta returned "(#10) To use
+ *      'Meta oEmbed Read', your use of this endpoint must be reviewed and
+ *      approved by Facebook" — App Review was required after all, for an
+ *      app created after Meta's policy change. That review process is slow
+ *      and disproportionate for a static thumbnail, so the project moved to
+ *      scraping the post's own public page instead, which needs no Meta
+ *      credentials or review at all. See SocialEmbed.tsx's header comment
+ *      for the full history.
+ *
+ * Original docstring below, left as-is for the record:
+ *
  * Backfills SocialPost.oembedHtml for Instagram posts by calling Meta's
  * official oEmbed endpoint (graph.facebook.com/instagram_oembed) once per
  * post and caching the raw JSON response. Instagram's anonymous embed.js
