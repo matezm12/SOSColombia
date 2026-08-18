@@ -372,7 +372,9 @@ export function SocialEmbed({
             <div className="p-3">
               {author && <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300">{author}</p>}
               {caption && (
-                <p className="mt-1 line-clamp-3 text-xs text-zinc-500 dark:text-zinc-500">{caption}</p>
+                <p className="mt-1 line-clamp-6 whitespace-pre-line text-xs text-zinc-500 dark:text-zinc-500">
+                  {caption}
+                </p>
               )}
             </div>
           )}
