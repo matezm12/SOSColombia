@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { InstagramIcon } from "@/components/ui/icons";
 
 export async function SiteFooter() {
   const t = await getTranslations("footer");
@@ -44,18 +45,7 @@ export async function SiteFooter() {
             title={t("instagram")}
             className="text-zinc-400 hover:text-zinc-800 dark:text-zinc-500 dark:hover:text-zinc-200"
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              className="h-5 w-5"
-              aria-hidden="true"
-            >
-              <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
-              <circle cx="12" cy="12" r="4.5" />
-              <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
-            </svg>
+            <InstagramIcon className="h-5 w-5" />
           </a>
           <a
             href="https://github.com/matezm12/SOSColombia"

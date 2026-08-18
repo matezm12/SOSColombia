@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ExternalLinkIcon } from "../ui/icons";
+import { ExternalLinkIcon, InstagramIcon } from "../ui/icons";
 
 // Renders a public social post from just its permalink, no API keys/tokens —
 // same reasoning as GoFundMeEmbed.tsx: use each platform's own public
@@ -107,10 +107,12 @@ function scheduleProcess(platform: string, run: () => void) {
 type Status = "loading" | "ready" | "error";
 
 // Shape we store in SocialPost.oembedHtml for Instagram posts: raw
-// {thumbnail_url, title} scraped by scripts/thumbnails/backfill.py,
+// {thumbnail_url, title, alt} scraped by scripts/thumbnails/backfill.py,
 // stringified as-is rather than picked apart into separate columns — it's a
 // snapshot of scraped data, not modeled data, so there's nothing to normalize.
-function parseCachedThumbnail(raw: string | null | undefined): { thumbnailUrl: string; title?: string } | null {
+function parseCachedThumbnail(
+  raw: string | null | undefined,
+): { thumbnailUrl: string; title?: string; alt?: string } | null {
   if (!raw) return null;
   try {
     const data = JSON.parse(raw);
@@ -118,10 +120,23 @@ function parseCachedThumbnail(raw: string | null | undefined): { thumbnailUrl: s
     return {
       thumbnailUrl: data.thumbnail_url,
       title: typeof data.title === "string" ? data.title : undefined,
+      alt: typeof data.alt === "string" ? data.alt : undefined,
     };
   } catch {
     return null;
   }
+}
+
+// Instagram's og:title is always `{author} on Instagram: "{caption}"` for a
+// real post — split apart to actually display, instead of leaving it as
+// inert alt text on the image (which it still is, as a fallback, when this
+// doesn't match — profile-link "posts" like /somehandle/ have a different
+// title shape with no caption to extract).
+function splitAuthorCaption(title: string | undefined): { author?: string; caption?: string } {
+  if (!title) return {};
+  const match = title.match(/^(.*?) on Instagram: "([\s\S]*)"$/);
+  if (!match) return {};
+  return { author: match[1], caption: match[2] };
 }
 
 export function SocialEmbed({
@@ -326,6 +341,7 @@ export function SocialEmbed({
 
   if (platform === "INSTAGRAM") {
     if (thumbnail) {
+      const { author, caption } = splitAuthorCaption(thumbnail.title);
       return (
         <a
           href={permalink}
@@ -333,8 +349,33 @@ export function SocialEmbed({
           rel="noopener noreferrer"
           className="block overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element -- external, unoptimizable Instagram CDN thumbnail */}
-          <img src={thumbnail.thumbnailUrl} alt={thumbnail.title ?? ""} className="w-full" loading="lazy" />
+          <div className="relative bg-zinc-100 dark:bg-zinc-900">
+            {/* eslint-disable-next-line @next/next/no-img-element -- external, unoptimizable Instagram CDN photo */}
+            <img
+              src={thumbnail.thumbnailUrl}
+              // Instagram's own alt (often AI-generated) beats the raw
+              // caption as accessibility text — that's a full paragraph in
+              // the worst case, this is an actual image description. Falls
+              // back to the caption/title only when Instagram supplied no
+              // alt at all (seen live: video/reel posts, some profile links).
+              alt={thumbnail.alt ?? caption ?? thumbnail.title ?? ""}
+              className="max-h-[420px] w-full object-contain"
+              loading="lazy"
+            />
+            {/* Source badge — with the live embed retired, nothing else on
+                the card visually marks this as Instagram content anymore. */}
+            <span className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm">
+              <InstagramIcon className="h-4 w-4" />
+            </span>
+          </div>
+          {(author || caption) && (
+            <div className="p-3">
+              {author && <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300">{author}</p>}
+              {caption && (
+                <p className="mt-1 line-clamp-3 text-xs text-zinc-500 dark:text-zinc-500">{caption}</p>
+              )}
+            </div>
+          )}
         </a>
       );
     }
