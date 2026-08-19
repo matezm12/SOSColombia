@@ -3,7 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { isAuthorizedCronRequest } from "@/lib/cronAuth";
 import { notifyOps } from "@/lib/notify";
 import { upsertSource } from "@/lib/sources";
-import type { AidPointKind } from "@prisma/client";
+import { decodeEntities, parseRssItems } from "@/lib/rss";
+import { EARTHQUAKE_CONTEXT, findCandidates } from "@/lib/aidPointDetection";
 
 // Prisma 7's driver adapter (@prisma/adapter-pg) needs the Node.js runtime, not Edge.
 export const runtime = "nodejs";
@@ -53,15 +54,8 @@ const BROWSER_USER_AGENT =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 const BOT_USER_AGENT = "Mozilla/5.0 (compatible; SOSColombiaBot/1.0)";
 
-// Only these two kinds have a clean keyword signal on these pages — no reliable wording
-// found for health/vet/blood-donation/monetary-donation points on either source.
-const KIND_KEYWORDS: Partial<Record<AidPointKind, RegExp>> = {
-  ALBERGUE: /albergue|refugio temporal/gi,
-  ACOPIO: /punto de acopio|centro de acopio|punto de ayuda/gi,
-};
-const EARTHQUAKE_CONTEXT = /terremoto|sismo|damnificad/i;
-const CONTEXT_WINDOW = 400; // chars either side of a kind-keyword hit, to require earthquake co-occurrence
-const SNIPPET_WINDOW = 200; // chars either side, for the stored/emailed snippet
+// Kind-keyword matching + earthquake-context gating now live in
+// @/lib/aidPointDetection (shared with api/cron/discovery).
 
 // Same city press pages, second signal: a death-toll mention. This never auto-writes a
 // number — same tier-2 discipline as the national bulletins cron (web/src/app/api/cron/
@@ -82,74 +76,7 @@ function stripHtml(html: string): string {
     .trim();
 }
 
-function decodeEntities(text: string): string {
-  return text
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&aacute;/gi, "á").replace(/&eacute;/gi, "é").replace(/&iacute;/gi, "í")
-    .replace(/&oacute;/gi, "ó").replace(/&uacute;/gi, "ú").replace(/&ntilde;/gi, "ñ")
-    .replace(/&Aacute;/g, "Á").replace(/&Eacute;/g, "É").replace(/&Iacute;/g, "Í")
-    .replace(/&Oacute;/g, "Ó").replace(/&Uacute;/g, "Ú").replace(/&Ntilde;/g, "Ñ")
-    .replace(/&#8230;/g, "…").replace(/&amp;/gi, "&");
-}
-
-interface RssItem {
-  title: string;
-  link: string;
-  description: string;
-}
-
-function extractTag(block: string, tag: string): string | null {
-  const match = block.match(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`));
-  if (!match) return null;
-  return decodeEntities(
-    match[1].replace(/^\s*<!\[CDATA\[/, "").replace(/\]\]>\s*$/, "").replace(/<[^>]+>/g, " ").trim(),
-  );
-}
-
-function parseRssItems(xml: string): RssItem[] {
-  const items: RssItem[] = [];
-  for (const match of xml.matchAll(/<item>([\s\S]*?)<\/item>/g)) {
-    const block = match[1];
-    const title = extractTag(block, "title");
-    const link = extractTag(block, "link");
-    const description = extractTag(block, "description") ?? "";
-    if (title && link) items.push({ title, link, description });
-  }
-  return items;
-}
-
-interface Finding {
-  kind: AidPointKind;
-  snippet: string;
-}
-
-function findCandidates(text: string): Finding[] {
-  const found: Finding[] = [];
-  const seenSnippets = new Set<string>();
-
-  for (const [kind, pattern] of Object.entries(KIND_KEYWORDS) as Array<[AidPointKind, RegExp | undefined]>) {
-    if (!pattern) continue;
-    for (const match of text.matchAll(new RegExp(pattern.source, pattern.flags))) {
-      const idx = match.index ?? 0;
-      const contextStart = Math.max(0, idx - CONTEXT_WINDOW);
-      const contextEnd = Math.min(text.length, idx + CONTEXT_WINDOW);
-      const context = text.slice(contextStart, contextEnd);
-      if (!EARTHQUAKE_CONTEXT.test(context)) continue;
-
-      const snippetStart = Math.max(0, idx - SNIPPET_WINDOW);
-      const snippetEnd = Math.min(text.length, idx + SNIPPET_WINDOW);
-      const snippet = text.slice(snippetStart, snippetEnd).trim();
-
-      if (seenSnippets.has(snippet)) continue;
-      seenSnippets.add(snippet);
-      found.push({ kind, snippet });
-    }
-  }
-
-  return found;
-}
-
-// Deliberately tighter than CONTEXT_WINDOW/SNIPPET_WINDOW above, and requires a nearby
+// Deliberately tighter than aidPointDetection's context/snippet windows, and requires a nearby
 // digit — confirmed necessary by testing, not just theoretical: the wider window (plus
 // no digit requirement) matched "muerte" in a totally unrelated 2022 childhood-cancer
 // article on Pereira's unpaginated multi-year archive page, since earthquake coverage

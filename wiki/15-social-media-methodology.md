@@ -2,6 +2,8 @@
 
 Documents the approach and reusable findings from the first live social-media pass (2026-08-14), so future passes on other cities don't re-derive the same lessons. This closes "the universal wall" flagged in wiki/research-plan-phase2.md — the platforms are no longer inaccessible, they just need this specific approach.
 
+This file is about **manual research using the user's own logged-in sessions**. For **unattended/anonymous automated discovery** (no login, for a future cron job) see `wiki/18-social-discovery-engineering.md` — a separate research pass with materially different findings (e.g. Instagram hashtag search stays walled even anonymously, but profile and location lookups don't).
+
 ## Approach used
 
 - Browser automation (claude-in-chrome) with the user's own logged-in sessions on X, Instagram, Facebook, TikTok. No WhatsApp/Telegram (explicitly deferred — would need group invites, not just login).

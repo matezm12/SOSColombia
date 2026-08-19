@@ -23,6 +23,7 @@ M7.4 earthquake (USGS primary: depth 110.3km; SGC: ~103km), 2026-08-10 07:34 loc
 | `14-context-reference.md` | Population baselines, geo data, historical earthquakes, DNP methodology | populated, real DANE figures for all 6 cities |
 | `15-social-media-methodology.md` | X/Instagram/Facebook/TikTok approach + reusable findings | populated — "universal wall" is closed, browser automation works well when logged in |
 | `17-allied-resources-and-community.md` | `/recursos` (allied-sites directory) + `/comunidad` (moderated social embeds) — schema, routes, oEmbed-avoidance rationale, research pass | populated 2026-08-14 |
+| `18-social-discovery-engineering.md` | Stage-2 engineering research: can an unattended/anonymous cron job discover + enrich social posts (TikTok/Instagram/X/Facebook), for a future 5th cron job feeding the moderation queue | populated 2026-08-18 — research only, not built |
 
 ## Affected cities
 - Pereira (Risaralda) — highest death toll (volatile, 55-83 range across sources), comms degraded, hometown priority. Aid-points file has verified shelter statuses + 7 CEDE addresses + corrected vet section.
