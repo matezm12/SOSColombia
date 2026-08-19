@@ -98,6 +98,12 @@ FETCH_TIMEOUT_MS = 60_000
 
 MAX_STAGED = 20
 SCORE_FLOOR = 4  # out of 10 -- below this, drop the candidate, don't stage it
+# Separate, tighter cap for candidates whose enrichment failed entirely
+# (confirmed live: possible at real scale, e.g. Instagram degrading hard
+# from some IPs) -- these carry no auto-extracted caption/score, so they're
+# lower value than a real scored finding and must never crowd out the ones
+# that did enrich successfully.
+MAX_STAGED_UNENRICHED = 5
 
 KEYWORD_WEIGHTS = {
     "albergue": 3,
@@ -162,6 +168,11 @@ class Candidate:
     # web_profile_info returns full post data in the same call) skip the
     # separate enrichment step.
     enriched: dict[str, Any] | None = None
+    # Set by discover_instagram_locations -- lets a candidate still resolve
+    # a real municipio even if enrichment fails completely and there's no
+    # caption to match against (we already know which TARGETS location page
+    # it came from).
+    place_hint: str | None = None
 
 
 # ── TikTok ───────────────────────────────────────────────────────────────────
@@ -281,7 +292,9 @@ def discover_instagram_locations(locations: list[dict]) -> list[Candidate]:
             html = page.html_content
             shortcodes = set(re.findall(r"/(?:p|reel)/([\w-]{5,})", html))
             for sc in shortcodes:
-                candidates.append(Candidate(platform="INSTAGRAM", permalink=f"https://www.instagram.com/p/{sc}/"))
+                candidates.append(
+                    Candidate(platform="INSTAGRAM", permalink=f"https://www.instagram.com/p/{sc}/", place_hint=loc["name"])
+                )
             log(f"instagram location {loc['name']}: {len(shortcodes)} candidate(s)")
         except Exception as err:
             log(f"instagram location {loc['name']} discovery failed: {err}")
@@ -587,6 +600,30 @@ def stage_social_post(cur, candidate: Candidate, enriched: dict, score: int, cat
     )
 
 
+def stage_bare_social_post(cur, candidate: Candidate, municipio_id: str | None, place_name: str | None) -> None:
+    """A candidate whose caption we couldn't fetch at all -- still worth a
+    row so a moderator can review the real post directly, rather than us
+    silently finding nothing. HUMAN_INTEREST is the safest default category
+    (no caption to classify from); no companion aid-point, since guess_kind()
+    needs caption text too."""
+    cur.execute(
+        """
+        INSERT INTO "PendingSocialPost"
+            (id, platform, permalink, "authorHandle", category, "municipioId", "placeName", "submitterNote", origin, status, "createdAt")
+        VALUES (%s, %s, %s, %s, 'HUMAN_INTEREST', %s, %s, %s, 'AUTOMATION_SWEEP', 'PENDING', now())
+        """,
+        (
+            str(uuid.uuid4()),
+            candidate.platform,
+            candidate.permalink,
+            candidate.author_handle,
+            municipio_id,
+            place_name,
+            "[enrichment failed — review manually]",
+        ),
+    )
+
+
 def stage_companion_aid_point(cur, candidate: Candidate, enriched: dict, score: int, municipio_id: str, kind: str) -> bool:
     """A post can simultaneously be a community post worth reviewing AND
     describe a specific real aid point -- when it clearly reads as one
@@ -711,6 +748,7 @@ def main() -> None:
 
     # ── Enrichment (expensive) ──
     scored: list[tuple[Candidate, dict, int, tuple[str, str] | None]] = []
+    unenriched: list[tuple[Candidate, tuple[str, str] | None]] = []
     for candidate in fresh_candidates:
         enriched = candidate.enriched
         if enriched is None:
@@ -721,6 +759,17 @@ def main() -> None:
             elif candidate.platform == "X":
                 enriched = enrich_x(candidate.permalink)
         if not enriched or not (enriched.get("caption") or "").strip():
+            # Enrichment failed entirely -- confirmed live this can happen
+            # at real scale (Instagram degrading hard from some IPs, e.g.
+            # GitHub Actions', even though discovery still finds real
+            # permalinks). Still stage a bare placeholder rather than
+            # silently dropping it -- a moderator reviewing the real post
+            # directly is strictly better than us finding nothing at all.
+            # Uses whatever location hint discovery already knows (e.g.
+            # which TARGETS location page this came from) even with no
+            # caption to match a city against.
+            municipio_match = match_municipio("", candidate.place_hint, municipios) if candidate.place_hint else None
+            unenriched.append((candidate, municipio_match))
             continue
 
         municipio_match = match_municipio(enriched["caption"], enriched.get("location_name"), municipios)
@@ -738,14 +787,26 @@ def main() -> None:
             continue
         scored.append((candidate, enriched, score, municipio_match))
 
-    # ── Cap to top N, best first ──
+    # ── Cap to top N, best first -- scored and unenriched capped separately ──
     scored.sort(key=lambda t: t[2], reverse=True)
     to_stage = scored[:MAX_STAGED]
     dropped = len(scored) - len(to_stage)
     log(f"scored above floor: {len(scored)}, staging top {len(to_stage)} (dropped {dropped} more)")
 
+    to_stage_unenriched = unenriched[:MAX_STAGED_UNENRICHED]
+    dropped_unenriched = len(unenriched) - len(to_stage_unenriched)
+    log(
+        f"enrichment failed entirely: {len(unenriched)}, staging {len(to_stage_unenriched)} as bare placeholders "
+        f"(dropped {dropped_unenriched} more)"
+    )
+
     staged_social = 0
     staged_aid_points = 0
+    for candidate, municipio_match in to_stage_unenriched:
+        municipio_id, place_name = municipio_match if municipio_match else (None, None)
+        stage_bare_social_post(cur, candidate, municipio_id, place_name)
+        staged_social += 1
+
     for candidate, enriched, score, municipio_match in to_stage:
         municipio_id, place_name = municipio_match if municipio_match else (None, None)
         category = resolve_category(enriched)
@@ -766,14 +827,23 @@ def main() -> None:
     cur.close()
     conn.close()
 
-    log(f"staged {staged_social} PendingSocialPost, {staged_aid_points} companion PendingAidPoint")
+    log(
+        f"staged {staged_social} PendingSocialPost "
+        f"({len(to_stage_unenriched)} bare placeholder(s)), {staged_aid_points} companion PendingAidPoint"
+    )
 
     if staged_social > 0 or new_locations:
-        rows = "".join(
+        scored_rows = "".join(
             f"<li>{c.platform} — @{e.get('author_handle') or c.author_handle or '?'} "
             f"(score {s}/10): <a href='{c.permalink}'>{c.permalink}</a></li>"
             for c, e, s, _m in to_stage
         )
+        bare_rows = "".join(
+            f"<li>{c.platform} — @{c.author_handle or '?'} (enrichment failed, review manually): "
+            f"<a href='{c.permalink}'>{c.permalink}</a></li>"
+            for c, _m in to_stage_unenriched
+        )
+        rows = scored_rows + bare_rows
         location_suggestions = "".join(
             f"<li>Instagram location: {loc.get('name')} (id {loc.get('id')}, slug {loc.get('slug')}) "
             f"— add to TARGETS['instagram_locations'] if useful</li>"
