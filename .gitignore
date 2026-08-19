@@ -14,6 +14,12 @@ instagram-story-text*.txt
 linkedin-post-text.txt
 social-media-posts.txt
 
-# Python artifacts — scripts/thumbnails/ is this repo's only Python code
+# Python artifacts
 __pycache__/
 *.pyc
+
+# Local env files for one-off Python scripts run outside GitHub Actions
+# (e.g. scripts/social-discovery run locally via Task Scheduler) — same
+# .env*/!.env.example pattern web/.gitignore already uses.
+scripts/**/.env*
+!scripts/**/.env.example

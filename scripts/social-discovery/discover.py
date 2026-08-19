@@ -49,7 +49,11 @@ human never sees before it takes effect. When a run opportunistically finds
 a new location tag or handle worth considering, it goes in the summary
 email as a suggestion, not an automatic addition here.
 
-Usage: DATABASE_URL=... [RESEND_API_KEY=... CRON_ALERT_EMAIL=...] python scripts/social-discovery/discover.py
+Usage:
+  GitHub Actions -- DATABASE_URL etc. come from repo secrets, nothing else needed.
+  Local (e.g. a daily Task Scheduler job) -- copy .env.example to .env in
+    this same directory and fill in real values; load_dotenv() below picks
+    it up automatically. Or just: DATABASE_URL=... python discover.py
 """
 
 from __future__ import annotations
@@ -68,7 +72,12 @@ from dataclasses import dataclass
 from typing import Any
 
 import psycopg2
+from dotenv import load_dotenv
 from scrapling.fetchers import StealthyFetcher
+
+# No-op if no .env file is present (e.g. on GitHub Actions, where secrets
+# arrive as real env vars already) -- only meaningful for local runs.
+load_dotenv()
 
 # ── Curated targets (edit this list, don't auto-grow it -- see module docstring) ──
 
