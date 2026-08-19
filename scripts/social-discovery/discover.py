@@ -665,6 +665,44 @@ def stage_companion_aid_point(cur, candidate: Candidate, enriched: dict, score: 
     return True
 
 
+# ── Target-growth suggestions ────────────────────────────────────────────────
+
+
+def suggest_new_targets(to_stage: list[tuple]) -> dict[str, list[str]]:
+    """Reuses the scoring system's own output as the trust signal: a
+    candidate that already cleared SCORE_FLOOR and made the cap has already
+    proven itself relevant. Surfaces NEW TARGETS entries as suggestions in
+    the summary email -- never adds them automatically, same "human decides
+    via code review" discipline as the location suggestions above. Handles
+    (Instagram/X) come from the enriched author; hashtags (TikTok) come
+    from the video's own co-occurring hashtags, already extracted during
+    enrichment."""
+    new_ig_handles: set[str] = set()
+    new_x_handles: set[str] = set()
+    new_tiktok_hashtags: set[str] = set()
+
+    known_ig = {normalize(h) for h in TARGETS["instagram_profiles"]}
+    known_x = {normalize(h) for h in TARGETS["x_profiles"]}
+    known_tags = {normalize(t) for t in TARGETS["tiktok_hashtags"]}
+
+    for candidate, enriched, _score, _municipio_match in to_stage:
+        handle = enriched.get("author_handle") or candidate.author_handle
+        if candidate.platform == "INSTAGRAM" and handle and normalize(handle) not in known_ig:
+            new_ig_handles.add(handle)
+        elif candidate.platform == "X" and handle and normalize(handle) not in known_x:
+            new_x_handles.add(handle)
+        elif candidate.platform == "TIKTOK":
+            for tag in enriched.get("hashtags") or []:
+                if tag and normalize(tag) not in known_tags:
+                    new_tiktok_hashtags.add(tag)
+
+    return {
+        "instagram_profiles": sorted(new_ig_handles),
+        "x_profiles": sorted(new_x_handles),
+        "tiktok_hashtags": sorted(new_tiktok_hashtags),
+    }
+
+
 # ── Alerting ─────────────────────────────────────────────────────────────────
 
 
@@ -863,11 +901,25 @@ def main() -> None:
             if new_locations
             else ""
         )
+
+        target_suggestions = suggest_new_targets(to_stage)
+        suggestion_items = (
+            [f"Instagram account: @{h} — add to TARGETS['instagram_profiles'] if trustworthy" for h in target_suggestions["instagram_profiles"]]
+            + [f"X account: @{h} — add to TARGETS['x_profiles'] if trustworthy" for h in target_suggestions["x_profiles"]]
+            + [f"TikTok hashtag: #{t} — add to TARGETS['tiktok_hashtags'] if relevant" for t in target_suggestions["tiktok_hashtags"]]
+        )
+        target_note = (
+            f"<h4>New accounts/hashtags worth reviewing (already scored well, not yet in TARGETS)</h4>"
+            f"<ul>{''.join(f'<li>{item}</li>' for item in suggestion_items)}</ul>"
+            if suggestion_items
+            else ""
+        )
+
         notify_ops(
             "SOSColombia: social discovery sweep found new candidates",
             f"<p>The social-discovery sweep staged {staged_social} post(s) "
             f"({staged_aid_points} also as aid-point candidates) at /admin/comunidad and /admin/moderacion.</p>"
-            f"<ul>{rows}</ul>{await_note}"
+            f"<ul>{rows}</ul>{await_note}{target_note}"
             f"<p>Nothing was published automatically — review each one before approving.</p>",
         )
 

@@ -8,11 +8,13 @@ or via pytest if it's already installed: `pytest scripts/social-discovery/`.
 """
 
 from discover import (
+    Candidate,
     guess_category,
     guess_kind,
     match_municipio,
     normalize,
     score_candidate,
+    suggest_new_targets,
     unwrap_json_response,
 )
 
@@ -106,6 +108,43 @@ def test_score_candidate_known_handle_softens_context_penalty():
     assert known_no_context > unknown_no_context, (
         f"expected known-handle score ({known_no_context}) > unknown-handle score ({unknown_no_context})"
     )
+
+
+def test_suggest_new_targets():
+    to_stage = [
+        # Known IG account -- not a suggestion.
+        (
+            Candidate(platform="INSTAGRAM", permalink="https://www.instagram.com/p/known/", author_handle="globalshaperspereira"),
+            {"author_handle": "globalshaperspereira", "hashtags": []},
+            8,
+            None,
+        ),
+        # New IG account -- should be suggested.
+        (
+            Candidate(platform="INSTAGRAM", permalink="https://www.instagram.com/p/newacct/", author_handle="nuevaorg"),
+            {"author_handle": "nuevaorg", "hashtags": []},
+            6,
+            None,
+        ),
+        # Same new IG account again -- should only be suggested once (deduped via set()).
+        (
+            Candidate(platform="INSTAGRAM", permalink="https://www.instagram.com/p/newacct2/", author_handle="nuevaorg"),
+            {"author_handle": "nuevaorg", "hashtags": []},
+            5,
+            None,
+        ),
+        # New TikTok hashtag co-occurring on a staged video.
+        (
+            Candidate(platform="TIKTOK", permalink="https://www.tiktok.com/@x/video/1"),
+            {"author_handle": "x", "hashtags": ["terremotocolombia", "sospereira"]},
+            7,
+            None,
+        ),
+    ]
+    suggestions = suggest_new_targets(to_stage)
+    assert suggestions["instagram_profiles"] == ["nuevaorg"], suggestions
+    assert suggestions["x_profiles"] == [], suggestions
+    assert suggestions["tiktok_hashtags"] == ["sospereira"], suggestions  # terremotocolombia already known
 
 
 def main():
