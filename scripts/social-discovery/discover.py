@@ -81,21 +81,68 @@ load_dotenv()
 
 # ── Curated targets (edit this list, don't auto-grow it -- see module docstring) ──
 
+#
+# 2026-08-19 expansion -- every entry below is either (a) directly cited as a
+# real, verified source somewhere in wiki/07-aid-points/*.md or
+# wiki/17-allied-resources-and-community.md (Stage-1 research, logged-in
+# manual verification), or (b) already has 2+ real SocialPost/approved-
+# PendingSocialPost rows in the live DB from that same research. Deliberately
+# limited to institutional/organizational accounts (alcaldías, gobernaciones,
+# hospitals, foundations, chambers of commerce) -- individual citizens who
+# posted one useful thing are real sources for a specific fact, but sweeping
+# a private person's account on an ongoing automated schedule is a different,
+# more invasive thing than sweeping a public institution's, so those were
+# left out even where the wiki cites them.
 TARGETS = {
-    # Verified live in wiki/18-social-discovery-engineering.md's research pass --
-    # a real relief org actively posting aid-point/need updates.
-    "instagram_profiles": ["globalshaperspereira"],
+    "instagram_profiles": [
+        "globalshaperspereira",  # wiki/18 -- relief org, active aid-point/need updates
+        "alcaldiamunicipalsjp",  # San José del Palmar, official municipal account (wiki/17:3883)
+        "alcaldiadequibdo",  # Quibdó, official (6+ DB posts)
+        "alcaldiadepijaoq",  # Pijao, official (4+ DB posts)
+        "alcaldiadegenova",  # Génova/Pijao area, official (4+ DB posts)
+        "gobernaciondelchoco",  # Chocó department, official
+        "gobcauca",  # Cauca department, official
+        "alcaldia_dosquebradas",  # Dosquebradas, official
+        "alcaldiabuenaventurad",  # Buenaventura, official
+        "camaradedosquebradas",  # Dosquebradas, Cámara de Comercio
+        # NOT added: "ccmanizales" (Cámara de Comercio de Manizales, cited in
+        # wiki/07/manizales.md + wiki/11) -- spot-checked live 2026-08-19,
+        # web_profile_info returned no user (400, no `data.user`) -- the
+        # handle from Stage-1 research no longer resolves (renamed or typo'd
+        # at the time), needs manual re-verification before adding.
+        "concejopereira",  # Pereira, Concejo Municipal (wiki/17: "best single find of this pass")
+        "expofuturopereira",  # Pereira, real collection-point venue (wiki/07/pereira.md's Expofuturo)
+        "ncquindio",  # Armenia, community collection-point coordinator (wiki/07/armenia.md)
+        "fundacionkenovycolombia",  # Armenia, 300+ dog rescue shelter (wiki/17:214)
+        "fundacionplataformas",  # Manizales foundation, real street address (wiki/17:436)
+        "bancodealimentosmanizales",  # Manizales food bank, real street address (wiki/17:439)
+        "arcadejuana.col",  # Quibdó, Hospital San Francisco de Asís de Quibdó (wiki/17:457)
+        "hemocentrodelcafe",  # Manizales blood bank (2+ DB posts)
+        "hemocentrodelotun",  # Dosquebradas/Pereira-area blood bank (2+ DB posts)
+    ],
     # {id, slug} pulled from a real geotagged post (globalshaperspereira above),
     # not guessed -- Instagram has no anonymous way to search for a location id.
+    # Only Pereira so far -- growing this list requires harvesting a real id
+    # from a real post's location tag first, same discipline, see
+    # suggest_new_targets() below.
     "instagram_locations": [{"id": "532059080", "slug": "pereira-risaralda", "name": "Pereira Risaralda"}],
-    # Verified live: 55 real video URLs from real accounts (CNN, CBS News,
-    # several Colombian local/news accounts) for this exact tag.
-    "tiktok_hashtags": ["terremotocolombia"],
-    # No X handle has been verified as an actual, relevant, real earthquake-
-    # relief account yet (the wiki's X test used @BBCBreaking purely as a
-    # mechanism check) -- empty on purpose rather than guessing one. Add real
-    # handles here after reviewing them, same as the two lists above.
-    "x_profiles": [],
+    "tiktok_hashtags": [
+        "terremotocolombia",  # wiki/18 -- 55 real video URLs from real accounts for this tag
+        "PereiraTeNecesita",  # wiki/07/pereira.md:29, wiki/research-plan-phase2.md:328 -- real, aggregates real posts (Expofuturo, etc.)
+        "TodosPorColombia",  # wiki/07/bogota.md:28 -- Cruz Roja national campaign hashtag
+        "ColombiaUnSoloCorazon",  # wiki/07/bogota.md:29 -- First Lady's national campaign (hashtags don't carry accents on-platform)
+        "UnicaucaSolidaria",  # wiki/17:1428 -- confirmed real, university-wide Cauca/Popayán campaign
+        # NOT added: #SOSPijao / #PijaoNecesita -- wiki/17:3286 explicitly found
+        # these "don't function as real aggregating hashtags", already tested and ruled out.
+    ],
+    "x_profiles": [
+        "Alcaldiapereira",  # Pereira, official -- multiple real posts already cited as sources across wiki/07/pereira.md
+        "GobValle",  # Valle del Cauca department, official verified account (wiki/17:713)
+        "camaracali",  # Cali, Cámara de Comercio (wiki/07/cali.md:26, also cross-platform)
+        "CNTI_Indigena",  # Comisión Nacional de Territorios Indígenas (wiki/17:720)
+        # NOT added: @AlcaldiaArmenia, @QuindioGob -- wiki/07/armenia.md:18,20 explicitly
+        # confirmed both inactive since before the earthquake, zero signal to gain.
+    ],
 }
 
 # Generic disaster-relief search terms, not city-specific -- DDG is the
