@@ -4,6 +4,7 @@ import { isAuthorizedCronRequest } from "@/lib/cronAuth";
 import { notifyOps } from "@/lib/notify";
 import { parseRssItems } from "@/lib/rss";
 import { findCandidates } from "@/lib/aidPointDetection";
+import { extractEmbeddedSocialPermalinks } from "@/lib/embeds";
 
 // Prisma 7's driver adapter (@prisma/adapter-pg) needs the Node.js runtime, not Edge.
 export const runtime = "nodejs";
@@ -48,6 +49,13 @@ const NEWS_SEARCH_KEYWORDS = ["albergue terremoto", "centro de acopio terremoto"
 // happens without one: genuine other submissions get buried).
 const MAX_STAGED_PER_MUNICIPIO = 5;
 
+// Separate, tighter cap for embedded social permalinks found by fetching an
+// already-relevant article's full page (see extractEmbeddedSocialPermalinks
+// in @/lib/embeds) -- a brand-new, first-run-untested discovery vector, kept
+// conservative on purpose. Same "cap what's expensive, never let one signal
+// crowd out another" discipline as MAX_STAGED_PER_MUNICIPIO above.
+const MAX_EMBEDS_PER_MUNICIPIO = 3;
+
 const COMBINING_DIACRITICS = /[̀-ͯ]/g;
 
 function normalize(text: string): string {
@@ -71,7 +79,59 @@ interface MunicipioCheck {
   itemsChecked: number;
   candidatesFound: number;
   staged: number;
+  embedsStaged: number;
   errors: string[];
+}
+
+async function stageEmbeddedPermalinks(
+  municipioId: string,
+  articleUrl: string,
+  articleTitle: string,
+  cap: number,
+): Promise<number> {
+  let html: string;
+  try {
+    const res = await fetch(articleUrl, { headers: { "User-Agent": BOT_USER_AGENT }, cache: "no-store" });
+    if (!res.ok) return 0;
+    html = await res.text();
+  } catch {
+    return 0;
+  }
+
+  const embeds = extractEmbeddedSocialPermalinks(html);
+  let staged = 0;
+
+  for (const embed of embeds) {
+    if (staged >= cap) break;
+
+    // Same dedup discipline as everywhere else -- check both the live table
+    // and the pending queue, across any status, before staging.
+    const [existingLive, existingPending] = await Promise.all([
+      prisma.socialPost.findFirst({ where: { permalink: embed.permalink } }),
+      prisma.pendingSocialPost.findFirst({ where: { permalink: embed.permalink } }),
+    ]);
+    if (existingLive || existingPending) continue;
+
+    // Bare placeholder, same shape as scripts/social-discovery/discover.py's
+    // stage_bare_social_post -- we found a real permalink embedded in a real
+    // article, but have no caption/stats without a second platform-specific
+    // fetch, which this route (plain fetch(), no browser/API access) can't
+    // do. A moderator reviewing the real post directly is strictly better
+    // than not finding it at all.
+    await prisma.pendingSocialPost.create({
+      data: {
+        platform: embed.platform,
+        permalink: embed.permalink,
+        category: "HUMAN_INTEREST",
+        municipioId,
+        submitterNote: `[found embedded in article — review manually] ${articleTitle.slice(0, 200)} — ${articleUrl}`,
+        origin: "AUTOMATION_SWEEP",
+      },
+    });
+    staged++;
+  }
+
+  return staged;
 }
 
 async function checkMunicipio(municipioId: string, name: string): Promise<MunicipioCheck> {
@@ -81,6 +141,7 @@ async function checkMunicipio(municipioId: string, name: string): Promise<Munici
   let itemsChecked = 0;
   let candidatesFound = 0;
   let staged = 0;
+  let embedsStaged = 0;
 
   for (const keyword of NEWS_SEARCH_KEYWORDS) {
     if (staged >= MAX_STAGED_PER_MUNICIPIO) break;
@@ -117,6 +178,20 @@ async function checkMunicipio(municipioId: string, name: string): Promise<Munici
       candidatesFound += candidates.length;
       if (candidates.length === 0) continue;
 
+      // Article already proven relevant (matched a kind keyword + this
+      // city's name) -- worth the extra fetch to check its full page for
+      // embedded social posts (see @/lib/embeds), a discovery angle that
+      // finds real accounts/posts a hashtag or profile sweep never would:
+      // whatever a journalist or aid org already chose to embed.
+      if (embedsStaged < MAX_EMBEDS_PER_MUNICIPIO) {
+        embedsStaged += await stageEmbeddedPermalinks(
+          municipioId,
+          item.link,
+          item.title,
+          MAX_EMBEDS_PER_MUNICIPIO - embedsStaged,
+        );
+      }
+
       // Same dedup discipline as gov-news-check's own RSS path: on the
       // article URL alone, across ANY prior status -- a moderator's
       // rejection must never get re-staged the next run.
@@ -141,7 +216,7 @@ async function checkMunicipio(municipioId: string, name: string): Promise<Munici
     }
   }
 
-  return { municipio: name, ok: errors.length === 0, itemsChecked, candidatesFound, staged, errors };
+  return { municipio: name, ok: errors.length === 0, itemsChecked, candidatesFound, staged, embedsStaged, errors };
 }
 
 export async function GET(request: NextRequest) {
@@ -153,6 +228,7 @@ export async function GET(request: NextRequest) {
   const results = await Promise.all(municipios.map((m) => checkMunicipio(m.id, m.name)));
 
   const totalStaged = results.reduce((sum, r) => sum + r.staged, 0);
+  const totalEmbedsStaged = results.reduce((sum, r) => sum + r.embedsStaged, 0);
 
   if (totalStaged > 0) {
     const rows = results
@@ -164,6 +240,19 @@ export async function GET(request: NextRequest) {
       `<p>The Google News discovery sweep found new albergue/acopio mentions, staged at /admin/moderacion.</p>
        <ul>${rows}</ul>
        <p>These are raw article snippets, not verified aid-point details — review each one before approving.</p>`,
+    );
+  }
+
+  if (totalEmbedsStaged > 0) {
+    const embedRows = results
+      .filter((r) => r.embedsStaged > 0)
+      .map((r) => `<li><strong>${r.municipio}</strong>: ${r.embedsStaged} social post(s) found embedded in news articles</li>`)
+      .join("");
+    await notifyOps(
+      "SOSColombia: found social posts embedded in news coverage",
+      `<p>The Google News discovery sweep found real Instagram/TikTok/X posts embedded in article coverage, staged at /admin/comunidad.</p>
+       <ul>${embedRows}</ul>
+       <p>Found via the article's own oEmbed markup, not fetched/enriched further — review each real post directly before approving.</p>`,
     );
   }
 
