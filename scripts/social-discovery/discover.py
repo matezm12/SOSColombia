@@ -119,6 +119,22 @@ TARGETS = {
         "arcadejuana.col",  # Quibdó, Hospital San Francisco de Asís de Quibdó (wiki/17:457)
         "hemocentrodelcafe",  # Manizales blood bank (2+ DB posts)
         "hemocentrodelotun",  # Dosquebradas/Pereira-area blood bank (2+ DB posts)
+        # Below: found via live web search 2026-08-19 (not the wiki), cross-
+        # verified against the account's own real follower count/bio/self-
+        # description shown in search results -- the wiki-citation pass above
+        # searched for accounts already tied to a *specific aid-point fact*
+        # (wiki/07, wiki/17), which is why it missed the most obvious ones:
+        # each red-alert city's own main government account, and the two
+        # biggest national disaster-response orgs (UNGRD is this project's
+        # own tier-2 primary source, see wiki/10-app-architecture.md).
+        "alcaldiadepereira",  # Pereira, official (97K followers)
+        "alcaldiademanizales",  # Manizales, official (77K followers)
+        "alcaldiadecali",  # Cali, official (331K followers)
+        "alcaldiadearmenia",  # Armenia, official (33K followers) -- IG is active even though the wiki found the SAME org's X account dormant, see x_profiles below
+        "alcaldia_de_popayan",  # Popayán, official (36K followers, self-described "Cuenta oficial")
+        "cruzrojacol",  # Cruz Roja Colombiana, national (41K followers)
+        "defensacivilcolombiana",  # Defensa Civil Colombiana, national
+        "ungrd_oficial",  # UNGRD, national -- this project's own primary toll-figure source (124K followers)
     ],
     # {id, slug} pulled from a real geotagged post (globalshaperspereira above),
     # not guessed -- Instagram has no anonymous way to search for a location id.
@@ -142,6 +158,12 @@ TARGETS = {
         "CNTI_Indigena",  # Comisión Nacional de Territorios Indígenas (wiki/17:720)
         # NOT added: @AlcaldiaArmenia, @QuindioGob -- wiki/07/armenia.md:18,20 explicitly
         # confirmed both inactive since before the earthquake, zero signal to gain.
+        # Below: found via live web search 2026-08-19, same reasoning as the
+        # instagram_profiles addition above.
+        "CiudadManizales",  # Manizales, official (53.9K followers, joined 2012)
+        "AlcaldiaDeCali",  # Cali, official
+        "AlcaldiaQuibdo",  # Quibdó, official ("Cuenta Oficial del Municipio de Quibdó")
+        "AlcaldiaPopayan",  # Popayán, official (16.4K followers, joined 2012, active current-term posts)
     ],
 }
 
