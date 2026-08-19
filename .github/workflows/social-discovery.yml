@@ -1,0 +1,48 @@
+name: Social discovery sweep
+
+# Anonymous TikTok/Instagram/X discovery + enrichment, staging into the
+# existing moderation queue (PendingAidPoint/PendingSocialPost) -- see
+# scripts/social-discovery/discover.py's module docstring and
+# wiki/18-social-discovery-engineering.md for the full design. Runs
+# independently of Vercel for the same reason scripts/thumbnails does:
+# Scrapling needs Python and a real browser binary.
+#
+# Starting cadence is deliberately conservative (every 6 hours) given the
+# rate-limit research findings (anonymous IG JSON endpoints throttle within
+# minutes of heavy use from one IP) -- tune after real-world runs, not a
+# final answer. concurrency below stops two runs overlapping and racing on
+# a candidate that isn't committed to the DB yet (PendingSocialPost.permalink
+# has no unique constraint).
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: social-discovery
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r scripts/social-discovery/requirements.txt
+          scrapling install
+
+      - name: Self-check (no network)
+        run: python scripts/social-discovery/test_discover.py
+
+      - name: Run discovery sweep
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          CRON_ALERT_EMAIL: ${{ secrets.CRON_ALERT_EMAIL }}
+        run: python scripts/social-discovery/discover.py
