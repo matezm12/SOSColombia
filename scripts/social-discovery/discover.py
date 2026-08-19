@@ -361,10 +361,20 @@ def enrich_instagram_fallback(permalink: str) -> dict[str, Any] | None:
         page = StealthyFetcher.fetch(permalink, headless=True, timeout=FETCH_TIMEOUT_MS, network_idle=False)
         title_tags = page.css('meta[property="og:title"]')
         if not title_tags:
+            # Confirmed live (2026-08-19, real GitHub Actions run): this
+            # path can return a real 200 with unusable content specifically
+            # from GHA's IP -- the exact same permalinks worked cleanly
+            # fetched from a different machine seconds later. Likely IP-
+            # reputation-based degradation (a known risk for datacenter IPs
+            # against Instagram specifically), not a code bug -- logging
+            # explicitly here (previously silent) so it's diagnosable
+            # without re-running and cross-referencing timestamps by hand.
+            log(f"instagram og:title fallback: no og:title tag for {permalink} (status {getattr(page, 'status', '?')})")
             return None
         title = title_tags[0].attrib.get("content") or ""
         match = re.match(r'^(.*?) on Instagram: "([\s\S]*)"$', title)
         if not match:
+            log(f"instagram og:title fallback: title didn't match expected format for {permalink}: {title!r}")
             return None
         return {
             "caption": match.group(2),
