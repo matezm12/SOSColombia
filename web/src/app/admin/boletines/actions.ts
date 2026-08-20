@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { upsertSource } from "@/lib/sources";
 import { requireScope } from "@/lib/volunteer";
+import { deriveSourceName } from "@/lib/sourceName";
 import type { TollMetric } from "@prisma/client";
 
 const VALID_METRICS = new Set<string>([
@@ -46,7 +47,7 @@ export async function approveTollRecord(formData: FormData) {
 
   const source = await upsertSource({
     url: pending.sourceUrl ?? "detección automática, sin enlace",
-    org: pending.sourceOrg ?? "Detección automática (revisada por moderación)",
+    org: pending.sourceOrg ?? deriveSourceName(pending.sourceUrl) ?? "Fuente automática sin nombre identificado",
     tier: Number.isFinite(tier) ? tier : 2,
   });
 

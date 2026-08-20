@@ -725,7 +725,7 @@ def stage_companion_aid_point(cur, candidate: Candidate, enriched: dict, score: 
             str(uuid.uuid4()),
             municipio_id,
             kind,
-            "Detección automática — revisar",
+            org_label,
             candidate.permalink,
             org_label,
             f"[score {score}/10] {caption_excerpt}".strip(),

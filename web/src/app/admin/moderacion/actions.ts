@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { upsertSource } from "@/lib/sources";
 import { requireScope } from "@/lib/volunteer";
+import { deriveSourceName } from "@/lib/sourceName";
 
 // Matches prisma/seed-veredas-pass1.ts's slugify — same normalization, so a
 // vereda created here and one created by a future seed pass never diverge
@@ -35,11 +36,14 @@ export async function approveSubmission(formData: FormData) {
     url: pending.sourceUrl ?? "sugerencia comunitaria, sin enlace",
     org:
       pending.sourceOrg ??
-      (isAutomated
-        ? "Detección automática (revisada por moderación)"
-        : "Sugerencia comunitaria (revisada por moderación)"),
+      deriveSourceName(pending.sourceUrl) ??
+      (isAutomated ? "Fuente automática sin nombre identificado" : "Aporte comunitario sin fuente adicional"),
     tier: isAutomated ? 1 : 4,
   });
+
+  const resolvedName = pending.name === "Detección automática — revisar"
+    ? pending.sourceOrg ?? deriveSourceName(pending.sourceUrl) ?? pending.name
+    : pending.name;
 
   const veredaId = String(formData.get("veredaId") ?? "");
   const veredaNameNew = String(formData.get("veredaNameNew") ?? "").trim();
@@ -59,7 +63,7 @@ export async function approveSubmission(formData: FormData) {
       municipioId: pending.municipioId,
       veredaId: resolvedVeredaId,
       kind: pending.kind,
-      name: pending.name,
+      name: resolvedName,
       address: pending.address,
       phone: pending.phone,
       needsText: pending.needsText,

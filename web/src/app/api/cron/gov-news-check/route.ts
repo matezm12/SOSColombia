@@ -182,7 +182,7 @@ async function checkHtmlSource(source: HtmlSource) {
       data: {
         municipioId: municipio.id,
         kind: candidate.kind,
-        name: "Detección automática — revisar",
+        name: orgLabel,
         sourceUrl: source.url,
         sourceOrg: orgLabel,
         submitterNote: candidate.snippet,
