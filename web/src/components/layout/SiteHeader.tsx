@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { Search } from "@/components/layout/Search";
@@ -62,12 +63,9 @@ export async function SiteHeader() {
             </Link>
           ))}
           <div className="ml-2 flex items-center gap-3 border-l border-zinc-200 pl-5 dark:border-zinc-800">
-            <Link
-              href="/sugerir"
-              className="rounded-md bg-black px-3 py-1.5 text-sm font-medium whitespace-nowrap text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-            >
+            <Button href="/sugerir" size="sm">
               {t("sugerirPunto")}
-            </Link>
+            </Button>
             <Search />
             <LanguageSwitcher />
             <ThemeToggle />

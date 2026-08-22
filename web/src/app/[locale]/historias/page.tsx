@@ -38,7 +38,7 @@ export default async function HistoriasPage({
     where: { status: "PUBLISHED" },
     include: {
       municipio: { select: { name: true } },
-      campaign: { select: { platform: true, url: true } },
+      campaign: { select: { platform: true, url: true, orgOrPerson: true, title: true } },
     },
     orderBy: { publishedAt: "desc" },
   });

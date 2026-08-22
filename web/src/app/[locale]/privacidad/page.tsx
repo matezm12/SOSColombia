@@ -52,7 +52,7 @@ export default async function PrivacidadPage(props: PageProps<"/[locale]/privaci
       <SectionHeading>{t("conservacionHeading")}</SectionHeading>
       <p className="mt-4 text-zinc-600 dark:text-zinc-400">
         {t("conservacionTexto")}{" "}
-        <Link href="/eliminar-datos" className="text-blue-600 hover:underline dark:text-blue-400">
+        <Link href="/eliminar-datos" className="text-link hover:underline">
           {t("conservacionLink")}
         </Link>
         .

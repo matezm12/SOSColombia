@@ -3,7 +3,12 @@ import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { submitAidPoint } from "./actions";
 import { PageShell } from "@/components/layout/PageShell";
+import { Button } from "@/components/ui/Button";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
+
+// Was hand-repeated across all 9 fields below with no shared source.
+const INPUT_CLASS =
+  "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950";
 
 // Short revalidation window instead of force-dynamic: the municipio list
 // changes rarely, and this avoids a DB round trip on every request.
@@ -53,7 +58,7 @@ export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">)
             <select
               name="municipioId"
               required
-              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className={INPUT_CLASS}
             >
               <option value="">{t("selectCiudad")}</option>
               {municipios.map((m) => (
@@ -68,7 +73,7 @@ export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">)
             <input
               name="veredaName"
               placeholder={t("placeholders.vereda")}
-              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className={INPUT_CLASS}
             />
           </Field>
 
@@ -76,7 +81,7 @@ export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">)
             <select
               name="kind"
               required
-              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className={INPUT_CLASS}
             >
               <option value="">{t("selectTipo")}</option>
               {KIND_OPTIONS.map((k) => (
@@ -92,7 +97,7 @@ export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">)
               name="name"
               required
               placeholder={t("placeholders.nombre")}
-              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className={INPUT_CLASS}
             />
           </Field>
 
@@ -100,14 +105,14 @@ export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">)
             <input
               name="address"
               placeholder={t("placeholders.direccion")}
-              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className={INPUT_CLASS}
             />
           </Field>
 
           <Field label={t("fields.telefono")}>
             <input
               name="phone"
-              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className={INPUT_CLASS}
             />
           </Field>
 
@@ -115,7 +120,7 @@ export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">)
             <input
               name="needsText"
               placeholder={t("placeholders.necesita")}
-              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className={INPUT_CLASS}
             />
           </Field>
 
@@ -124,7 +129,7 @@ export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">)
               name="sourceUrl"
               type="url"
               placeholder={t("placeholders.fuente")}
-              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className={INPUT_CLASS}
             />
           </Field>
 
@@ -133,7 +138,7 @@ export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">)
               name="submitterNote"
               rows={3}
               placeholder={t("placeholders.contexto")}
-              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className={INPUT_CLASS}
             />
           </Field>
 
@@ -141,16 +146,13 @@ export default async function SugerirPage(props: PageProps<"/[locale]/sugerir">)
             <input
               name="submitterContact"
               placeholder={t("placeholders.contacto")}
-              className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+              className={INPUT_CLASS}
             />
           </Field>
 
-          <button
-            type="submit"
-            className="w-full rounded-md bg-black px-4 py-2.5 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-          >
+          <Button type="submit" className="w-full">
             {t("submit")}
-          </button>
+          </Button>
         </form>
     </PageShell>
   );

@@ -36,7 +36,7 @@ export default async function CambiosPage(props: PageProps<"/[locale]/cambios">)
     <PageShell backHref="/" title={t("title")} lede={t("lede")}>
       <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-500">
         {t("explainer")}{" "}
-        <Link href="/datos" className="text-blue-600 hover:underline dark:text-blue-400">
+        <Link href="/datos" className="text-link hover:underline">
           {t("datosLink")}
         </Link>
       </p>

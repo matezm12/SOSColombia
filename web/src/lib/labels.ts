@@ -143,6 +143,22 @@ export function aidStatusLabel(key: string | null | undefined, locale: string): 
   return key ? pick(AID_STATUS_LABEL, AID_STATUS_LABEL_EN, key, locale) : "";
 }
 
+// Fixed AidPointCard.tsx copy, not enum-keyed, but bilingual for the same
+// reason as everything else in this file: it was previously hardcoded
+// Spanish, so /en/* pages leaked untranslated text.
+export function accessRestrictionLabel(locale: string): string {
+  return locale === "en" ? "Restricted access" : "Acceso restringido";
+}
+
+export function aidPointNeedsLabel(locale: string): string {
+  return locale === "en" ? "Needs" : "Necesita";
+}
+
+export function aidPointSourceLinkLabel(hasPermalink: boolean, locale: string): string {
+  if (locale === "en") return hasPermalink ? "View original post" : "View source";
+  return hasPermalink ? "Ver publicación original" : "Ver fuente";
+}
+
 export const AID_STATUS_TEXT_CLASS: Record<string, string> = {
   ACTIVE: "text-status-active",
   FULL: "text-status-full",

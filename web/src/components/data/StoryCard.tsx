@@ -6,7 +6,7 @@ import { formatDate } from "@/lib/format";
 
 type StoryWithExtras = Story & {
   municipio?: { name: string } | null;
-  campaign?: { platform: string; url: string } | null;
+  campaign?: { platform: string; url: string; orgOrPerson?: string; title?: string } | null;
 };
 
 export async function StoryCard({
@@ -31,16 +31,26 @@ export async function StoryCard({
   return (
     <Card className="flex flex-col overflow-hidden p-0">
       {image && (
-        // Arbitrary externally-hosted cover images — same reasoning as
-        // AlliedResourceCard's og-image handling, can't allowlist every domain.
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={image}
-          alt={title}
-          className="aspect-[1200/630] w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : undefined}
-        />
+        <div className="relative">
+          {/* Arbitrary externally-hosted cover images, same reasoning as
+              AlliedResourceCard's og-image handling: can't allowlist every
+              domain. alt="" because the linked title right below already
+              names this story; a repeated alt is noise for a screen reader,
+              not a second description. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image.url}
+            alt=""
+            className="aspect-[1200/630] w-full border-b border-zinc-200 object-cover dark:border-zinc-800"
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : undefined}
+          />
+          {image.credit && (
+            <p className="absolute bottom-1 right-1.5 rounded bg-black/60 px-1.5 py-0.5 text-[10px] text-white">
+              {image.credit}
+            </p>
+          )}
+        </div>
       )}
       <div className="flex flex-1 flex-col p-4">
         {story.municipio && (

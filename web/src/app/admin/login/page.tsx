@@ -1,5 +1,6 @@
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import { loginVolunteer } from "./actions";
 
 export default async function AdminLoginPage({
@@ -39,12 +40,7 @@ export default async function AdminLoginPage({
               className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
             />
           </label>
-          <button
-            type="submit"
-            className="rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-          >
-            Entrar
-          </button>
+          <Button type="submit">Entrar</Button>
         </form>
       </Card>
     </PageShell>

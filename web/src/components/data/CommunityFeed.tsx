@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { Prisma } from "@prisma/client";
 import { CommunityPostCard } from "./CommunityPostCard";
+import { chipClass } from "../ui/Button";
 import { EmptyState } from "../ui/EmptyState";
 
 type PostWithMunicipio = Prisma.SocialPostGetPayload<{
@@ -58,11 +59,7 @@ export function CommunityFeed({
         <button
           type="button"
           onClick={() => setSelected(null)}
-          className={
-            selected === null
-              ? "rounded-full bg-black px-3 py-1 text-xs font-medium text-white dark:bg-white dark:text-black"
-              : "rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
-          }
+          className={`rounded-full px-3 py-1 text-xs font-medium ${chipClass(selected === null)}`}
         >
           {allLabel} ({posts.length})
         </button>
@@ -71,11 +68,7 @@ export function CommunityFeed({
             key={c.divipolaCode}
             type="button"
             onClick={() => setSelected(c.divipolaCode)}
-            className={
-              selected === c.divipolaCode
-                ? "rounded-full bg-black px-3 py-1 text-xs font-medium text-white dark:bg-white dark:text-black"
-                : "rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
-            }
+            className={`rounded-full px-3 py-1 text-xs font-medium ${chipClass(selected === c.divipolaCode)}`}
           >
             {c.name} ({c.count})
           </button>

@@ -4,6 +4,7 @@
     "lede": "Location of cities with verified data and the earthquake epicenter (SGC and USGS estimates differ slightly; both are shown). Tap a marker for details.",
     "sinCoordenadas": "No coordinates loaded yet.",
     "severidad": "Severity",
+    "listaCiudades": "Cities on the map",
     "epicentroSgc": "Epicenter (SGC)",
     "epicentroUsgs": "Epicenter (USGS)",
     "cerrar": "Close",

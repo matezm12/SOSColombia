@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentVolunteer } from "@/lib/volunteer";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import {
   createVolunteer,
@@ -166,12 +167,7 @@ export default async function VolunteersPage() {
             </label>
           </div>
           <div className="sm:col-span-2">
-            <button
-              type="submit"
-              className="rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-            >
-              Crear cuenta
-            </button>
+            <Button type="submit">Crear cuenta</Button>
           </div>
         </form>
       </Card>

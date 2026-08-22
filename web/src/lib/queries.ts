@@ -55,3 +55,26 @@ export function latestByMetric<T extends { metric: string; asOf: Date }>(records
   }
   return result;
 }
+
+export type DatasetCounts = {
+  tollRecords: number;
+  aidPoints: number;
+  campaigns: number;
+  reports: number;
+  contradictions: number;
+  resources: number;
+};
+
+/** The six counts behind /datos and its /md markdown mirror. Was hand-
+ *  duplicated in both routes with no shared source. */
+export async function datasetCounts(): Promise<DatasetCounts> {
+  const [tollRecords, aidPoints, campaigns, reports, contradictions, resources] = await Promise.all([
+    prisma.tollRecord.count(),
+    prisma.aidPoint.count(),
+    prisma.crowdfundingCampaign.count(),
+    prisma.govReport.count(),
+    prisma.contradiction.count(),
+    prisma.alliedResource.count({ where: { status: { not: "DEAD" } } }),
+  ]);
+  return { tollRecords, aidPoints, campaigns, reports, contradictions, resources };
+}

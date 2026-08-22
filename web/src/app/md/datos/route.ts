@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { prisma } from "@/lib/prisma";
+import { datasetCounts } from "@/lib/queries";
 
 // Markdown mirror of the open-data page (src/app/[locale]/datos/page.tsx).
 // Bilingual via ?locale=en (default es) — see /md/donar/route.ts for the
@@ -13,15 +13,8 @@ export async function GET(request: Request) {
   const locale = searchParams.get("locale") === "en" ? "en" : "es";
   const t = await getTranslations({ locale, namespace: "datos" });
 
-  const [tollRecords, aidPoints, campaigns, reports, contradictions, resources] =
-    await Promise.all([
-      prisma.tollRecord.count(),
-      prisma.aidPoint.count(),
-      prisma.crowdfundingCampaign.count(),
-      prisma.govReport.count(),
-      prisma.contradiction.count(),
-      prisma.alliedResource.count({ where: { status: { not: "DEAD" } } }),
-    ]);
+  const { tollRecords, aidPoints, campaigns, reports, contradictions, resources } =
+    await datasetCounts();
 
   const path = locale === "en" ? "/en/datos" : "/datos";
 

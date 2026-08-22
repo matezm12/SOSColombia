@@ -1,23 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { DocsShell } from "@/components/docs/DocsShell";
 import { docsSource } from "@/lib/source";
+import { publicSans } from "@/app/fonts";
 import "../../globals.css";
 import "fumadocs-ui/style.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const THEME_INIT_SCRIPT = `
 (function () {
@@ -62,7 +52,7 @@ export default function DocsRootLayout({ children }: { children: React.ReactNode
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${publicSans.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

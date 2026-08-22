@@ -11,6 +11,7 @@ export type AidPointMarker = {
   id: string;
   name: string;
   kind: string;
+  status: string;
   lat: number;
   lng: number;
 };
@@ -99,6 +100,7 @@ export default function CiudadMapaClient({
       const el = document.createElement("button");
       el.type = "button";
       el.setAttribute("aria-label", `${point.name} (${aidKindLabel(point.kind, locale)})`);
+      el.style.position = "relative";
       el.style.width = "26px";
       el.style.height = "26px";
       el.style.borderRadius = "9999px";
@@ -108,6 +110,20 @@ export default function CiudadMapaClient({
       el.style.padding = "5px";
       el.style.background = markerColor(point.kind);
       el.innerHTML = `<svg viewBox="0 0 24 24" width="100%" height="100%">${AID_KIND_ICON_SVG[point.kind] ?? ""}</svg>`;
+
+      // A currently-active aid point gets a slow pulsing halo, the one
+      // deliberate motion pattern this design pass adds, reserved for
+      // exactly this "genuinely live right now" signal (see globals.css).
+      if (point.status === "ACTIVE") {
+        const pulse = document.createElement("span");
+        pulse.className = "marker-pulse";
+        pulse.style.position = "absolute";
+        pulse.style.inset = "0";
+        pulse.style.borderRadius = "9999px";
+        pulse.style.background = markerColor(point.kind);
+        pulse.style.pointerEvents = "none";
+        el.prepend(pulse);
+      }
 
       // Clicking scrolls to the matching card in the list below instead of
       // opening a popup that would just repeat the same address/phone/needs/

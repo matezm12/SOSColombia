@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
+import { Link } from "@/i18n/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { Badge } from "@/components/ui/Badge";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { bestDeathMetric } from "@/lib/queries";
+import { severityLabel as severityLabelFor } from "@/lib/labels";
+import { formatNumber } from "@/lib/format";
 import MapaClient from "@/components/map/MapaClientLazy";
 import type { MunicipioMarker, EpicenterPoint } from "@/components/map/MapaClient";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
@@ -29,8 +34,7 @@ export async function generateMetadata({
 }
 
 export default async function MapaPage(props: PageProps<"/[locale]/mapa">) {
-  // See donar/page.tsx for why this await matters for static rendering.
-  await props.params;
+  const { locale } = await props.params;
   const t = await getTranslations("mapa");
   const [municipios, event] = await Promise.all([
     prisma.municipio.findMany({
@@ -83,10 +87,43 @@ export default async function MapaPage(props: PageProps<"/[locale]/mapa">) {
         <MapaClient municipios={markers} epicenter={epicenter} />
       </div>
 
-      {markers.length === 0 && (
+      {markers.length === 0 ? (
         <div className="mt-6">
           <EmptyState>{t("sinCoordenadas")}</EmptyState>
         </div>
+      ) : (
+        // Server-rendered, so it's there before the client map's JS loads (or
+        // even if it never does). No-JS visitors and screen readers
+        // previously got an empty box here (MapaClientLazy is ssr:false),
+        // which is the worst outcome on a site whose audience skews rural
+        // 2G/3G. Same data the map markers use, just as a real list.
+        <>
+          <SectionHeading>{t("listaCiudades")}</SectionHeading>
+          <ul className="mt-4 divide-y divide-zinc-200 rounded-lg border border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800">
+            {markers.map((m) => (
+              <li key={m.divipolaCode}>
+                <Link
+                  href={`/ciudad/${m.divipolaCode}`}
+                  className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 p-3 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                >
+                  <span className="font-medium text-black dark:text-zinc-50">{m.name}</span>
+                  <span className="flex flex-wrap items-center gap-2 text-sm text-zinc-500 dark:text-zinc-500">
+                    {m.severityLabel && (
+                      <Badge variant="severity" value={m.severityLabel}>
+                        {severityLabelFor(m.severityLabel, locale)}
+                      </Badge>
+                    )}
+                    {m.deathValue !== undefined &&
+                      `${formatNumber(m.deathValue, locale)} ${m.deathIsForensic ? t("fallecidosConfirmados") : t("fallecidosReportados")}`}
+                    <span>
+                      {m.aidPointCount} {t("puntosAyudaRegistrados")}
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </PageShell>
   );

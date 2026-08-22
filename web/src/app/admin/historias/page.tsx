@@ -5,6 +5,7 @@ import { getCurrentVolunteer } from "@/lib/volunteer";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
 import { EmptyState } from "@/components/ui/EmptyState";
+import { buttonClass } from "@/components/ui/Button";
 import { deleteStory } from "./actions";
 
 export const dynamic = "force-dynamic";
@@ -26,10 +27,7 @@ export default async function AdminHistoriasPage() {
       </p>
 
       <div className="mt-6">
-        <Link
-          href="/admin/historias/new"
-          className="rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-        >
+        <Link href="/admin/historias/new" className={buttonClass()}>
           + Nueva historia
         </Link>
       </div>

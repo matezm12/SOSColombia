@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { AidPointCard } from "@/components/data/AidPointCard";
+import { chipClass } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { aidKindLabel } from "@/lib/labels";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
@@ -55,17 +56,14 @@ export default async function AyudaPage(props: PageProps<"/[locale]/ayuda">) {
       lede={t("lede")}
     >
       <div className="mt-6 flex flex-wrap gap-2">
-        <Link
-          href="/ayuda"
-          className={`rounded-full px-3 py-1 text-sm ${!kindFilter ? "bg-black text-white dark:bg-white dark:text-black" : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"}`}
-        >
+        <Link href="/ayuda" className={`rounded-full px-3 py-1 text-sm ${chipClass(!kindFilter)}`}>
           {t("todos")}
         </Link>
         {KINDS.map((k) => (
           <Link
             key={k}
             href={`/ayuda?tipo=${k}`}
-            className={`rounded-full px-3 py-1 text-sm ${kindFilter === k ? "bg-black text-white dark:bg-white dark:text-black" : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"}`}
+            className={`rounded-full px-3 py-1 text-sm ${chipClass(kindFilter === k)}`}
           >
             {aidKindLabel(k, locale)}
           </Link>
@@ -78,9 +76,9 @@ export default async function AyudaPage(props: PageProps<"/[locale]/ayuda">) {
             <h2 className="text-lg font-semibold text-black dark:text-zinc-50">
               {aidKindLabel(kind, locale)}
             </h2>
-            <div className="mt-3 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
+            <ul className="mt-3 grid grid-cols-1 items-start gap-3 sm:grid-cols-2">
               {kindPoints?.map((p) => (
-                <div key={p.id}>
+                <li key={p.id}>
                   <Link
                     href={`/ciudad/${p.municipio.divipolaCode}`}
                     className="mb-1 inline-block text-xs font-medium uppercase tracking-wide text-zinc-400 hover:text-zinc-600 dark:text-zinc-600 dark:hover:text-zinc-400"
@@ -88,9 +86,9 @@ export default async function AyudaPage(props: PageProps<"/[locale]/ayuda">) {
                     {p.municipio.name}
                   </Link>
                   <AidPointCard point={p} locale={locale} />
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         ))}
         {points.length === 0 && <EmptyState>{t("vacio")}</EmptyState>}

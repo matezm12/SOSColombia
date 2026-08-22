@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import * as maplibregl from "maplibre-gl";
@@ -32,18 +32,19 @@ export type EpicenterPoint = {
   lngUsgs: number | null;
 };
 
-// CARTO's public "positron" basemap: real OSM-derived cartography (roads,
-// borders, labels), no API key/account/billing surface — chosen for the same
-// reason this project avoided Mapbox originally.
+// CARTO's public "positron"/"dark-matter" basemaps: real OSM-derived
+// cartography (roads, borders, labels), no API key/account/billing surface —
+// chosen for the same reason this project avoided Mapbox originally.
 //
-// Used unconditionally, light-only, regardless of site theme. A theme-matched
-// dark variant was tried previously and appeared broken (style/sprite/
+// A dark variant was tried previously and appeared broken (style/sprite/
 // TileJSON fetched fine but no tiles ever rendered) — that was misdiagnosed
 // as a style problem; the real cause was the worker-URL bug fixed below via
 // setWorkerUrl, which blocked tile loading for *every* style, light included
-// (it just went unnoticed on light styles until now). A dark variant is
-// likely viable now; not switched over here since that's a separate call.
+// (it just went unnoticed on light styles until now). Now that the real
+// cause is fixed, both styles work. The map picks one based on the site's
+// `.dark` class so it stops being a white rectangle on an otherwise-dark page.
 const STYLE_LIGHT = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+const STYLE_DARK = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";
 
 // MapLibre derives its worker script URL from `import.meta.url` of its own
 // bundled module. Under Next.js/Turbopack that resolves to a `/_next/static/
@@ -63,6 +64,21 @@ maplibregl.setWorkerUrl("/maplibre-gl-worker.mjs");
 // marker element) since MapLibre markers are plain DOM nodes outside Tailwind's
 // scanned tree — this still shares the same design-token source of truth as
 // every badge elsewhere in the app (see globals.css's --color-severity-*).
+// Same "DOM is the source of truth, .dark class toggled by an inline
+// pre-hydration script" contract as ThemeToggle.tsx. Reused here so the map
+// picks the matching basemap and re-fires the same "themechange" event the
+// toggle already dispatches, rather than inventing a second subscription.
+function subscribeTheme(callback: () => void) {
+  window.addEventListener("themechange", callback);
+  return () => window.removeEventListener("themechange", callback);
+}
+function getThemeSnapshot(): boolean {
+  return document.documentElement.classList.contains("dark");
+}
+function getThemeServerSnapshot(): boolean {
+  return false;
+}
+
 function severityColor(label: string | null): string {
   if (typeof window === "undefined") return "#3f3f46";
   const token = label ? `--color-severity-${label.toLowerCase()}` : null;
@@ -83,13 +99,14 @@ export default function MapaClient({
   const locale = useLocale();
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const [selected, setSelected] = useState<MunicipioMarker | null>(null);
+  const isDark = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getThemeServerSnapshot);
 
   useEffect(() => {
     if (!mapContainer.current) return;
 
     const map = new maplibregl.Map({
       container: mapContainer.current,
-      style: STYLE_LIGHT,
+      style: isDark ? STYLE_DARK : STYLE_LIGHT,
       center: [-76.2, 4.2],
       zoom: 5.6,
       attributionControl: false,
@@ -165,16 +182,16 @@ export default function MapaClient({
       markers.forEach((marker) => marker.remove());
       map.remove();
     };
-  }, [municipios, epicenter, t]);
+    // Re-init (rather than map.setStyle) on theme change: markers are plain
+    // DOM nodes MapLibre re-attaches on init anyway, and this reuses the same
+    // effect the other dependencies already trigger instead of adding a
+    // second code path just for the basemap swap.
+  }, [municipios, epicenter, t, isDark]);
 
   return (
     <div className="relative w-full">
       <div
         ref={mapContainer}
-        // The basemap is deliberately light-only (see comment above). The
-        // dark:shadow/ring here doesn't recolor it — it just reads the white
-        // rectangle as an intentional "island" component against a near-black
-        // page instead of a leftover light-mode fragment.
         className="h-[70vh] w-full overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-800 dark:shadow-lg dark:ring-1 dark:ring-white/10"
       />
 
@@ -225,11 +242,11 @@ export default function MapaClient({
           </div>
           <dl className="mt-2 space-y-0.5 text-xs text-zinc-500 dark:text-zinc-500">
             {selected.populationDane && (
-              <div>{formatNumber(selected.populationDane)} {t("habitantesDane")}</div>
+              <div>{formatNumber(selected.populationDane, locale)} {t("habitantesDane")}</div>
             )}
             {selected.deathValue !== undefined && (
               <div>
-                {formatNumber(selected.deathValue)}{" "}
+                {formatNumber(selected.deathValue, locale)}{" "}
                 {selected.deathIsForensic ? t("fallecidosConfirmados") : t("fallecidosReportados")}
               </div>
             )}

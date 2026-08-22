@@ -2,7 +2,9 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
+import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Stat, StatGrid } from "@/components/ui/Stat";
 import { CityCard } from "@/components/data/CityCard";
 import { AlliedResourceCard } from "@/components/data/AlliedResourceCard";
 import { bestDeathMetric } from "@/lib/queries";
@@ -22,23 +24,30 @@ const SITE_URL = "https://www.soscolombia.xyz";
 export default async function Home(props: PageProps<"/[locale]">) {
   const { locale } = await props.params;
   const t = await getTranslations("home");
-  const [event, municipios, featuredResources] = await Promise.all([
-    prisma.event.findFirst({ orderBy: { createdAt: "asc" } }),
-    prisma.municipio.findMany({
-      include: {
-        department: true,
-        tollRecords: {
-          where: { metric: { in: ["DEATHS_REPORTED_OFFICIAL", "DEATHS_CONFIRMED_FORENSIC"] } },
+  const [event, municipios, featuredResources, activeAidPoints, verifiedCampaigns, sourceCount] =
+    await Promise.all([
+      prisma.event.findFirst({ orderBy: { createdAt: "asc" } }),
+      prisma.municipio.findMany({
+        include: {
+          department: true,
+          tollRecords: {
+            where: { metric: { in: ["DEATHS_REPORTED_OFFICIAL", "DEATHS_CONFIRMED_FORENSIC"] } },
+          },
         },
-      },
-      orderBy: { populationDane: "desc" },
-    }),
-    prisma.alliedResource.findMany({
-      where: { featured: true, status: { not: "DEAD" } },
-      include: { municipio: { select: { name: true, divipolaCode: true } } },
-      orderBy: [{ tier: "asc" }, { name: "asc" }],
-    }),
-  ]);
+        orderBy: { populationDane: "desc" },
+      }),
+      prisma.alliedResource.findMany({
+        where: { featured: true, status: { not: "DEAD" } },
+        include: { municipio: { select: { name: true, divipolaCode: true } } },
+        orderBy: [{ tier: "asc" }, { name: "asc" }],
+      }),
+      // Homepage stats band, same "real, live, sourced" register as the
+      // rest of the site's data, not a marketing counter. revalidate=60
+      // below is what makes t("statsNote")'s "updates automatically" true.
+      prisma.aidPoint.count({ where: { status: "ACTIVE" } }),
+      prisma.crowdfundingCampaign.count({ where: { verificationStatus: "VERIFIED" } }),
+      prisma.source.count(),
+    ]);
 
   // City-specific projects first (the point of this section — small, local
   // efforts like Ayudas Pereira/Cali Ayuda), then broader national ones, capped
@@ -109,18 +118,12 @@ export default async function Home(props: PageProps<"/[locale]">) {
         }
       >
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          <Link
-            href="/ayuda"
-            className="rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-          >
+          <Button href="/ayuda" variant="primary">
             {t("ctaAyuda")}
-          </Link>
-          <Link
-            href="/donar"
-            className="rounded-md border border-zinc-200 px-4 py-2 text-sm font-medium text-black hover:bg-zinc-50 dark:border-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-900"
-          >
+          </Button>
+          <Button href="/donar" variant="secondary">
             {t("ctaDonar")}
-          </Link>
+          </Button>
           {/* Deliberately lighter weight than the two CTAs above — reading
               stories is worth surfacing here, but shouldn't visually compete
               with "find aid"/"donate", the two actions someone arriving
@@ -131,6 +134,16 @@ export default async function Home(props: PageProps<"/[locale]">) {
           >
             {t("ctaHistorias")}
           </Link>
+        </div>
+
+        <div className="mt-8">
+          <StatGrid>
+            <Stat value={activeAidPoints} label={t("statAidPoints")} href="/ayuda" locale={locale} />
+            <Stat value={municipios.length} label={t("statMunicipios")} href="/mapa" locale={locale} />
+            <Stat value={verifiedCampaigns} label={t("statCampaigns")} href="/donar" locale={locale} />
+            <Stat value={sourceCount} label={t("statSources")} href="/fuentes" locale={locale} />
+          </StatGrid>
+          <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-600">{t("statsNote")}</p>
         </div>
 
         <SectionHeading first>{t("ciudades")}</SectionHeading>

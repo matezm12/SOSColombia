@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import { CommunityFeed } from "@/components/data/CommunityFeed";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
@@ -49,12 +49,9 @@ export default async function ComunidadPage(props: PageProps<"/[locale]/comunida
         <p className="text-sm text-zinc-700 dark:text-zinc-300">
           {t("prompt")}
         </p>
-        <Link
-          href="/comunidad/sugerir"
-          className="shrink-0 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-        >
+        <Button href="/comunidad/sugerir" size="sm" className="shrink-0">
           {t("cta")}
-        </Link>
+        </Button>
       </Card>
 
       {posts.length === 0 ? (

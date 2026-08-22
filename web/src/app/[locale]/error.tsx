@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { PageShell } from "@/components/layout/PageShell";
-import { Link } from "@/i18n/navigation";
+import { Button } from "@/components/ui/Button";
 
 export default function Error({
   error,
@@ -22,18 +22,10 @@ export default function Error({
   return (
     <PageShell title={t("errorTitle")} lede={t("errorBody")}>
       <div className="mt-6 flex gap-3">
-        <button
-          onClick={reset}
-          className="rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-        >
-          {t("retry")}
-        </button>
-        <Link
-          href="/"
-          className="rounded-md border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-900"
-        >
+        <Button onClick={reset}>{t("retry")}</Button>
+        <Button href="/" variant="secondary">
           {t("backHome")}
-        </Link>
+        </Button>
       </div>
     </PageShell>
   );

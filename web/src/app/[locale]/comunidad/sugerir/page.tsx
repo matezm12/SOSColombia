@@ -3,7 +3,12 @@ import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { submitCommunityPost } from "./actions";
 import { PageShell } from "@/components/layout/PageShell";
+import { Button } from "@/components/ui/Button";
 import { buildAlternates, buildOpenGraph, buildTwitter } from "@/lib/seo";
+
+// Was hand-repeated across all 7 fields below with no shared source.
+const INPUT_CLASS =
+  "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950";
 
 // Short revalidation window instead of force-dynamic: this page is mostly
 // a static form, no need for a DB round trip on every request.
@@ -59,7 +64,7 @@ export default async function SugerirComunidadPage(
           <select
             name="platform"
             required
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+            className={INPUT_CLASS}
           >
             <option value="">{t("selectPlatform")}</option>
             {PLATFORM_OPTIONS.map((p) => (
@@ -76,7 +81,7 @@ export default async function SugerirComunidadPage(
             type="url"
             required
             placeholder={t("placeholders.permalink")}
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+            className={INPUT_CLASS}
           />
         </Field>
 
@@ -84,7 +89,7 @@ export default async function SugerirComunidadPage(
           <select
             name="category"
             required
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+            className={INPUT_CLASS}
           >
             <option value="">{t("selectCategory")}</option>
             {CATEGORY_OPTIONS.map((c) => (
@@ -98,7 +103,7 @@ export default async function SugerirComunidadPage(
         <Field label={t("fields.municipio")}>
           <select
             name="municipioId"
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+            className={INPUT_CLASS}
           >
             <option value="">{t("noSpecificCity")}</option>
             {municipios.map((m) => (
@@ -113,7 +118,7 @@ export default async function SugerirComunidadPage(
           <input
             name="authorHandle"
             placeholder={t("placeholders.authorHandle")}
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+            className={INPUT_CLASS}
           />
         </Field>
 
@@ -121,7 +126,7 @@ export default async function SugerirComunidadPage(
           <input
             name="placeName"
             placeholder={t("placeholders.placeName")}
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+            className={INPUT_CLASS}
           />
         </Field>
 
@@ -130,7 +135,7 @@ export default async function SugerirComunidadPage(
             name="submitterNote"
             rows={3}
             placeholder={t("placeholders.submitterNote")}
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+            className={INPUT_CLASS}
           />
         </Field>
 
@@ -138,16 +143,13 @@ export default async function SugerirComunidadPage(
           <input
             name="submitterContact"
             placeholder={t("placeholders.submitterContact")}
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950"
+            className={INPUT_CLASS}
           />
         </Field>
 
-        <button
-          type="submit"
-          className="w-full rounded-md bg-black px-4 py-2.5 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-        >
+        <Button type="submit" className="w-full">
           {t("submit")}
-        </button>
+        </Button>
       </form>
     </PageShell>
   );

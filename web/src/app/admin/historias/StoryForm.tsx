@@ -1,4 +1,5 @@
 import type { Story } from "@prisma/client";
+import { Button } from "@/components/ui/Button";
 
 const inputClass =
   "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-950";
@@ -112,12 +113,7 @@ export function StoryForm({
         Publicada (visible en /historias)
       </label>
 
-      <button
-        type="submit"
-        className="rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-      >
-        Guardar
-      </button>
+      <Button type="submit">Guardar</Button>
     </form>
   );
 }

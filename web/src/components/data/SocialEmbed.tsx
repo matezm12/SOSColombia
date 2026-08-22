@@ -417,7 +417,7 @@ function FallbackCard({ permalink, locale }: { permalink: string; locale: string
         href={permalink}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-sm text-blue-600 underline decoration-blue-600/30 underline-offset-2 hover:decoration-blue-600 dark:text-blue-400 dark:decoration-blue-400/30 dark:hover:decoration-blue-400"
+        className="inline-flex items-center gap-1 text-sm text-link underline decoration-link/30 underline-offset-2 hover:decoration-link"
       >
         {locale === "en" ? "View original" : "Ver publicación original"}
         <ExternalLinkIcon className="h-3 w-3" />

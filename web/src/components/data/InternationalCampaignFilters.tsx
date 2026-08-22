@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { Prisma } from "@prisma/client";
 import { CampaignCard } from "./CampaignCard";
+import { chipClass } from "../ui/Button";
 import { SectionHeading } from "../ui/SectionHeading";
 import { EmptyState } from "../ui/EmptyState";
 import { crowdfundingPlatformLabel } from "@/lib/labels";
@@ -26,11 +27,7 @@ function FilterPill({
     <button
       type="button"
       onClick={onClick}
-      className={
-        active
-          ? "rounded-full bg-black px-3 py-1 text-xs font-medium text-white dark:bg-white dark:text-black"
-          : "rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
-      }
+      className={`rounded-full px-3 py-1 text-xs font-medium ${chipClass(active)}`}
     >
       {children}
     </button>

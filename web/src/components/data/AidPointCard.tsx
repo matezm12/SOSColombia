@@ -6,7 +6,7 @@ import { SourceLine } from "../ui/SourceLine";
 import { ShareButton } from "../ui/ShareButton";
 import { GoFundMeEmbed } from "./GoFundMeEmbed";
 import { isGoFundMeUrl } from "@/lib/gofundme";
-import { aidStatusLabel } from "@/lib/labels";
+import { aidStatusLabel, accessRestrictionLabel, aidPointNeedsLabel, aidPointSourceLinkLabel } from "@/lib/labels";
 
 type AidPointWithSource = Prisma.AidPointGetPayload<{ include: { source: true; vereda: true } }>;
 
@@ -34,7 +34,7 @@ export function AidPointCard({ point, locale }: { point: AidPointWithSource; loc
         <p className="mt-1 text-sm">
           <a
             href={`tel:${point.phone.replace(/\s+/g, "")}`}
-            className="text-blue-600 hover:underline dark:text-blue-400"
+            className="text-link hover:underline"
           >
             {point.phone}
           </a>
@@ -43,13 +43,13 @@ export function AidPointCard({ point, locale }: { point: AidPointWithSource; loc
 
       {point.accessRestriction && (
         <p className="mt-1 text-sm text-amber-700 dark:text-amber-500">
-          Acceso restringido: {point.accessRestriction}
+          {accessRestrictionLabel(locale)}: {point.accessRestriction}
         </p>
       )}
 
       {point.needsText && (
         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-          Necesita: {point.needsText}
+          {aidPointNeedsLabel(locale)}: {point.needsText}
         </p>
       )}
 
@@ -63,7 +63,7 @@ export function AidPointCard({ point, locale }: { point: AidPointWithSource; loc
         link && (
           <p className="mt-2 text-sm">
             <ExternalLink href={link}>
-              {point.permalink ? "Ver publicación original" : "Ver fuente"}
+              {aidPointSourceLinkLabel(Boolean(point.permalink), locale)}
             </ExternalLink>
           </p>
         )

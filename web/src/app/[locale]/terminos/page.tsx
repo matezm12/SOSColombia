@@ -33,7 +33,7 @@ export default async function TerminosPage(props: PageProps<"/[locale]/terminos"
       <div className="mt-4 space-y-3 text-zinc-600 dark:text-zinc-400">
         <p>
           {t("intro1")}{" "}
-          <Link href="/metodologia" className="text-blue-600 hover:underline dark:text-blue-400">
+          <Link href="/metodologia" className="text-link hover:underline">
             {t("introLink")}
           </Link>
           .
@@ -50,7 +50,7 @@ export default async function TerminosPage(props: PageProps<"/[locale]/terminos"
       <SectionHeading>{t("datosHeading")}</SectionHeading>
       <p className="mt-4 text-zinc-600 dark:text-zinc-400">
         {t("datosTexto")}{" "}
-        <Link href="/datos" className="text-blue-600 hover:underline dark:text-blue-400">
+        <Link href="/datos" className="text-link hover:underline">
           {t("datosLink")}
         </Link>{" "}
         {t("datosTexto2")}

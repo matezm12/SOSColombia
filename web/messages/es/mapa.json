@@ -4,6 +4,7 @@
     "lede": "Ubicación de las ciudades con datos verificados y el epicentro del sismo (SGC y USGS difieren ligeramente, se muestran ambos). Toca un marcador para ver detalles.",
     "sinCoordenadas": "Sin coordenadas cargadas todavía.",
     "severidad": "Severidad",
+    "listaCiudades": "Ciudades en el mapa",
     "epicentroSgc": "Epicentro (SGC)",
     "epicentroUsgs": "Epicentro (USGS)",
     "cerrar": "Cerrar",

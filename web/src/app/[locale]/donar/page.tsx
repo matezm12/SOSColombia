@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
 import { PageShell } from "@/components/layout/PageShell";
 import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import { CampaignCard } from "@/components/data/CampaignCard";
 import { AidPointCard } from "@/components/data/AidPointCard";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -81,12 +81,9 @@ export default async function DonarPage(props: PageProps<"/[locale]/donar">) {
         <p className="text-sm text-zinc-700 dark:text-zinc-300">
           {t("international.text")}
         </p>
-        <Link
-          href="/donar/internacional"
-          className="shrink-0 rounded-md bg-black px-3 py-1.5 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-        >
+        <Button href="/donar/internacional" size="sm" className="shrink-0">
           {t("international.cta")}
-        </Link>
+        </Button>
       </Card>
 
       <SectionHeading first>{t("sections.verified")}</SectionHeading>

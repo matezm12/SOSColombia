@@ -17,7 +17,7 @@ export function ExternalLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-1 text-blue-600 underline decoration-blue-600/30 underline-offset-2 hover:decoration-blue-600 dark:text-blue-400 dark:decoration-blue-400/30 dark:hover:decoration-blue-400 ${className}`}
+      className={`inline-flex items-center gap-1 text-link underline decoration-link/30 underline-offset-2 hover:decoration-link ${className}`}
     >
       {children}
       <ExternalLinkIcon className="h-3 w-3" />

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { Prisma } from "@prisma/client";
 import { setSocialPostFeatured } from "./actions";
+import { chipClass } from "@/components/ui/Button";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SOCIAL_CATEGORY_LABEL, SOCIAL_PLATFORM_LABEL } from "@/lib/labels";
@@ -42,11 +43,7 @@ export function LivePostsList({ posts }: { posts: LivePost[] }) {
         <button
           type="button"
           onClick={() => setSelected(null)}
-          className={
-            selected === null
-              ? "rounded-full bg-black px-3 py-1 text-xs font-medium text-white dark:bg-white dark:text-black"
-              : "rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
-          }
+          className={`rounded-full px-3 py-1 text-xs font-medium ${chipClass(selected === null)}`}
         >
           Todas ({posts.length})
         </button>
@@ -55,11 +52,7 @@ export function LivePostsList({ posts }: { posts: LivePost[] }) {
             key={c.municipioId}
             type="button"
             onClick={() => setSelected(c.municipioId)}
-            className={
-              selected === c.municipioId
-                ? "rounded-full bg-black px-3 py-1 text-xs font-medium text-white dark:bg-white dark:text-black"
-                : "rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
-            }
+            className={`rounded-full px-3 py-1 text-xs font-medium ${chipClass(selected === c.municipioId)}`}
           >
             {c.name} ({c.count})
           </button>

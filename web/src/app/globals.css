@@ -58,13 +58,25 @@
 
   /* Brand */
   --color-brand: #dc2626;
+
+  /* Outbound/inline links (ExternalLink, SocialEmbed, and the inline text
+     links across cifras/metodologia/terminos/etc; was hardcoded Tailwind
+     blue-600 in 10 files with no shared token). Also doubles as the
+     focus-visible ring color below, so every interactive element uses one
+     hue instead of introducing a second accent next to --color-brand. */
+  --color-link: #1e40af; /* blue-800, 8.3:1 on white */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-public-sans);
+  /* Scoped to editorial content (historias body copy) via a wrapper carrying
+     --font-newsreader. The inline fallback covers the (should-never-happen)
+     case of the font-serif utility rendering outside that wrapper. Geist
+     Mono is gone: font-mono was applied to zero elements anywhere in this
+     codebase, so it was dead weight downloaded on every route. */
+  --font-serif: var(--font-newsreader, ui-serif, Georgia, serif);
 
   --color-severity-critica: var(--color-severity-critica);
   --color-severity-alta: var(--color-severity-alta);
@@ -99,6 +111,7 @@
   --color-aidkind-monetary_donation: var(--color-aidkind-monetary_donation);
 
   --color-brand: var(--color-brand);
+  --color-link: var(--color-link);
 }
 
 /* Dark palette — applies whenever <html> has class="dark" (set by the init
@@ -142,9 +155,48 @@
   --color-aidkind-monetary_donation: #a78bfa;
 
   --color-brand: #f87171;
+  --color-link: #93c5fd; /* blue-300, ~9.7:1 on #0a0a0a */
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Every interactive element gets a visible ring by default. The codebase
+   previously had zero focus styling anywhere, relying on the UA default
+   outline, which several components (map markers, filter pills, form
+   inputs) then visually clip. One rule here beats per-component fixes. */
+:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* The one deliberate net-new motion pattern from the design pass: a slow
+   halo behind ACTIVE aid-point map markers (CiudadMapaClient.tsx), reading
+   as a heartbeat rather than a notification badge. Compositor-only
+   (transform + opacity), so it's cheap even on the low-end phones this
+   site's audience skews toward. Plain CSS rather than a Tailwind utility
+   because MapLibre markers are DOM nodes built outside Tailwind's scanned
+   tree, same reason severityColor()/markerColor() read tokens directly. */
+@keyframes marker-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+.marker-pulse {
+  animation: marker-pulse 2s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marker-pulse {
+    animation: none;
+    opacity: 0.35;
+    transform: scale(1.4);
+  }
 }

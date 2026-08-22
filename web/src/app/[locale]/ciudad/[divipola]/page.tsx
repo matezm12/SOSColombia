@@ -115,7 +115,14 @@ export default async function CiudadPage(
   const aidByKind = Object.groupBy(municipio.aidPoints, (a) => a.kind);
   const geocodedAidPoints = municipio.aidPoints
     .filter((a) => a.lat != null && a.lng != null)
-    .map((a) => ({ id: a.id, name: a.name, kind: a.kind, lat: a.lat as number, lng: a.lng as number }));
+    .map((a) => ({
+      id: a.id,
+      name: a.name,
+      kind: a.kind,
+      status: a.status,
+      lat: a.lat as number,
+      lng: a.lng as number,
+    }));
 
   // Structured data for the municipio being shown — only real, fetched fields.
   // lat/lng are nullable in the DB (Municipio.lat / Municipio.lng), so the geo

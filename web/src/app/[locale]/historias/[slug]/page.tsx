@@ -14,6 +14,7 @@ import { verificationLabel } from "@/lib/labels";
 import { localizedStory, storyHref, resolveStoryImage } from "@/lib/stories";
 import { formatDate } from "@/lib/format";
 import { ogImageUrl } from "@/lib/seo";
+import { newsreader } from "@/app/fonts";
 
 export const revalidate = 60;
 
@@ -58,7 +59,7 @@ export async function generateMetadata({
   const { title, lede } = localizedStory(story, locale);
 
   const url = `${SITE_URL}${storyHref(slug, locale)}`;
-  const image = (await resolveStoryImage(story)) ?? ogImageUrl(locale);
+  const image = (await resolveStoryImage(story))?.url ?? ogImageUrl(locale);
   const keywords = [
     "terremoto Colombia 2026",
     story.municipio?.name,
@@ -130,7 +131,7 @@ export default async function StoryDetailPage({
     "@type": "Article",
     headline: title,
     description: lede,
-    image: [resolvedImage ?? ogImageUrl(locale)],
+    image: [resolvedImage?.url ?? ogImageUrl(locale)],
     datePublished: publishedAt,
     dateModified: story.updatedAt.toISOString(),
     inLanguage: locale === "en" ? "en-US" : "es-CO",
@@ -155,22 +156,40 @@ export default async function StoryDetailPage({
       <PageShell backHref="/historias" title={title} lede={lede}>
       <div className="relative -mt-2 py-1 pr-10">
         <p className="text-sm text-zinc-400 dark:text-zinc-600">
-          {story.authorName} · {formatDate(story.publishedAt ?? story.createdAt)}
+          {story.authorName} · {formatDate(story.publishedAt ?? story.createdAt, locale)}
         </p>
         <ShareButton href={storyHref(slug, locale)} label={title} />
       </div>
 
       {resolvedImage && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={resolvedImage}
-          alt={title}
-          className="mt-6 aspect-[1200/630] w-full rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
-          fetchPriority="high"
-        />
+        <div className="relative mt-6">
+          {/* alt="" because the headline right above already names this
+              story; a repeated alt is noise for a screen reader, not a
+              second description. Credit (when the image came from a linked
+              campaign rather than an admin-set cover) is a visible caption
+              instead, matching the two-sentence source-attribution
+              convention used across the site. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={resolvedImage.url}
+            alt=""
+            className="aspect-[1200/630] w-full rounded-lg border border-zinc-200 object-cover dark:border-zinc-800"
+            fetchPriority="high"
+          />
+          {resolvedImage.credit && (
+            <p className="absolute bottom-2 right-2 rounded bg-black/60 px-2 py-1 text-xs text-white">
+              {resolvedImage.credit}
+            </p>
+          )}
+        </div>
       )}
 
-      <div className="mt-6 space-y-4 text-zinc-700 dark:text-zinc-300">
+      {/* Serif is scoped to this wrapper only, never SiteHeader/Card/Badge/
+          forms, per the design research: dignified editorial type collapses
+          into "amateurish" the moment it leaks into functional UI chrome. */}
+      <div
+        className={`${newsreader.variable} mt-6 max-w-2xl space-y-4 font-serif text-lg leading-relaxed text-zinc-700 dark:text-zinc-300`}
+      >
         {paragraphs.map((p, i) => (
           <p key={i}>{p}</p>
         ))}

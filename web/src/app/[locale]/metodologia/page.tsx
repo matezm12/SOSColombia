@@ -52,7 +52,7 @@ export default async function MetodologiaPage(props: PageProps<"/[locale]/metodo
         <p>
           {t.rich("nivelesTexto", {
             link: (chunks) => (
-              <Link href="/fuentes" className="text-blue-600 hover:underline dark:text-blue-400">
+              <Link href="/fuentes" className="text-link hover:underline">
                 {chunks}
               </Link>
             ),
@@ -89,7 +89,7 @@ export default async function MetodologiaPage(props: PageProps<"/[locale]/metodo
       )}
 
       <p className="mt-10 border-t border-zinc-100 pt-6 text-sm dark:border-zinc-900">
-        <Link href="/cambios" className="text-blue-600 hover:underline dark:text-blue-400">
+        <Link href="/cambios" className="text-link hover:underline">
           {t("cambiosLink")}
         </Link>
       </p>
